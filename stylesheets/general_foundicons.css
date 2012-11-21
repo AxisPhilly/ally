@@ -1,0 +1,265 @@
+/* font-face */
+@font-face {
+  font-family: "GeneralFoundicons";
+  src: url("../fonts/general_foundicons.eot");
+  src: url("../fonts/general_foundicons.eot?#iefix") format("embedded-opentype"), url("../fonts/general_foundicons.woff") format("woff"), url("../fonts/general_foundicons.ttf") format("truetype"), url("../fonts/general_foundicons.svg#GeneralFoundicons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* global foundicon styles */
+/* line 7, ../sass/general_foundicons.scss */
+[class*="general-foundicon-"] {
+  display: inline;
+  width: auto;
+  height: auto;
+  line-height: inherit;
+  vertical-align: baseline;
+  background-image: none;
+  background-position: 0 0;
+  background-repeat: repeat;
+}
+
+/* line 17, ../sass/general_foundicons.scss */
+[class*="general-foundicon-"]:before {
+  font-family: "GeneralFoundicons";
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: inherit;
+}
+
+/* icons */
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-settings:before {
+  content: "\f000";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-heart:before {
+  content: "\f001";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-star:before {
+  content: "\f002";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-plus:before {
+  content: "\f003";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-minus:before {
+  content: "\f004";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-checkmark:before {
+  content: "\f005";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-remove:before {
+  content: "\f006";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-mail:before {
+  content: "\f007";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-calendar:before {
+  content: "\f008";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-page:before {
+  content: "\f009";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-tools:before {
+  content: "\f00a";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-globe:before {
+  content: "\f00b";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-home:before {
+  content: "\f00c";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-quote:before {
+  content: "\f00d";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-people:before {
+  content: "\f00e";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-monitor:before {
+  content: "\f00f";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-laptop:before {
+  content: "\f010";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-phone:before {
+  content: "\f011";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-cloud:before {
+  content: "\f012";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-error:before {
+  content: "\f013";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-right-arrow:before {
+  content: "\f014";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-left-arrow:before {
+  content: "\f015";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-up-arrow:before {
+  content: "\f016";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-down-arrow:before {
+  content: "\f017";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-trash:before {
+  content: "\f018";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-add-doc:before {
+  content: "\f019";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-edit:before {
+  content: "\f01a";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-lock:before {
+  content: "\f01b";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-unlock:before {
+  content: "\f01c";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-refresh:before {
+  content: "\f01d";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-paper-clip:before {
+  content: "\f01e";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-video:before {
+  content: "\f01f";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-photo:before {
+  content: "\f020";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-graph:before {
+  content: "\f021";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-idea:before {
+  content: "\f022";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-mic:before {
+  content: "\f023";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-cart:before {
+  content: "\f024";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-address-book:before {
+  content: "\f025";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-compass:before {
+  content: "\f026";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-flag:before {
+  content: "\f027";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-location:before {
+  content: "\f028";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-clock:before {
+  content: "\f029";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-folder:before {
+  content: "\f02a";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-inbox:before {
+  content: "\f02b";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-website:before {
+  content: "\f02c";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-smiley:before {
+  content: "\f02d";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-search:before {
+  content: "\f02e";
+}

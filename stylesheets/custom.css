@@ -1,0 +1,89 @@
+/* line 1, ../sass/custom.scss */
+body {
+  position: relative;
+}
+
+/* line 5, ../sass/custom.scss */
+#project-nav {
+  display: none;
+  z-index: 10;
+  background-color: #fff;
+}
+@media (max-width: 640px) {
+  /* line 5, ../sass/custom.scss */
+  #project-nav {
+    display: block;
+  }
+}
+/* line 15, ../sass/custom.scss */
+#project-nav ul {
+  padding-top: 50px;
+  list-style-top: none;
+}
+/* line 19, ../sass/custom.scss */
+#project-nav ul li {
+  display: inline-block;
+}
+/* line 22, ../sass/custom.scss */
+#project-nav ul li.active {
+  background-color: blue;
+}
+
+/* line 29, ../sass/custom.scss */
+ul.project-sections {
+  list-style-type: none;
+}
+
+/* line 33, ../sass/custom.scss */
+#sidebar {
+  padding-top: 20px;
+}
+@media (max-width: 768px) {
+  /* line 33, ../sass/custom.scss */
+  #sidebar {
+    display: none;
+  }
+}
+/* line 40, ../sass/custom.scss */
+#sidebar .project-info-container {
+  margin-top: 20px;
+}
+/* line 45, ../sass/custom.scss */
+#sidebar .recent-stories a {
+  margin: 4px 0;
+  padding: 3px 0 1px 0;
+  display: block;
+  border-top: 1px solid #ccc;
+}
+
+/* line 55, ../sass/custom.scss */
+.social-container input {
+  margin-top: 5px;
+  width: 170px;
+}
+/* line 60, ../sass/custom.scss */
+.social-container a {
+  font-size: 150%;
+  display: inline-block;
+  margin: 0 8px;
+}
+
+/* line 67, ../sass/custom.scss */
+.moving-container {
+  background-color: #fff;
+  z-index: 10;
+  padding-top: 10px;
+  max-width: 275px;
+}
+/* line 73, ../sass/custom.scss */
+.moving-container.affix {
+  position: fixed;
+  top: 50px;
+  width: 22%;
+}
+/* line 79, ../sass/custom.scss */
+.moving-container.affix-bottom {
+  position: absolute;
+  bottom: 330px;
+  width: 22%;
+}
