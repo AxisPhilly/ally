@@ -15,7 +15,7 @@ html {
 /* line 7, ../../../.rvm/gems/ruby-1.9.3-p286/gems/zurb-foundation-3.2.2/scss/foundation/common/_globals.scss */
 body {
   background: white;
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
   font-weight: normal;
   font-style: normal;
   font-size: 14px;
@@ -886,7 +886,7 @@ form.custom .custom.disabled {
 /* The Grid ---------------------- */
 /* line 3, ../../../.rvm/gems/ruby-1.9.3-p286/gems/zurb-foundation-3.2.2/scss/foundation/components/_grid.scss */
 .row {
-  width: 1000px;
+  width: 1200px;
   max-width: 100%;
   min-width: 768px;
   margin: 0 auto;
@@ -2327,7 +2327,7 @@ ul.flyout li.active a, .nav-bar li ul li.active a {
 }
 /* line 28, ../../../.rvm/gems/ruby-1.9.3-p286/gems/zurb-foundation-3.2.2/scss/foundation/components/modules/_topbar.scss */
 .contain-to-grid .top-bar {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 /* line 33, ../../../.rvm/gems/ruby-1.9.3-p286/gems/zurb-foundation-3.2.2/scss/foundation/components/modules/_topbar.scss */
@@ -5884,4 +5884,856 @@ table.hide-for-medium {
   .top-bar ul > li.has-button a.button {
     margin: 0;
   }
+}
+/* line 1, ../sass/foundation-overrides.scss */
+aside p {
+  font-style: normal;
+}
+
+/* font-face */
+@font-face {
+  font-family: "SocialFoundicons";
+  src: url("../fonts/social_foundicons.eot");
+  src: url("../fonts/social_foundicons.eot?#iefix") format("embedded-opentype"), url("../fonts/social_foundicons.woff") format("woff"), url("../fonts/social_foundicons.ttf") format("truetype"), url("../fonts/social_foundicons.svg#SocialFoundicons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* global foundicon styles */
+/* line 7, ../sass/social_foundicons.scss */
+[class*="social-foundicon-"] {
+  display: inline;
+  width: auto;
+  height: auto;
+  line-height: inherit;
+  vertical-align: baseline;
+  background-image: none;
+  background-position: 0 0;
+  background-repeat: repeat;
+}
+
+/* line 17, ../sass/social_foundicons.scss */
+[class*="social-foundicon-"]:before {
+  font-family: "SocialFoundicons";
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: inherit;
+}
+
+/* icons */
+/* line 6, ../sass/_social_settings.scss */
+.social-foundicon-thumb-up:before {
+  content: "\f000";
+}
+
+/* line 6, ../sass/_social_settings.scss */
+.social-foundicon-thumb-down:before {
+  content: "\f001";
+}
+
+/* line 6, ../sass/_social_settings.scss */
+.social-foundicon-rss:before {
+  content: "\f002";
+}
+
+/* line 6, ../sass/_social_settings.scss */
+.social-foundicon-facebook:before {
+  content: "\f003";
+}
+
+/* line 6, ../sass/_social_settings.scss */
+.social-foundicon-twitter:before {
+  content: "\f004";
+}
+
+/* line 6, ../sass/_social_settings.scss */
+.social-foundicon-pinterest:before {
+  content: "\f005";
+}
+
+/* line 6, ../sass/_social_settings.scss */
+.social-foundicon-github:before {
+  content: "\f006";
+}
+
+/* line 6, ../sass/_social_settings.scss */
+.social-foundicon-path:before {
+  content: "\f007";
+}
+
+/* line 6, ../sass/_social_settings.scss */
+.social-foundicon-linkedin:before {
+  content: "\f008";
+}
+
+/* line 6, ../sass/_social_settings.scss */
+.social-foundicon-dribbble:before {
+  content: "\f009";
+}
+
+/* line 6, ../sass/_social_settings.scss */
+.social-foundicon-stumble-upon:before {
+  content: "\f00a";
+}
+
+/* line 6, ../sass/_social_settings.scss */
+.social-foundicon-behance:before {
+  content: "\f00b";
+}
+
+/* line 6, ../sass/_social_settings.scss */
+.social-foundicon-reddit:before {
+  content: "\f00c";
+}
+
+/* line 6, ../sass/_social_settings.scss */
+.social-foundicon-google-plus:before {
+  content: "\f00d";
+}
+
+/* line 6, ../sass/_social_settings.scss */
+.social-foundicon-youtube:before {
+  content: "\f00e";
+}
+
+/* line 6, ../sass/_social_settings.scss */
+.social-foundicon-vimeo:before {
+  content: "\f00f";
+}
+
+/* line 6, ../sass/_social_settings.scss */
+.social-foundicon-flickr:before {
+  content: "\f010";
+}
+
+/* line 6, ../sass/_social_settings.scss */
+.social-foundicon-slideshare:before {
+  content: "\f011";
+}
+
+/* line 6, ../sass/_social_settings.scss */
+.social-foundicon-picassa:before {
+  content: "\f012";
+}
+
+/* line 6, ../sass/_social_settings.scss */
+.social-foundicon-skype:before {
+  content: "\f013";
+}
+
+/* line 6, ../sass/_social_settings.scss */
+.social-foundicon-steam:before {
+  content: "\f014";
+}
+
+/* line 6, ../sass/_social_settings.scss */
+.social-foundicon-instagram:before {
+  content: "\f015";
+}
+
+/* line 6, ../sass/_social_settings.scss */
+.social-foundicon-foursquare:before {
+  content: "\f016";
+}
+
+/* line 6, ../sass/_social_settings.scss */
+.social-foundicon-delicious:before {
+  content: "\f017";
+}
+
+/* line 6, ../sass/_social_settings.scss */
+.social-foundicon-chat:before {
+  content: "\f018";
+}
+
+/* line 6, ../sass/_social_settings.scss */
+.social-foundicon-torso:before {
+  content: "\f019";
+}
+
+/* line 6, ../sass/_social_settings.scss */
+.social-foundicon-tumblr:before {
+  content: "\f01a";
+}
+
+/* line 6, ../sass/_social_settings.scss */
+.social-foundicon-video-chat:before {
+  content: "\f01b";
+}
+
+/* line 6, ../sass/_social_settings.scss */
+.social-foundicon-digg:before {
+  content: "\f01c";
+}
+
+/* line 6, ../sass/_social_settings.scss */
+.social-foundicon-wordpress:before {
+  content: "\f01d";
+}
+
+/* general icons for IE7 */
+/* line 4, ../sass/social_foundicons_ie7.scss */
+[class*="social-foundicon-"] {
+  font-family: "SocialFoundicons";
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* line 12, ../sass/_social_settings.scss */
+.social-foundicon-thumb-up {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf000;");
+}
+
+/* line 12, ../sass/_social_settings.scss */
+.social-foundicon-thumb-down {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf001;");
+}
+
+/* line 12, ../sass/_social_settings.scss */
+.social-foundicon-rss {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf002;");
+}
+
+/* line 12, ../sass/_social_settings.scss */
+.social-foundicon-facebook {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf003;");
+}
+
+/* line 12, ../sass/_social_settings.scss */
+.social-foundicon-twitter {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf004;");
+}
+
+/* line 12, ../sass/_social_settings.scss */
+.social-foundicon-pinterest {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf005;");
+}
+
+/* line 12, ../sass/_social_settings.scss */
+.social-foundicon-github {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf006;");
+}
+
+/* line 12, ../sass/_social_settings.scss */
+.social-foundicon-path {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf007;");
+}
+
+/* line 12, ../sass/_social_settings.scss */
+.social-foundicon-linkedin {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf008;");
+}
+
+/* line 12, ../sass/_social_settings.scss */
+.social-foundicon-dribbble {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf009;");
+}
+
+/* line 12, ../sass/_social_settings.scss */
+.social-foundicon-stumble-upon {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf00a;");
+}
+
+/* line 12, ../sass/_social_settings.scss */
+.social-foundicon-behance {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf00b;");
+}
+
+/* line 12, ../sass/_social_settings.scss */
+.social-foundicon-reddit {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf00c;");
+}
+
+/* line 12, ../sass/_social_settings.scss */
+.social-foundicon-google-plus {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf00d;");
+}
+
+/* line 12, ../sass/_social_settings.scss */
+.social-foundicon-youtube {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf00e;");
+}
+
+/* line 12, ../sass/_social_settings.scss */
+.social-foundicon-vimeo {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf00f;");
+}
+
+/* line 12, ../sass/_social_settings.scss */
+.social-foundicon-flickr {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf010;");
+}
+
+/* line 12, ../sass/_social_settings.scss */
+.social-foundicon-slideshare {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf011;");
+}
+
+/* line 12, ../sass/_social_settings.scss */
+.social-foundicon-picassa {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf012;");
+}
+
+/* line 12, ../sass/_social_settings.scss */
+.social-foundicon-skype {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf013;");
+}
+
+/* line 12, ../sass/_social_settings.scss */
+.social-foundicon-steam {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf014;");
+}
+
+/* line 12, ../sass/_social_settings.scss */
+.social-foundicon-instagram {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf015;");
+}
+
+/* line 12, ../sass/_social_settings.scss */
+.social-foundicon-foursquare {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf016;");
+}
+
+/* line 12, ../sass/_social_settings.scss */
+.social-foundicon-delicious {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf017;");
+}
+
+/* line 12, ../sass/_social_settings.scss */
+.social-foundicon-chat {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf018;");
+}
+
+/* line 12, ../sass/_social_settings.scss */
+.social-foundicon-torso {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf019;");
+}
+
+/* line 12, ../sass/_social_settings.scss */
+.social-foundicon-tumblr {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf01a;");
+}
+
+/* line 12, ../sass/_social_settings.scss */
+.social-foundicon-video-chat {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf01b;");
+}
+
+/* line 12, ../sass/_social_settings.scss */
+.social-foundicon-digg {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf01c;");
+}
+
+/* line 12, ../sass/_social_settings.scss */
+.social-foundicon-wordpress {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf01d;");
+}
+
+/* font-face */
+@font-face {
+  font-family: "GeneralFoundicons";
+  src: url("../fonts/general_foundicons.eot");
+  src: url("../fonts/general_foundicons.eot?#iefix") format("embedded-opentype"), url("../fonts/general_foundicons.woff") format("woff"), url("../fonts/general_foundicons.ttf") format("truetype"), url("../fonts/general_foundicons.svg#GeneralFoundicons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* global foundicon styles */
+/* line 7, ../sass/general_foundicons.scss */
+[class*="general-foundicon-"] {
+  display: inline;
+  width: auto;
+  height: auto;
+  line-height: inherit;
+  vertical-align: baseline;
+  background-image: none;
+  background-position: 0 0;
+  background-repeat: repeat;
+}
+
+/* line 17, ../sass/general_foundicons.scss */
+[class*="general-foundicon-"]:before {
+  font-family: "GeneralFoundicons";
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: inherit;
+}
+
+/* icons */
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-settings:before {
+  content: "\f000";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-heart:before {
+  content: "\f001";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-star:before {
+  content: "\f002";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-plus:before {
+  content: "\f003";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-minus:before {
+  content: "\f004";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-checkmark:before {
+  content: "\f005";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-remove:before {
+  content: "\f006";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-mail:before {
+  content: "\f007";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-calendar:before {
+  content: "\f008";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-page:before {
+  content: "\f009";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-tools:before {
+  content: "\f00a";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-globe:before {
+  content: "\f00b";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-home:before {
+  content: "\f00c";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-quote:before {
+  content: "\f00d";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-people:before {
+  content: "\f00e";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-monitor:before {
+  content: "\f00f";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-laptop:before {
+  content: "\f010";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-phone:before {
+  content: "\f011";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-cloud:before {
+  content: "\f012";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-error:before {
+  content: "\f013";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-right-arrow:before {
+  content: "\f014";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-left-arrow:before {
+  content: "\f015";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-up-arrow:before {
+  content: "\f016";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-down-arrow:before {
+  content: "\f017";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-trash:before {
+  content: "\f018";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-add-doc:before {
+  content: "\f019";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-edit:before {
+  content: "\f01a";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-lock:before {
+  content: "\f01b";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-unlock:before {
+  content: "\f01c";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-refresh:before {
+  content: "\f01d";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-paper-clip:before {
+  content: "\f01e";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-video:before {
+  content: "\f01f";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-photo:before {
+  content: "\f020";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-graph:before {
+  content: "\f021";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-idea:before {
+  content: "\f022";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-mic:before {
+  content: "\f023";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-cart:before {
+  content: "\f024";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-address-book:before {
+  content: "\f025";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-compass:before {
+  content: "\f026";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-flag:before {
+  content: "\f027";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-location:before {
+  content: "\f028";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-clock:before {
+  content: "\f029";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-folder:before {
+  content: "\f02a";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-inbox:before {
+  content: "\f02b";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-website:before {
+  content: "\f02c";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-smiley:before {
+  content: "\f02d";
+}
+
+/* line 6, ../sass/general_settings.scss */
+.general-foundicon-search:before {
+  content: "\f02e";
+}
+
+/* general icons for IE7 */
+/* line 4, ../sass/general_foundicons_ie7.scss */
+[class*="general-foundicon-"] {
+  font-family: "GeneralFoundicons";
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-settings {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf000;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-heart {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf001;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-star {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf002;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-plus {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf003;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-minus {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf004;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-checkmark {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf005;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-remove {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf006;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-mail {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf007;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-calendar {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf008;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-page {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf009;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-tools {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf00a;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-globe {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf00b;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-home {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf00c;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-quote {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf00d;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-people {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf00e;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-monitor {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf00f;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-laptop {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf010;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-phone {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf011;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-cloud {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf012;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-error {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf013;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-right-arrow {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf014;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-left-arrow {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf015;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-up-arrow {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf016;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-down-arrow {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf017;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-trash {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf018;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-add-doc {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf019;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-edit {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf01a;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-lock {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf01b;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-unlock {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf01c;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-refresh {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf01d;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-paper-clip {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf01e;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-video {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf01f;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-photo {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf020;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-graph {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf021;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-idea {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf022;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-mic {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf023;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-cart {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf024;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-address-book {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf025;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-compass {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf026;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-flag {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf027;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-location {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf028;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-clock {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf029;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-folder {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf02a;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-inbox {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf02b;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-website {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf02c;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-smiley {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf02d;");
+}
+
+/* line 12, ../sass/general_settings.scss */
+.general-foundicon-search {
+  *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf02e;");
 }
