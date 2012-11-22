@@ -80,7 +80,6 @@ axis.Features = Backbone.View.extend({
 
     $(window).load(function() {
       $('#featured').orbit({
-        fluid: '16x9',
         timer: 'false'
       });
     });

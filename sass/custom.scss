@@ -26,8 +26,33 @@ body {
   }
 }
 
-ul.project-sections {
-    list-style-type: none;
+.project-section-nav {
+  .tabs {
+    background-color: #fff;
+  }
+
+  &.affix {
+    width: 100%;
+    z-index: 10;
+    top: 45px;
+    position: fixed;
+  }
+
+  &.small {
+    display: block;
+
+    @media(min-width: 767px) {
+      display: none;
+    }
+  }
+
+  &.large {
+    display: none;
+
+    @media(min-width: 768px) {
+      display: block;
+    }
+  }
 }
 
 #sidebar {
@@ -57,10 +82,14 @@ ul.project-sections {
     width: 170px;
   }
 
-   a {
-    font-size: 150%;
-    display:inline-block;
-    margin: 0 8px;
+  .sites {
+    padding-left: 4px;
+
+    a {
+      font-size: 150%;
+      display:inline-block;
+      margin: 0 8px;
+    }
   }
 }
 
@@ -72,7 +101,7 @@ ul.project-sections {
 
   &.affix {
     position: fixed;
-    top: 50px;
+    top: 48px;
     width: 22%;
   }
 
@@ -80,5 +109,46 @@ ul.project-sections {
     position: absolute;
     bottom: 330px;
     width: 22%;
+  }
+}
+.story-navigation {
+  border: 1px solid #ccc;
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+  }
+
+  strong {
+    display: block;
+    font-size: 1.2em;
+  }
+
+  li {
+    margin: 0;
+    display: inline-block;
+    width: 50%;
+    text-align: center;
+
+    a {
+      display: block;
+      text-decoration: none;
+      padding: 20px 40px;
+    }
+
+    &.previous {
+      border-right: 1px solid #ccc;
+
+      @media(max-width: 767px) {
+        border: none;
+      }
+    }
+
+    &.next {
+      @media(max-width: 767px) {
+        border-top: 1px solid #ccc;
+      }
+
+    }
   }
 }

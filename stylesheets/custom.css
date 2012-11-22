@@ -29,26 +29,53 @@ body {
   background-color: blue;
 }
 
-/* line 29, ../sass/custom.scss */
-ul.project-sections {
-  list-style-type: none;
+/* line 30, ../sass/custom.scss */
+.project-section-nav .tabs {
+  background-color: #fff;
+}
+/* line 34, ../sass/custom.scss */
+.project-section-nav.affix {
+  width: 100%;
+  z-index: 10;
+  top: 45px;
+  position: fixed;
+}
+/* line 41, ../sass/custom.scss */
+.project-section-nav.small {
+  display: block;
+}
+@media (min-width: 767px) {
+  /* line 41, ../sass/custom.scss */
+  .project-section-nav.small {
+    display: none;
+  }
+}
+/* line 49, ../sass/custom.scss */
+.project-section-nav.large {
+  display: none;
+}
+@media (min-width: 768px) {
+  /* line 49, ../sass/custom.scss */
+  .project-section-nav.large {
+    display: block;
+  }
 }
 
-/* line 33, ../sass/custom.scss */
+/* line 58, ../sass/custom.scss */
 #sidebar {
   padding-top: 20px;
 }
 @media (max-width: 768px) {
-  /* line 33, ../sass/custom.scss */
+  /* line 58, ../sass/custom.scss */
   #sidebar {
     display: none;
   }
 }
-/* line 40, ../sass/custom.scss */
+/* line 65, ../sass/custom.scss */
 #sidebar .project-info-container {
   margin-top: 20px;
 }
-/* line 45, ../sass/custom.scss */
+/* line 70, ../sass/custom.scss */
 #sidebar .recent-stories a {
   margin: 4px 0;
   padding: 3px 0 1px 0;
@@ -56,34 +83,82 @@ ul.project-sections {
   border-top: 1px solid #ccc;
 }
 
-/* line 55, ../sass/custom.scss */
+/* line 80, ../sass/custom.scss */
 .social-container input {
   margin-top: 5px;
   width: 170px;
 }
-/* line 60, ../sass/custom.scss */
-.social-container a {
+/* line 85, ../sass/custom.scss */
+.social-container .sites {
+  padding-left: 4px;
+}
+/* line 88, ../sass/custom.scss */
+.social-container .sites a {
   font-size: 150%;
   display: inline-block;
   margin: 0 8px;
 }
 
-/* line 67, ../sass/custom.scss */
+/* line 96, ../sass/custom.scss */
 .moving-container {
   background-color: #fff;
   z-index: 10;
   padding-top: 10px;
   max-width: 275px;
 }
-/* line 73, ../sass/custom.scss */
+/* line 102, ../sass/custom.scss */
 .moving-container.affix {
   position: fixed;
-  top: 50px;
+  top: 48px;
   width: 22%;
 }
-/* line 79, ../sass/custom.scss */
+/* line 108, ../sass/custom.scss */
 .moving-container.affix-bottom {
   position: absolute;
   bottom: 330px;
   width: 22%;
+}
+
+/* line 114, ../sass/custom.scss */
+.story-navigation {
+  border: 1px solid #ccc;
+}
+/* line 117, ../sass/custom.scss */
+.story-navigation ul {
+  list-style-type: none;
+  margin: 0;
+}
+/* line 122, ../sass/custom.scss */
+.story-navigation strong {
+  display: block;
+  font-size: 1.2em;
+}
+/* line 127, ../sass/custom.scss */
+.story-navigation li {
+  margin: 0;
+  display: inline-block;
+  width: 50%;
+  text-align: center;
+}
+/* line 133, ../sass/custom.scss */
+.story-navigation li a {
+  display: block;
+  text-decoration: none;
+  padding: 20px 40px;
+}
+/* line 139, ../sass/custom.scss */
+.story-navigation li.previous {
+  border-right: 1px solid #ccc;
+}
+@media (max-width: 767px) {
+  /* line 139, ../sass/custom.scss */
+  .story-navigation li.previous {
+    border: none;
+  }
+}
+@media (max-width: 767px) {
+  /* line 147, ../sass/custom.scss */
+  .story-navigation li.next {
+    border-top: 1px solid #ccc;
+  }
 }

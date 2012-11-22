@@ -6,6 +6,7 @@
   <!-- Foundation -->
   <link rel="stylesheet" href="../../../stylesheets/app.css">
   <link rel="stylesheet" href="../../../stylesheets/foundation-overrides.css">
+  <link rel="stylesheet" href="../../../stylesheets/custom.css">
   <!-- Custom Styles -->
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,800,600' rel='stylesheet' type='text/css'>
   <!-- Modernizer -->
@@ -22,7 +23,7 @@
       <section>
         <ul class="left">
           <li class="has-dropdown">
-            <a href="#">Projects</a>
+            <a href="#">Our Projects</a>
 
             <ul class="dropdown">
               <li class="active"><a href="/demo/project/avi">AVI</a></li>
@@ -71,11 +72,9 @@
             proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Fored dfdm lorem
             impsum dolor.</p>
 
-            <ul class="project-sections">
-              <li><a href="#news-feed">Stories »</a></li>
-              <li><a href="#tools-and-data">Tools &amp; Data »</a></li>
-              <li><a href="#discussion">Discussion »</a></li>
-            </ul>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco.</p>
         </div>
 
         <!-- Features -->
@@ -87,39 +86,99 @@
 
       </div><!-- End Header Row -->
 
-      <!-- Project Sections -->
-      <div class="row">
-        <nav id="project-nav" class="twelve columns">
-          <ul data-magellan-expedition="fixed">
-            <li data-magellan-arrival='news-feed'>Stories</li>
-            <li data-magellan-arrival='tools-and-data'>Tools &amp; Data</li>
-            <li data-magellan-arrival='discussion'>Discussion</li>
-          </ul>
-        </nav>
-      </div>
-
-      <a name="news-feed" data-magellan-destination="news-feed"></a>
-      <div class="row">
-        <div id="news-feed" class="twelve columns">
-          <h3>Stories</h3>
-          <div class="items"></div>
+      <div class="project-section-nav small" data-spy="affix" data-offset-top="820">
+        <div class="row">
+          <dl class="tabs three-up">
+            <dd class="active"><a href="#feed">Stories</a></dd>
+            <dd><a href="#data">Tools</a></dd>
+            <dd><a href="#talk">Discuss</a></dd>
+          </dl>
         </div>
       </div>
 
-      <a name="tools-and-data" data-magellan-destination="tools-and-data"></a>
-      <div class="row">
-        <div id="tools-and-data" class="twelve columns">
-          <h3>Tools &amp; Data</h3>
-          <div class="items"></div>
+      <div class="project-section-nav large" data-spy="affix" data-offset-top="660">
+        <div class="row">
+          <dl class="tabs three-up">
+            <dd class="active"><a href="#feed">Stories</a></dd>
+            <dd><a href="#data">Tools &amp; Data</a></dd>
+            <dd><a href="#talk">Discussion</a></dd>
+          </dl>
         </div>
       </div>
 
-      <a name="discussion" data-magellan-destination="discussion"></a>
-      <div class="row">
-        <div id="discussion" class="twelve columns">
-          <h3>Discussion</h3>
-        </div>
-      </div>
+      <ul class="tabs-content">
+        <li class="active" id="feedTab">
+          <a name="news-feed" data-magellan-destination="news-feed"></a>
+          <div class="row">
+            <div id="news-feed" class="twelve columns">
+              <div class="items"></div>
+            </div>
+          </div>
+        </li>
+        <li id="dataTab">
+          <a name="tools-and-data" data-magellan-destination="tools-and-data"></a>
+          <div class="row">
+            <div id="tools-and-data" class="twelve columns">
+              <div class="items"></div>
+            </div>
+          </div>
+        </li>
+        <li id="talkTab">
+          <a name="discussion" data-magellan-destination="discussion"></a>
+          <div class="row">
+            <div id="discussion" class="twelve columns">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </div>
+          </div>
+        </li>
+      </ul>
 
     </div><!-- End News Container -->
 
@@ -154,6 +213,7 @@
   <script src="../../../javascripts/foundation/jquery.foundation.tooltips.js"></script>
   <script src="../../../javascripts/foundation/jquery.foundation.topbar.js"></script>
   <script src="../../../javascripts/foundation/jquery.placeholder.js"></script>
+  <script src="../../../javascripts/contrib/bootstrap.affix.js"></script>
   <!-- Application Javascript, safe to override -->
   <script src="../../../javascripts/foundation/app.js"></script>
   <!-- Templates -->
