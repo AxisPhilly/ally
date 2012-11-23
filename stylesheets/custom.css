@@ -119,46 +119,51 @@ body {
   width: 22%;
 }
 
-/* line 114, ../sass/custom.scss */
-.story-navigation {
+/* line 115, ../sass/custom.scss */
+.article-navigation {
   border: 1px solid #ccc;
 }
-/* line 117, ../sass/custom.scss */
-.story-navigation ul {
+/* line 118, ../sass/custom.scss */
+.article-navigation ul {
   list-style-type: none;
   margin: 0;
 }
-/* line 122, ../sass/custom.scss */
-.story-navigation strong {
+/* line 123, ../sass/custom.scss */
+.article-navigation strong {
   display: block;
   font-size: 1.2em;
 }
-/* line 127, ../sass/custom.scss */
-.story-navigation li {
+/* line 128, ../sass/custom.scss */
+.article-navigation li {
   margin: 0;
   display: inline-block;
   width: 50%;
   text-align: center;
 }
-/* line 133, ../sass/custom.scss */
-.story-navigation li a {
+/* line 134, ../sass/custom.scss */
+.article-navigation li a {
   display: block;
   text-decoration: none;
   padding: 20px 40px;
 }
-/* line 139, ../sass/custom.scss */
-.story-navigation li.previous {
+/* line 140, ../sass/custom.scss */
+.article-navigation li i.none {
+  display: inline-block;
+  padding: 20px 40px;
+}
+/* line 145, ../sass/custom.scss */
+.article-navigation li.previous {
   border-right: 1px solid #ccc;
 }
 @media (max-width: 767px) {
-  /* line 139, ../sass/custom.scss */
-  .story-navigation li.previous {
+  /* line 145, ../sass/custom.scss */
+  .article-navigation li.previous {
     border: none;
   }
 }
 @media (max-width: 767px) {
-  /* line 147, ../sass/custom.scss */
-  .story-navigation li.next {
+  /* line 153, ../sass/custom.scss */
+  .article-navigation li.next {
     border-top: 1px solid #ccc;
   }
 }

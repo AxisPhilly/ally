@@ -111,7 +111,8 @@ body {
     width: 22%;
   }
 }
-.story-navigation {
+
+.article-navigation {
   border: 1px solid #ccc;
 
   ul {
@@ -133,6 +134,11 @@ body {
     a {
       display: block;
       text-decoration: none;
+      padding: 20px 40px;
+    }
+
+    i.none {
+      display: inline-block;
       padding: 20px 40px;
     }
 

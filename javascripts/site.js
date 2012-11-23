@@ -2,20 +2,26 @@ if (typeof axis === 'undefined' || !axis) {
   var axis = {};
 }
 
-axis.Story = Backbone.Model.extend({
+axis.Article = Backbone.Model.extend({
   initialize: function() {
-    if (this.get('tags')) {
-      var tags = this.get('tags');
-      for(var i=0; i<tags.length; i++) {
-        if(tags[i] === 'external')
-          this.set('external', true);
-      }
-    }
+    this.setTags();
+  },
+
+  setTags: function() {
+    _.each(this.get('tags'), function(tag) {
+      this.set(tag, true);
+    }, this);
   }
 });
 
-axis.StoryCollection = Backbone.Collection.extend({
-  model: axis.Story
+axis.ArticleCollection = Backbone.Collection.extend({
+  model: axis.Article,
+
+  getBySlug: function(slug) {
+    return this.find(function(article) {
+      return article.get('slug') === slug;
+    });
+  }
 });
 
 axis.NewsContainer = Backbone.View.extend({
@@ -51,17 +57,16 @@ axis.NewsContainer = Backbone.View.extend({
   },
 
   refresh: function() {
-    this.$el.find('.single-story').remove();
-
-    // The twitter widget hangs around in the DOM. Need to remove it explicity
-    $('#twitter-wjs').remove();
+    this.$el.find('.single-article').remove();
     
     this.$el.children().show();
     
-    if(window.innerWidth > 640) {
-      this.$el.find('#tabs-bar').hide();
+    if(window.innerWidth > 767) {
+      this.$el.find('.project-section-nav.small').hide();
+      this.$el.find('.project-section-nav.large').show();
     } else {
-      $('.project-header').hide();
+      this.$el.find('.project-section-nav.small').show();
+      this.$el.find('.project-section-nav.large').hide();
     }
 
     axis.router.navigate('/project/avi/');
@@ -70,18 +75,16 @@ axis.NewsContainer = Backbone.View.extend({
 
 axis.Features = Backbone.View.extend({
   initialize: function() {
-    axis.featureStories = new axis.StoryCollection(axis.fakeFeatureData);
-
-    var features = axis.featureStories.map(function(story){
+    features = axis.articles.filter(function(article){
+      return article.get('feature') === true;
+    }).map(function(story){
       return (new axis.FeatureItem({model: story}).render().el);
     });
 
     this.$el.find('#featured').html(features);
 
     $(window).load(function() {
-      $('#featured').orbit({
-        timer: 'false'
-      });
+      $('#featured').orbit({ timer: 'false' });
     });
   }
 });
@@ -101,10 +104,8 @@ axis.FeatureItem = Backbone.View.extend({
 
 axis.NewsFeed = Backbone.View.extend({
   initialize: function() {
-    axis.feedStories = new axis.StoryCollection(axis.fakeNewsFeedData);
-
-    var feed = axis.feedStories.map(function(story){
-      return (new axis.NewsFeedItem({model: story}).render().el);
+    var feed = axis.articles.map(function(article){
+      return (new axis.NewsFeedItem({model: article}).render().el);
     });
 
     this.$el.find('.items').append(feed);
@@ -140,28 +141,23 @@ axis.NewsFeedItem = Backbone.View.extend({
       $newsview = $(document).find('#news-container');
       $newsview.children().hide();
       $newsview.prepend(
-        new axis.SingleStory({model: this.model}).render().el
+        new axis.Article({model: this.model}).render().el
       );
 
-      axis.router.navigate('/article/' + this.model.get('slug'));
-    
+      axis.router.navigate('/article/' + this.model.get('slug') + '/');
+
       // Scroll to headline
       $('body').scrollTop($("header h2").offset().top - 50);
 
       // Init Affix
-      $('.moving-container').affix({
-        offset: {
-          top: 200,
-          bottom: 350
-        }
-      });
+      $('.moving-container').affix({offset: { top: 70 } });
     }
   }
 });
 
 axis.ToolsAndData = Backbone.View.extend({
   initialize: function() {
-    axis.tools = new axis.StoryCollection(axis.toolsData);
+    axis.tools = new axis.ArticleCollection(axis.toolsData);
 
     var tools = axis.tools.map(function(tool){
       return (new axis.ToolsAndDataItem({model: tool}).render().el);
@@ -185,9 +181,9 @@ axis.ToolsAndDataItem = Backbone.View.extend({
   }
 });
 
-axis.SingleStory = Backbone.View.extend({
+axis.Article = Backbone.View.extend({
   tagName: 'div',
-  className: 'single-story view row-fluid',
+  className: 'single-article view',
 
   events: {
     'click .story-navigation a': 'open'
@@ -195,8 +191,8 @@ axis.SingleStory = Backbone.View.extend({
 
   initialize: function() {
     this.template = _.template($('#single-story-template').html());
-    this.prevStory = axis.feedStories.get(parseInt(this.model.id, 0) - 1);
-    this.nextStory = axis.feedStories.get(parseInt(this.model.id, 0) + 1);
+    this.prevStory = axis.articles.get(parseInt(this.model.id, 0) - 1);
+    this.nextStory = axis.articles.get(parseInt(this.model.id, 0) + 1);
   },
 
   open: function() {
@@ -213,7 +209,7 @@ axis.SingleStory = Backbone.View.extend({
     }).render().el;
     
     this.$el.html(this.template(this.model.toJSON()));
-    this.$el.find('.story-navigation').append(storyNav);
+    this.$el.find('.article-navigation').append(storyNav);
     return this;
   }
 });
@@ -229,17 +225,25 @@ axis.StoryNavigation = Backbone.View.extend({
   tagName: 'ul',
 
   initialize: function() {
-    this.previous = new axis.StoryNavigationItem({
-      model: this.options.prev,
-      className: 'previous span6',
-      direction: 'Previous'
-    }).render().el;
+    if (this.options.prev) {
+      this.previous = new axis.StoryNavigationItem({
+        model: this.options.prev,
+        className: 'previous six columns',
+        direction: 'Previous'
+      }).render().el;
+    } else {
+      this.previous = '<li class="previous six columns"><i class="none">You are at the oldest article</i></li>';
+    }
 
-    this.next = new axis.StoryNavigationItem({
-      model: this.options.next,
-      className: 'next span6',
-      direction: 'Next'
-    }).render().el;
+    if (this.options.next) {
+      this.next = new axis.StoryNavigationItem({
+        model: this.options.next,
+        className: 'next six columns',
+        direction: 'Next'
+      }).render().el;
+    } else {
+      this.next = '<li class="next six columns"><i class="none">You are at the most recent story</i></li>';
+    }
   },
 
   render: function() {
@@ -256,7 +260,10 @@ axis.StoryNavigationItem = Backbone.View.extend({
   },
 
   render: function(){
-    this.$el.html(this.template(this.model.toJSON()));
+    this.$el.html(this.template($.extend(
+      this.model.toJSON(),
+      {'direction': this.options.direction})
+    ));
     return this;
   }
 });
@@ -274,146 +281,56 @@ axis.Router = Backbone.Router.extend({
       new FastClick(document.body);
     }, false);
 
+    axis.articles = new axis.ArticleCollection(axis.fakeStories);
+
     this.createSubViews();
 
-    Backbone.history.start({pushState:true, silent:true}); //, root: '/~cpt/axis/'});
+    Backbone.history.start({pushState:true, silent:true, root: '/demo/'});
   },
 
   createSubViews: function() {
-    axis.NewsContainer = new axis.NewsContainer({el: '#news-container'});
-    axis.NewsFeed = new axis.NewsFeed({el: '#news-feed'});
-    axis.Features = new axis.Features({el: '#feature-container'});
-    axis.ToolsAndData = new axis.ToolsAndData({el: '#tools-and-data'});
+    if(document.URL.search('/project/')) {
+      // project views
+      axis.NewsContainer = new axis.NewsContainer({el: '#news-container'});
+      axis.NewsFeed = new axis.NewsFeed({el: '#news-feed'});
+      axis.Features = new axis.Features({el: '#feature-container'});
+      axis.ToolsAndData = new axis.ToolsAndData({el: '#tools-and-data'});
+    } else if (document.URL.search('/article/')) {
+      // article views
+      axis.Article = new axis.Article({el: '#news-container'});
+      //axis.SideBar = new axis.SideBar({el: '#sidebar'});
+    }
   },
 
   home: function() {
     //do nothing
   },
 
-  article: function() {
-    //axis.newsContainer.openStory(event);
+  article: function(slug) {
+    this.article = axis.articles.getBySlug(slug);
+
+    $newsview = $(document).find('#news-container');
+    $newsview.children().hide();
+    $newsview.prepend(
+      new axis.Article({model: this.article}).render().el
+    );
+
+    axis.router.navigate('/article/' + slug + '/');
+
+    // Scroll to headline
+    $('body').scrollTop($("header h2").offset().top - 50);
+
+    // Init Affix
+    $('.moving-container').affix({offset: { top: 70 } });
   },
 
-  project: function(name) {
+  project: function() {
     axis.NewsContainer.refresh();
   }
 });
 
 $(document).ready(function() {
-  axis.fakeFeatureData = [
-    {
-      photo: "http://placehold.it/970x640",
-      id: '20',
-      slug: 'slug',
-      headline: "A MUCH LONGER FEATURE HEADLINE THAT WILL SPAN SEVERAL LINES",
-      author: "Jane Doe",
-      tags: [],
-      contrib: "John Doe",
-      datetime: "Today, 10:40am",
-      text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-      fullText: '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<h4>Next Section</h4>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<h4>Next Section</h4>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<p>Lorem ipsum dolor sit'
-    },
-    {
-      photo: "http://placehold.it/970x640",
-      slug: 'slug',
-      id: '21',
-      headline: "LONGER FEATURE HEADLINE",
-      tags: [],
-      author: "Jane Doe",
-      contrib: "John Doe",
-      datetime: "Today, 10:40am",
-      text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-      fullText: '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<h4>Next Section</h4>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<h4>Next Section</h4>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<p>Lorem ipsum dolor sit'
-    },
-    {
-      photo: "http://placehold.it/970x640",
-      slug: 'slug',
-      id: '22',
-      headline: "SHORT HEADLINE",
-      tags: [],
-      author: "Jane Doe",
-      contrib: "John Doe",
-      datetime: "Today, 10:40am",
-      text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-      fullText: '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<h4>Next Section</h4>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<h4>Next Section</h4>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<p>Lorem ipsum dolor sit'
-    },
-    {
-      photo: "http://placehold.it/970x640",
-      slug: 'slug',
-      id: '23',
-      headline: "A LITTLE BIT LONGER OF A FEATURE HEADLINE",
-      tags: [],
-      author: "Jane Doe",
-      contrib: "John Doe",
-      datetime: "Today, 10:40am",
-      text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-      fullText: '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<h4>Next Section</h4>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<h4>Next Section</h4>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<p>Lorem ipsum dolor sit'
-    },
-    {
-      photo: "http://placehold.it/970x640",
-      slug: 'slug',
-      id: '24',
-      headline: "FEATURE HEADLINE",
-      tags: [],
-      author: "Jane Doe",
-      contrib: "John Doe",
-      datetime: "Today, 10:40am",
-      text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-      fullText: '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<h4>Next Section</h4>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<h4>Next Section</h4>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>' +
-                '<p>Lorem ipsum dolor sit'
-    }
-  ];
-
-  axis.fakeNewsFeedData = [
+  axis.fakeStories = [
     {
       photo: "http://placehold.it/970x640",
       slug: 'slug',
@@ -485,7 +402,7 @@ $(document).ready(function() {
       slug: 'slug',
       id: "4",
       headline: "SECONDARY HEADLINE SHOULD BE OK.",
-      tags: [],
+      tags: ['feature'],
       author: "Jane Doe",
       contrib: "John Doe",
       datetime: "Today, 10:40am",
@@ -507,7 +424,7 @@ $(document).ready(function() {
       slug: 'slug',
       id: "5",
       headline: "I THINK THE SECONDARY HEADLINE NEWS FEED LOOKS OK",
-      tags: [],
+      tags: ['feature'],
       author: "Jane Doe",
       contrib: "John Doe",
       datetime: "Today, 10:40am",

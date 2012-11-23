@@ -249,121 +249,72 @@
   </script>
   <!-- Single story -->
   <script type="text/template" id="single-story-template">
-    <aside class="span4" id="sidebar">
-      <div class="moving-container" data-spy="affix" data-offset-top="200" data-offset-bottom="650">
-        <div class="social-container">
-          <h3>Share this article</h3>
-          <div class="shorturl-container">
-            <input type="text" name="shorturl" id="shorturl" value="http://axs.ph/Hnh34g" readonly="true"></input>
-          </div>
-          <ul>
-            <li class="facebook">
-              <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.ppiin.org&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:20px;" allowTransparency="true"></iframe>
-            </li>
-            <li class="google-plus">
-              <div class="g-plus" data-action="share" data-annotation="bubble"></div>
-              <%
-                (function() {
-                  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-                  po.src = 'https://apis.google.com/js/plusone.js';
-                  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-                })();
-              %>
-            </li>
-            <li class="twitter">
-              <a href="https://twitter.com/share" class="twitter-share-button" data-via="caseypt">Tweet</a>
-              <%
-                !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-              %>
-            </li>
-          </ul>
-        </div>
+    <div class="row">
 
-        <h3>This article is part of our series on <a href="/project/avi">AVI</a>. Read other recent AVI stories:</h3>
-
-        <div class="recent-project-stories">
-          <a href="#" class="headline">A Small Headline</a>
-          <a href="#" class="headline">This Headline Will Be Much Longer Than the Rest of the Headlines</a>
-          <a href="#" class="headline">A Slightly Bigger Headline</a>
-          <a href="#" class="headline">Real Small</a>
-          <a href="#" class="headline">This Headline Will Be Much Longer Than the Rest of the Headlines Even The Above Headline</a>
-        </div>
-      </div>
-    </aside>
-    <article class="span8">
-      <header>
-        <h2 class="headline"><%= headline %></h2>
-        <div class="media-container full-page">
-          <div class="media">
-            <img src="<%= photo %>"></img>
+      <aside id="sidebar" class="three columns">
+        <div class="moving-container" data-spy="affix" data-offset-top="70">
+          
+          <div class="social-container">
+            <strong>Share this article</strong>
+            <div class="shorturl-container">
+              <input type="text" name="shorturl" id="shorturl" value="http://axs.ph/Hnh34g" readonly="true"></input>
+            </div>
+            <div class="sites">
+              <a href="#"><i class="social-foundicon-twitter"></i></a>
+              <a href="#"><i class="social-foundicon-facebook"></i></a>
+              <a href="#"><i class="social-foundicon-google-plus"></i></a>
+              <a href="#"><i class="general-foundicon-mail"></i></a>
+            </div>
           </div>
-          <div class="caption">
+          
+          <div class="project-info-container">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod. <i>John Doe for PPIIN</i>
+              <strong>This article is part of our series on <a href="#">AVI</a>.
+              Read more recent articles from the series:</strong>
             </p>
-          </div>
-        </div>
-      </header>
-      <div class="content row-fluid">
-        <div class="accordion" id="share-accordian">
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion-toggle" data-toggle="collapse" data-parent="#share-accordian" href="#collapseOne">
-                <span>Share this article</span>
-              </a>
-            </div>
-            <div id="collapseOne" class="accordion-body collapse">
-              <div class="accordion-inner">
-                <div class="social-container">
-                  <div class="shorturl-container">
-                    <input type="text" name="shorturl" id="shorturl" value="http://axs.ph/Hnh34g" readonly="true"></input>
-                  </div>
-                  <ul>
-                    <li class="facebook">
-                      <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.ppiin.org&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:20px;" allowTransparency="true"></iframe>
-                    </li>
-                    <li class="google-plus">
-                      <div class="g-plus" data-action="share" data-annotation="bubble"></div>
-                      <%
-                        (function() {
-                          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-                          po.src = 'https://apis.google.com/js/plusone.js';
-                          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-                        })();
-                      %>
-                    </li>
-                    <li class="twitter">
-                      <a href="https://twitter.com/share" class="twitter-share-button" data-via="caseypt">Tweet</a>
-                      <%
-                        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-                      %>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+            <div class="recent-stories">
+              <a href="#" class="headline">A Small Headline</a>
+              <a href="#" class="headline">This Headline Will Be Much Longer Than the Rest of the Headlines</a>
+              <a href="#" class="headline">A Slightly Bigger Headline</a>
+              <a href="#" class="headline">Real Small</a>
+              <a href="#" class="headline">This Headline Will Be Much Longer Than the Rest of the Headlines Even The Above Headline</a>
             </div>
           </div>
+
         </div>
+
+      </aside>
+      <article class="nine columns">
+        <header>
+          <h2 class="headline"><%= headline %></h2>
+          <div class="media-container full-page">
+            <div class="media">
+              <img src="<%= photo %>"></img>
+            </div>
+            <div class="caption">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod. <i>John Doe for PPIIN</i>
+              </p>
+            </div>
+          </div>
+        </header>
         <div class="publish-container">
-          <div class="byline"><%= author %>, <%= datetime %></div>
+          <div class="byline">By <%= author %>, <%= datetime %></div>
         </div>
         <div class="article-text">
           <%= fullText %>
-          <div class="contrib"><%= contrib %></div>
-        <nav class="story-navigation row-fluid">
+        </div>
+        <nav class="article-navigation row">
 
-        </nav>
-      </div>
-    </article>
-  </script>
-  <!-- Story Navigation -->
-  <script type="text/template" id="story-navigation-template">
-    <ul></ul>
+        </div>
+      </article>
+
+    </div>
   </script>
   <!-- Story Navigation item -->  
   <script type="text/template" id="story-navigation-item-template">
     <a href="/article/<%= slug %>">
-      <strong>Article</strong>
+      <strong><%= direction %> Article</strong>
       <span><%= headline %></span>
     </a>
   </script>
