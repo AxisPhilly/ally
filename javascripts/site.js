@@ -189,7 +189,7 @@ axis.Article = Backbone.View.extend({
 
   render: function() {
     // Add story navigation
-    window.storyNav = new axis.StoryNavigation({
+    storyNav = new axis.StoryNavigation({
       prev: this.prevStory,
       next: this.nextStory
     }).render().el;
