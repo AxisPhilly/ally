@@ -31,29 +31,7 @@ axis.NewsContainer = Backbone.View.extend({
   },
 
   initialize: function() {
-    this.checkTabs();
-
-    $(window).on('resize', this.checkTabs);
-  },
-
-  checkTabs: function() {
-    if(window.innerWidth > 640) {
-      $(document).find('.tab-pane').addClass('active').show();
-    } else {
-      $activeTabId = $('#tabs-bar #tabs li.active a').attr('href');
-      _.each($('.tab-content').children(), function(element) {
-        if('#' + $(element).attr('id') !== $activeTabId) {
-          $(element).hide();
-        }
-      });
-    }
-  },
-
-  updateTabs: function(event) {
-    event.preventDefault();
-
-    $('.tab-pane.active').removeClass('active').hide();
-    $(event.target.hash).addClass('active').show();
+    
   },
 
   refresh: function() {
