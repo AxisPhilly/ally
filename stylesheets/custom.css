@@ -211,7 +211,7 @@ body {
     width: 48%;
   }
 }
-@media (max-width: 360px) {
+@media (max-width: 550px) {
   /* line 192, ../sass/custom.scss */
   #tools-and-data .tool {
     width: 100%;
