@@ -1,0 +1,128 @@
+/* line 1, ../sass/project.scss */
+#project-nav {
+  display: none;
+  z-index: 10;
+  background-color: #fff;
+}
+@media (max-width: 640px) {
+  /* line 1, ../sass/project.scss */
+  #project-nav {
+    display: block;
+  }
+}
+/* line 11, ../sass/project.scss */
+#project-nav ul {
+  padding-top: 50px;
+  list-style-top: none;
+}
+/* line 15, ../sass/project.scss */
+#project-nav ul li {
+  display: inline-block;
+}
+/* line 18, ../sass/project.scss */
+#project-nav ul li.active {
+  background-color: blue;
+}
+
+/* line 26, ../sass/project.scss */
+.project-section-nav .tabs {
+  background-color: #fff;
+}
+/* line 30, ../sass/project.scss */
+.project-section-nav.affix {
+  width: 100%;
+  z-index: 10;
+  top: 45px;
+  position: fixed;
+}
+/* line 37, ../sass/project.scss */
+.project-section-nav.small {
+  display: block;
+}
+@media (min-width: 767px) {
+  /* line 37, ../sass/project.scss */
+  .project-section-nav.small {
+    display: none;
+  }
+}
+/* line 45, ../sass/project.scss */
+.project-section-nav.large {
+  display: none;
+}
+@media (min-width: 768px) {
+  /* line 45, ../sass/project.scss */
+  .project-section-nav.large {
+    display: block;
+  }
+}
+
+@media (max-width: 640px) {
+  /* line 54, ../sass/project.scss */
+  .project-header {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  /* line 60, ../sass/project.scss */
+  #background {
+    display: none;
+  }
+}
+
+/* line 68, ../sass/project.scss */
+#stories article {
+  border-bottom: 1px solid #CCC;
+  padding-top: 5px;
+}
+/* line 72, ../sass/project.scss */
+#stories article h5 {
+  margin-bottom: 2px;
+}
+/* line 76, ../sass/project.scss */
+#stories article .byline {
+  font-style: italic;
+}
+
+/* line 85, ../sass/project.scss */
+#tools-and-data .tool {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  position: relative;
+  display: inline-block;
+  width: 32%;
+  margin: 5px;
+}
+@media (max-width: 767px) {
+  /* line 85, ../sass/project.scss */
+  #tools-and-data .tool {
+    width: 48%;
+  }
+}
+@media (max-width: 550px) {
+  /* line 85, ../sass/project.scss */
+  #tools-and-data .tool {
+    width: 100%;
+    margin: 0;
+  }
+}
+/* line 102, ../sass/project.scss */
+#tools-and-data .tool .caption {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  max-width: 100%;
+  width: 100%;
+  color: #fff;
+  background-color: #333;
+  opacity: 0.5;
+  position: absolute;
+  left: 0;
+  bottom: 4px;
+  padding: 6px;
+  z-index: 10;
+}
+/* line 116, ../sass/project.scss */
+#tools-and-data .tool .caption h5 {
+  margin: 2px;
+  color: #fff;
+}
