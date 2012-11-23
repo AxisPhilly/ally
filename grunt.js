@@ -1,5 +1,6 @@
 module.exports = function(grunt) {
   grunt.initConfig({
+    pkg: '<json:package.json>',
     lint: {
       files: ['javascripts/site.js']
     },
@@ -31,7 +32,7 @@ module.exports = function(grunt) {
       },
       libraries: {
         src: 'javascripts/contrib/*',
-        dest: 'theme/javascripts/libraries.min.js'
+        dest: 'theme/javascripts/libraries.<%= pkg.version %>.min.js'
       },
       sass: {
         src: [
@@ -45,7 +46,7 @@ module.exports = function(grunt) {
     min: {
       site: {
         src: 'javascripts/site.js',
-        dest: 'theme/javascripts/site.min.js'
+        dest: 'theme/javascripts/site.<%= pkg.version %>.min.js'
       },
       foundation: {
         src: 'theme/javascripts/foundation.js',
