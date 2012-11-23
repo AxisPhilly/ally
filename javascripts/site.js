@@ -26,11 +26,21 @@ axis.ArticleCollection = Backbone.Collection.extend({
 
 axis.NewsContainer = Backbone.View.extend({
   events : {
-    'click .close': 'refresh'
+    'click .close': 'refresh',
+    'click .project-section-nav': 'syncTabs'
   },
 
   initialize: function() {
 
+  },
+
+  syncTabs: function(event) {
+    var activeBar = event.currentTarget.classList[1],
+        activeTab = event.target.hash;
+        inactiveBar = activeBar === 'large' ? 'small' : 'large';
+
+    $('.project-section-nav.' + inactiveBar + ' .active').removeClass('active');
+    $('.project-section-nav.' + inactiveBar + ' dd a[href="' + activeTab + '"]').parent().addClass('active');
   },
 
   refresh: function() {
@@ -237,6 +247,7 @@ axis.StoryNavigationItem = Backbone.View.extend({
 
   render: function(){
     this.$el.html(this.template($.extend(
+      {},
       this.model.toJSON(),
       {'direction': this.options.direction})
     ));
