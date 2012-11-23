@@ -195,3 +195,46 @@ body {
 #stories article .byline {
   font-style: italic;
 }
+
+/* line 192, ../sass/custom.scss */
+#tools-and-data .tool {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  position: relative;
+  display: inline-block;
+  width: 32%;
+  margin: 5px;
+}
+@media (max-width: 767px) {
+  /* line 192, ../sass/custom.scss */
+  #tools-and-data .tool {
+    width: 48%;
+  }
+}
+@media (max-width: 360px) {
+  /* line 192, ../sass/custom.scss */
+  #tools-and-data .tool {
+    width: 100%;
+    margin: 0;
+  }
+}
+/* line 209, ../sass/custom.scss */
+#tools-and-data .tool .caption {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  max-width: 100%;
+  width: 100%;
+  color: #fff;
+  background-color: #333;
+  opacity: 0.5;
+  position: absolute;
+  left: 0;
+  bottom: 4px;
+  padding: 6px;
+  z-index: 10;
+}
+/* line 223, ../sass/custom.scss */
+#tools-and-data .tool .caption h5 {
+  margin: 2px;
+  color: #fff;
+}
