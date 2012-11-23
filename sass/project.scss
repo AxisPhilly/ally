@@ -11,34 +11,41 @@
   }
 
   &.small {
-    display: block;
+    display: none;
 
-    @media(min-width: 767px) {
-      display: none;
+    @media(max-width: 360px) {
+      display: block;
     }
   }
 
   &.large {
-    display: none;
+    display: block;
 
-    @media(min-width: 768px) {
-      display: block;
+    @media(max-width: 360px) {
+      display: none;
     }
   }
 }
 
 .project-header {
-  @media(max-width: 640px) {
+  @media(max-width: 767px) {
     display: none;
   }
 }
 
 #background {
-  @media(max-width: 640px) {
+  @media(max-width: 767px) {
     display: none;
   }
 }
 
+#background-compressed {
+  display:none;
+
+  @media(max-width: 767px) {
+    display: block;
+  } 
+}
 
 #stories {
   article {
