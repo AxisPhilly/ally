@@ -25,7 +25,6 @@ module.exports = function(grunt) {
           'javascripts/foundation/jquery.foundation.topbar.js',
           'javascripts/foundation/jquery.foundation.offcanvas.js',
           'javascripts/foundation/jquery.foundation.placeholder.js',
-          'javascripts/foundation/jquery.foundation.modernizr.foundation.js',
           'javascripts/foundation/app.js'
         ],
         dest: 'theme/javascripts/foundation.js'
