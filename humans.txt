@@ -1,8 +1,8 @@
-/* Foundation was made by ZURB, an interaction design and design strategy firm in Campbell, CA */
-/* zurb.com */
-/* humanstxt.org */
+/* TEAM */
+  Casey Thomas
+  @caseypt
 
 /* SITE */
   Standards: HTML5, CSS3
-  Components: jQuery, Orbit, Reveal
-  Software: Coda, Textmate, Git
+  Components: Foundation (zurb.com), jQuery, Backbone.js, 
+  Software: SublimeText, Git
