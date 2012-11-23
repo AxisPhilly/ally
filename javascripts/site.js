@@ -26,12 +26,11 @@ axis.ArticleCollection = Backbone.Collection.extend({
 
 axis.NewsContainer = Backbone.View.extend({
   events : {
-    'click .close': 'refresh',
-    'click #tabs a': 'updateTabs'
+    'click .close': 'refresh'
   },
 
   initialize: function() {
-    
+
   },
 
   refresh: function() {
@@ -206,7 +205,7 @@ axis.StoryNavigation = Backbone.View.extend({
     if (this.options.prev) {
       this.previous = new axis.StoryNavigationItem({
         model: this.options.prev,
-        className: 'previous six columns',
+        className: 'previous six mobile-two columns',
         direction: 'Previous'
       }).render().el;
     } else {
@@ -216,7 +215,7 @@ axis.StoryNavigation = Backbone.View.extend({
     if (this.options.next) {
       this.next = new axis.StoryNavigationItem({
         model: this.options.next,
-        className: 'next six columns',
+        className: 'next six mobile-two columns',
         direction: 'Next'
       }).render().el;
     } else {

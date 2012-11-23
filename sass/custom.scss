@@ -58,7 +58,7 @@ body {
 #sidebar {
   padding-top: 20px;
 
-  @media(max-width: 768px) {
+  @media(max-width: 767px) {
     display: none;
   }
 
@@ -115,6 +115,12 @@ body {
 .article-navigation {
   border: 1px solid #ccc;
 
+  @media(max-width: 767px) {
+    border: none;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+  }
+
   ul {
     list-style-type: none;
     margin: 0;
@@ -130,6 +136,12 @@ body {
     display: inline-block;
     width: 50%;
     text-align: center;
+
+    @media(max-width:640px) {
+      span {
+        display: none;
+      }
+    }
 
     a {
       display: block;
@@ -152,7 +164,7 @@ body {
 
     &.next {
       @media(max-width: 767px) {
-        border-top: 1px solid #ccc;
+        border-left: 1px solid #ccc;
       }
 
     }
