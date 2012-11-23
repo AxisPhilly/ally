@@ -91,7 +91,6 @@ axis.NewsFeed = Backbone.View.extend({
 
 axis.NewsFeedItem = Backbone.View.extend({
   tagName: 'article',
-  className: 'story',
 
   events: {
     'click a' : 'open'
@@ -269,7 +268,7 @@ axis.Router = Backbone.Router.extend({
     if(document.URL.search('/project/')) {
       // project views
       axis.NewsContainer = new axis.NewsContainer({el: '#news-container'});
-      axis.NewsFeed = new axis.NewsFeed({el: '#news-feed'});
+      axis.NewsFeed = new axis.NewsFeed({el: '#stories'});
       axis.Features = new axis.Features({el: '#feature-container'});
       axis.ToolsAndData = new axis.ToolsAndData({el: '#tools-and-data'});
     } else if (document.URL.search('/article/')) {

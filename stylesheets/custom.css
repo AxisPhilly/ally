@@ -181,3 +181,17 @@ body {
     border-left: 1px solid #ccc;
   }
 }
+
+/* line 175, ../sass/custom.scss */
+#stories article {
+  border-bottom: 1px solid #CCC;
+  padding-top: 5px;
+}
+/* line 179, ../sass/custom.scss */
+#stories article h5 {
+  margin-bottom: 2px;
+}
+/* line 183, ../sass/custom.scss */
+#stories article .byline {
+  font-style: italic;
+}
