@@ -15,8 +15,10 @@
   <div class="fixed contain-to-grid">
     <nav class="top-bar">
       <ul>
-        <li class="name"><h1><a href="/demo/">AxisPhilly</a></h1></li>
-        <li class="toggle-topbar">
+        <li class="name">
+          <h1><a href="/demo/">AxisPhilly</a></h1>
+        </li>
+        <li class="toggle-topbar has-button">
           <span class="tiny secondary radius button menu-button">
             <span class="line"></span>
             <span class="line"></span>
@@ -28,7 +30,6 @@
         <ul class="left">
           <li class="has-dropdown">
             <a href="#">Our Projects</a>
-
             <ul class="dropdown">
               <li><a href="/demo/project/avi">AVI</a></li>
               <li><a href="#">Lobbying</a></li>
@@ -39,6 +40,19 @@
           <li class="divider"></li>
           <li><a href="/demo/about">About</a></li>
           <li class="search">
+          <li class="divider"></li>
+          <li>
+            <span class="social mobile">
+              <a href="twitter"><i class="social-foundicon-twitter"></i></a>
+              <a href="facebook"><i class="social-foundicon-facebook"></i></a>
+              <a href="googleplus"><i class="social-foundicon-google-plus"></i></a>
+            </span>
+            <ul class="social desktop">
+            <li><a href="twitter"><i class="social-foundicon-twitter"></i></a></li>
+            <li><a href="facebook"><i class="social-foundicon-facebook"></i></a></li>
+            <li><a href="googleplus"><i class="social-foundicon-google-plus"></i></a></li>
+            </ul>
+          </li>
         </ul>
         <ul class="right">
           <li class="search">
@@ -245,7 +259,7 @@
   <script type="text/template" id="feature-story-carousel-template">
     <img src="<%= photo %>">
     <div class="orbit-caption" id="feature-caption-<%= id %>">
-      <h6><a href="/article/<%= slug %>"><%= headline %></a></h6>
+      <h3><a href="/article/<%= slug %>"><%= headline %></a></h3>
       <span class="byline">By <%= author %>, <%= datetime %></span>
     </div>
   </script>
