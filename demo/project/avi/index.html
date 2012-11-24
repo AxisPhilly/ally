@@ -28,6 +28,7 @@
       </ul>
       <section>
         <ul class="left">
+          <li class="divider"></li>
           <li class="has-dropdown">
             <a href="#">Our Projects</a>
             <ul class="dropdown">
@@ -260,9 +261,10 @@
   <!-- Feature story -->
   <script type="text/template" id="feature-story-carousel-template">
     <img src="<%= photo %>">
-    <div class="orbit-caption" id="feature-caption-<%= id %>">
-      <h3><a href="/article/<%= slug %>"><%= headline %></a></h3>
+    <div class="caption">
+      <h3 class="headline"><a href="/article/<%= slug %>"><%= headline %></a></h3>
       <span class="byline">By <%= author %>, <%= datetime %></span>
+      <p> <%= text %> </p>
     </div>
   </script>
   <!-- News feed story -->

@@ -89,7 +89,7 @@ axis.FeatureItem = Backbone.View.extend({
   },
 
   render: function(top) {
-    this.$el.html(this.template(this.model.toJSON())).attr('data-caption', '#feature-caption-' + this.model.id);
+    this.$el.html(this.template(this.model.toJSON()));
     return this;
   }
 });
