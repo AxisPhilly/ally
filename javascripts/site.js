@@ -277,7 +277,7 @@ axis.Router = Backbone.Router.extend({
 
     this.createSubViews();
 
-    Backbone.history.start({pushState:true, silent:true, root: 'ally/demo/'});
+    Backbone.history.start({pushState:true, silent:true, root: '/demo/'});
   },
 
   createSubViews: function() {
