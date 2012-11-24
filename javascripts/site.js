@@ -27,11 +27,16 @@ axis.ArticleCollection = Backbone.Collection.extend({
 axis.NewsContainer = Backbone.View.extend({
   events : {
     'click .close': 'refresh',
-    'click .project-section-nav': 'syncTabs'
+    'click .project-section-nav': 'syncTabs',
+    'click .project-section-nav a': 'goToTab'
   },
 
   initialize: function() {
 
+  },
+
+  goToTab: function() {
+    //$('body').animate({ scrollTop: $(".tabs-content").offset().top - 125 }, 800);
   },
 
   syncTabs: function(event) {
@@ -272,7 +277,7 @@ axis.Router = Backbone.Router.extend({
 
     this.createSubViews();
 
-    Backbone.history.start({pushState:true, silent:true, root: '/demo/'});
+    Backbone.history.start({pushState:true, silent:true, root: 'ally/demo/'});
   },
 
   createSubViews: function() {
