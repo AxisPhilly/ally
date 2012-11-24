@@ -11,3 +11,24 @@ body {
     position: fixed;
   }
 }
+
+.menu-button {
+  height: 32px;
+  max-width: 40px;
+  width: 40px;
+  margin-top: 6px;
+  line-height: 4px;
+  text-align: center;
+  float: right;
+  right: 14px;
+
+  .line {
+    display: inline-block;
+    border: 2px solid #444;
+    height: 2px;
+    width: 100%;
+    background-color: #444;
+    margin: 0;
+    border-radius: 10px;
+  }
+}
