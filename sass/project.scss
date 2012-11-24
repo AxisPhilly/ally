@@ -49,10 +49,18 @@
 
 #feature-container {
 
-  #featured {
-    @media(max-width: 800px) {
+  // Patch to handle caption disconnect and reconnect
+  // At ~867px, there is too much white space under
+  // the feature carousel, so we disconnect the caption
+  // from the photo to fill the column.
+  // Once we get to 767px, we reconnect the caption.
+  // To all this, the feature-container needs an explicit height
+  @media(max-width: 867px) {
+    height: 425px;
+  }
 
-    }
+  @media(max-width: 767px) {
+    height: auto;
   }
 
   .caption {
@@ -66,9 +74,13 @@
     color: #fff;
     width: 100%;
 
-    @media(max-width: 800px) {
-      //position: static;
-      //opacity: 1;
+    // patch, see above comment
+    @media(max-width: 867px) {
+      position:static;
+    }
+
+    @media(max-width: 767px) {
+      position: absolute;
     }
   }
 
@@ -90,6 +102,11 @@
   h3 {
     margin: 4px;
     font-size: 23px;
+
+    // patch, see above comment
+    @media(max-width: 867px) {
+      margin: 0 4px;
+    }
 
     @media(max-width: 767px) {
       margin: 4px;
