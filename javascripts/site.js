@@ -76,7 +76,7 @@ axis.Features = Backbone.View.extend({
     this.$el.find('#featured').html(features);
 
     $(window).load(function() {
-      $('#featured').orbit({ timer: 'false' });
+      $('#featured').orbit({ timer: 'true' });
     });
   }
 });
@@ -281,15 +281,15 @@ axis.Router = Backbone.Router.extend({
   },
 
   createSubViews: function() {
-    if(document.URL.search('/project/')) {
+    if(document.URL.search('/project/') !== -1) {
       // project views
       axis.NewsContainer = new axis.NewsContainer({el: '#news-container'});
       axis.NewsFeed = new axis.NewsFeed({el: '#stories'});
       axis.Features = new axis.Features({el: '#feature-container'});
       axis.ToolsAndData = new axis.ToolsAndData({el: '#tools-and-data'});
-    } else if (document.URL.search('/article/')) {
+    } else if (document.URL.search('/article/') !== -1) {
       // article views
-      axis.Article = new axis.Article({el: '#news-container'});
+      //axis.Article = new axis.Article({el: '#news-container'});
       //axis.SideBar = new axis.SideBar({el: '#sidebar'});
     }
   },
