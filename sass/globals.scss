@@ -1,3 +1,13 @@
 body {
   position: relative;
 }
+
+//About page 
+#about-menu {
+  &.affix {
+    width: 15%;
+    z-index: 11;
+    top: 45px;
+    position: fixed;
+  }
+}
