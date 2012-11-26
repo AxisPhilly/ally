@@ -30,10 +30,6 @@ h2.headline {
 #sidebar {
   padding-top: 20px;
 
-  @media(max-width: 767px) {
-    display: none;
-  }
-
   .project-info-container {
     margin-top: 20px;
   }
