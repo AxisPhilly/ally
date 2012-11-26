@@ -106,6 +106,7 @@ axis.NewsFeed = Backbone.View.extend({
 
 axis.NewsFeedItem = Backbone.View.extend({
   tagName: 'article',
+  className: 'row',
 
   events: {
     'click a' : 'open'
@@ -277,7 +278,7 @@ axis.Router = Backbone.Router.extend({
 
     this.createSubViews();
 
-    Backbone.history.start({pushState:true, silent:true, root: '/demo/'});
+    Backbone.history.start({ pushState:true, silent:true });
   },
 
   createSubViews: function() {
@@ -325,6 +326,7 @@ $(document).ready(function() {
   axis.fakeStories = [
     {
       photo: "http://placehold.it/970x640",
+      thumbnail: "http://placehold.it/300x198",
       slug: 'slug',
       id: "1",
       headline: "SECONDARY HEADLINE IS A LITTLE LONGER THAN THE REST",
@@ -347,6 +349,7 @@ $(document).ready(function() {
     },
     {
       photo: "http://placehold.it/970x640",
+      thumbnail: "http://placehold.it/300x198",
       slug: 'slug',
       tags: [],
       id: "2",
@@ -369,11 +372,12 @@ $(document).ready(function() {
     },
     {
       photo: "http://placehold.it/970x640",
+      thumbnail: "http://placehold.it/300x198",
       slug: 'http://www.planphilly.com',
       id: "3",
       headline: "PlanPhilly.com: Lorem ipsum dor fee loaao",
       tags: ['external'],
-      author: "Jane Doe",
+      author: "",
       contrib: "John Doe",
       datetime: "Today, 10:40am",
       text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, Ut enim ad minim veniam, quis nostrud.",
@@ -391,6 +395,7 @@ $(document).ready(function() {
     },
     {
       photo: "http://placehold.it/970x640",
+      thumbnail: "http://placehold.it/300x198",
       slug: 'slug',
       id: "4",
       headline: "SECONDARY HEADLINE SHOULD BE OK.",
@@ -413,6 +418,7 @@ $(document).ready(function() {
     },
     {
       photo: "http://placehold.it/970x640",
+      thumbnail: "http://placehold.it/300x198",
       slug: 'slug',
       id: "5",
       headline: "I THINK THE SECONDARY HEADLINE NEWS FEED LOOKS OK",
@@ -435,6 +441,7 @@ $(document).ready(function() {
     },
     {
       photo: "http://placehold.it/970x640",
+      thumbnail: "http://placehold.it/300x198",
       slug: 'slug',
       id: "6",
       headline: "SECONDARY HEADLINE SHOULD BE OK.",
@@ -457,6 +464,7 @@ $(document).ready(function() {
     },
     {
       photo: "http://placehold.it/970x640",
+      thumbnail: "http://placehold.it/300x198",
       slug: 'slug',
       id: "7",
       headline: "I THINK THE SECONDARY HEADLINE NEWS FEED LOOKS OK",
@@ -479,6 +487,7 @@ $(document).ready(function() {
     },
     {
       photo: "http://placehold.it/970x640",
+      thumbnail: "http://placehold.it/300x198",
       slug: 'slug',
       id: "8",
       headline: "SECONDARY HEADLINE SHOULD BE OK.",
@@ -501,6 +510,7 @@ $(document).ready(function() {
     },
     {
       photo: "http://placehold.it/970x640",
+      thumbnail: "http://placehold.it/300x198",
       slug: 'slug',
       id: "9",
       headline: "I THINK THE SECONDARY HEADLINE NEWS FEED LOOKS OK",
@@ -523,6 +533,7 @@ $(document).ready(function() {
     },
     {
       photo: "http://placehold.it/970x640",
+      thumbnail: "http://placehold.it/300x198",
       slug: 'slug',
       id: "10",
       headline: "SECONDARY HEADLINE SHOULD BE OK.",
@@ -545,6 +556,7 @@ $(document).ready(function() {
     },
     {
       photo: "http://placehold.it/970x640",
+      thumbnail: "http://placehold.it/300x198",
       slug: 'slug',
       id: "11",
       headline: "I THINK THE SECONDARY HEADLINE NEWS FEED LOOKS OK",
