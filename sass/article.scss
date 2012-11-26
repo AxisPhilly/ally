@@ -1,3 +1,22 @@
+.byline {
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+
+.datetime {
+  color: $thirdColor;
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+
+.caption {
+  color: $thirdColor;
+
+  p {
+    font-size: 13px; 
+  }
+}
+
 #sidebar {
   padding-top: 20px;
 
@@ -11,8 +30,8 @@
 
   .recent-stories {
     a {
-      margin: 4px 0;
-      padding: 3px 0 1px 0;
+      font-size: 16px;
+      padding: 10px 0;
       display: block;
       border-top: 1px solid #ccc;
     }
