@@ -319,7 +319,7 @@
           <div class="project-info-container">
             <p>
               <strong>This article is part of our series on <a href="#">AVI</a>.
-              Read more recent articles from the series:</strong>
+              Read more from the series:</strong>
             </p>
             <div class="recent-stories">
               <a href="#" class="headline">A Small Headline</a>
@@ -337,6 +337,10 @@
       <article class="seven columns">
         <header>
           <h2 class="headline"><%= headline %></h2>
+          <div class="publish-container">
+            <div class="byline">by <a href="#"><%= author %></a></div> 
+            <div class="datetime"><%= datetime %></div>
+          </div>
           <div class="media-container full-page">
             <div class="media">
               <img src="<%= photo %>"></img>
@@ -348,15 +352,12 @@
             </div>
           </div>
         </header>
-        <div class="publish-container">
-          <div class="byline">By <%= author %>, <%= datetime %></div>
-        </div>
         <div class="article-text">
           <%= fullText %>
         </div>
         <nav class="article-navigation row">
 
-        </div>
+        </nav>
       </article>
 
       <div class="gutter one columns"></div>

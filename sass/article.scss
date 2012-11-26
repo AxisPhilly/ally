@@ -1,15 +1,25 @@
 .byline {
   font-size: 17px;
-  margin-bottom: 10px;
+  margin: 10px 0;
+
+  @media(max-width: 360px) {
+    font-size: 14px;
+  }
 }
 
 .datetime {
   color: $thirdColor;
-  font-size: 12px;
-  margin-bottom: 20px;
+  font-size: 13px;
+  margin: 10px 0 20px;
 }
 
-.article caption {
+h2.headline {
+  @media(max-width: 360px) {
+    font-size: 25px;
+  }
+}
+
+.media-container .caption {
   color: $thirdColor;
 
   p {
