@@ -1,13 +1,19 @@
 .project-section-nav {
   .tabs {
     background-color: #fff;
+    height: auto;
+    margin-bottom: 0;
   }
 
   &.affix {
+    background-color: #fff;
     width: 100%;
     z-index: 50;
     top: 45px;
     position: fixed;
+    -webkit-box-shadow: 0 8px 30px -8px #555;
+       -moz-box-shadow: 0 8px 30px -8px #555;
+            box-shadow: 0 8px 30px -8px #555;
   }
 
   &.small {
@@ -56,7 +62,7 @@
   // Once we get to 767px, we reconnect the caption.
   // To all this, the feature-container needs an explicit height
   @media(max-width: 867px) {
-    height: 425px;
+    height: 440px;
   }
 
   @media(max-width: 767px) {
@@ -99,9 +105,8 @@
     }
   }
 
-  h3 {
+  h4 {
     margin: 4px;
-    font-size: 23px;
 
     // patch, see above comment
     @media(max-width: 867px) {
@@ -110,7 +115,7 @@
 
     @media(max-width: 767px) {
       margin: 4px;
-      font-size: 16px;
+      font-size: 14px;
     }
   }
 }
@@ -124,10 +129,14 @@
 #stories {
   article {
     border-bottom: 1px solid #CCC;
-    padding-top: 5px;
+    padding: 20px;
 
-    h5 {
+    h4 {
       margin-bottom: 2px;
+
+      @media(max-width: 360px) {
+        font-size: 14px;
+      }
     }
 
     .byline {

@@ -2,13 +2,12 @@
 <html lang="en">
 <head>
   <title>AxisPhilly</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
-  <!-- Foundation -->
-  <link rel="stylesheet" href="../../../stylesheets/app.css">
-  <!-- Custom Styles -->
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,800,600' rel='stylesheet' type='text/css'>
-  <!-- Modernizer -->
   <script src="../../../javascripts/foundation/modernizr.foundation.js"></script>
+  <link rel="stylesheet" href="../../../stylesheets/app.css">
 </head>
 <body>
   <!-- Fixed header -->
@@ -262,16 +261,21 @@
   <script type="text/template" id="feature-story-carousel-template">
     <img src="<%= photo %>">
     <div class="caption">
-      <h3 class="headline"><a href="/article/<%= slug %>"><%= headline %></a></h3>
+      <h4 class="headline"><a href="/article/<%= slug %>"><%= headline %></a></h4>
       <span class="byline">By <%= author %>, <%= datetime %></span>
       <p> <%= text %> </p>
     </div>
   </script>
   <!-- News feed story -->
   <script type="text/template" id="news-feed-story-template">
-    <h5><a name="id<%= id %>" href="/article/<%= slug %>"><%= headline %></a></h5>
-    <div class="byline">By <%= author %>, <%= datetime %></div>
-    <p><%= text %></p>
+    <div class="eight mobile-two columns">
+      <h4><a name="id<%= id %>" href="/article/<%= slug %>"><%= headline %></a></h4>
+      <div class="hide-for-small byline">By <%= author %>, <%= datetime %></div>
+      <p class="hide-for-small"><%= text %></p>
+    </div>
+    <div class="four mobile-two columns">
+      <img src="<%= photo %>">
+    </div>
   </script>
   <!-- Tool -->
   <script type="text/template" id="tool-and-data-template">
@@ -285,9 +289,11 @@
   </script>
   <!-- External News feed story -->
   <script type="text/template" id="external-news-feed-story-template">
-    <h5><a name="id<%= id %>" class="external" href="<%= slug %>" target="_blank"><%= headline %></a></h5>
-    <div class="byline">By <%= author %>, <%= datetime %></div>
-    <p><%= text %></p>
+    <div class="twelve columns">
+      <h4><a name="id<%= id %>" class="external" href="<%= slug %>" target="_blank"><%= headline %></a></h4>
+      <div class="byline hide-for-small">By <%= author %>, <%= datetime %></div>
+      <p class="hide-for-small"><%= text %></p>
+    </div>
   </script>
   <!-- Single story -->
   <script type="text/template" id="single-story-template">
@@ -318,15 +324,16 @@
               <a href="#" class="headline">A Small Headline</a>
               <a href="#" class="headline">This Headline Will Be Much Longer Than the Rest of the Headlines</a>
               <a href="#" class="headline">A Slightly Bigger Headline</a>
-              <a href="#" class="headline">Real Small</a>
-              <a href="#" class="headline">This Headline Will Be Much Longer Than the Rest of the Headlines Even The Above Headline</a>
             </div>
           </div>
 
         </div>
 
       </aside>
-      <article class="nine columns">
+
+      <div class="gutter one columns"></div>
+
+      <article class="seven columns">
         <header>
           <h2 class="headline"><%= headline %></h2>
           <div class="media-container full-page">
@@ -350,6 +357,8 @@
 
         </div>
       </article>
+
+      <div class="gutter one columns"></div>
 
     </div>
   </script>
