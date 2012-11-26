@@ -91,9 +91,12 @@
   }
 
   .byline {
-    margin: 4px;
-    font-style: italic;
+    margin: 4px 4px 10px 4px;
     display: inline-block;
+
+    @media(max-width: 360px) {
+      font-size: 14px;
+    }
   }
 
   p {
@@ -131,17 +134,15 @@
     border-bottom: 1px solid #CCC;
     padding: 20px;
 
+    @media(max-width: 360px) {
+      padding: 8px;
+    }
+
     h4 {
       margin-bottom: 2px;
 
       @media(max-width: 360px) {
         font-size: 14px;
-      }
-    }
-
-    .byline {
-      font: {
-        style: italic;
       }
     }
   }

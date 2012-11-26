@@ -80,7 +80,7 @@
     <div id="news-container">
       
       <div class="row">
-        <header class="project-header eight columns">
+        <header class="project-header twelve columns">
           <h1>Actual Value Initiative</h1>
         </header>
       </div>
@@ -262,7 +262,7 @@
     <img src="<%= photo %>">
     <div class="caption">
       <h4 class="headline"><a href="/article/<%= slug %>"><%= headline %></a></h4>
-      <span class="byline">By <%= author %>, <%= datetime %></span>
+      <span class="byline">by <%= author %>, <%= datetime %></span>
       <p> <%= text %> </p>
     </div>
   </script>
@@ -270,11 +270,12 @@
   <script type="text/template" id="news-feed-story-template">
     <div class="eight mobile-two columns">
       <h4><a name="id<%= id %>" href="/article/<%= slug %>"><%= headline %></a></h4>
-      <div class="hide-for-small byline">By <%= author %>, <%= datetime %></div>
+      <div class="byline hide-for-small">by <a href="#"><%= author %></a></div>
+      <div class="datetime hide-for-small"><%= datetime %></div>
       <p class="hide-for-small"><%= text %></p>
     </div>
     <div class="four mobile-two columns">
-      <img src="<%= photo %>">
+      <img src="<%= thumbnail %>">
     </div>
   </script>
   <!-- Tool -->
@@ -291,7 +292,7 @@
   <script type="text/template" id="external-news-feed-story-template">
     <div class="twelve columns">
       <h4><a name="id<%= id %>" class="external" href="<%= slug %>" target="_blank"><%= headline %></a></h4>
-      <div class="byline hide-for-small">By <%= author %>, <%= datetime %></div>
+      <div class="datetime hide-for-small"><%= datetime %></div>
       <p class="hide-for-small"><%= text %></p>
     </div>
   </script>
