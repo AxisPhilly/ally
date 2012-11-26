@@ -9,7 +9,7 @@
   margin-bottom: 20px;
 }
 
-.caption {
+.article caption {
   color: $thirdColor;
 
   p {
@@ -117,6 +117,7 @@
     }
 
     &.previous {
+      text-align: left;
       border-right: 1px solid #ccc;
 
       @media(max-width: 767px) {
@@ -125,6 +126,8 @@
     }
 
     &.next {
+      text-align: right;
+
       @media(max-width: 767px) {
         border-left: 1px solid #ccc;
       }
