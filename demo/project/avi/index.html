@@ -301,7 +301,7 @@
     <aside id="sidebar" class="three columns view">
     </aside>
     <div class="gutter one columns"></div>
-    <article class="seven columns view">
+    <article id="story" class="seven columns view">
     </article>
     <div class="gutter one columns"></div>
   </script>
@@ -332,13 +332,15 @@
           Read more from the series:</strong>
         </p>
         <div class="recent-stories">
-          <a href="#" class="headline">A Small Headline</a>
-          <a href="#" class="headline">This Headline Will Be Much Longer Than the Rest of the Headlines</a>
-          <a href="#" class="headline">A Slightly Bigger Headline</a>
+
         </div>
       </div>
 
     </div>
+  </script>
+  <!-- Recent story template -->
+  <script type="text/template" id="single-article-recent-story-template">
+    <a href="/article/<%= slug %>"><%= headline %></a>
   </script>
   <!-- Single article sidebar -->
   <script type="text/template" id="single-article-template">

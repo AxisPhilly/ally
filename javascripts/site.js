@@ -21,6 +21,12 @@ axis.ArticleCollection = Backbone.Collection.extend({
     return this.find(function(article) {
       return article.get('slug') === slug;
     });
+  },
+
+  getMostRecent: function(count) {
+    return [this.last()];
+    //sort by publish date
+    //grab the number of stories specified by count
   }
 });
 
@@ -29,10 +35,6 @@ axis.NewsContainer = Backbone.View.extend({
     'click .close': 'refresh',
     'click .project-section-nav': 'syncTabs',
     'click .project-section-nav a': 'goToTab'
-  },
-
-  initialize: function() {
-
   },
 
   goToTab: function() {
@@ -185,8 +187,8 @@ axis.ArticleContainer = Backbone.View.extend({
 
   render: function() {
     this.$el.html(this.template({}));
-    this.$el.find('aside').html(this.sidebar);
-    this.$el.find('article').html(this.article);
+    this.$el.find('#sidebar').html(this.sidebar);
+    this.$el.find('#story').html(this.article);
     return this;
   }
 });
@@ -232,10 +234,18 @@ axis.ArticleSidebar = Backbone.View.extend({
 
   initialize: function() {
     this.template = _.template($('#single-article-sidebar-template').html());
+    this.recent = this.getRecentStories();
+  },
+
+  getRecentStories: function() {
+    return axis.articles.getMostRecent(0).map(function(article){
+      return (new axis.RecentArticle({model: article}).render().el);
+    });
   },
 
   render: function() {
     this.$el.html(this.template(this.model.toJSON()));
+    this.$el.find('.recent-stories').html(this.recent);
     return this;
   }
 });
@@ -284,6 +294,19 @@ axis.ArticleNavigationItem = Backbone.View.extend({
       this.model.toJSON(),
       {'direction': this.options.direction})
     ));
+    return this;
+  }
+});
+
+axis.RecentArticle = Backbone.View.extend({
+  tagName: 'article',
+
+  initialize: function() {
+    this.template = _.template($('#single-article-recent-story-template').html());
+  },
+
+  render: function() {
+    this.$el.html(this.template(this.model.toJSON()));
     return this;
   }
 });
