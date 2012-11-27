@@ -133,7 +133,7 @@ axis.NewsFeedItem = Backbone.View.extend({
       $newsview = $(document).find('#news-container');
       $newsview.children().hide();
       $newsview.prepend(
-        new axis.Article({model: this.model}).render().el
+        new axis.ArticleContainer({model: this.model}).render().el
       );
 
       axis.router.navigate('/article/' + this.model.get('slug') + '/');
@@ -173,6 +173,24 @@ axis.ToolsAndDataItem = Backbone.View.extend({
   }
 });
 
+axis.ArticleContainer = Backbone.View.extend({
+  tagName: 'div',
+  className: 'row',
+
+  initialize: function() {
+    this.template = _.template($('#single-article-container-template').html());
+    this.article = new axis.Article({model: this.model}).render().el;
+    this.sidebar = new axis.ArticleSidebar({model: this.model}).render().el;
+  },
+
+  render: function() {
+    this.$el.html(this.template({}));
+    this.$el.find('aside').html(this.sidebar);
+    this.$el.find('article').html(this.article);
+    return this;
+  }
+});
+
 axis.Article = Backbone.View.extend({
   tagName: 'div',
   className: 'single-article view',
@@ -182,20 +200,18 @@ axis.Article = Backbone.View.extend({
   },
 
   initialize: function() {
-    this.template = _.template($('#single-story-template').html());
+    this.template = _.template($('#single-article-template').html());
     this.prevStory = axis.articles.get(parseInt(this.model.id, 0) - 1);
     this.nextStory = axis.articles.get(parseInt(this.model.id, 0) + 1);
   },
 
   open: function() {
-    // this should open a story from story nav
-    // we should also be able to open stories from the sidebar
-    // but maybe we should create a view for the side bar
+
   },
 
   render: function() {
     // Add story navigation
-    storyNav = new axis.StoryNavigation({
+    storyNav = new axis.ArticleNavigation({
       prev: this.prevStory,
       next: this.nextStory
     }).render().el;
@@ -206,19 +222,30 @@ axis.Article = Backbone.View.extend({
   }
 });
 
-axis.StorySideBar = Backbone.View.extend({
-  //sidebar for single story
-  //populate recent links from storycollection
-  //speaking of story collections, there should be on collection
-  //then we can filter for features
+axis.ArticleSidebar = Backbone.View.extend({
+  tagName: 'div',
+  className: 'sidebar view',
+
+  events: {
+
+  },
+
+  initialize: function() {
+    this.template = _.template($('#single-article-sidebar-template').html());
+  },
+
+  render: function() {
+    this.$el.html(this.template(this.model.toJSON()));
+    return this;
+  }
 });
 
-axis.StoryNavigation = Backbone.View.extend({
+axis.ArticleNavigation = Backbone.View.extend({
   tagName: 'ul',
 
   initialize: function() {
     if (this.options.prev) {
-      this.previous = new axis.StoryNavigationItem({
+      this.previous = new axis.ArticleNavigationItem({
         model: this.options.prev,
         className: 'previous six mobile-two columns',
         direction: 'Previous'
@@ -228,7 +255,7 @@ axis.StoryNavigation = Backbone.View.extend({
     }
 
     if (this.options.next) {
-      this.next = new axis.StoryNavigationItem({
+      this.next = new axis.ArticleNavigationItem({
         model: this.options.next,
         className: 'next six mobile-two columns',
         direction: 'Next'
@@ -244,11 +271,11 @@ axis.StoryNavigation = Backbone.View.extend({
   }
 });
 
-axis.StoryNavigationItem = Backbone.View.extend({
+axis.ArticleNavigationItem = Backbone.View.extend({
   tagName: 'li',
 
   initialize: function() {
-    this.template = _.template($('#story-navigation-item-template').html());
+    this.template = _.template($('#article-navigation-item-template').html());
   },
 
   render: function(){
