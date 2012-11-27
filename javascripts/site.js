@@ -51,7 +51,8 @@ axis.NewsContainer = Backbone.View.extend({
   },
 
   refresh: function() {
-    this.$el.find('.single-article').remove();
+    this.$el.find('#story').remove();
+    this.$el.find('#sidebar').remove();
     
     this.$el.children().show();
     
@@ -63,7 +64,7 @@ axis.NewsContainer = Backbone.View.extend({
       this.$el.find('.project-section-nav.large').hide();
     }
 
-    axis.router.navigate('/project/avi/');
+    axis.router.navigate('demo/project/avi/');
   }
 });
 
@@ -138,7 +139,7 @@ axis.NewsFeedItem = Backbone.View.extend({
         new axis.ArticleContainer({model: this.model}).render().el
       );
 
-      axis.router.navigate('/article/' + this.model.get('slug') + '/');
+      axis.router.navigate('demo/article/' + this.model.get('slug') + '/');
 
       // Scroll to headline
       $('body').scrollTop($("header h2").offset().top - 50);
@@ -228,10 +229,6 @@ axis.ArticleSidebar = Backbone.View.extend({
   tagName: 'div',
   className: 'sidebar view',
 
-  events: {
-
-  },
-
   initialize: function() {
     this.template = _.template($('#single-article-sidebar-template').html());
     this.recent = this.getRecentStories();
@@ -301,6 +298,10 @@ axis.ArticleNavigationItem = Backbone.View.extend({
 axis.RecentArticle = Backbone.View.extend({
   tagName: 'article',
 
+  events: {
+    'click a': 'open'
+  },
+
   initialize: function() {
     this.template = _.template($('#single-article-recent-story-template').html());
   },
@@ -308,14 +309,26 @@ axis.RecentArticle = Backbone.View.extend({
   render: function() {
     this.$el.html(this.template(this.model.toJSON()));
     return this;
+  },
+
+  open: function(event) {
+    event.preventDefault();
+
+    var article = new axis.Article({model: this.model}).render().el;
+    $('#story').html(article);
+
+    axis.router.navigate('demo/article/' + this.model.get('slug') + '/');
+
+    // Scroll to headline
+    $('body').scrollTop($("header h2").offset().top - 50);
   }
 });
 
 axis.Router = Backbone.Router.extend({
   routes: {
-    "article/:slug/": "article",
-    "project/:name/": "project",
-    "": "home"
+    "demo/article/:slug/": "article",
+    "demo/project/:name/": "project",
+    "demo": "home"
   },
 
   initialize: function() {
@@ -340,6 +353,7 @@ axis.Router = Backbone.Router.extend({
       axis.ToolsAndData = new axis.ToolsAndData({el: '#tools-and-data'});
     } else if (document.URL.search('/article/') !== -1) {
       // article views
+      //TODO create the article container
       //axis.Article = new axis.Article({el: '#news-container'});
       //axis.SideBar = new axis.SideBar({el: '#sidebar'});
     }
@@ -350,6 +364,9 @@ axis.Router = Backbone.Router.extend({
   },
 
   article: function(slug) {
+    //TODO
+    // if the sidebar already exists, just update the article,
+    // else create the article container
     this.article = axis.articles.getBySlug(slug);
 
     $newsview = $(document).find('#news-container');
@@ -358,7 +375,7 @@ axis.Router = Backbone.Router.extend({
       new axis.Article({model: this.article}).render().el
     );
 
-    axis.router.navigate('/article/' + slug + '/');
+    axis.router.navigate('demo/article/' + slug + '/');
 
     // Scroll to headline
     $('body').scrollTop($("header h2").offset().top - 50);
