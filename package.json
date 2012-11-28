@@ -8,7 +8,7 @@
     "url": "http://github.com/caseypt/geojson.js.git"
   },
   "dependencies": {
-    "grunt": ">=0.3.18",
+    "grunt": ">=0.3.17",
     "grunt-contrib-compass": "*"
   }
 }
