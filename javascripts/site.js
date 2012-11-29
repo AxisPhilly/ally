@@ -353,9 +353,20 @@ axis.Router = Backbone.Router.extend({
       axis.ToolsAndData = new axis.ToolsAndData({el: '#tools-and-data'});
     } else if (document.URL.search('/article/') !== -1) {
       // article views
-      //TODO create the article container
-      //axis.Article = new axis.Article({el: '#news-container'});
-      //axis.SideBar = new axis.SideBar({el: '#sidebar'});
+      // temporary
+      var url = document.URL.split('/');
+      axis.ArticleContainer = new axis.ArticleContainer({
+        el: '#news-container',
+        model: axis.articles.getBySlug(url[5])
+      });
+
+      // If article is accessed directly
+      // 1) story loads through wordpress
+      // 2) get slug from URL to fetch story through JSON API
+      // 3) if story is part of project, fetch all those stories through API
+      // 4) populate collection with API return
+      // article navigation and other recent stories will load through wordpress
+      // but backbone will be activated and is ready to grab events.
     }
   },
 
