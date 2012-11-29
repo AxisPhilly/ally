@@ -54,9 +54,7 @@ axis.Views.NewsContainer = Backbone.View.extend({
   },
 
   refresh: function() {
-    this.$el.find('#story').remove();
-    this.$el.find('#sidebar').remove();
-    
+    this.$el.find('.article-container').remove();
     this.$el.children().show();
     
     if(window.innerWidth > 767) {
@@ -136,6 +134,7 @@ axis.Views.NewsFeedItem = Backbone.View.extend({
     if (event.target.className !== 'external') {
       event.preventDefault();
     
+      // TODO, is there a more backboney way to do this?
       $newsview = $(document).find('#news-container');
       $newsview.children().hide();
       $newsview.prepend(
@@ -181,7 +180,7 @@ axis.Views.ToolsAndDataItem = Backbone.View.extend({
 
 axis.Views.ArticleContainer = Backbone.View.extend({
   tagName: 'div',
-  className: 'row',
+  className: 'row article-container view',
 
   initialize: function() {
     this.template = _.template($('#single-article-container-template').html());
@@ -317,7 +316,7 @@ axis.Views.RecentArticle = Backbone.View.extend({
   open: function(event) {
     event.preventDefault();
 
-    var article = new axis.Article({model: this.model}).render().el;
+    var article = new axis.Views.Article({model: this.model}).render().el;
     $('#story').html(article);
 
     axis.router.navigate('demo/article/' + this.model.get('slug') + '/');
@@ -374,28 +373,29 @@ axis.Router = Backbone.Router.extend({
   },
 
   home: function() {
-    //do nothing
+    //do nothing, for now
   },
 
   article: function(slug) {
-    //TODO
-    // if the sidebar already exists, just update the article,
-    // else create the article container
     this.article = axis.articles.getBySlug(slug);
 
-    $newsview = $(document).find('#news-container');
-    $newsview.children().hide();
-    $newsview.prepend(
-      new axis.Models.Article({model: this.article}).render().el
-    );
+    if (document.URL.search('/article/') !== -1) { // if we are not already on an Article Page
+      $newsview = $(document).find('#news-container');
+      $newsview.children().hide();
+      $newsview.prepend(
+        new axis.Views.ArticleContainer({model: this.article}).render().el
+      );
 
-    axis.router.navigate('demo/article/' + slug + '/');
+      axis.router.navigate('demo/article/' + slug + '/');
 
+      // Init Affix
+      $('.moving-container').affix({offset: { top: 70 } });
+    } else {
+      new axis.Views.Article({model: this.article}).render();
+    }
+  
     // Scroll to headline
     $('body').scrollTop($("header h2").offset().top - 50);
-
-    // Init Affix
-    $('.moving-container').affix({offset: { top: 70 } });
   },
 
   project: function() {
