@@ -1,8 +1,11 @@
 if (typeof axis === 'undefined' || !axis) {
   var axis = {};
+  axis.Views = {};
+  axis.Models = {};
+  axis.Collections = {};
 }
 
-axis.Article = Backbone.Model.extend({
+axis.Models.Article = Backbone.Model.extend({
   initialize: function() {
     this.setTags();
   },
@@ -14,8 +17,8 @@ axis.Article = Backbone.Model.extend({
   }
 });
 
-axis.ArticleCollection = Backbone.Collection.extend({
-  model: axis.Article,
+axis.Collections.Articles = Backbone.Collection.extend({
+  model: axis.Models.Article,
 
   getBySlug: function(slug) {
     return this.find(function(article) {
@@ -30,7 +33,7 @@ axis.ArticleCollection = Backbone.Collection.extend({
   }
 });
 
-axis.NewsContainer = Backbone.View.extend({
+axis.Views.NewsContainer = Backbone.View.extend({
   events : {
     'click .close': 'refresh',
     'click .project-section-nav': 'syncTabs',
@@ -68,12 +71,12 @@ axis.NewsContainer = Backbone.View.extend({
   }
 });
 
-axis.Features = Backbone.View.extend({
+axis.Views.Features = Backbone.View.extend({
   initialize: function() {
     features = axis.articles.filter(function(article){
       return article.get('feature') === true;
     }).map(function(story){
-      return (new axis.FeatureItem({model: story}).render().el);
+      return (new axis.Views.FeatureItem({model: story}).render().el);
     });
 
     this.$el.find('#featured').html(features);
@@ -84,7 +87,7 @@ axis.Features = Backbone.View.extend({
   }
 });
 
-axis.FeatureItem = Backbone.View.extend({
+axis.Views.FeatureItem = Backbone.View.extend({
   tagName: 'div',
 
   initialize: function() {
@@ -97,17 +100,17 @@ axis.FeatureItem = Backbone.View.extend({
   }
 });
 
-axis.NewsFeed = Backbone.View.extend({
+axis.Views.NewsFeed = Backbone.View.extend({
   initialize: function() {
     var feed = axis.articles.map(function(article){
-      return (new axis.NewsFeedItem({model: article}).render().el);
+      return (new axis.Views.NewsFeedItem({model: article}).render().el);
     });
 
     this.$el.find('.items').append(feed);
   }
 });
 
-axis.NewsFeedItem = Backbone.View.extend({
+axis.Views.NewsFeedItem = Backbone.View.extend({
   tagName: 'article',
   className: 'row',
 
@@ -136,7 +139,7 @@ axis.NewsFeedItem = Backbone.View.extend({
       $newsview = $(document).find('#news-container');
       $newsview.children().hide();
       $newsview.prepend(
-        new axis.ArticleContainer({model: this.model}).render().el
+        new axis.Views.ArticleContainer({model: this.model}).render().el
       );
 
       axis.router.navigate('demo/article/' + this.model.get('slug') + '/');
@@ -150,19 +153,19 @@ axis.NewsFeedItem = Backbone.View.extend({
   }
 });
 
-axis.ToolsAndData = Backbone.View.extend({
+axis.Views.ToolsAndData = Backbone.View.extend({
   initialize: function() {
-    axis.tools = new axis.ArticleCollection(axis.toolsData);
+    axis.tools = new axis.Collections.Articles(axis.toolsData);
 
     var tools = axis.tools.map(function(tool){
-      return (new axis.ToolsAndDataItem({model: tool}).render().el);
+      return (new axis.Views.ToolsAndDataItem({model: tool}).render().el);
     });
 
     this.$el.find('.items').append(tools);
   }
 });
 
-axis.ToolsAndDataItem = Backbone.View.extend({
+axis.Views.ToolsAndDataItem = Backbone.View.extend({
   tagName: 'div',
   className: 'tool',
 
@@ -176,14 +179,14 @@ axis.ToolsAndDataItem = Backbone.View.extend({
   }
 });
 
-axis.ArticleContainer = Backbone.View.extend({
+axis.Views.ArticleContainer = Backbone.View.extend({
   tagName: 'div',
   className: 'row',
 
   initialize: function() {
     this.template = _.template($('#single-article-container-template').html());
-    this.article = new axis.Article({model: this.model}).render().el;
-    this.sidebar = new axis.ArticleSidebar({model: this.model}).render().el;
+    this.article = new axis.Views.Article({model: this.model}).render().el;
+    this.sidebar = new axis.Views.ArticleSidebar({model: this.model}).render().el;
   },
 
   render: function() {
@@ -194,7 +197,7 @@ axis.ArticleContainer = Backbone.View.extend({
   }
 });
 
-axis.Article = Backbone.View.extend({
+axis.Views.Article = Backbone.View.extend({
   tagName: 'div',
   className: 'single-article view',
 
@@ -214,7 +217,7 @@ axis.Article = Backbone.View.extend({
 
   render: function() {
     // Add story navigation
-    storyNav = new axis.ArticleNavigation({
+    storyNav = new axis.Views.ArticleNavigation({
       prev: this.prevStory,
       next: this.nextStory
     }).render().el;
@@ -225,7 +228,7 @@ axis.Article = Backbone.View.extend({
   }
 });
 
-axis.ArticleSidebar = Backbone.View.extend({
+axis.Views.ArticleSidebar = Backbone.View.extend({
   tagName: 'div',
   className: 'sidebar view',
 
@@ -236,7 +239,7 @@ axis.ArticleSidebar = Backbone.View.extend({
 
   getRecentStories: function() {
     return axis.articles.getMostRecent(0).map(function(article){
-      return (new axis.RecentArticle({model: article}).render().el);
+      return (new axis.Views.RecentArticle({model: article}).render().el);
     });
   },
 
@@ -247,12 +250,12 @@ axis.ArticleSidebar = Backbone.View.extend({
   }
 });
 
-axis.ArticleNavigation = Backbone.View.extend({
+axis.Views.ArticleNavigation = Backbone.View.extend({
   tagName: 'ul',
 
   initialize: function() {
     if (this.options.prev) {
-      this.previous = new axis.ArticleNavigationItem({
+      this.previous = new axis.Views.ArticleNavigationItem({
         model: this.options.prev,
         className: 'previous six mobile-two columns',
         direction: 'Previous'
@@ -262,7 +265,7 @@ axis.ArticleNavigation = Backbone.View.extend({
     }
 
     if (this.options.next) {
-      this.next = new axis.ArticleNavigationItem({
+      this.next = new axis.Views.ArticleNavigationItem({
         model: this.options.next,
         className: 'next six mobile-two columns',
         direction: 'Next'
@@ -278,7 +281,7 @@ axis.ArticleNavigation = Backbone.View.extend({
   }
 });
 
-axis.ArticleNavigationItem = Backbone.View.extend({
+axis.Views.ArticleNavigationItem = Backbone.View.extend({
   tagName: 'li',
 
   initialize: function() {
@@ -295,7 +298,7 @@ axis.ArticleNavigationItem = Backbone.View.extend({
   }
 });
 
-axis.RecentArticle = Backbone.View.extend({
+axis.Views.RecentArticle = Backbone.View.extend({
   tagName: 'article',
 
   events: {
@@ -337,7 +340,7 @@ axis.Router = Backbone.Router.extend({
       new FastClick(document.body);
     }, false);
 
-    axis.articles = new axis.ArticleCollection(axis.fakeStories);
+    axis.articles = new axis.Collections.Articles(axis.fakeStories);
 
     this.createSubViews();
 
@@ -347,15 +350,15 @@ axis.Router = Backbone.Router.extend({
   createSubViews: function() {
     if(document.URL.search('/project/') !== -1) {
       // project views
-      axis.NewsContainer = new axis.NewsContainer({el: '#news-container'});
-      axis.NewsFeed = new axis.NewsFeed({el: '#stories'});
-      axis.Features = new axis.Features({el: '#feature-container'});
-      axis.ToolsAndData = new axis.ToolsAndData({el: '#tools-and-data'});
+      axis.NewsContainer = new axis.Views.NewsContainer({el: '#news-container'});
+      axis.NewsFeed = new axis.Views.NewsFeed({el: '#stories'});
+      axis.Features = new axis.Views.Features({el: '#feature-container'});
+      axis.ToolsAndData = new axis.Views.ToolsAndData({el: '#tools-and-data'});
     } else if (document.URL.search('/article/') !== -1) {
       // article views
       // temporary
       var url = document.URL.split('/');
-      axis.ArticleContainer = new axis.ArticleContainer({
+      axis.ArticleContainer = new axis.Views.ArticleContainer({
         el: '#news-container',
         model: axis.articles.getBySlug(url[5])
       });
@@ -383,7 +386,7 @@ axis.Router = Backbone.Router.extend({
     $newsview = $(document).find('#news-container');
     $newsview.children().hide();
     $newsview.prepend(
-      new axis.Article({model: this.article}).render().el
+      new axis.Models.Article({model: this.article}).render().el
     );
 
     axis.router.navigate('demo/article/' + slug + '/');
