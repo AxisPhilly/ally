@@ -6352,8 +6352,8 @@ footer {
 /* font-face */
 @font-face {
   font-family: "SocialFoundicons";
-  src: url("../fonts/social_foundicons.eot");
-  src: url("../fonts/social_foundicons.eot?#iefix") format("embedded-opentype"), url("../fonts/social_foundicons.woff") format("woff"), url("../fonts/social_foundicons.ttf") format("truetype"), url("../fonts/social_foundicons.svg#SocialFoundicons") format("svg");
+  src: url("fonts/social_foundicons.eot");
+  src: url("fonts/social_foundicons.eot?#iefix") format("embedded-opentype"), url("fonts/social_foundicons.woff") format("woff"), url("fonts/social_founsdicons.ttf") format("truetype"), url("fonts/social_foundicons.svg#SocialFoundicons") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -6691,8 +6691,8 @@ footer {
 /* font-face */
 @font-face {
   font-family: "GeneralFoundicons";
-  src: url("../fonts/general_foundicons.eot");
-  src: url("../fonts/general_foundicons.eot?#iefix") format("embedded-opentype"), url("../fonts/general_foundicons.woff") format("woff"), url("../fonts/general_foundicons.ttf") format("truetype"), url("../fonts/general_foundicons.svg#GeneralFoundicons") format("svg");
+  src: url("fonts/general_foundicons.eot");
+  src: url("fonts/general_foundicons.eot?#iefix") format("embedded-opentype"), url("fonts/general_foundicons.woff") format("woff"), url("fonts/general_foundicons.ttf") format("truetype"), url("fonts/general_foundicons.svg#GeneralFoundicons") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -7200,8 +7200,8 @@ footer {
 /* font-face */
 @font-face {
   font-family: "GeneralEnclosedFoundicons";
-  src: url("../fonts/general_enclosed_foundicons.eot");
-  src: url("../fonts/general_enclosed_foundicons.eot?#iefix") format("embedded-opentype"), url("../fonts/general_enclosed_foundicons.woff") format("woff"), url("../fonts/general_enclosed_foundicons.ttf") format("truetype"), url("../fonts/general_enclosed_foundicons.svg#GeneralEnclosedFoundicons") format("svg");
+  src: url("fonts/general_enclosed_foundicons.eot");
+  src: url("fonts/general_enclosed_foundicons.eot?#iefix") format("embedded-opentype"), url("fonts/general_enclosed_foundicons.woff") format("woff"), url("fonts/general_enclosed_foundicons.ttf") format("truetype"), url("fonts/general_enclosed_foundicons.svg#GeneralEnclosedFoundicons") format("svg");
   font-weight: normal;
   font-style: normal;
 }
