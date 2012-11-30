@@ -187,18 +187,10 @@ axis.Views.Article = Backbone.View.extend({
   tagName: 'div',
   className: 'single-article view',
 
-  events: {
-    'click .story-navigation a': 'open'
-  },
-
   initialize: function() {
     this.template = _.template($('#single-article-template').html());
     this.prevStory = axis.articles.get(parseInt(this.model.id, 0) - 1);
     this.nextStory = axis.articles.get(parseInt(this.model.id, 0) + 1);
-  },
-
-  open: function() {
-
   },
 
   render: function() {
@@ -295,6 +287,10 @@ axis.Views.ArticleNavigation = Backbone.View.extend({
 axis.Views.ArticleNavigationItem = Backbone.View.extend({
   tagName: 'li',
 
+  events: {
+    'click a': 'open'
+  },
+
   initialize: function() {
     this.template = _.template($('#article-navigation-item-template').html());
   },
@@ -306,9 +302,16 @@ axis.Views.ArticleNavigationItem = Backbone.View.extend({
       {'direction': this.options.direction})
     ));
     return this;
+  },
+
+  open: function(event) {
+    event.preventDefault();
+
+    /*axis.router.navigate('demo/article/' + this.model.get('slug') + '/', {
+      trigger: true
+    });*/
   }
 });
-
 
 axis.Router = Backbone.Router.extend({
   routes: {
@@ -367,7 +370,8 @@ axis.Router = Backbone.Router.extend({
       // Init Affix
       $('.moving-container').affix({offset: { top: 70 } });
     } else {
-      new axis.Views.Article({model: this.article}).render();
+      axis.ArticleContainer.article = new axis.Views.Article({model: this.article});
+      axis.ArticleContainer.article.render();
     }
 
     // Scroll to headline
