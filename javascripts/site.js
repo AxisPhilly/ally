@@ -54,7 +54,8 @@ axis.Views.NewsContainer = Backbone.View.extend({
   },
 
   refresh: function() {
-    this.$el.find('.article-container').remove();
+    axis.ArticleContainer.remove();
+
     this.$el.children().show();
     
     if(window.innerWidth > 767) {
@@ -131,23 +132,12 @@ axis.Views.NewsFeedItem = Backbone.View.extend({
   },
 
   open: function(event) {
-    if (event.target.className !== 'external') {
+    if (event.target.className !== 'external') { // TODO
       event.preventDefault();
     
-      // TODO, is there a more backboney way to do this?
-      $newsview = $(document).find('#news-container');
-      $newsview.children().hide();
-      $newsview.prepend(
-        new axis.Views.ArticleContainer({model: this.model}).render().el
-      );
-
-      axis.router.navigate('demo/article/' + this.model.get('slug') + '/');
-
-      // Scroll to headline
-      $('body').scrollTop($("header h2").offset().top - 50);
-
-      // Init Affix
-      $('.moving-container').affix({offset: { top: 70 } });
+      axis.router.navigate('demo/article/' + this.model.get('slug') + '/', {
+        trigger: true
+      });
     }
   }
 });
@@ -249,6 +239,31 @@ axis.Views.ArticleSidebar = Backbone.View.extend({
   }
 });
 
+axis.Views.RecentArticle = Backbone.View.extend({
+  tagName: 'article',
+
+  events: {
+    'click a': 'open'
+  },
+
+  initialize: function() {
+    this.template = _.template($('#single-article-recent-story-template').html());
+  },
+
+  render: function() {
+    this.$el.html(this.template(this.model.toJSON()));
+    return this;
+  },
+
+  open: function(event) {
+    event.preventDefault();
+
+    axis.router.navigate('demo/article/' + this.model.get('slug') + '/', {
+      trigger: true
+    });
+  }
+});
+
 axis.Views.ArticleNavigation = Backbone.View.extend({
   tagName: 'ul',
 
@@ -297,38 +312,10 @@ axis.Views.ArticleNavigationItem = Backbone.View.extend({
   }
 });
 
-axis.Views.RecentArticle = Backbone.View.extend({
-  tagName: 'article',
-
-  events: {
-    'click a': 'open'
-  },
-
-  initialize: function() {
-    this.template = _.template($('#single-article-recent-story-template').html());
-  },
-
-  render: function() {
-    this.$el.html(this.template(this.model.toJSON()));
-    return this;
-  },
-
-  open: function(event) {
-    event.preventDefault();
-
-    var article = new axis.Views.Article({model: this.model}).render().el;
-    $('#story').html(article);
-
-    axis.router.navigate('demo/article/' + this.model.get('slug') + '/');
-
-    // Scroll to headline
-    $('body').scrollTop($("header h2").offset().top - 50);
-  }
-});
 
 axis.Router = Backbone.Router.extend({
   routes: {
-    "demo/article/:slug/": "article",
+    "demo/article/:id/": "article",
     "demo/project/:name/": "project",
     "demo": "home"
   },
@@ -359,7 +346,7 @@ axis.Router = Backbone.Router.extend({
       var url = document.URL.split('/');
       axis.ArticleContainer = new axis.Views.ArticleContainer({
         el: '#news-container',
-        model: axis.articles.getBySlug(url[5])
+        model: axis.articles.get(url[5])
       });
 
       // If article is accessed directly
@@ -382,9 +369,8 @@ axis.Router = Backbone.Router.extend({
     if (document.URL.search('/article/') !== -1) { // if we are not already on an Article Page
       $newsview = $(document).find('#news-container');
       $newsview.children().hide();
-      $newsview.prepend(
-        new axis.Views.ArticleContainer({model: this.article}).render().el
-      );
+      axis.ArticleContainer = new axis.Views.ArticleContainer({model: this.article});
+      $newsview.prepend(axis.ArticleContainer.render().el);
 
       axis.router.navigate('demo/article/' + slug + '/');
 
@@ -393,7 +379,7 @@ axis.Router = Backbone.Router.extend({
     } else {
       new axis.Views.Article({model: this.article}).render();
     }
-  
+
     // Scroll to headline
     $('body').scrollTop($("header h2").offset().top - 50);
   },
@@ -638,7 +624,7 @@ $(document).ready(function() {
     {
       photo: "http://placehold.it/970x640",
       thumbnail: "http://placehold.it/300x198",
-      slug: 'slug',
+      slug: 'slug-two',
       id: "11",
       headline: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
       tags: [],
