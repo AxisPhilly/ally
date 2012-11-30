@@ -33,15 +33,28 @@ axis.Collections.Articles = Backbone.Collection.extend({
   }
 });
 
-axis.Views.NewsContainer = Backbone.View.extend({
+axis.Views.ProjectContainer = Backbone.View.extend({
+  tagName: 'div',
+  className: 'project-container view',
+
   events : {
-    'click .close': 'refresh',
     'click .project-section-nav': 'syncTabs',
     'click .project-section-nav a': 'goToTab'
   },
 
+  initialize: function() {
+    this.feed = new axis.Views.NewsFeed({el: '#stories'});
+    this.features = new axis.Views.Features({el: '#feature-container'});
+    this.tools = new axis.Views.ToolsAndData({el: '#tools-and-data'});
+  },
+
   goToTab: function() {
     //$('body').animate({ scrollTop: $(".tabs-content").offset().top - 125 }, 800);
+  },
+
+  render: function() {
+    // TODO. not quite ready to render project page from backbone.
+    return this;
   },
 
   syncTabs: function(event) {
@@ -51,22 +64,6 @@ axis.Views.NewsContainer = Backbone.View.extend({
 
     $('.project-section-nav.' + inactiveBar + ' .active').removeClass('active');
     $('.project-section-nav.' + inactiveBar + ' dd a[href="' + activeTab + '"]').parent().addClass('active');
-  },
-
-  refresh: function() {
-    axis.ArticleContainer.remove();
-
-    this.$el.children().show();
-    
-    if(window.innerWidth > 767) {
-      this.$el.find('.project-section-nav.small').hide();
-      this.$el.find('.project-section-nav.large').show();
-    } else {
-      this.$el.find('.project-section-nav.small').show();
-      this.$el.find('.project-section-nav.large').hide();
-    }
-
-    axis.router.navigate('demo/project/avi/');
   }
 });
 
@@ -174,14 +171,14 @@ axis.Views.ArticleContainer = Backbone.View.extend({
 
   initialize: function() {
     this.template = _.template($('#single-article-container-template').html());
-    this.article = new axis.Views.Article({model: this.model}).render().el;
-    this.sidebar = new axis.Views.ArticleSidebar({model: this.model}).render().el;
+    this.article = new axis.Views.Article({model: this.model});
+    this.sidebar = new axis.Views.ArticleSidebar({model: this.model});
   },
 
   render: function() {
     this.$el.html(this.template({}));
-    this.$el.find('#sidebar').html(this.sidebar);
-    this.$el.find('#story').html(this.article);
+    this.$el.find('#sidebar').html(this.sidebar.render().el);
+    this.$el.find('#story').html(this.article.render().el);
     return this;
   }
 });
@@ -328,21 +325,17 @@ axis.Router = Backbone.Router.extend({
 
     axis.articles = new axis.Collections.Articles(axis.fakeStories);
 
-    this.createSubViews();
+    this.createViews();
 
     Backbone.history.start({ pushState:true, silent:true });
   },
 
-  createSubViews: function() {
+  createViews: function() {
     if(document.URL.search('/project/') !== -1) {
       // project views
-      axis.NewsContainer = new axis.Views.NewsContainer({el: '#news-container'});
-      axis.NewsFeed = new axis.Views.NewsFeed({el: '#stories'});
-      axis.Features = new axis.Views.Features({el: '#feature-container'});
-      axis.ToolsAndData = new axis.Views.ToolsAndData({el: '#tools-and-data'});
+      axis.ProjectContainer = new axis.Views.ProjectContainer({el: '.project-container'});
     } else if (document.URL.search('/article/') !== -1) {
       // article views
-      // temporary
       var url = document.URL.split('/');
       axis.ArticleContainer = new axis.Views.ArticleContainer({
         el: '#news-container',
@@ -361,17 +354,15 @@ axis.Router = Backbone.Router.extend({
 
   home: function() {
     //do nothing, for now
-    //TEST TEST
   },
 
   article: function(slug) {
     this.article = axis.articles.getBySlug(slug);
 
     if (document.URL.search('/article/') !== -1) { // if we are not already on an Article Page
-      $newsview = $(document).find('#news-container');
-      $newsview.children().hide();
+      axis.ProjectContainer.$el.hide();
       axis.ArticleContainer = new axis.Views.ArticleContainer({model: this.article});
-      $newsview.prepend(axis.ArticleContainer.render().el);
+      $('#news-container').append(axis.ArticleContainer.render().el);
 
       // Init Affix
       $('.moving-container').affix({offset: { top: 70 } });
@@ -384,7 +375,13 @@ axis.Router = Backbone.Router.extend({
   },
 
   project: function() {
-    axis.NewsContainer.refresh();
+    axis.ArticleContainer.remove();
+
+    if(axis.ProjectContainer) {
+      axis.ProjectContainer.$el.show();
+    } else {
+      axis.ProjectContainer = new axis.Views.ProjectContainer({el: '#news-container'});
+    }
   }
 });
 
