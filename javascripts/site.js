@@ -372,8 +372,6 @@ axis.Router = Backbone.Router.extend({
       axis.ArticleContainer = new axis.Views.ArticleContainer({model: this.article});
       $newsview.prepend(axis.ArticleContainer.render().el);
 
-      axis.router.navigate('demo/article/' + slug + '/');
-
       // Init Affix
       $('.moving-container').affix({offset: { top: 70 } });
     } else {
