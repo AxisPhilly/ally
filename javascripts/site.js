@@ -361,6 +361,7 @@ axis.Router = Backbone.Router.extend({
 
   home: function() {
     //do nothing, for now
+    //TEST TEST
   },
 
   article: function(slug) {
