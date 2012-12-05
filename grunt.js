@@ -12,7 +12,7 @@ module.exports = function(grunt) {
         '*/',
       wpPhpHeader: '<?php /*!\n' +
         '* @package WordPress\n' +
-        '* @subpackage Ally\n' +
+        '* @subpackdefault=datetime.date.today)age Ally\n' +
         '*/\n' +
         '?>\n'
     },
@@ -43,43 +43,58 @@ module.exports = function(grunt) {
           'javascripts/foundation/jquery.foundation.placeholder.js',
           'javascripts/foundation/app.js'
         ],
-        dest: 'theme/javascripts/foundation.js'
+        dest: 'javascripts/foundation.js'
       },
       libraries: {
         src: 'javascripts/contrib/*',
-        dest: 'theme/javascripts/libraries.<%= pkg.version %>.min.js'
+        dest: 'javascripts/libraries.<%= pkg.version %>.min.js'
       },
-      sass: {
+        sass: {
         src: [
           '<banner:meta.wpStyleHeader>',
           'stylesheets/app.css',
           'stylesheets/function-overrides.css',
           'stylesheets/compass.css'
         ],
-        dest: 'theme/style.css'
+        dest: 'style.css'
       }
     },
     min: {
       site: {
         src: 'javascripts/site.js',
-        dest: 'theme/javascripts/site.<%= pkg.version %>.min.js'
+        dest: 'javascripts/site.<%= pkg.version %>.min.js'
       },
       foundation: {
-        src: 'theme/javascripts/foundation.js',
-        dest: 'theme/javascripts/foundation.min.js'
+        src: 'javascripts/foundation.js',
+        dest: 'javascripts/foundation.min.js'
       }
-    }
+    },
     /*compass: {
       dist: {
         options: {
           sassDir: 'sass',
-          cssDir: 'theme'
+          cssDir: ''
         }
       }
     }*/
+    compress: {
+      tar: {
+        files: {
+          'ally.<%= pkg.version %>.tar': [
+            'style.css',
+            '*.php',
+            'fonts/*',
+            'images/**',
+            'javascripts/*min*.js'
+          ]
+        }
+      }
+    }
   });
 
   grunt.loadNpmTasks('grunt-contrib-compass');
+  grunt.loadNpmTasks('grunt-contrib-compress');
 
   grunt.registerTask('default', 'concat lint min');
+  grunt.registerTask('release', 'compress');
 };
