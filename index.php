@@ -39,7 +39,8 @@
           <div id="featured">
             <!-- features go here -->
 <?php
-  query_posts( array( 'posts_per_page' => 1, 'post_status' => 'publish' , 'category_name' => 'featured' , 'post_type' => array( 'post' , 'external_post', 'external_tool', 'wp_tool') ) );
+// "'category__and' => array(12,10)" selects posts that meet two category requirements: featured (12) and avi (10)
+  query_posts( array( 'posts_per_page' => 1, 'post_status' => 'publish' , 'category__and' => array(12,10) ,  'post_type' => array( 'post' , 'external_post', 'external_tool', 'wp_tool') ) );
   
   if (have_posts()) :
   while (have_posts()) :
@@ -51,7 +52,7 @@
     <?php endif; ?>
     <div class="caption">
       <h4 class="headline"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-      <span class="byline">by <?php the_author(); ?>, <?php the_time(); ?></span>
+      <span class="byline">by <?php the_author(); ?>, <?php the_date(); ?></span>
       <p><?php the_excerpt(); ?></p>
     </div>
 <?php
@@ -93,20 +94,13 @@
   the_post();
   ?>
     <div class="eight mobile-two columns">
-      <h4><a name="<?php the_id(); ?>" href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+      <h4><a name="<?php the_id(); ?>" href="<?php if ((get_post_type() != 'external_post' )) the_permalink(); else echo get_post_meta( $post->ID, '_url_name', true); ?>"><?php the_title(); ?></a></h4>
       <div class="byline hide-for-small">
-
 <!-- Check to see if this is an external_post. If so, display Source and Source URL instead of Author. -->
-
       <?php
-
-
-
-
-
       if (get_post_type() == 'external_post') echo "Source: <a href='" . get_post_meta( $post->ID, '_url_name', true)."'>".get_post_meta( $post->ID, '_source_name', true) . "</a>"; if ((get_post_type() != 'external_post' )) echo "by " . get_the_author(); ?>
       </div>
-      <div class="datetime hide-for-small"><?php the_time(); ?> </div>
+      <div class="datetime hide-for-small"><?php the_date(); ?> </div>
       <p class="hide-for-small"><?php the_excerpt(); ?></p>
     </div>
     <div class="four mobile-two columns">
@@ -116,7 +110,6 @@
     <?php endif; ?>
     </div>
 <?php
-  //loop content
   endwhile;
   endif;
   ?>
@@ -135,7 +128,18 @@
   if (have_posts()) :
   while (have_posts()) :
   the_post();
-  the_title();
+?>
+ <a href="<?php the_permalink ?>">
+     <?php if (has_post_thumbnail( $post->ID ) ): ?>  
+      <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' ); ?>
+      <img src="<?php echo $image[0]; ?>">
+    <?php endif; ?>
+      <div class="caption">
+        <h5> <?php the_title(); ?></h5>
+        <span><?php the_excerpt(); ?></span>
+      </div>
+</a>
+<?php
   //loop content
   endwhile;
   endif;
