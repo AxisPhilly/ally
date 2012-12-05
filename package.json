@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "grunt": ">=0.3.17",
-    "grunt-contrib-compass": "*"
+    "grunt-contrib-compass": "*",
+    "grunt-contrib-compress": "*"
   }
 }

@@ -12,7 +12,7 @@ module.exports = function(grunt) {
         '*/',
       wpPhpHeader: '<?php /*!\n' +
         '* @package WordPress\n' +
-        '* @subpackage Ally\n' +
+        '* @subpackdefault=datetime.date.today)age Ally\n' +
         '*/\n' +
         '?>\n'
     },
@@ -49,7 +49,7 @@ module.exports = function(grunt) {
         src: 'javascripts/contrib/*',
         dest: 'javascripts/libraries.<%= pkg.version %>.min.js'
       },
-      sass: {
+        sass: {
         src: [
           '<banner:meta.wpStyleHeader>',
           'stylesheets/app.css',
@@ -68,7 +68,7 @@ module.exports = function(grunt) {
         src: 'javascripts/foundation.js',
         dest: 'javascripts/foundation.min.js'
       }
-    }
+    },
     /*compass: {
       dist: {
         options: {
@@ -77,9 +77,18 @@ module.exports = function(grunt) {
         }
       }
     }*/
+    compress: {
+      tar: {
+        files: {
+          'ally.<%= pkg.version %>.tar': ['style.css', '*.php']
+        }
+      }
+    }
   });
 
   grunt.loadNpmTasks('grunt-contrib-compass');
+  grunt.loadNpmTasks('grunt-contrib-compress');
 
   grunt.registerTask('default', 'concat lint min');
+  grunt.registerTask('release', 'compress');
 };
