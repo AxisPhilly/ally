@@ -1,6 +1,21 @@
 module.exports = function(grunt) {
   grunt.initConfig({
     pkg: '<json:package.json>',
+    meta: {
+      wpStyleHeader: '/*\n' +
+        ' Theme Name: Ally\n' +
+        ' Theme URI: http://www.axisphilly.com\n' +
+        ' Description: Custom theme for AxisPhilly\n' +
+        ' Author: Casey Thomas, Jeff Frankl\n' +
+        ' Author URI: caseypthomas.org, jfrankl.org\n' +
+        ' Version: <%= pkg.version %>\n' +
+        '*/',
+      wpPhpHeader: '<?php /*!\n' +
+        '* @package WordPress\n' +
+        '* @subpackage Ally\n' +
+        '*/\n' +
+        '?>\n'
+    },
     lint: {
       files: ['javascripts/site.js']
     },
@@ -36,6 +51,7 @@ module.exports = function(grunt) {
       },
       sass: {
         src: [
+          '<banner:meta.wpStyleHeader>',
           'stylesheets/app.css',
           'stylesheets/function-overrides.css',
           'stylesheets/compass.css'

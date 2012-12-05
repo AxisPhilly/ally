@@ -33,15 +33,28 @@ axis.Collections.Articles = Backbone.Collection.extend({
   }
 });
 
-axis.Views.NewsContainer = Backbone.View.extend({
+axis.Views.ProjectContainer = Backbone.View.extend({
+  tagName: 'div',
+  className: 'project-container view',
+
   events : {
-    'click .close': 'refresh',
     'click .project-section-nav': 'syncTabs',
     'click .project-section-nav a': 'goToTab'
   },
 
+  initialize: function() {
+    this.feed = new axis.Views.NewsFeed({el: '#stories'});
+    this.features = new axis.Views.Features({el: '#feature-container'});
+    this.tools = new axis.Views.ToolsAndData({el: '#tools-and-data'});
+  },
+
   goToTab: function() {
     //$('body').animate({ scrollTop: $(".tabs-content").offset().top - 125 }, 800);
+  },
+
+  render: function() {
+    // TODO. not quite ready to render project page from backbone.
+    return this;
   },
 
   syncTabs: function(event) {
@@ -51,21 +64,6 @@ axis.Views.NewsContainer = Backbone.View.extend({
 
     $('.project-section-nav.' + inactiveBar + ' .active').removeClass('active');
     $('.project-section-nav.' + inactiveBar + ' dd a[href="' + activeTab + '"]').parent().addClass('active');
-  },
-
-  refresh: function() {
-    this.$el.find('.article-container').remove();
-    this.$el.children().show();
-    
-    if(window.innerWidth > 767) {
-      this.$el.find('.project-section-nav.small').hide();
-      this.$el.find('.project-section-nav.large').show();
-    } else {
-      this.$el.find('.project-section-nav.small').show();
-      this.$el.find('.project-section-nav.large').hide();
-    }
-
-    axis.router.navigate('demo/project/avi/');
   }
 });
 
@@ -131,23 +129,12 @@ axis.Views.NewsFeedItem = Backbone.View.extend({
   },
 
   open: function(event) {
-    if (event.target.className !== 'external') {
+    if (event.target.className !== 'external') { // TODO
       event.preventDefault();
     
-      // TODO, is there a more backboney way to do this?
-      $newsview = $(document).find('#news-container');
-      $newsview.children().hide();
-      $newsview.prepend(
-        new axis.Views.ArticleContainer({model: this.model}).render().el
-      );
-
-      axis.router.navigate('demo/article/' + this.model.get('slug') + '/');
-
-      // Scroll to headline
-      $('body').scrollTop($("header h2").offset().top - 50);
-
-      // Init Affix
-      $('.moving-container').affix({offset: { top: 70 } });
+      axis.router.navigate('demo/article/' + this.model.get('slug') + '/', {
+        trigger: true
+      });
     }
   }
 });
@@ -184,14 +171,14 @@ axis.Views.ArticleContainer = Backbone.View.extend({
 
   initialize: function() {
     this.template = _.template($('#single-article-container-template').html());
-    this.article = new axis.Views.Article({model: this.model}).render().el;
-    this.sidebar = new axis.Views.ArticleSidebar({model: this.model}).render().el;
+    this.article = new axis.Views.Article({model: this.model});
+    this.sidebar = new axis.Views.ArticleSidebar({model: this.model});
   },
 
   render: function() {
     this.$el.html(this.template({}));
-    this.$el.find('#sidebar').html(this.sidebar);
-    this.$el.find('#story').html(this.article);
+    this.$el.find('#sidebar').html(this.sidebar.render().el);
+    this.$el.find('#story').html(this.article.render().el);
     return this;
   }
 });
@@ -200,18 +187,10 @@ axis.Views.Article = Backbone.View.extend({
   tagName: 'div',
   className: 'single-article view',
 
-  events: {
-    'click .story-navigation a': 'open'
-  },
-
   initialize: function() {
     this.template = _.template($('#single-article-template').html());
     this.prevStory = axis.articles.get(parseInt(this.model.id, 0) - 1);
     this.nextStory = axis.articles.get(parseInt(this.model.id, 0) + 1);
-  },
-
-  open: function() {
-
   },
 
   render: function() {
@@ -249,6 +228,31 @@ axis.Views.ArticleSidebar = Backbone.View.extend({
   }
 });
 
+axis.Views.RecentArticle = Backbone.View.extend({
+  tagName: 'article',
+
+  events: {
+    'click a': 'open'
+  },
+
+  initialize: function() {
+    this.template = _.template($('#single-article-recent-story-template').html());
+  },
+
+  render: function() {
+    this.$el.html(this.template(this.model.toJSON()));
+    return this;
+  },
+
+  open: function(event) {
+    event.preventDefault();
+
+    axis.router.navigate('demo/article/' + this.model.get('slug') + '/', {
+      trigger: true
+    });
+  }
+});
+
 axis.Views.ArticleNavigation = Backbone.View.extend({
   tagName: 'ul',
 
@@ -283,6 +287,10 @@ axis.Views.ArticleNavigation = Backbone.View.extend({
 axis.Views.ArticleNavigationItem = Backbone.View.extend({
   tagName: 'li',
 
+  events: {
+    'click a': 'open'
+  },
+
   initialize: function() {
     this.template = _.template($('#article-navigation-item-template').html());
   },
@@ -294,41 +302,20 @@ axis.Views.ArticleNavigationItem = Backbone.View.extend({
       {'direction': this.options.direction})
     ));
     return this;
-  }
-});
-
-axis.Views.RecentArticle = Backbone.View.extend({
-  tagName: 'article',
-
-  events: {
-    'click a': 'open'
-  },
-
-  initialize: function() {
-    this.template = _.template($('#single-article-recent-story-template').html());
-  },
-
-  render: function() {
-    this.$el.html(this.template(this.model.toJSON()));
-    return this;
   },
 
   open: function(event) {
     event.preventDefault();
 
-    var article = new axis.Views.Article({model: this.model}).render().el;
-    $('#story').html(article);
-
-    axis.router.navigate('demo/article/' + this.model.get('slug') + '/');
-
-    // Scroll to headline
-    $('body').scrollTop($("header h2").offset().top - 50);
+    /*axis.router.navigate('demo/article/' + this.model.get('slug') + '/', {
+      trigger: true
+    });*/
   }
 });
 
 axis.Router = Backbone.Router.extend({
   routes: {
-    "demo/article/:slug/": "article",
+    "demo/article/:id/": "article",
     "demo/project/:name/": "project",
     "demo": "home"
   },
@@ -341,25 +328,21 @@ axis.Router = Backbone.Router.extend({
 
     axis.articles = new axis.Collections.Articles(axis.fakeStories);
 
-    this.createSubViews();
+    this.createViews();
 
     Backbone.history.start({ pushState:true, silent:true });
   },
 
-  createSubViews: function() {
+  createViews: function() {
     if(document.URL.search('/project/') !== -1) {
       // project views
-      axis.NewsContainer = new axis.Views.NewsContainer({el: '#news-container'});
-      axis.NewsFeed = new axis.Views.NewsFeed({el: '#stories'});
-      axis.Features = new axis.Views.Features({el: '#feature-container'});
-      axis.ToolsAndData = new axis.Views.ToolsAndData({el: '#tools-and-data'});
+      axis.ProjectContainer = new axis.Views.ProjectContainer({el: '.project-container'});
     } else if (document.URL.search('/article/') !== -1) {
       // article views
-      // temporary
       var url = document.URL.split('/');
       axis.ArticleContainer = new axis.Views.ArticleContainer({
         el: '#news-container',
-        model: axis.articles.getBySlug(url[5])
+        model: axis.articles.get(url[5])
       });
 
       // If article is accessed directly
@@ -380,26 +363,29 @@ axis.Router = Backbone.Router.extend({
     this.article = axis.articles.getBySlug(slug);
 
     if (document.URL.search('/article/') !== -1) { // if we are not already on an Article Page
-      $newsview = $(document).find('#news-container');
-      $newsview.children().hide();
-      $newsview.prepend(
-        new axis.Views.ArticleContainer({model: this.article}).render().el
-      );
-
-      axis.router.navigate('demo/article/' + slug + '/');
+      axis.ProjectContainer.$el.hide();
+      axis.ArticleContainer = new axis.Views.ArticleContainer({model: this.article});
+      $('#news-container').append(axis.ArticleContainer.render().el);
 
       // Init Affix
       $('.moving-container').affix({offset: { top: 70 } });
     } else {
-      new axis.Views.Article({model: this.article}).render();
+      axis.ArticleContainer.article = new axis.Views.Article({model: this.article});
+      axis.ArticleContainer.article.render();
     }
-  
+
     // Scroll to headline
     $('body').scrollTop($("header h2").offset().top - 50);
   },
 
   project: function() {
-    axis.NewsContainer.refresh();
+    axis.ArticleContainer.remove();
+
+    if(axis.ProjectContainer) {
+      axis.ProjectContainer.$el.show();
+    } else {
+      axis.ProjectContainer = new axis.Views.ProjectContainer({el: '#news-container'});
+    }
   }
 });
 
@@ -638,7 +624,7 @@ $(document).ready(function() {
     {
       photo: "http://placehold.it/970x640",
       thumbnail: "http://placehold.it/300x198",
-      slug: 'slug',
+      slug: 'slug-two',
       id: "11",
       headline: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
       tags: [],
