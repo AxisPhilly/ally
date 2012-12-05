@@ -80,7 +80,13 @@ module.exports = function(grunt) {
     compress: {
       tar: {
         files: {
-          'ally.<%= pkg.version %>.tar': ['style.css', '*.php']
+          'ally.<%= pkg.version %>.tar': [
+            'style.css',
+            '*.php',
+            'fonts/*',
+            'images/**',
+            'javascripts/*min*.js'
+          ]
         }
       }
     }
