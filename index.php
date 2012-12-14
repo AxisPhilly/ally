@@ -52,7 +52,7 @@
     <?php endif; ?>
     <div class="caption">
       <h4 class="headline"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-      <span class="byline">by <?php the_author(); ?>, <?php the_date(); ?></span>
+      <span class="byline">by <?php coauthors_posts_links(); ?>, <?php the_time('F j, Y'); ?></span>
       <p><?php the_excerpt(); ?></p>
     </div>
 <?php
@@ -98,10 +98,10 @@
       <div class="byline hide-for-small">
 <!-- Check to see if this is an external_post. If so, display Source and Source URL instead of Author. -->
       <?php
-      if (get_post_type() == 'external_post') echo "Source: <a href='" . get_post_meta( $post->ID, '_url_name', true)."'>".get_post_meta( $post->ID, '_source_name', true) . "</a>"; if ((get_post_type() != 'external_post' )) echo "by " . get_the_author(); ?>
+      if (get_post_type() == 'external_post') echo "Source: <a href='" . get_post_meta( $post->ID, '_url_name', true)."'>".get_post_meta( $post->ID, '_source_name', true) . "</a>"; if ((get_post_type() != 'external_post' )) { echo "by "; coauthors_posts_links(); } ?>
       </div>
-      <div class="datetime hide-for-small"><?php the_date(); ?> </div>
-      <p class="hide-for-small"><?php the_excerpt(); ?></p>
+     <?php if ((get_post_type() != 'external_post' )) { ?>      <div class="datetime hide-for-small"><?php the_time('F j, Y');?></div> <?php } ?>
+<p class="hide-for-small"><?php the_excerpt(); ?></p>
     </div>
     <div class="four mobile-two columns">
     <?php if (has_post_thumbnail( $post->ID ) ): ?>  
