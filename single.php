@@ -7,14 +7,10 @@ $my_query = $wp_query;
   $my_query->the_post();
   ?>
  <div class="content-container">
-    <div class="row">
-      <ul class="breadcrumbs twelve columns">
-        <li><a href="#">Our Projects</a></li>
-        <li><a href="/demo/project/avi">Actual Value Initiative</a></li>
-        <li></li>
-      </ul>
-    </div>
+  
     <div id="news-container">
+
+      
       
       <div class="row article-container view">
 

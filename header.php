@@ -9,7 +9,7 @@
   <script src="<?php bloginfo( 'template_directory' ); ?>/javascripts/modernizr.foundation.js"></script>  
 <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
 </head>
-<body>
+<body <?php body_class(); ?>>
   <!-- Fixed header -->
   <div class="fixed contain-to-grid">
     <nav class="top-bar">
