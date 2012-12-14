@@ -1,3 +1,6 @@
+
+
+
 /*
 Theme Name: Ally
 Theme URI: http://ppiin.org/
@@ -37,6 +40,7 @@ body {
   position: relative;
   -webkit-font-smoothing: antialiased;
 }
+
 
 /* Links ---------------------- */
 /* line 11, ../../../.rvm/gems/ruby-1.9.3-p327/gems/zurb-foundation-3.2.2/scss/foundation/common/_globals.scss */
@@ -7705,3 +7709,6 @@ footer {
 .general-enclosed-foundicon-search {
   *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf02e;");
 }
+
+h1 {margin-top: 1em;}
+.article-container {margin-top: 2em;}
