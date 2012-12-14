@@ -7,11 +7,7 @@ $my_query = $wp_query;
   $my_query->the_post();
   ?>
  <div class="content-container">
-  
     <div id="news-container">
-
-      
-      
       <div class="row article-container view">
 
         <aside id="sidebar" class="three columns hide-for-small">
@@ -43,7 +39,7 @@ foreach($categories as $category){
 ?>
               <div class="project-info-container">
                 <p>
-                  <strong>This article is part of our series on <a href="<?php echo $c_slug; ?>"><?php echo $c_name; ?></a>.
+                  <strong>This article is part of our series on <a href="/projects/<?php echo $c_slug; ?>"><?php echo $c_name; ?></a>.
                   Read more from the series:</strong>
                 </p>
                 <div class="recent-stories">

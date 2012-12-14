@@ -7710,5 +7710,3 @@ footer {
   *zoom: expression(this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf02e;");
 }
 
-h1 {margin-top: 1em;}
-.article-container {margin-top: 2em;}

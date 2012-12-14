@@ -285,4 +285,38 @@ foreach ( array( 'term_description' ) as $filter ) {
     remove_filter( $filter, 'wp_kses_data' );
 }
 
+
+
+
+
+function check_my_custom_post_thumbnail( $check, $post_id, $post_data ) {
+  if ( $post_id <= 0 ) {
+    return false;
+  }
+
+  $categories = array(); //categories set by editor
+  if (is_array($post_data)) {
+    $categories = $post_data['post_category'];
+  } elseif (is_object($post_data)) {
+    $categories = $post_data->post_category;
+  }
+
+  $categories_requiring_image = array(12); //array containing IDs of the categories for which you want to require a featured image
+
+  if (is_array($categories) && count(array_intersect($categories_requiring_image, array_values($categories)))) {
+    $image = get_the_image( array(
+            'post_id' => $post_id,
+            'attachment' => false,
+            'echo' => false,
+            ) );
+    return !empty($image);
+  } else {
+    return true;
+  }
+}
+add_filter( 'wypiekacz_check_thumbnail', 'check_my_custom_post_thumbnail', 10, 3);
+
+
+
+
 ?>

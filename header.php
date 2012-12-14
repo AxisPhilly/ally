@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,800,600' rel='stylesheet' type='text/css'>
   <script src="<?php bloginfo( 'template_directory' ); ?>/javascripts/modernizr.foundation.js"></script>  
-<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
+<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'template_directory' ); ?>/stylesheets/app.css" />
 </head>
 <body <?php body_class(); ?>>
   <!-- Fixed header -->
