@@ -74,12 +74,30 @@ foreach($categories as $category){
                 <div class="media">
                      <?php if (has_post_thumbnail( $post->ID ) ): ?>  
       <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' ); ?>
-      <img src="<?php echo $image[0]; ?>" style="width: 800px">
+      <img src="<?php echo $image[0]; ?>">
     <?php endif; ?>
                 </div>
                 <div class="caption">
                   <p>
-<? the_excerpt(); ?>                  </p>
+
+<? 
+
+function the_post_thumbnail_caption() {
+  global $post;
+
+  $thumbnail_id    = get_post_thumbnail_id($post->ID);
+  $thumbnail_image = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
+
+  if ($thumbnail_image && isset($thumbnail_image[0])) {
+    echo '<span>'.$thumbnail_image[0]->post_excerpt.'</span>';
+  }
+}
+
+the_post_thumbnail_caption();
+
+?>
+
+          </p>
                 </div>
               </div>
             </header>

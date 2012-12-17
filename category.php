@@ -1,9 +1,12 @@
 <!-- Loads header.php -->
 <?php get_header(); 
+
+
 $url = $_SERVER["REQUEST_URI"];
 $url_explode= explode('/', $url);
 $slug = $url_explode[sizeof($url_explode)-2];
 $slug_id = get_category_by_slug($slug)->term_id
+
 ?>
 <!-- Content -->
   <div class="content-container">
@@ -11,7 +14,7 @@ $slug_id = get_category_by_slug($slug)->term_id
     <div id="news-container">
       <div class="row">
         <header class="project-header twelve columns">
-          <h1><?php echo get_category_by_slug($slug)->name ?></h1>
+          <h1><?php  echo get_category_by_slug($slug)->name ?></h1>
         </header>
       </div>
       <!-- Header Row -->
@@ -24,7 +27,7 @@ $slug_id = get_category_by_slug($slug)->term_id
           <ul class="accordion">
             <li>
               <div class="title">
-                <span>Actual Value Initiative</span>
+                <span><?php echo get_category_by_slug($slug)->name ?></span>
 
               </div>
               <div class="content">
@@ -46,6 +49,7 @@ $slug_id = get_category_by_slug($slug)->term_id
   while (have_posts()) :
   the_post();
   ?>
+  <div>
     <?php if (has_post_thumbnail( $post->ID ) ): ?>  
       <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' ); ?>
       <img src="<?php echo $image[0]; ?>">
@@ -53,7 +57,8 @@ $slug_id = get_category_by_slug($slug)->term_id
     <div class="caption">
       <h4 class="headline"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
       <span class="byline">by <?php coauthors_posts_links(); ?>, <?php the_time('F j, Y'); ?></span>
-      <p><?php the_excerpt(); ?></p>
+      <?php the_excerpt(); ?>
+    </div>
     </div>
 <?php
   //loop content
@@ -93,7 +98,12 @@ $slug_id = get_category_by_slug($slug)->term_id
   while (have_posts()) :
   the_post();
   ?>
+  <article class="row">
+<?php if (has_post_thumbnail( $post->ID ) ){ ?>  
     <div class="eight mobile-two columns">
+<? } else { ?>
+    <div class="twelve mobile-four columns">
+<?  } ?>
       <h4><a name="<?php the_id(); ?>" href="<?php if ((get_post_type() != 'external_post' )) the_permalink(); else echo get_post_meta( $post->ID, '_url_name', true); ?>"><?php the_title(); ?></a></h4>
       <div class="byline hide-for-small">
 <!-- Check to see if this is an external_post. If so, display Source and Source URL instead of Author. -->
@@ -101,14 +111,17 @@ $slug_id = get_category_by_slug($slug)->term_id
       if (get_post_type() == 'external_post') echo "Source: <a href='" . get_post_meta( $post->ID, '_url_name', true)."'>".get_post_meta( $post->ID, '_source_name', true) . "</a>"; if ((get_post_type() != 'external_post' )) { echo "by "; coauthors_posts_links(); } ?>
       </div>
      <?php if ((get_post_type() != 'external_post' )) { ?>      <div class="datetime hide-for-small"><?php the_time('F j, Y');?></div> <?php } ?>
-<p class="hide-for-small"><?php the_excerpt(); ?></p>
+<div class="hide-for-small"><?php the_excerpt(); ?></div>
     </div>
+<?php if (has_post_thumbnail( $post->ID ) ): ?>  
     <div class="four mobile-two columns">
-    <?php if (has_post_thumbnail( $post->ID ) ): ?>  
+  
       <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' ); ?>
       <img src="<?php echo $image[0]; ?>">
-    <?php endif; ?>
+
     </div>
+    <?php endif; ?>
+  </article>
 <?php
   endwhile;
   endif;
@@ -129,7 +142,7 @@ $slug_id = get_category_by_slug($slug)->term_id
   while (have_posts()) :
   the_post();
 ?>
- <a href="<?php the_permalink ?>">
+ <a href="<?php the_permalink() ?>">
      <?php if (has_post_thumbnail( $post->ID ) ): ?>  
       <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' ); ?>
       <img src="<?php echo $image[0]; ?>">
@@ -317,7 +330,7 @@ $slug_id = get_category_by_slug($slug)->term_id
   <script type="text/template" id="article-navigation-item-template">
     <a href="/article/<%= slug %>">
       <strong><%= direction %></strong>
-      <span><%= headline %></span>
+      <span><%= headline %>bild</span>
     </a>
   </script>
 <!-- Loads footer.php -->

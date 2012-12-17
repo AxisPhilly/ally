@@ -210,7 +210,7 @@ function create_post_type() {
         'public' => true,  
         'menu_position' => 5,  
         'supports' => array( 'title', 'excerpt'),
-        'rewrite' => array('slug' => 'external')  
+        'rewrite' => array('slug' => 'external','with_front' => false)  
         )  
     );  
 
@@ -229,7 +229,7 @@ function create_post_type() {
         'public' => true,  
         'menu_position' => 5,  
         'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail'),
-        'rewrite' => array('slug' => 'tool')  
+        'rewrite' => array('slug' => 'tool','with_front' => false)  
         )  
     );  
 
@@ -248,7 +248,7 @@ function create_post_type() {
         'public' => true,  
         'menu_position' => 5,  
         'supports' => array( 'title', 'excerpt', 'thumbnail'),
-        'rewrite' => array('slug' => 'tool')  
+        'rewrite' => array('slug' => 'special','with_front' => false)  
         )  
     );  
 
