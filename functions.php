@@ -107,8 +107,6 @@ function dimox_breadcrumbs() {
 
 
 // Create source_meta Custom Field
-add_action('add_meta_boxes', 'source_meta');
-
 function source_meta() {
   add_meta_box('source_meta', 'Source', 'source_callback', 'external_post', 'normal', 'high');
 }
@@ -118,9 +116,9 @@ function source_callback( $post ) {
   echo 'What is the name of the publication that created this story? <em>ex: Philadelphia City Paper</em><br><input type="text" name="source_name" style="width: 100%" value="'.$source_name.'"/>';
 }
 
-// Save contents of source_meta Custom Field
-add_action( 'save_post', 'source_save' );
+add_action('add_meta_boxes', 'source_meta');
 
+// Save contents of source_meta Custom Field
 function source_save($post_ID) {
   global $post;
            
@@ -129,9 +127,9 @@ function source_save($post_ID) {
   }
 }
 
-// Create url_meta Custom Field
-add_action('add_meta_boxes', 'url_meta');
+add_action( 'save_post', 'source_save' );
 
+// Create url_meta Custom Field
 function url_meta() {
   add_meta_box('url_meta', 'URL', 'url_callback', 'external_post', 'normal', 'high');
   add_meta_box('url_meta', 'URL', 'url_callback', 'external_tool', 'normal', 'high');
@@ -142,9 +140,9 @@ function url_callback($post) {
   echo 'What is the URL for the story? <em>http://citypaper.net/storyname/storyname/</em><br><input type="text" name="url_name" style="width: 100%" value="'.$url_name.'"/>';
 }
 
-// Save contents of url_meta Custom Field
-add_action('save_post', 'url_save');
+add_action('add_meta_boxes', 'url_meta');
 
+// Save contents of url_meta Custom Field
 function url_save($post_ID) {
   global $post;
            
@@ -153,13 +151,13 @@ function url_save($post_ID) {
   }
 }      
 
+add_action('save_post', 'url_save');
+
 // Enables Featured Images
 add_theme_support('post-thumbnails'); 
 
 // http://wordpress.stackexchange.com/questions/15376/how-to-set-default-screen-options
 // add_action('user_register', 'set_user_metaboxes');
-add_action('admin_init', 'set_user_metaboxes');
-
 function set_user_metaboxes($user_id=NULL) {
   // These are the metakeys we will need to update
   $meta_key['order'] = 'meta-box-order_post';
@@ -188,9 +186,10 @@ function set_user_metaboxes($user_id=NULL) {
   }
 }
 
+add_action('admin_init', 'set_user_metaboxes');
+
 // http://wp.tutsplus.com/tutorials/theme-development/innovative-uses-of-wordpress-post-types-and-taxonomies/
 // Creates "External Post" Post Type
-
 function create_post_type() {  
   // register external_post as a Custom Post Type
   register_post_type( 'external_post',  
