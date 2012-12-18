@@ -213,8 +213,8 @@ function create_post_type() {
   register_post_type('wp_tool',
     array(  
       'labels' => array(  
-        'name' => __( 'WordPress Tools' ),  
-        'singular_name' => __( 'WordPress Tool' )  
+        'name' => __('WordPress Tools'),  
+        'singular_name' => __('WordPress Tool')  
       ),  
       'public' => true,  
       'menu_position' => 5,  
@@ -230,8 +230,8 @@ function create_post_type() {
   register_post_type('external_tool',
     array(
       'labels' => array(  
-          'name' => __( 'External Tools' ),  
-          'singular_name' => __( 'External Tool' )  
+          'name' => __('External Tools'),  
+          'singular_name' => __('External Tool')  
       ),  
       'public' => true,  
       'menu_position' => 5,  
@@ -266,10 +266,10 @@ foreach (array('pre_term_description') as $filter) {
 }
  
 foreach (array('term_description') as $filter) {
-  remove_filter( $filter, 'wp_kses_data' );
+  remove_filter($filter, 'wp_kses_data');
 }
 
-function check_my_custom_post_thumbnail( $check, $post_id, $post_data ) {
+function check_my_custom_post_thumbnail($check, $post_id, $post_data) {
   if ( $post_id <= 0 ) {
     return false;
   }
