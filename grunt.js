@@ -49,7 +49,7 @@ module.exports = function(grunt) {
         src: 'javascripts/contrib/*',
         dest: 'javascripts/libraries.<%= pkg.version %>.min.js'
       },
-        sass: {
+      sass: {
         src: [
           '<banner:meta.wpStyleHeader>',
           'stylesheets/app.css',
