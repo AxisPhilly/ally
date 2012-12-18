@@ -120,11 +120,10 @@
 </div><!-- End Content Container -->
 <!-- Included JS Files (Compressed) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
-<script src="<?php bloginfo( 'template_directory' ); ?>/javascripts/libraries.0.0.1.min.js" type="text/javascript"></script>
-<script src="<?php bloginfo( 'template_directory' ); ?>/javascripts/site.0.0.1.min.js" type="text/javascript"></script>
-<script src="<?php bloginfo( 'template_directory' ); ?>/javascripts/foundation.min.js" type="text/javascript"></script>
+<script src="<?php bloginfo('template_directory'); ?>/javascripts/libraries.0.0.1.min.js" type="text/javascript"></script>
+<script src="<?php bloginfo('template_directory'); ?>/javascripts/foundation.min.js" type="text/javascript"></script>
+<script src="<?php bloginfo('template_directory'); ?>/javascripts/site.0.0.1.min.js" type="text/javascript"></script>
 <!-- Init Foundation Components -->
-<script src="../../../javascripts/foundation/app.js"></script>
 <script src="http://localhost:8080/target/target-script-min.js#anonymous"></script>
 <script type="text/javascript">
   $(document).ready(function(){
