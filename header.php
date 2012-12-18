@@ -33,8 +33,8 @@
           <li class="has-dropdown">
             <a href="#">Our Projects</a>
             <ul class="dropdown">
-              <li><a href="/demo/project/avi">AVI</a></li>
-              <li><a href="#">Lobbying</a></li>
+              <li><a href="/wordpress/projects/avi">AVI</a></li>
+              <li><a href="/wordpress/projects/lobbying">Lobbying</a></li>
             </ul>
           </li>
           <li class="divider"></li>
