@@ -1,9 +1,11 @@
 <!-- Loads header.php -->
 <?php 
   get_header(); 
+  // Get Slug from URL
   $url = $_SERVER["REQUEST_URI"];
   $url_explode= explode('/', $url);
   $slug = $url_explode[sizeof($url_explode)-2];
+  // Get Category ID from Slug
   $slug_id = get_category_by_slug($slug)->term_id
 ?>
 <!-- Content -->
@@ -133,10 +135,10 @@
               ?>
                 <div class="tool">
                   <a href="<?php the_permalink() ?>">
-                    <?php if (has_post_thumbnail($post->ID)): ?>  
-                      <?php $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'single-post-thumbnail'); ?>
-                      <img src="<?php echo $image[0]; ?>">
-                    <?php endif; ?>
+                    <?php
+                      the_post_thumbnail();
+                    ?>
+
                     <div class="caption">
                       <h5><?php the_title(); ?></h5>
                       <span><?php the_excerpt(); ?></span>

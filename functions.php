@@ -1,5 +1,6 @@
 <?php
 
+
 // Create source_meta Custom Field
 function source_meta() {
   add_meta_box('source_meta', 'Source', 'source_callback', 'external_post', 'normal', 'high');
@@ -111,7 +112,7 @@ function create_post_type() {
       ),  
       'public' => true,  
       'menu_position' => 5,  
-      'supports' => array('title', 'editor', 'excerpt', 'thumbnail'),
+      'supports' => array('title', 'editor', 'excerpt', 'thumbnail', 'post-formats', 'revisions'),
       'rewrite' => array('slug' => 'tool','with_front' => false)  
     )  
   );
@@ -128,7 +129,7 @@ function create_post_type() {
       ),  
       'public' => true,  
       'menu_position' => 5,  
-      'supports' => array( 'title', 'excerpt', 'thumbnail'),
+      'supports' => array( 'title', 'excerpt', 'thumbnail', 'revisions'),
       'rewrite' => array('slug' => 'special','with_front' => false)  
     )  
   );  
@@ -171,16 +172,15 @@ function the_post_thumbnail_caption() {
   }
 }
 
-// Broken: The function dont_publish does not work correctly. If an image is removed
+// Broken: The function dont_publish does not work correctly. If you try to remove "featured" selection from category, it still gives error message.
 
-function dont_publish() {
-
-  if (in_category(12)){
-    if (!has_post_thumbnail()) {
-      wp_die('A post with the category "featured" must have a featured image. Please add a featured image or remove the category "featured".');
-    }
-  }
-}
+// function dont_publish() {
+//   if (in_category(12)){
+//     if (!has_post_thumbnail()) {
+//       wp_die('A post with the category "featured" must have a featured image. Please add a featured image or remove the category "featured".');
+//     }
+//   }
+// }
 
 // add_action( 'pre_post_update', 'dont_publish' );
 
@@ -196,6 +196,49 @@ function my_admin_notice(){
 }
 
 add_action('admin_notices', 'my_admin_notice');
-  
     
+function get_slug(){
+  $url = $_SERVER["REQUEST_URI"];
+  $url_explode= explode('/', $url);
+  $slug = $url_explode[sizeof($url_explode)-2];
+  return($slug);
+}
+
+function extra_contact_info($contactmethods) {
+unset($contactmethods['aim']);
+unset($contactmethods['yim']);
+unset($contactmethods['jabber']);
+$contactmethods['phone'] = 'Phone';
+$contactmethods['twitter'] = 'Twitter';
+return $contactmethods;
+}
+add_filter('user_contactmethods', 'extra_contact_info');
+
+function add_custom_taxonomies() {
+  // Add new "Locations" taxonomy to Posts
+  register_taxonomy('meta_info', 'post', array(
+    // Hierarchical taxonomy (like categories)
+    'hierarchical' => true,
+    // This array of options controls the labels displayed in the WordPress Admin UI
+    'labels' => array(
+      'name' => _x( 'Meta Information', 'taxonomy general name' ),
+      'singular_name' => _x( 'Meta Information', 'taxonomy singular name' ),
+      'search_items' =>  __( 'Search Meta Information' ),
+      'all_items' => __( 'All Meta Information' ),
+      'edit_item' => __( 'Edit Meta Information' ),
+      'update_item' => __( 'Update Meta Information' ),
+      'add_new_item' => __( 'Add New Meta Information' ),
+      'new_item_name' => __( 'New Meta Information Name' ),
+      'menu_name' => __( 'Meta Information' ),
+    ),
+    // Control the slugs used for this taxonomy
+    'rewrite' => array(
+      'slug' => 'meta', // This controls the base slug that will display before each term
+      'with_front' => false, // Don't display the category base before "/locations/"
+      'hierarchical' => true // This will allow URL's like "/locations/boston/cambridge/"
+    ),
+  ));
+}
+add_action( 'init', 'add_custom_taxonomies', 0 );
+
 ?>
