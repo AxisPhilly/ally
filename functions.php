@@ -162,15 +162,40 @@ foreach (array('term_description') as $filter) {
   remove_filter($filter, 'wp_kses_data');
 }
 
-     function the_post_thumbnail_caption() {
-                      global $post;
+function the_post_thumbnail_caption() {
+  global $post;
+  $thumbnail_id = get_post_thumbnail_id($post->ID);
+  $thumbnail_image = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
+  if ($thumbnail_image && isset($thumbnail_image[0])) {
+    echo '<span>'.$thumbnail_image[0]->post_excerpt.'</span>';
+  }
+}
 
-                      $thumbnail_id = get_post_thumbnail_id($post->ID);
-                      $thumbnail_image = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
+// Broken: The function dont_publish does not work correctly. If an image is removed
 
-                      if ($thumbnail_image && isset($thumbnail_image[0])) {
-                        echo '<span>'.$thumbnail_image[0]->post_excerpt.'</span>';
-                      }
-                    }
+function dont_publish() {
 
+  if (in_category(12)){
+    if (!has_post_thumbnail()) {
+      wp_die('A post with the category "featured" must have a featured image. Please add a featured image or remove the category "featured".');
+    }
+  }
+}
+
+// add_action( 'pre_post_update', 'dont_publish' );
+
+function my_admin_notice(){
+  global $pagenow;
+  if ( $pagenow == 'post.php' ) {
+  if (in_category(12)){
+    if (!has_post_thumbnail()) {
+    echo '<div class="error">
+       <p>A post with the category "featured" must have a featured image. Please add a featured image or remove the category "featured".</p>
+    </div>';
+  }}}
+}
+
+add_action('admin_notices', 'my_admin_notice');
+  
+    
 ?>
