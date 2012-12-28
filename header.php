@@ -1,3 +1,8 @@
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,8 +19,10 @@
 <body <?php body_class(); ?>>
   <!-- Fixed header -->
   <div class="fixed contain-to-grid">
-    <nav class="top-bar">
-      <ul>
+
+<nav class="top-bar">
+
+<ul>
         <li class="name">
           <h1><a href="/demo/">AxisPhilly</a></h1>
         </li>
@@ -27,44 +34,36 @@
           </span>
         </li>
       </ul>
-      <section>
-        <ul class="left">
-          <li class="divider"></li>
-          <li class="has-dropdown">
-            <a href="#">Our Projects</a>
-            <ul class="dropdown">
-              <li><a href="/wordpress/projects/avi">AVI</a></li>
-              <li><a href="/wordpress/projects/lobbying">Lobbying</a></li>
-            </ul>
-          </li>
-          <li class="divider"></li>
-          <li><a href="#">Tools &amp; Data</a></li>
-          <li class="divider"></li>
-          <li><a href="/demo/about">About</a></li>
-          <li class="search">
-          <li class="divider"></li>
-          <li>
-            <span class="social mobile">
-              <a href="twitter"><i class="social-foundicon-twitter"></i></a>
-              <a href="facebook"><i class="social-foundicon-facebook"></i></a>
-              <a href="googleplus"><i class="social-foundicon-google-plus"></i></a>
-              <a href="rss"><i class="social-foundicon-rss"></i></a>
-            </span>
+<section>
+
+<?php
+
+wp_nav_menu( array( 'container' => 'none', 'walker' => new Walker_Nav_Menu_CMS() ) );
+
+?>
+
             <ul class="social desktop">
               <li><a href="twitter"><i class="social-foundicon-twitter"></i></a></li>
               <li><a href="facebook"><i class="social-foundicon-facebook"></i></a></li>
               <li><a href="googleplus"><i class="social-foundicon-google-plus"></i></a></li>
               <li><a href="rss"><i class="social-foundicon-rss"></i></a></li>
             </ul>
-          </li>
-        </ul>
-        <ul class="right">
+      
+<ul class="right">
           <li class="search">
             <form class="collapse">
               <input type="search" placeholder="Search"></input>
             </form>
           </li>
         </ul>
-      </section>
-    </nav>
+
+
+</section>
+</nav>
+
+
+
+
+
+  
   </div><!-- End fixed header -->

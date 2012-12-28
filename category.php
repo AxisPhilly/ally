@@ -17,8 +17,14 @@
     </div>
     <!-- Header Row -->
     <div class="row">
+
       <!-- Background -->
       <div id="background" class="five columns">
+
+
+
+
+
         <?php echo category_description( get_category_by_slug($slug)->term_id ); ?>
       </div>
       <div id="background-compressed">
@@ -100,7 +106,7 @@
                       <div class="byline hide-for-small">
                       <!-- Check to see if this is an external_post. If so, display Source and Source URL instead of Author. -->
                         <?php
-                          if (get_post_type() == 'external_post') echo "Source: <a href='".get_post_meta($post->ID, '_url_name', true)."'>".get_post_meta($post->ID, '_source_name', true)."</a>"; if ((get_post_type() != 'external_post')) { echo "by "; coauthors_posts_links(); } 
+                          if (get_post_type() == 'external_post') echo "Source: " . get_post_meta($post->ID, '_source_name', true); if ((get_post_type() != 'external_post')) { echo "by "; coauthors_posts_links(); } 
                         ?>
                       </div>
                       <?php if ((get_post_type() != 'external_post')) { ?> 
@@ -132,7 +138,19 @@
                     the_post();
               ?>
                 <div class="tool">
-                  <a href="<?php the_permalink() ?>">
+                
+
+                  <?php
+                    echo "<a href='"; 
+                    if (get_post_type() == 'external_tool') 
+                      echo get_post_meta( $post->ID, '_url_name', true);
+                      else the_permalink();
+                    echo "'>";
+
+                  ?>              
+                  
+        
+
                     <?php
                       the_post_thumbnail();
                     ?>
