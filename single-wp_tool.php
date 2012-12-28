@@ -12,15 +12,17 @@ $my_query = $wp_query;
 
 
 <? 
-  // Checks to see if the tool is in category 18, which is full screen. If not, show side bar.
-  if (!in_category(18)) 
-    get_sidebar('wp_tool'); 
-?>
+// Checks to see if meta_info Fullscreen is selected
+if (!in_meta_info(18)) 
+  $fullscreen = 1;
+
+if ($fullscreen) 
+  get_sidebar('sidebar.php'); ?>
 
 
-        <div class="<? if (!in_category(18)) echo "gutter one " ?>columns"> 
+        <div class="<? if ($fullscreen) echo "gutter one " ?>columns"> 
         </div>
-        <article class="single-story <? if (!in_category(18)) echo "seven"; else "twelve" ?> columns">
+        <article class="single-story <? if ($fullscreen) echo "seven"; else "twelve" ?> columns">
           <div class="single-article view">
             <header class="article-header">
               <h2 class="headline"><? the_title(); ?></h2>

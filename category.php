@@ -2,11 +2,9 @@
 <?php 
   get_header(); 
   // Get Slug from URL
-  $url = $_SERVER["REQUEST_URI"];
-  $url_explode= explode('/', $url);
-  $slug = $url_explode[sizeof($url_explode)-2];
+  $slug = get_slug();
   // Get Category ID from Slug
-  $slug_id = get_category_by_slug($slug)->term_id
+  $slug_id = get_category_by_slug($slug)->term_id;
 ?>
 <!-- Content -->
 <div class="content-container">
@@ -41,7 +39,7 @@
           <!-- features go here -->
           <?php
             // "'category__and' => array(12,10)" selects posts that meet two category requirements: featured (12) and avi (10)
-            query_posts(array('orderby' => 'title', 'order' => 'ASC', 'posts_per_page' => 1, 'post_status' => 'publish', 'category__and' => array(12, $slug_id), 'post_type' => array('post', 'external_post', 'external_tool', 'wp_tool')));
+            query_posts(array('orderby' => 'title', 'order' => 'ASC', 'posts_per_page' => 1, 'meta_info' => 'featured', 'post_status' => 'publish', 'category_name' => $slug, 'post_type' => array('post', 'external_post', 'external_tool', 'wp_tool')));
 
             if (have_posts()):
               while (have_posts()):

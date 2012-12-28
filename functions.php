@@ -83,6 +83,33 @@ function set_user_metaboxes($user_id=NULL) {
 
 add_action('admin_init', 'set_user_metaboxes');
 
+function add_custom_taxonomies() {
+  // Add new "Locations" taxonomy to Posts
+  register_taxonomy('meta_info', 'post', array(
+    // Hierarchical taxonomy (like categories)
+    'hierarchical' => true,
+    // This array of options controls the labels displayed in the WordPress Admin UI
+    'labels' => array(
+      'name' => _x( 'Meta Information', 'taxonomy general name' ),
+      'singular_name' => _x( 'Meta Information', 'taxonomy singular name' ),
+      'search_items' =>  __( 'Search Meta Information' ),
+      'all_items' => __( 'All Meta Information' ),
+      'edit_item' => __( 'Edit Meta Information' ),
+      'update_item' => __( 'Update Meta Information' ),
+      'add_new_item' => __( 'Add New Meta Information' ),
+      'new_item_name' => __( 'New Meta Information Name' ),
+      'menu_name' => __( 'Meta Information' ),
+    ),
+    // Control the slugs used for this taxonomy
+    'rewrite' => array(
+      'slug' => 'meta', // This controls the base slug that will display before each term
+      'with_front' => false, // Don't display the category base before "/locations/"
+      'hierarchical' => true // This will allow URL's like "/locations/boston/cambridge/"
+    ),
+  ));
+}
+add_action( 'init', 'add_custom_taxonomies');
+
 // http://wp.tutsplus.com/tutorials/theme-development/innovative-uses-of-wordpress-post-types-and-taxonomies/
 // Creates "External Post" Post Type
 function create_post_type() {  
@@ -101,6 +128,7 @@ function create_post_type() {
   );  
 
   // connect external_post to category taxonomy
+  register_taxonomy_for_object_type('meta_info', 'external_tool');
   register_taxonomy_for_object_type('category', 'external_post');
 
   // register wp_tool as a Custom Post Type
@@ -112,12 +140,13 @@ function create_post_type() {
       ),  
       'public' => true,  
       'menu_position' => 5,  
-      'supports' => array('title', 'editor', 'excerpt', 'thumbnail', 'post-formats', 'revisions'),
+      'supports' => array('title', 'editor', 'excerpt', 'thumbnail', 'post-formats', 'revisions', 'meta_info'),
       'rewrite' => array('slug' => 'tool','with_front' => false)  
     )  
   );
 
   // connect wp_tool to category taxonomy
+  register_taxonomy_for_object_type('meta_info', 'wp_tool');
   register_taxonomy_for_object_type('category', 'wp_tool');
 
   // register external_tool as a Custom Post Type
@@ -184,18 +213,7 @@ function the_post_thumbnail_caption() {
 
 // add_action( 'pre_post_update', 'dont_publish' );
 
-function my_admin_notice(){
-  global $pagenow;
-  if ( $pagenow == 'post.php' ) {
-  if (in_category(12)){
-    if (!has_post_thumbnail()) {
-    echo '<div class="error">
-       <p>A post with the category "featured" must have a featured image. Please add a featured image or remove the category "featured".</p>
-    </div>';
-  }}}
-}
 
-add_action('admin_notices', 'my_admin_notice');
     
 function get_slug(){
   $url = $_SERVER["REQUEST_URI"];
@@ -214,31 +232,30 @@ return $contactmethods;
 }
 add_filter('user_contactmethods', 'extra_contact_info');
 
-function add_custom_taxonomies() {
-  // Add new "Locations" taxonomy to Posts
-  register_taxonomy('meta_info', 'post', array(
-    // Hierarchical taxonomy (like categories)
-    'hierarchical' => true,
-    // This array of options controls the labels displayed in the WordPress Admin UI
-    'labels' => array(
-      'name' => _x( 'Meta Information', 'taxonomy general name' ),
-      'singular_name' => _x( 'Meta Information', 'taxonomy singular name' ),
-      'search_items' =>  __( 'Search Meta Information' ),
-      'all_items' => __( 'All Meta Information' ),
-      'edit_item' => __( 'Edit Meta Information' ),
-      'update_item' => __( 'Update Meta Information' ),
-      'add_new_item' => __( 'Add New Meta Information' ),
-      'new_item_name' => __( 'New Meta Information Name' ),
-      'menu_name' => __( 'Meta Information' ),
-    ),
-    // Control the slugs used for this taxonomy
-    'rewrite' => array(
-      'slug' => 'meta', // This controls the base slug that will display before each term
-      'with_front' => false, // Don't display the category base before "/locations/"
-      'hierarchical' => true // This will allow URL's like "/locations/boston/cambridge/"
-    ),
-  ));
+
+// Enter the id of a category in the meta_info custom taxonomy. Returns true if a post has a particular piece of meta_info.
+//
+
+function in_meta_info($id){
+  $termsObjects = get_the_terms($post->ID, 'meta_info', '');
+  foreach ($termsObjects as $v) {
+    if ($v->term_id == $id){
+      return(1);
+    }
+  }
 }
-add_action( 'init', 'add_custom_taxonomies', 0 );
+
+function my_admin_notice(){
+  global $pagenow;
+  if ( $pagenow == 'post.php' ) {
+  if (in_meta_info(12)){
+    if (!has_post_thumbnail()) {
+    echo '<div class="error">
+       <p>A post with the category "featured" must have a featured image. Please add a featured image or remove the category "featured".</p>
+    </div>';
+  }}}
+}
+
+add_action('admin_notices', 'my_admin_notice');
 
 ?>
