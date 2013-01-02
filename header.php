@@ -1,8 +1,3 @@
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,13 +11,11 @@
   <script src="<?php bloginfo('template_directory'); ?>/javascripts/libraries.0.0.1.min.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('template_directory'); ?>/stylesheets/app.css" />
 </head>
-<body <?php body_class(); ?>>
+<body <?php body_class(); ?>
   <!-- Fixed header -->
   <div class="fixed contain-to-grid">
-
-<nav class="top-bar">
-
-<ul>
+    <nav class="top-bar">
+      <ul>
         <li class="name">
           <h1><a href="/demo/">AxisPhilly</a></h1>
         </li>
@@ -34,36 +27,23 @@
           </span>
         </li>
       </ul>
-<section>
-
-<?php
-
-wp_nav_menu( array( 'container' => 'none', 'walker' => new Walker_Nav_Menu_CMS() ) );
-
-?>
-
-            <ul class="social desktop">
-              <li><a href="twitter"><i class="social-foundicon-twitter"></i></a></li>
-              <li><a href="facebook"><i class="social-foundicon-facebook"></i></a></li>
-              <li><a href="googleplus"><i class="social-foundicon-google-plus"></i></a></li>
-              <li><a href="rss"><i class="social-foundicon-rss"></i></a></li>
-            </ul>
-      
-<ul class="right">
+      <section>
+        <?php
+          wp_nav_menu(array('container' => 'none', 'walker' => new Walker_Nav_Menu_CMS()));
+        ?>
+        <ul class="social desktop">
+          <li><a href="twitter"><i class="social-foundicon-twitter"></i></a></li>
+          <li><a href="facebook"><i class="social-foundicon-facebook"></i></a></li>
+          <li><a href="googleplus"><i class="social-foundicon-google-plus"></i></a></li>
+          <li><a href="rss"><i class="social-foundicon-rss"></i></a></li>
+        </ul>
+        <ul class="right">
           <li class="search">
             <form class="collapse">
               <input type="search" placeholder="Search"></input>
             </form>
           </li>
         </ul>
-
-
-</section>
-</nav>
-
-
-
-
-
-  
+      </section>
+    </nav>
   </div><!-- End fixed header -->
