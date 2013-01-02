@@ -8,19 +8,19 @@ function ally_setup() {
    * If you're building a theme based on Twenty Twelve, use a find and replace
    * to change 'twentytwelve' to the name of your theme in all the template files.
    */
-  load_theme_textdomain( 'Ally', get_template_directory() . '/languages' );
+  load_theme_textdomain('Ally', get_template_directory() . '/languages');
 
   // This theme styles the visual editor with editor-style.css to match the theme style.
   add_editor_style();
 
   // Adds RSS feed links to <head> for posts and comments.
-  add_theme_support( 'automatic-feed-links' );
+  add_theme_support('automatic-feed-links');
 
   // This theme supports a variety of post formats.
-  add_theme_support( 'post-formats', array( 'aside', 'image', 'link', 'quote', 'status' ) );
+  add_theme_support('post-formats', array('aside', 'image', 'link', 'quote', 'status'));
 
   // This theme uses wp_nav_menu() in one location.
-  register_nav_menu( 'primary', __( 'Primary Menu', 'Ally' ) );
+  register_nav_menu('primary', __('Primary Menu', 'Ally'));
 
   /*
    * This theme supports custom background color and image, and here
@@ -31,8 +31,8 @@ function ally_setup() {
   // add_theme_support( 'post-thumbnails' );
   // set_post_thumbnail_size( 624, 9999 ); // Unlimited height, soft crop
 }
-add_action( 'after_setup_theme', 'ally_setup' );
 
+add_action( 'after_setup_theme', 'ally_setup' );
 
 class Walker_Nav_Menu_CMS extends Walker_Nav_Menu
 {
@@ -94,9 +94,6 @@ class Walker_Nav_Menu_CMS extends Walker_Nav_Menu
                 return parent::display_element( $element, $children_elements, $max_depth, $depth, $args, $output );
             }       
 }
-
-
-
 
 // Create source_meta Custom Field
 function source_meta() {
@@ -187,16 +184,16 @@ function add_custom_taxonomies() {
     'hierarchical' => true,
     // This array of options controls the labels displayed in the WordPress Admin UI
     'labels' => array(
-      'name' => _x( 'Meta Information', 'taxonomy general name' ),
-      'singular_name' => _x( 'Meta Information', 'taxonomy singular name' ),
-      'search_items' =>  __( 'Search Meta Information' ),
-      'all_items' => __( 'All Meta Information' ),
-      'edit_item' => __( 'Edit Meta Information' ),
-      'update_item' => __( 'Update Meta Information' ),
-      'add_new_item' => __( 'Add New Meta Information' ),
-      'new_item_name' => __( 'New Meta Information Name' ),
-      'menu_name' => __( 'Meta Information' ),
-    ),
+      'name' => _x('Meta Information', 'taxonomy general name'),
+      'singular_name' => _x('Meta Information', 'taxonomy singular name'),
+      'search_items' =>  __('Search Meta Information'),
+      'all_items' => __('All Meta Information'),
+      'edit_item' => __('Edit Meta Information'),
+      'update_item' => __('Update Meta Information'),
+      'add_new_item' => __('Add New Meta Information'),
+      'new_item_name' => __('New Meta Information Name'),
+      'menu_name' => __('Meta Information'),
+   ),
     // Control the slugs used for this taxonomy
     'rewrite' => array(
       'slug' => 'meta', // This controls the base slug that will display before each term
@@ -309,9 +306,7 @@ function the_post_thumbnail_caption() {
 // }
 
 // add_action( 'pre_post_update', 'dont_publish' );
-
-
-    
+  
 function get_slug(){
   $url = $_SERVER["REQUEST_URI"];
   $url_explode= explode('/', $url);
@@ -320,19 +315,17 @@ function get_slug(){
 }
 
 function extra_contact_info($contactmethods) {
-unset($contactmethods['aim']);
-unset($contactmethods['yim']);
-unset($contactmethods['jabber']);
-$contactmethods['phone'] = 'Phone';
-$contactmethods['twitter'] = 'Twitter';
-return $contactmethods;
+  unset($contactmethods['aim']);
+  unset($contactmethods['yim']);
+  unset($contactmethods['jabber']);
+  $contactmethods['phone'] = 'Phone';
+  $contactmethods['twitter'] = 'Twitter';
+  return $contactmethods;
 }
+
 add_filter('user_contactmethods', 'extra_contact_info');
 
-
 // Enter the id of a category in the meta_info custom taxonomy. Returns true if a post has a particular piece of meta_info.
-//
-
 function in_meta_info($id){
   $termsObjects = get_the_terms($post->ID, 'meta_info', '');
   foreach ($termsObjects as $v) {
@@ -354,7 +347,5 @@ function my_admin_notice(){
 }
 
 add_action('admin_notices', 'my_admin_notice');
-
-
 
 ?>
