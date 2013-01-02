@@ -52,8 +52,13 @@
     </div><!-- End News Container -->
     <!-- Loads footer.php -->
     <?php get_footer(); ?>
+    <?php
+      //loop content
+      endwhile;
+      endif;
+    ?>
   </div><!-- End Content Container -->
- <!-- Included JS Files (Compressed) -->
+  <!-- Included JS Files (Compressed) -->
   <script src="<?php bloginfo( 'template_directory' ); ?>/javascripts/site.0.0.1.min.js" type="text/javascript"></script>
   <script src="<?php bloginfo( 'template_directory' ); ?>/javascripts/foundation.min.js" type="text/javascript"></script>
   <!-- Init Foundation Components -->
@@ -65,10 +70,4 @@
         new FastClick(document.body);
       }, false);
     });
-  </script>
-  <?php
-    //loop content
-    endwhile;
-    endif;
-  ?>
   </script>
