@@ -1,31 +1,26 @@
 module.exports = function(grunt) {
   grunt.initConfig({
-    pkg: '<json:package.json>',
-    meta: {
-      wpStyleHeader: '/*\n' +
-        ' Theme Name: Ally\n' +
-        ' Theme URI: http://www.axisphilly.com\n' +
-        ' Description: Custom theme for AxisPhilly\n' +
-        ' Author: Casey Thomas, Jeff Frankl\n' +
-        ' Author URI: caseypthomas.org, jfrankl.org\n' +
-        ' Version: <%= pkg.version %>\n' +
-        '*/',
-      wpPhpHeader: '<?php /*!\n' +
-        '* @package WordPress\n' +
-        '* @subpackdefault=datetime.date.today)age Ally\n' +
-        '*/\n' +
-        '?>\n'
-    },
-    lint: {
-      files: ['javascripts/site.js']
+    pkg: grunt.file.readJSON('package.json'),
+    jshint: {
+      all: ['javascripts/site.js']
     },
     concat: {
+      options: {
+        banner:  '/*\n' +
+          ' Theme Name: Ally\n' +
+          ' Theme URI: http://www.axisphilly.com\n' +
+          ' Description: Custom theme for AxisPhilly\n' +
+          ' Author: Casey Thomas, Jeff Frankl\n' +
+          ' Author URI: caseypthomas.org, jfrankl.org\n' +
+          ' Version: <%= pkg.version %>\n' +
+          '*/\n'
+      },
       foundation: {
         src: [
           'javascripts/foundation/jquery.cookie.js',
           'javascripts/foundation/jquery.event.move.js',
           'javascripts/foundation/jquery.event.swipe.js',
-          'javascripts/foundation/jquery.foundation.accordian.js',
+          'javascripts/foundation/jquery.foundation.accordion.js',
           'javascripts/foundation/jquery.foundation.alerts.js',
           'javascripts/foundation/jquery.foundation.buttons.js',
           'javascripts/foundation/jquery.foundation.clearing.js',
@@ -39,8 +34,8 @@ module.exports = function(grunt) {
           'javascripts/foundation/jquery.foundation.tabs.js',
           'javascripts/foundation/jquery.foundation.tooltips.js',
           'javascripts/foundation/jquery.foundation.topbar.js',
-          'javascripts/foundation/jquery.foundation.offcanvas.js',
-          'javascripts/foundation/jquery.foundation.placeholder.js',
+          'javascripts/foundation/jquery.offcanvas.js',
+          'javascripts/foundation/jquery.placeholder.js',
           'javascripts/foundation/app.js'
         ],
         dest: 'javascripts/foundation.js'
@@ -51,22 +46,21 @@ module.exports = function(grunt) {
       },
       sass: {
         src: [
-          '<banner:meta.wpStyleHeader>',
-          'stylesheets/app.css',
-          'stylesheets/function-overrides.css',
-          'stylesheets/compass.css'
+          'stylesheets/app.css'
         ],
         dest: 'style.css'
       }
     },
-    min: {
+    uglify: {
       site: {
-        src: 'javascripts/site.js',
-        dest: 'javascripts/site.<%= pkg.version %>.min.js'
+        files: {
+         'javascripts/site.<%= pkg.version %>.min.js': 'javascripts/site.js'
+        }
       },
       foundation: {
-        src: 'javascripts/foundation.js',
-        dest: 'javascripts/foundation.min.js'
+        files: {
+          'javascripts/foundation.min.js': 'javascripts/foundation.js'
+        }
       }
     },
     /*compass: {
@@ -94,7 +88,10 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-compress');
-
-  grunt.registerTask('default', 'concat lint min');
-  grunt.registerTask('release', 'compress');
+  grunt.loadNpmTasks('grunt-contrib-jshint'); 
+  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  
+  grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
+  grunt.registerTask('release', ['compress']);
 };
