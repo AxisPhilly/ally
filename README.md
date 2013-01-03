@@ -4,8 +4,8 @@ A Wordpress theme for AxisPhilly.org
 
 ###Building
 
-'grunt'
+`grunt`
 
 ###Releasing
 
-'grunt release'
+`grunt release`
