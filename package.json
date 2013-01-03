@@ -7,9 +7,12 @@
     "type": "git",
     "url": "http://github.com/caseypt/geojson.js.git"
   },
-  "dependencies": {
-    "grunt": ">=0.3.17",
+  "devDependencies": {
+    "grunt": ">=0.4.0rc4",
     "grunt-contrib-compass": "*",
-    "grunt-contrib-compress": "*"
+    "grunt-contrib-compress": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-concat": "*"
   }
 }
