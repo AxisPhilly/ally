@@ -91,10 +91,11 @@
           </span>
         </li>
       </ul>
-      <section>
+      <section> -->
         <?php
-          wp_nav_menu(array('container' => 'none', 'walker' => new Walker_Nav_Menu_CMS()));
+          //wp_nav_menu(array('container' => 'none', 'walker' => new Walker_Nav_Menu_CMS()));
         ?>
+  <!--
         <ul class="social desktop">
           <li><a href="twitter"><i class="social-foundicon-twitter"></i></a></li>
           <li><a href="facebook"><i class="social-foundicon-facebook"></i></a></li>

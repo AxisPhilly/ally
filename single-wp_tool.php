@@ -33,6 +33,9 @@
             setup_postdata($post);
             the_content(); 
           ?>
+          <?php
+            the_tags('<span class="round label">','</span> <span class="round label">','</span>');
+          ?>
           </div>
           <nav class="article-navigation row">
             <ul>

@@ -1,98 +1,68 @@
 <?php
 
 function ally_setup() {
-  /*
-   * Makes Twenty Twelve available for translation.
-   *
-   * Translations can be added to the /languages/ directory.
-   * If you're building a theme based on Twenty Twelve, use a find and replace
-   * to change 'twentytwelve' to the name of your theme in all the template files.
-   */
-  load_theme_textdomain('Ally', get_template_directory() . '/languages');
 
-  // This theme styles the visual editor with editor-style.css to match the theme style.
   add_editor_style();
 
-  // Adds RSS feed links to <head> for posts and comments.
   add_theme_support('automatic-feed-links');
 
-  // This theme supports a variety of post formats.
-  add_theme_support('post-formats', array('aside', 'image', 'link', 'quote', 'status'));
-
-  // This theme uses wp_nav_menu() in one location.
   register_nav_menu('primary', __('Primary Menu', 'Ally'));
 
-  /*
-   * This theme supports custom background color and image, and here
-   * we also set up the default background color.
-   */
-
-  // Custom image size for featured images
-  // add_theme_support( 'post-thumbnails' );
-  // set_post_thumbnail_size( 624, 9999 ); // Unlimited height, soft crop
 }
 
 add_action( 'after_setup_theme', 'ally_setup' );
 
-class Walker_Nav_Menu_CMS extends Walker_Nav_Menu
-{
-      function start_el(&$output, $item, $depth, $args)
-      {
-            global $wp_query;
-            $indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
-            
-            $class_names = $value = '';
-            
-            // If the item has children, add the dropdown class for foundation
-            if ( $args->has_children ) {
-                $class_names = "has-dropdown ";
-            }
-            
-            $classes = empty( $item->classes ) ? array() : (array) $item->classes;
-            
-            $class_names .= "";
-            $class_names = ' class="'. esc_attr( $class_names ) . '"';
-           
-            $output .= $indent . '<li id="menu-item-'. $item->ID . '"' . $value . $class_names .'>';
+class Walker_Nav_Menu_CMS extends Walker_Nav_Menu {
+  function start_el(&$output, $item, $depth, $args) {
+    global $wp_query;
+    $indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
+    $class_names = $value = '';
+    
+    // If the item has children, add the dropdown class for foundation
+    if ( $args->has_children ) {
+      $class_names = "has-dropdown ";
+    }
+    
+    $classes = empty( $item->classes ) ? array() : (array) $item->classes;
+    $class_names .= "";
+    $class_names = ' class="'. esc_attr( $class_names ) . '"';
+    $output .= $indent . '<li id="menu-item-'. $item->ID . '"' . $value . $class_names .'>';
+    $attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
+    $attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
+    $attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
+    $attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
+    // if the item has children add these two attributes to the anchor tag
+    // if ( $args->has_children ) {
+    //     $attributes .= 'class="dropdown-toggle" data-toggle="dropdown"';
+    // }
 
-            $attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
-            $attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
-            $attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
-            $attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
-            // if the item has children add these two attributes to the anchor tag
-            // if ( $args->has_children ) {
-            //     $attributes .= 'class="dropdown-toggle" data-toggle="dropdown"';
-            // }
-
-            $item_output = $args->before;
-            $item_output .= '<a'. $attributes .'>';
-            $item_output .= $args->link_before .apply_filters( 'the_title', $item->title, $item->ID );
-            $item_output .= $args->link_after;
-            // if the item has children add the caret just before closing the anchor tag
-            if ( $args->has_children ) {
-                $item_output .= '</a><a href="#" class="dropdown-toggle"><span> </span></a>';
-            }
-            else{
-                $item_output .= '</a>';
-            }
-            $item_output .= $args->after;
-
-            $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
-            }
+    $item_output = $args->before;
+    $item_output .= '<a'. $attributes .'>';
+    $item_output .= $args->link_before .apply_filters( 'the_title', $item->title, $item->ID );
+    $item_output .= $args->link_after;
+    // if the item has children add the caret just before closing the anchor tag
+    if ( $args->has_children ) {
+      $item_output .= '</a><a href="#" class="dropdown-toggle"><span> </span></a>';
+    }
+    else {
+      $item_output .= '</a>';
+    }
+    $item_output .= $args->after;
+    $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+    }
             
-        function start_lvl(&$output, $depth) {
-            $indent = str_repeat("\t", $depth);
-            $output .= "\n$indent<ul class=\"dropdown\">\n";
-        }
+  function start_lvl(&$output, $depth) {
+    $indent = str_repeat("\t", $depth);
+    $output .= "\n$indent<ul class=\"dropdown\">\n";
+  }
             
-        function display_element( $element, &$children_elements, $max_depth, $depth=0, $args, &$output )
-            {
-                $id_field = $this->db_fields['id'];
-                if ( is_object( $args[0] ) ) {
-                    $args[0]->has_children = ! empty( $children_elements[$element->$id_field] );
-                }
-                return parent::display_element( $element, $children_elements, $max_depth, $depth, $args, $output );
-            }       
+  function display_element( $element, &$children_elements, $max_depth, $depth=0, $args, &$output ) {
+    $id_field = $this->db_fields['id'];
+    if ( is_object( $args[0] ) ) {
+        $args[0]->has_children = ! empty( $children_elements[$element->$id_field] );
+    }
+    return parent::display_element( $element, $children_elements, $max_depth, $depth, $args, $output );
+  }       
 }
 
 // Create source_meta Custom Field

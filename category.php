@@ -60,6 +60,7 @@
               <h4 class="headline"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
               <span class="byline">by <?php coauthors_posts_links(); ?>, <?php the_time('F j, Y'); ?></span>
               <?php the_excerpt(); ?>
+              
             </div>
           </div>
           <?php endwhile; endif; ?>
@@ -112,7 +113,9 @@
                       <?php if ((get_post_type() != 'external_post')) { ?> 
                         <div class="datetime hide-for-small"><?php the_time('F j, Y');?></div>
                       <?php } ?>
-                      <div class="hide-for-small"><?php the_excerpt(); ?></div>
+                      <div class="hide-for-small"><?php the_excerpt(); ?>              <?php
+                the_tags('<span class="round label">','</span> <span class="round label">','</span>');
+              ?></div>
                     </div>
                   <?php if (has_post_thumbnail($post->ID)): ?>  
                     <div class="four mobile-two columns">
