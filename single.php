@@ -1,11 +1,6 @@
 <!-- Loads header.php -->
 <?php get_header(); ?>
-<?php
-  $my_query = $wp_query;
-  if ($my_query->have_posts()):
-    while ($my_query->have_posts()):
-      $my_query->the_post();
-?>
+
 <div class="content-container">
   <div id="news-container">
     <div class="row article-container view">
