@@ -307,16 +307,7 @@ function list_of_meta_tags($id){
   return($list);
 }
 
-function my_admin_notice(){
-  global $pagenow;
-  if ( $pagenow == 'post.php' ) {
-  if (in_meta_info(12)){
-    if (!has_post_thumbnail()) {
-    echo '<div class="error">
-       <p>A post with the category "featured" must have a featured image. Please add a featured image or remove the category "featured".</p>
-    </div>';
-  }}}
-}
+
 
 add_action('admin_notices', 'my_admin_notice');
 
