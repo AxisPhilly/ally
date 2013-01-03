@@ -14,11 +14,12 @@
         </div>
       </div>
       <?php
-        //checks to see if the parent category is project
-        $parent_category=13;
+        //gets id for parent category 'project'
+        $project_parent_category = get_category_by_slug('project');
+        $project_parent_category_id=$project_parent_category->term_id;
         $categories=get_the_category();
         foreach($categories as $category){
-          if($category->category_parent==$parent_category){
+          if($category->category_parent==$project_parent_category_id){
             $c_name = $category->name;
             $c_slug = $category->slug; 
             $c_number = $category->cat_ID; 
