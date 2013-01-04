@@ -10,7 +10,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <?php
-    if (in_array('responsive', $meta_tags))
+    if (in_array('scalable', $meta_tags))
       echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1">';
     else
       echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">';
