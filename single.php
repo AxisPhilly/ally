@@ -6,11 +6,10 @@
     <div class="row article-container view">
       <?php
         // Checks to see if meta_info Fullscreen is selected
-        $meta_tags = list_of_meta_tags('full-screen');
         if (!in_array('full-screen', $meta_tags))
           get_sidebar('sidebar.php');
       ?>
-      <div class="<? if (!in_category(18)) echo "gutter one " ?>columns"> 
+      <div class="<? if (!in_array('full-screen', $meta_tags)) echo "gutter one " ?>columns"> 
       </div>
       <article class="single-story <? if (!in_array('full-screen', $meta_tags)) echo "seven"; else "twelve" ?> columns">
         <div class="single-article view">

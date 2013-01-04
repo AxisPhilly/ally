@@ -296,7 +296,7 @@ function extra_contact_info($contactmethods) {
 add_filter('user_contactmethods', 'extra_contact_info');
 
 // Enter the id of a category in the meta_info custom taxonomy. Returns true if a post has a particular piece of meta_info.
-function list_of_meta_tags($id){
+function list_of_meta_tags(){
   $list = array();
   $num = 0;
   $termsObjects = get_the_terms($post->ID, 'meta_info', '');

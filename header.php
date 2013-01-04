@@ -1,10 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <?php
+    // Generate list of meta tags
+    global $meta_tags;
+    $meta_tags = list_of_meta_tags();
+  ?>
   <title>AxisPhilly</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+  <?php
+    if (in_array('responsive', $meta_tags))
+      echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1">';
+    else
+      echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">';
+  ?>
+
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,800,600' rel='stylesheet' type='text/css'>
   <script src="<?php bloginfo('template_directory'); ?>/javascripts/modernizr.foundation.js"></script>  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
@@ -13,7 +24,6 @@
 </head>
 <body <?php body_class(); ?>>
   <!-- Fixed header -->
-
   <div class="fixed contain-to-grid">
     <nav class="top-bar">
       <ul>
@@ -72,7 +82,7 @@
   </div>
 
 
-  <!-- This is a WordPress generated header that doesn't quite work yet. It uses a custom Walker class, which is referred 
+  <!-- This is a WordPress generated header that doesn't quite work yet. It uses a custom Walker class, which is referred to in functions.php
 
 
 
