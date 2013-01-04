@@ -9,6 +9,34 @@
   <title>AxisPhilly</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta property="og:site_name" content="AxisPhilly">
+  <meta property="og:url" content="<?php echo $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]; ?>">
+  <meta property="og:type" content="<?php
+    if (stripos($_SERVER["REQUEST_URI"], 'article/')) { 
+      echo 'article'; 
+    } elseif (stripos($_SERVER["REQUEST_URI"], 'projects/')) {
+      echo 'project page';
+    } else {
+      echo 'homepage';
+    }
+  ?>">
+  <meta property="og:title" content="<?php
+    if(stripos($_SERVER["REQUEST_URI"], 'article/')) {
+      echo get_the_title();
+    } elseif (stripos($_SERVER["REQUEST_URI"], 'projects/')) {
+      echo get_category_by_slug(get_slug())->name . ' Project Page';
+    } else {
+      echo 'AxisPhilly Homepage';
+    }
+  ?>">
+  <meta property="og:description" content="<?php echo get_the_excerpt(); ?>">
+  <meta property="og:image" content="<?php echo wp_get_attachment_thumb_url(get_post_thumbnail_id($post->ID)); ?>">
+  <meta property="twitter:site" content="@AxisPhilly">
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:url" content="<?php echo $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]; ?>">
+  <meta property="twitter:title" content="<?php echo get_the_title(); ?>">
+  <meta property="twitter:description" content="<?php echo get_the_excerpt(); ?>">
+  <meta property="twitter:image" content="<?php echo wp_get_attachment_thumb_url(get_post_thumbnail_id($post->ID)); ?>">
   <?php
     if (in_array('scalable', $meta_tags))
       echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1">';
@@ -45,7 +73,7 @@
             <ul class="dropdown">
               <li><a href="/projects/avi">AVI</a></li>
               <li><a href="/projects/lobbying">Lobbying</a></li>
-              <li><a href="/demo/projects">More...</a></li>
+              <li><a href="/projects">More...</a></li>
             </ul>
           </li>
           <li class="divider"></li>
@@ -56,16 +84,14 @@
           <li class="divider"></li>
           <li>
             <span class="social mobile">
-              <a href="twitter"><i class="social-foundicon-twitter"></i></a>
-              <a href="facebook"><i class="social-foundicon-facebook"></i></a>
-              <a href="googleplus"><i class="social-foundicon-google-plus"></i></a>
-              <a href="rss"><i class="social-foundicon-rss"></i></a>
+              <a href="http://www.twitter.com/AxisPhilly"><i class="social-foundicon-twitter"></i></a>
+              <a href="http://www.facebook.com/AxisPhilly"><i class="social-foundicon-facebook"></i></a>
+              <a href="http://www.axisphilly.org/?feed=rss"><i class="social-foundicon-rss"></i></a>
             </span>
             <ul class="social desktop">
-              <li><a href="twitter"><i class="social-foundicon-twitter"></i></a></li>
-              <li><a href="facebook"><i class="social-foundicon-facebook"></i></a></li>
-              <li><a href="googleplus"><i class="social-foundicon-google-plus"></i></a></li>
-              <li><a href="rss"><i class="social-foundicon-rss"></i></a></li>
+              <li><a href="http://www.twitter.com/AxisPhilly"><i class="social-foundicon-twitter"></i></a></li>
+              <li><a href="http://www.facebook.com/AxisPhilly"><i class="social-foundicon-facebook"></i></a></a></li>
+              <li><a href="http://www.axisphilly.org/?feed=rss"><i class="social-foundicon-rss"></i></a></li>
             </ul>
           </li>
         </ul>
