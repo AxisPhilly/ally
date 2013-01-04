@@ -1,4 +1,3 @@
-<!-- Loads header.php -->
 <?php get_header(); ?>
 <div class="content-container">
   <div id="news-container">
@@ -61,7 +60,6 @@
 </div><!-- End Content Container -->
 <!-- Included JS Files (Compressed) -->
 <script src="<?php bloginfo('template_directory'); ?>/javascripts/foundation.min.js" type="text/javascript"></script>
-<script src="<?php bloginfo('template_directory'); ?>/javascripts/site.0.0.1.min.js" type="text/javascript"></script>
 <script type="text/javascript">
   $(document).ready(function() {
     window.addEventListener('load', function() {
@@ -69,5 +67,4 @@
     }, false);
   });
 </script>
-<!-- Loads footer.php -->
 <?php get_footer(); ?>
