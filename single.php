@@ -2,11 +2,13 @@
 <div class="content-container">
   <div id="news-container">
     <div class="row article-container view">
-      <?php
-        // Checks to see if meta_info Fullscreen is selected
-        if (!in_array('full-screen', $meta_tags))
-          get_sidebar('sidebar.php');
-      ?>
+      <div class="leftbar">
+        <?php
+          // Checks to see if meta_info Fullscreen is selected
+          if (!in_array('full-screen', $meta_tags))
+            get_sidebar('sidebar.php');
+        ?>
+      </div>
       <?php if (!in_array('full-screen', $meta_tags)) echo '<div class="gutter one columns"></div>' ?>
       <article class="single-story <?php if (!in_array('full-screen', $meta_tags)) echo "seven"; else echo "twelve"; ?> columns">
         <div class="single-article view">
@@ -42,6 +44,16 @@
               ?>
             </p>
           </div>
+          <div class="row">
+            <div class="bottombar">
+              <?php
+                // Checks to see if meta_info Fullscreen is selected
+                if (!in_array('full-screen', $meta_tags))
+                  include( 'sidebar-bottom.php');
+              ?>
+            </div>
+          </div>
+
           <nav class="article-navigation row">
             <ul>
               <li class="previous six columns">
@@ -57,6 +69,12 @@
       <?php if (!in_array('full-screen', $meta_tags)) echo '<div class="gutter one columns"></div>'; ?>
     </div>
   </div><!-- End News Container -->
+
+
+
+
+
+
 </div><!-- End Content Container -->
 <!-- Included JS Files (Compressed) -->
 <script src="<?php bloginfo('template_directory'); ?>/javascripts/foundation.min.js" type="text/javascript"></script>
