@@ -1,6 +1,5 @@
 <!-- Loads header.php -->
 <?php get_header(); ?>
-
 <div class="content-container">
   <div id="news-container">
     <div class="row article-container view">
@@ -9,9 +8,8 @@
         if (!in_array('full-screen', $meta_tags))
           get_sidebar('sidebar.php');
       ?>
-      <div class="<? if (!in_array('full-screen', $meta_tags)) echo "gutter one " ?>columns"> 
-      </div>
-      <article class="single-story <? if (!in_array('full-screen', $meta_tags)) echo "seven"; else "twelve" ?> columns">
+      <?php if (!in_array('full-screen', $meta_tags)) echo '<div class="gutter one columns"></div>' ?>
+      <article class="single-story <?php if (!in_array('full-screen', $meta_tags)) echo "seven"; else echo "twelve"; ?> columns">
         <div class="single-article view">
           <header class="article-header">
             <h2 class="headline"><?php the_title(); ?></h2>
@@ -57,7 +55,7 @@
           </nav>
         </div>
       </article>
-      <div class="gutter one columns"></div>
+      <?php if (!in_array('full-screen', $meta_tags)) echo '<div class="gutter one columns"></div>'; ?>
     </div>
   </div><!-- End News Container -->
 </div><!-- End Content Container -->
