@@ -1,4 +1,3 @@
-<!-- Loads header.php -->
 <?php get_header(); ?>  
 <?php
   $my_query = $wp_query;
@@ -14,9 +13,8 @@
         if (!in_array('full-screen', $meta_tags))
           get_sidebar('sidebar.php');
       ?>
-      <div class="<? if (!in_array('full-screen', $meta_tags)) echo "gutter one " ?> columns"> 
-    </div>
-      <article class="single-story <? if (!in_array('full-screen', $meta_tags)) echo "seven"; else "twelve" ?> columns">
+      <?php if (!in_array('full-screen', $meta_tags)) echo '<div class="gutter one columns"></div>' ?>
+      <article class="single-story <?php if (!in_array('full-screen', $meta_tags)) echo "seven"; else echo "twelve"; ?> columns">
         <div class="single-article view">
           <header class="article-header">
             <h2 class="headline"><?php the_title(); ?></h2>
@@ -46,8 +44,7 @@
           </nav>
         </div>
       </article>
-      <div class="gutter one columns"> 
-      </div>
+      <?php if (!in_array('full-screen', $meta_tags)) echo '<div class="gutter one columns"></div>' ?>
     </div>
   </div><!-- End News Container -->
   <?php
@@ -57,7 +54,6 @@
   ?>
 </div><!-- End Content Container -->
 <!-- Included JS Files (Compressed) -->
-<script src="<?php bloginfo( 'template_directory' ); ?>/javascripts/site.0.0.1.min.js" type="text/javascript"></script>
 <script src="<?php bloginfo( 'template_directory' ); ?>/javascripts/foundation.min.js" type="text/javascript"></script>
 <!-- Init Foundation Components -->
 <script type="text/javascript">
@@ -67,5 +63,4 @@
     }, false);
   });
 </script>
-<!-- Loads footer.php -->
 <?php get_footer(); ?>
