@@ -71,8 +71,8 @@
           <li class="has-dropdown">
             <a href="#">Our Projects</a>
             <ul class="dropdown">
-              <li><a href="/projects/avi">AVI</a></li>
-              <li><a href="/projects/lobbying">Lobbying</a></li>
+              <li><a href="/project/avi">AVI</a></li>
+              <li><a href="/project/lobbying">Lobbying</a></li>
               <li><a href="/projects">More...</a></li>
             </ul>
           </li>
