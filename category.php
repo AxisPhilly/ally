@@ -224,7 +224,6 @@
 </div><!-- End Content Container -->
 <!-- Included JS Files (Compressed) -->
 <script src="<?php bloginfo('template_directory'); ?>/javascripts/foundation.min.js" type="text/javascript"></script>
-<script src="<?php bloginfo('template_directory'); ?>/javascripts/site.0.0.1.min.js" type="text/javascript"></script>
 <!-- Templates -->
 <!-- Feature story -->
 <script type="text/template" id="feature-story-carousel-template">
