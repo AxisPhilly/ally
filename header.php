@@ -105,47 +105,40 @@
       </section>
     </nav>
   </div>
-
-
-  <!-- This is a WordPress generated header that doesn't quite work yet. It uses a custom Walker class, which is referred to in functions.php
-
-
-
-
-  <div class="fixed contain-to-grid">
-    <nav class="top-bar">
-      <ul>
-        <li class="name">
-          <h1><a href="/demo/">AxisPhilly</a></h1>
-        </li>
-        <li class="toggle-topbar has-button">
-          <span class="tiny secondary button menu-button">
-            <span class="line"></span>
-            <span class="line"></span>
-            <span class="line"></span>
-          </span>
-        </li>
-      </ul>
-      <section> -->
-        <?php
-          //wp_nav_menu(array('container' => 'none', 'walker' => new Walker_Nav_Menu_CMS()));
-        ?>
-  <!--
-        <ul class="social desktop">
-          <li><a href="twitter"><i class="social-foundicon-twitter"></i></a></li>
-          <li><a href="facebook"><i class="social-foundicon-facebook"></i></a></li>
-          <li><a href="googleplus"><i class="social-foundicon-google-plus"></i></a></li>
-          <li><a href="rss"><i class="social-foundicon-rss"></i></a></li>
-        </ul>
-        <ul class="right">
-          <li class="search">
-            <form class="collapse">
-              <input type="search" placeholder="Search"></input>
-            </form>
-          </li>
-        </ul>
-      </section>
-    </nav>
-  </div> -->
-
+  <?php
+    #<!-- This is a WordPress generated header that doesn't quite work yet. It uses a custom Walker class, which is referred to in functions.php
+    #<div class="fixed contain-to-grid">
+    #  <nav class="top-bar">
+    #    <ul>
+    #      <li class="name">
+    #        <h1><a href="/demo/">AxisPhilly</a></h1>
+    #      </li>
+    #      <li class="toggle-topbar has-button">
+    #        <span class="tiny secondary button menu-button">
+    #          <span class="line"></span>
+    #          <span class="line"></span>
+    #          <span class="line"></span>
+    #        </span>
+    #      </li>
+    #    </ul>
+    #    <section> -->
+    #        //wp_nav_menu(array('container' => 'none', 'walker' => new Walker_Nav_Menu_CMS()));
+    #      <!--
+    #      <ul class="social desktop">
+    #        <li><a href="twitter"><i class="social-foundicon-twitter"></i></a></li>
+    #        <li><a href="facebook"><i class="social-foundicon-facebook"></i></a></li>
+    #        <li><a href="googleplus"><i class="social-foundicon-google-plus"></i></a></li>
+    #        <li><a href="rss"><i class="social-foundicon-rss"></i></a></li>
+    #      </ul>
+    #      <ul class="right">
+    #        <li class="search">
+    #          <form class="collapse">
+    #            <input type="search" placeholder="Search"></input>
+    #          </form>
+    #        </li>
+    #      </ul>
+    #    </section>
+    #  </nav>
+    #</div> -->
+  ?>
 <!-- End fixed header -->
