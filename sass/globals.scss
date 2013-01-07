@@ -70,9 +70,12 @@ h1, h2, h3, h4, h5, h6 {
 
 footer {
   background-color: #000;
-  padding: 20px;
   width: 100%;
   color: #fff;
+
+  .row {
+    padding: 20px;
+  }
 
   ul {
     list-style-type: none;

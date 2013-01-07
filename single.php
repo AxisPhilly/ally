@@ -69,12 +69,6 @@
       <?php if (!in_array('full-screen', $meta_tags)) echo '<div class="gutter one columns"></div>'; ?>
     </div>
   </div><!-- End News Container -->
-
-
-
-
-
-
 </div><!-- End Content Container -->
 <!-- Included JS Files (Compressed) -->
 <script src="<?php bloginfo('template_directory'); ?>/javascripts/foundation.min.js" type="text/javascript"></script>
