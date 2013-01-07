@@ -53,7 +53,7 @@
           ?>
           <div>
             <?php if (has_post_thumbnail($post->ID)):  
-              $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'single-post-thumbnail'); ?>
+              $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'medium'); ?>
               <img src="<?php echo $image[0]; ?>">
             <?php endif; ?>
             <div class="caption">
@@ -98,7 +98,7 @@
               ?>
                 <article class="row">
                   <?php if (has_post_thumbnail($post->ID)) { ?>  
-                    <div class="eight mobile-two columns">
+                    <div class="six mobile-two columns">
                   <? } else { ?>
                     <div class="twelve mobile-four columns">
                   <? } ?>
@@ -129,8 +129,8 @@
                       </div>
                     </div>
                   <?php if (has_post_thumbnail($post->ID)): ?>  
-                    <div class="four mobile-two columns">
-                      <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' ); ?>
+                    <div class="six mobile-two columns">
+                      <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'thumbnail' ); ?>
                       <img src="<?php echo $image[0]; ?>">
                     </div>
                   <?php endif; ?>

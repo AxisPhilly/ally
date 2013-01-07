@@ -90,7 +90,7 @@
             </span>
             <ul class="social desktop">
               <li><a href="http://www.twitter.com/AxisPhilly"><i class="social-foundicon-twitter"></i></a></li>
-              <li><a href="http://www.facebook.com/AxisPhilly"><i class="social-foundicon-facebook"></i></a></a></li>
+              <li><a href="http://www.facebook.com/AxisPhilly"><i class="social-foundicon-facebook"></i></a></li>
               <li><a href="http://www.axisphilly.org/?feed=rss"><i class="social-foundicon-rss"></i></a></li>
             </ul>
           </li>
@@ -98,7 +98,7 @@
         <ul class="right">
           <li class="search">
             <form class="collapse" role="search" method="get" id="searchform" action="<?php echo site_url(); ?>">
-              <input type="search" placeholder="Search" name="s" id="s"></input>
+              <input type="search" placeholder="Search" name="s" id="s">
             </form>
           </li>
         </ul>

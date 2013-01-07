@@ -8,6 +8,9 @@ function ally_setup() {
 
   register_nav_menu('primary', __('Primary Menu', 'Ally'));
 
+  // Enables Featured Images
+  add_theme_support('post-thumbnails'); 
+
 }
 
 add_action( 'after_setup_theme', 'ally_setup' );
@@ -111,9 +114,6 @@ function url_save($post_ID) {
 }      
 
 add_action('save_post', 'url_save');
-
-// Enables Featured Images
-add_theme_support('post-thumbnails'); 
 
 // http://wordpress.stackexchange.com/questions/15376/how-to-set-default-screen-options
 // add_action('user_register', 'set_user_metaboxes');
@@ -322,5 +322,14 @@ function my_admin_notice(){
 }
 
 add_action('admin_notices', 'my_admin_notice');
+
+
+// Crops medium image in the same way that thumbnails are cropped. Maintains a fixed height and width across all medium images.
+
+if(false === get_option("medium_crop")) {
+    add_option("medium_crop", "1");
+} else {
+    update_option("medium_crop", "1");
+}
 
 ?>
