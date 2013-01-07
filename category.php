@@ -104,20 +104,29 @@
                   <? } ?>
                       <h4>
                         <a name="<?php the_id(); ?>" href="<?php 
-                          if ((get_post_type() != 'external_post' )) 
-                            the_permalink(); 
-                          else 
-                            echo get_post_meta( $post->ID, '_url_name', true); ?>">
-                          <?php the_title(); ?>
+                          if (get_post_type() != 'external_post') {
+                            the_permalink();
+                          } else {
+                            echo get_post_meta($post->ID, '_url_name', true); 
+                          } ?>">
+                          <?php 
+                            the_title();
+                            if (get_post_type() == 'external_post') {
+                              echo " <img class='external-link' src='" . get_bloginfo('template_directory') . "/images/external_link.svg'/>"; 
+                            }
+                          ?>
                         </a>
                       </h4>
                       <div class="byline hide-for-small">
-                        <!-- Check to see if this is an external_post. If so, display Source and Source URL instead of Author. -->
                         <?php
-                          if (get_post_type() == 'external_post') 
-                            echo "Source: " . get_post_meta($post->ID, '_source_name', true); 
-                          if (get_post_type() != 'external_post') 
+                          # Check to see if this is an external_post. If so, display Source and Source URL instead of Author.
+                          if (get_post_type() == 'external_post') {
+                            echo "<i>Source: <strong>" . get_post_meta($post->ID, '_source_name', true) . '</strong>' .
+                                " -- March 3rd, 2012</i>";
+                          }
+                          elseif (get_post_type() != 'external_post') {
                             echo "by "; coauthors_posts_links();
+                          }
                         ?>
                       </div>
                       <?php if ((get_post_type() != 'external_post')) { ?> 
