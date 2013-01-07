@@ -71,7 +71,6 @@
   </div><!-- End News Container -->
 </div><!-- End Content Container -->
 <!-- Included JS Files (Compressed) -->
-<script src="<?php bloginfo('template_directory'); ?>/javascripts/foundation.min.js" type="text/javascript"></script>
 <script type="text/javascript">
   $(document).ready(function() {
     window.addEventListener('load', function() {

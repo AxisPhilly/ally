@@ -17,5 +17,6 @@
       </div>
     </div>
   </footer>
+<script src="<?php bloginfo('template_directory'); ?>/javascripts/foundation.min.js" type="text/javascript"></script>
 </body>
 </html>
