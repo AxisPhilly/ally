@@ -56,10 +56,10 @@
 
           <nav class="article-navigation row">
             <ul>
-              <li class="previous six columns">
+              <li class="previous six columns mobile-two">
                 <?php previous_post_link('%link', '<strong><i class="general-foundicon-left-arrow"></i> Previous</strong><span>%title</span>'); ?>
               </li>
-              <li class="next six columns">
+              <li class="next six columns mobile-two">
                 <?php next_post_link('%link', '<strong>Next <i class="general-foundicon-right-arrow"></i></strong><span>%title</span>'); ?>
               </li>
             </ul>

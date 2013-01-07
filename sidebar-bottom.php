@@ -24,6 +24,7 @@
             $c_slug = $category->slug; 
             $c_number = $category->cat_ID; 
       ?>
+      <hr>
       <div class="project-info-container">
         <p>
           <strong>This article is part of our series on <a href="/project/<?php echo $c_slug; ?>"><?php echo $c_name; ?></a>.
