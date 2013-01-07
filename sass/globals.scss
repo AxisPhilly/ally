@@ -39,6 +39,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .external-link {
   width: 20px;
+
+  @media(max-width: 360px) {
+    width: 14px;
+  }
 }
 
 .social {
