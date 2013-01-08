@@ -35,7 +35,7 @@
           foreach($my_query2 as $post2):
             setup_postdata($post2);
             $link = get_post_meta($post2->ID, 'site-url', true); ?>
-            <a href="<?php echo $post2->guid; ?>"><?php print_r($post2->post_title); ?></a>
+            <a href="<?php echo $post2->slug; ?>"><?php print_r($post2->post_title); ?></a>
           <?php endforeach; ?>
         </div>
       </div>
