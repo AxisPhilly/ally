@@ -91,7 +91,12 @@
           <div id="stories" class="twelve columns">
             <div class="items">
               <?php
-                query_posts(array('post_status' => 'publish', 'category_name' => $slug, 'post_type' => array('post' , 'external_post')));
+                query_posts(array(
+                  'post_status' => 'publish', 
+                  'category_name' => $slug, 
+                  'post_type' => array('post' , 'external_post'),
+                  'posts_per_page' => -1
+                ));
                 if (have_posts()):
                   while (have_posts()):
                     the_post();
@@ -155,7 +160,11 @@
           <div id="tools-and-data" class="twelve columns">
             <div class="items">
               <?php
-                query_posts(array('post_status' => 'publish', 'category_name' => $slug, 'post_type' => array('wp_tool', 'external_tool')));
+                query_posts(array(
+                  'post_status' => 'publish', 
+                  'category_name' => $slug, 
+                  'post_type' => array('wp_tool', 'external_tool')
+                ));
                 if (have_posts()):
                   while (have_posts()):
                     the_post();
