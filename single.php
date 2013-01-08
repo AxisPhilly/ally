@@ -71,11 +71,4 @@
   </div><!-- End News Container -->
 </div><!-- End Content Container -->
 <!-- Included JS Files (Compressed) -->
-<script type="text/javascript">
-  $(document).ready(function() {
-    window.addEventListener('load', function() {
-      new FastClick(document.body);
-    }, false);
-  });
-</script>
 <?php get_footer(); ?>
