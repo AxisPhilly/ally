@@ -19,8 +19,10 @@
   </footer>
   <script src="<?php bloginfo('template_directory'); ?>/javascripts/foundation.min.js" type="text/javascript"></script>
   <script type="text/javascript">
-    $(window).load(function() {
-      new FastClick(document.body);
+    $(document).ready(function() {
+      window.addEventListener('load', function() {
+        new FastClick(document.body);
+      }, false);
     });
   </script>
 </body>
