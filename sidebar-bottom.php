@@ -35,9 +35,8 @@
           global $post2;
           $my_query2 = get_posts('numberposts=3&cat='.$c_number);
           foreach($my_query2 as $post2):
-            setup_postdata($post2);
-            $link = get_post_meta($post2->ID, 'site-url', true); ?>
-            <a href="<?php echo $post2->slug; ?>"><?php print_r($post2->post_title); ?></a>
+            setup_postdata($post2); ?>
+            <a href="<?php echo get_permalink($post2->ID); ?>"><?php print_r($post2->post_title); ?></a>
           <?php endforeach; ?>
         </div>
       </div>
@@ -45,4 +44,3 @@
     </div>
   </div>
 </aside>
-
