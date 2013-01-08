@@ -40,7 +40,7 @@
             query_posts(array(
               'orderby' => 'title', 
               'order' => 'ASC',
-              'posts_per_page' => 1,
+              'posts_per_page' => 5,
               'meta_info' => 'featured',
               'post_status' => 'publish',
               'category_name' => $slug,
