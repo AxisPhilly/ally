@@ -1,3 +1,11 @@
+/*
+ Theme Name: Ally
+ Theme URI: http://www.axisphilly.com
+ Description: Custom theme for AxisPhilly
+ Author: Casey Thomas, Jeff Frankl
+ Author URI: caseypthomas.org, jfrankl.org
+ Version: 0.5.0
+*/
 /*!
  * jQuery Cookie Plugin v1.3
  * https://github.com/carhartl/jquery-cookie
@@ -780,6 +788,45 @@
 		settings: settings
 	};
 });
+;(function ($, window, undefined){
+  'use strict';
+
+  $.fn.foundationAccordion = function (options) {
+    var $accordion = $('.accordion');
+
+    if ($accordion.hasClass('hover') && !Modernizr.touch) {
+      $('.accordion li', this).on({
+        mouseenter : function () {
+          console.log('due');
+          var p = $(this).parent(),
+            flyout = $(this).children('.content').first();
+
+          $('.content', p).not(flyout).hide().parent('li').removeClass('active'); //changed this
+          flyout.show(0, function () {
+            flyout.parent('li').addClass('active');
+          });
+        }
+      });
+    } else {
+      $('.accordion li', this).on('click.fndtn', function () {
+        var li = $(this),
+            p = $(this).parent(),
+            flyout = $(this).children('.content').first();
+
+        if (li.hasClass('active')) {
+          p.find('li').removeClass('active').end().find('.content').hide();
+        } else {
+          $('.content', p).not(flyout).hide().parent('li').removeClass('active'); //changed this
+          flyout.show(0, function () {
+            flyout.parent('li').addClass('active');
+          });
+        }
+      });
+    }
+
+  };
+
+})( jQuery, this );
 ;(function ($, window, undefined) {
   'use strict';
   
@@ -4756,6 +4803,214 @@ contentLoaded(win, function () {
 
 }(jQuery, this));
 
+;(function (window, document, $) {
+  // Set the negative margin on the top menu for slide-menu pages
+  var $selector1 = $('#topMenu'),
+    events = 'click.fndtn';
+  if ($selector1.length > 0) $selector1.css("margin-top", $selector1.height() * -1);
+
+  // Watch for clicks to show the sidebar
+  var $selector2 = $('#sidebarButton');
+  if ($selector2.length > 0) {
+    $('#sidebarButton').on(events, function (e) {
+      e.preventDefault();
+      $('body').toggleClass('active');
+    });
+  }
+
+  // Watch for clicks to show the menu for slide-menu pages
+  var $selector3 = $('#menuButton');
+  if ($selector3.length > 0)  {
+    $('#menuButton').on(events, function (e) {
+      e.preventDefault();
+      $('body').toggleClass('active-menu');
+    });
+  }
+
+  // // Adjust sidebars and sizes when resized
+  // $(window).resize(function() {
+  //   // if (!navigator.userAgent.match(/Android/i)) $('body').removeClass('active');
+  //   var $selector4 = $('#topMenu');
+  //   if ($selector4.length > 0) $selector4.css("margin-top", $selector4.height() * -1);
+  // });
+
+  // Switch panels for the paneled nav on mobile
+  var $selector5 = $('#switchPanels');
+  if ($selector5.length > 0)  {
+    $('#switchPanels dd').on(events, function (e) {
+      e.preventDefault();
+      var switchToPanel = $(this).children('a').attr('href'),
+          switchToIndex = $(switchToPanel).index();
+      $(this).toggleClass('active').siblings().removeClass('active');
+      $(switchToPanel).parent().css("left", (switchToIndex * (-100) + '%'));
+    });
+  }
+
+  $('#nav li a').on(events, function (e) {
+    e.preventDefault();
+    var href = $(this).attr('href'),
+      $target = $(href);
+    $('html, body').animate({scrollTop : $target.offset().top}, 300);
+  });
+}(this, document, jQuery));
+
+/*! http://mths.be/placeholder v2.0.7 by @mathias */
+;(function(window, document, $) {
+
+	var isInputSupported = 'placeholder' in document.createElement('input'),
+	    isTextareaSupported = 'placeholder' in document.createElement('textarea'),
+	    prototype = $.fn,
+	    valHooks = $.valHooks,
+	    hooks,
+	    placeholder;
+
+	if (isInputSupported && isTextareaSupported) {
+
+		placeholder = prototype.placeholder = function() {
+			return this;
+		};
+
+		placeholder.input = placeholder.textarea = true;
+
+	} else {
+
+		placeholder = prototype.placeholder = function() {
+			var $this = this;
+			$this
+				.filter((isInputSupported ? 'textarea' : ':input') + '[placeholder]')
+				.not('.placeholder')
+				.bind({
+					'focus.placeholder': clearPlaceholder,
+					'blur.placeholder': setPlaceholder
+				})
+				.data('placeholder-enabled', true)
+				.trigger('blur.placeholder');
+			return $this;
+		};
+
+		placeholder.input = isInputSupported;
+		placeholder.textarea = isTextareaSupported;
+
+		hooks = {
+			'get': function(element) {
+				var $element = $(element);
+				return $element.data('placeholder-enabled') && $element.hasClass('placeholder') ? '' : element.value;
+			},
+			'set': function(element, value) {
+				var $element = $(element);
+				if (!$element.data('placeholder-enabled')) {
+					return element.value = value;
+				}
+				if (value == '') {
+					element.value = value;
+					// Issue #56: Setting the placeholder causes problems if the element continues to have focus.
+					if (element != document.activeElement) {
+						// We can't use `triggerHandler` here because of dummy text/password inputs :(
+						setPlaceholder.call(element);
+					}
+				} else if ($element.hasClass('placeholder')) {
+					clearPlaceholder.call(element, true, value) || (element.value = value);
+				} else {
+					element.value = value;
+				}
+				// `set` can not return `undefined`; see http://jsapi.info/jquery/1.7.1/val#L2363
+				return $element;
+			}
+		};
+
+		isInputSupported || (valHooks.input = hooks);
+		isTextareaSupported || (valHooks.textarea = hooks);
+
+		$(function() {
+			// Look for forms
+			$(document).delegate('form', 'submit.placeholder', function() {
+				// Clear the placeholder values so they don't get submitted
+				var $inputs = $('.placeholder', this).each(clearPlaceholder);
+				setTimeout(function() {
+					$inputs.each(setPlaceholder);
+				}, 10);
+			});
+		});
+
+		// Clear placeholder values upon page reload
+		$(window).bind('beforeunload.placeholder', function() {
+			$('.placeholder').each(function() {
+				this.value = '';
+			});
+		});
+
+	}
+
+	function args(elem) {
+		// Return an object of element attributes
+		var newAttrs = {},
+		    rinlinejQuery = /^jQuery\d+$/;
+		$.each(elem.attributes, function(i, attr) {
+			if (attr.specified && !rinlinejQuery.test(attr.name)) {
+				newAttrs[attr.name] = attr.value;
+			}
+		});
+		return newAttrs;
+	}
+
+	function clearPlaceholder(event, value) {
+		var input = this,
+		    $input = $(input);
+		if (input.value == $input.attr('placeholder') && $input.hasClass('placeholder')) {
+			if ($input.data('placeholder-password')) {
+				$input = $input.hide().next().show().attr('id', $input.removeAttr('id').data('placeholder-id'));
+				// If `clearPlaceholder` was called from `$.valHooks.input.set`
+				if (event === true) {
+					return $input[0].value = value;
+				}
+				$input.focus();
+			} else {
+				input.value = '';
+				$input.removeClass('placeholder');
+				input == document.activeElement && input.select();
+			}
+		}
+	}
+
+	function setPlaceholder() {
+		var $replacement,
+		    input = this,
+		    $input = $(input),
+		    $origInput = $input,
+		    id = this.id;
+		if (input.value == '') {
+			if (input.type == 'password') {
+				if (!$input.data('placeholder-textinput')) {
+					try {
+						$replacement = $input.clone().attr({ 'type': 'text' });
+					} catch(e) {
+						$replacement = $('<input>').attr($.extend(args(this), { 'type': 'text' }));
+					}
+					$replacement
+						.removeAttr('name')
+						.data({
+							'placeholder-password': true,
+							'placeholder-id': id
+						})
+						.bind('focus.placeholder', clearPlaceholder);
+					$input
+						.data({
+							'placeholder-textinput': $replacement,
+							'placeholder-id': id
+						})
+						.before($replacement);
+				}
+				$input = $input.removeAttr('id').hide().prev().attr('id', id).show();
+				// Note: `$input[0] != input` now!
+			}
+			$input.addClass('placeholder');
+			$input[0].value = $input.attr('placeholder');
+		} else {
+			$input.removeClass('placeholder');
+		}
+	}
+
+}(this, document, jQuery));
 ;(function ($, window, undefined) {
   'use strict';
 
