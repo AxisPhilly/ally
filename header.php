@@ -1,3 +1,9 @@
+<?php 
+  define('WP_DEBUG', true); 
+  define('WP_DEBUG_DISPLAY', true);
+  ini_set('display_errors', 'On');
+  error_reporting(E_ALL);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
