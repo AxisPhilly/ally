@@ -62,7 +62,7 @@ h2.headline {
 
 .moving-container {
   background-color: #fff;
-  z-index: 10;
+  z-index: -1;
   padding-top: 10px;
   max-width: 275px;
 
@@ -73,9 +73,10 @@ h2.headline {
   }
 
   &.affix-bottom {
+    top: 520px;
     position: absolute;
-    bottom: 330px;
-    width: 22%;
+    width: 100%;
+    max-width: 275px;
   }
 }
 
