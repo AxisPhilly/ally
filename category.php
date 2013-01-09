@@ -66,7 +66,7 @@
         </div>
       </div><!-- End Features -->
     </div><!-- End Header Row -->
-    <div class="project-section-nav small" data-spy="affix" data-offset-top="360">
+    <div class="project-section-nav small" data-spy="affix" data-offset-top="305">
       <div class="row">
         <dl class="tabs three-up">
           <dd class="active"><a href="#feed">Stories</a></dd>
@@ -75,7 +75,7 @@
         </dl>
       </div>
     </div>
-    <div class="project-section-nav large" data-spy="affix" data-offset-top="570">
+    <div class="project-section-nav large" data-spy="affix" data-offset-top="540">
       <div class="row">
         <dl class="tabs three-up">
           <dd class="active"><a href="#feed">Stories</a></dd>
