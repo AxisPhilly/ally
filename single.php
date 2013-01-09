@@ -18,8 +18,7 @@
               <div class="byline">by <a href="#"><?php coauthors_posts_links(); ?></a></div>
               <div class="datetime"><?php the_time('F j, Y'); ?></div>
             </div>
-
-            <?php if (has_post_thumbnail($post->ID)):  ?>
+            <?php if ((has_post_thumbnail($post->ID)) && (!in_array('hide-featured', $meta_tags))):  ?>
 
               <div class="media-container full-page">
 
