@@ -256,14 +256,6 @@ foreach (array('term_description') as $filter) {
   remove_filter($filter, 'wp_kses_data');
 }
 
-function the_post_thumbnail_caption() {
-  global $post;
-  $thumbnail_id = get_post_thumbnail_id($post->ID);
-  $thumbnail_image = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
-  if ($thumbnail_image && isset($thumbnail_image[0])) {
-    echo '<span>'.$thumbnail_image[0]->post_excerpt.'</span>';
-  }
-}
 
 // Broken: The function dont_publish does not work correctly. If you try to remove "featured" selection from category, it still gives error message.
 
@@ -297,12 +289,15 @@ add_filter('user_contactmethods', 'extra_contact_info');
 
 // Enter the id of a category in the meta_info custom taxonomy. Returns true if a post has a particular piece of meta_info.
 function list_of_meta_tags(){
+  global $post;
   $list = array();
   $num = 0;
-  $termsObjects = get_the_terms($post->ID, 'meta_info', '');
-  foreach ($termsObjects as $v) {
-    $list[$num] = $v->slug;
-    $num++;
+  $termsObjects = get_the_terms('', 'meta_info', '');
+  if (!empty($termsObjects)){
+    foreach ($termsObjects as $v) {
+      $list[$num] = $v->slug;
+      $num++;
+    }
   }
   return($list);
 }

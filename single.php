@@ -18,20 +18,26 @@
               <div class="byline">by <a href="#"><?php coauthors_posts_links(); ?></a></div>
               <div class="datetime"><?php the_time('F j, Y'); ?></div>
             </div>
-            <div class="media-container full-page">
-              <div class="media">
-                <?php 
-                  the_post_thumbnail();
-                ?>
-              </div>
-              <div class="caption">
-                <p>
-                  <?php
-                    the_post_thumbnail_caption();
+
+            <?php if (has_post_thumbnail($post->ID)):  ?>
+
+              <div class="media-container full-page">
+
+                <div class="media">
+                  <?php 
+                  $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'large'); 
                   ?>
-                </p>
+                  <img src="<?php echo $image[0]; ?>">
+                </div>
+                <div class="caption">
+                  <p>
+                    <?php echo get_post(get_post_thumbnail_id())->post_excerpt; ?>
+                  </p>
+                </div>
               </div>
-            </div>
+
+            <?php endif; ?>
+
           </header>
           <div class="article-text">
             <?php
