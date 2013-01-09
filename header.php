@@ -61,7 +61,7 @@
     <nav class="top-bar">
       <ul>
         <li class="name">
-          <h1><a href="/demo/">AxisPhilly</a></h1>
+          <h1><a href="/">AxisPhilly</a></h1>
         </li>
         <li class="toggle-topbar has-button">
           <span class="tiny secondary button menu-button">
