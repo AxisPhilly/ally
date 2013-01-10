@@ -3,12 +3,18 @@ body {
 }
 
 .content-container {
-  margin-top: 50px;
+  margin-top: 44px;
 
   @media(max-width: 360px) {
     margin-top: 10px;
   }
 }
+
+#category-top {
+  margin-bottom: 44px;
+
+}
+
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
@@ -174,4 +180,10 @@ article.row {
   .external-source {
     color: $thirdColor;
   }
+}
+
+// For About page
+
+#about-container ul, ol {
+  padding: 1em 2em;
 }

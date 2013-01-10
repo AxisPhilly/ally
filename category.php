@@ -15,7 +15,7 @@
       </header>
     </div>
     <!-- Header Row -->
-    <div class="row">
+    <div class="row" id="category-top">
       <!-- Background -->
       <div id="background" class="five columns">
         <?php echo category_description( get_category_by_slug($slug)->term_id ); ?>
@@ -66,7 +66,7 @@
         </div>
       </div><!-- End Features -->
     </div><!-- End Header Row -->
-    <div class="project-section-nav small" data-spy="affix" data-offset-top="305">
+    <div class="project-section-nav small" data-spy="affix" data-offset-top="315">
       <div class="row">
         <dl class="tabs three-up">
           <dd class="active"><a href="#feed">Stories</a></dd>
@@ -75,7 +75,7 @@
         </dl>
       </div>
     </div>
-    <div class="project-section-nav large" data-spy="affix" data-offset-top="540">
+    <div class="project-section-nav large" data-spy="affix" data-offset-top="524">
       <div class="row">
         <dl class="tabs three-up">
           <dd class="active"><a href="#feed">Stories</a></dd>
