@@ -49,10 +49,6 @@
             <?php endwhile; endif; ?>
           </div>
         </div><!-- End Features -->
-
-   
-
-
         <div id="stories">
           <div class="items">
             <?php
@@ -119,20 +115,50 @@
 
       </div>  
       <div class="columns four">
-        <h2>
-          Projects
-        </h2>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur.
-        </p>
+        <h3>
+          Our Projects
+        </h3>
+        <ul class="accordion">
+          <li class="active">
+            <div class="title">
+              <h5>AVI</h5>
+            </div>
+            <div class="content">
+              <p>The Actual Value Initiative (AVI) is a project to change the way property taxes are assessed in the city. Currently, properties are assessed using an archaic method. Under AVI, the assessed value should be close to the market value of the property. </p>
+              <strong>Recent Stories</strong>
+              <p>
+                <a href="http://192.168.2.76:8888/article/avi-assessed-value-property-tax/">What The Number means</a><Br>
+                <a href="http://192.168.2.76:8888/article/map-of-the-week-the-150000-home/">Map of the week: The $150,000 home</a><br>
+                <a href="/project/avi">Read More >></a>
+              </p>
+            </div>
+          </li>
+          <li>
+            <div class="title">
+              <h5>Lobbying</h5>
+            </div>
+            <div class="content">
+              <p>The lobbying law which took effect this year requires the quarterly reporting of all lobbying activity. Lobbyists and the firms they work for are required to register with the Board of Ethics, as well as principals---the organizations that conduct or pay for lobbying.</p>
+              <p>
+                <a href="http://192.168.2.76:8888/article/lobbyists-gifts-flow-to-city-council-one-city-official-violated-mayors-ban">Lobbyists’ gifts flow to City Council; one city official violated mayor’s ban.</a><br>
+                <a href="http://192.168.2.76:8888/article/article/third-quarter-lobbying-data-released-lobbying-ph-updated/">Third quarter lobbying data released, Lobbying.ph updated</a><br>
+                <a href="/project/lobbying">Read More >></a>
+              </p>
+            </div>
+          </li>
+          <li>
+            <div class="title">
+              <h5>Crime</h5>
+            </div>
+            <div class="content">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+          </li>
+        </ul>
         <hr>
-        <h2>
+        <h3>
           Blogs
-        </h2>
+        </h3>
         <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
             tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
