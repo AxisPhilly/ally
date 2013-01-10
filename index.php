@@ -65,7 +65,7 @@
             ?>
               <article class="row">
                 <?php if (has_post_thumbnail($post->ID)) { ?>  
-                  <div class="six mobile-two columns">
+                  <div class="six mobile-four columns">
                 <? } else { ?>
                   <div class="twelve mobile-four columns">
                 <? } ?>
@@ -117,7 +117,7 @@
                     </div>
                   </div>
                 <?php if (has_post_thumbnail($post->ID)): ?>  
-                  <div class="six columns hide-for-mobile">
+                  <div class="six columns hide-for-small">
                     <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'thumbnail' ); ?>
                     <img src="<?php echo $image[0]; ?>">
                   </div>
