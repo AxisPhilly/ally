@@ -38,8 +38,8 @@
           <!-- features go here -->
           <?php
             query_posts(array(
-              'orderby' => 'title', 
-              'order' => 'ASC',
+              'orderby' => 'date', 
+              'order' => 'DESC',
               'posts_per_page' => 5,
               'meta_info' => 'featured',
               'post_status' => 'publish',
