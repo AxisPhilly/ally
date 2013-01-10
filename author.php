@@ -4,7 +4,7 @@
   // Get Slug from URL
   $slug = get_slug();
   // Get Author ID from Slug
-  $author = get_user_by( 'slug', $slug);
+  $author = get_user_by('slug', $slug);
   $author_id = $author->id;
   ?>
 <!-- Content -->
@@ -58,7 +58,5 @@
       </div>
     </div><!-- End News Container -->
   </div><!-- End Content Container -->
-<script src="<?php  bloginfo('template_directory'); ?>/javascripts/foundation.min.js" type="text/javascript"></script>
-<script src="<?php  bloginfo('template_directory'); ?>/javascripts/site.0.0.1.min.js" type="text/javascript"></script>
 <!-- Loads footer.php -->
 <?php  get_footer(); ?>
