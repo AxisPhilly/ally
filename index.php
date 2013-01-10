@@ -53,6 +53,8 @@
           <div class="items">
             <?php
               query_posts(array(
+                'orderby' => 'date', 
+                'order' => 'DESC',
                 'post_status' => 'publish', 
                 'post_type' => array('post' , 'external_post'),
                 'posts_per_page' => -1
