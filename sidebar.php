@@ -1,6 +1,6 @@
 <aside id="sidebar" class="three columns hide-for-small">
   <div class="sidebar view">
-    <div class="moving-container" data-spy="affix" data-offset-top="18">
+    <div class="moving-container" data-spy="affix" data-offset-top="62">
       <div class="social-container">
         <strong>Share this article</strong>
         <div class="shorturl-container">
