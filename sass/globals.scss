@@ -4,7 +4,6 @@ body {
 
 .content-container {
   margin-top: 44px;
-
   @media(max-width: 360px) {
     margin-top: 10px;
   }
@@ -12,7 +11,9 @@ body {
 
 #category-top {
   margin-bottom: 44px;
-
+  @media(max-width: 360px) {
+    margin-bottom: 10px;
+  }
 }
 
 
