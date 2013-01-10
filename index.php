@@ -28,7 +28,7 @@
                 'posts_per_page' => 5,
                 'meta_info' => 'featured',
                 'post_status' => 'publish',
-                'post_type' => array('post', 'external_post', 'external_tool', 'wp_tool')
+                'post_type' => array('post', 'external_tool', 'wp_tool')
               ));
 
               if (have_posts()):
@@ -56,7 +56,7 @@
                 'orderby' => 'date', 
                 'order' => 'DESC',
                 'post_status' => 'publish', 
-                'post_type' => array('post' , 'external_post'),
+                'post_type' => array('post'),
                 'posts_per_page' => -1
               ));
               if (have_posts()):
