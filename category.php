@@ -103,7 +103,7 @@
               ?>
                 <article class="row">
                   <?php if (has_post_thumbnail($post->ID)) { ?>  
-                    <div class="six mobile-two columns">
+                    <div class="six mobile-four columns">
                   <? } else { ?>
                     <div class="twelve mobile-four columns">
                   <? } ?>
@@ -126,7 +126,7 @@
                         <?php
                           # Check to see if this is an external_post. If so, display Source and Source URL instead of Author.
                           if (get_post_type() == 'external_post') {
-                            echo "<i>Source: <strong>" . get_post_meta($post->ID, '_source_name', true) . '</strong>' .
+                            echo "<i class='external-source'>Source: <strong>" . get_post_meta($post->ID, '_source_name', true) . '</strong>' .
                                 " -- 1/14/12</i>";
                           }
                           elseif (get_post_type() != 'external_post') {
@@ -135,7 +135,7 @@
                         ?>
                       </div>
                       <?php if ((get_post_type() != 'external_post')) { ?> 
-                        <div class="datetime hide-for-small"><?php the_time('F j, Y');?></div>
+                        <div class="datetime"><?php the_time('F j, Y');?></div>
                       <?php } ?>
                       <div class="hide-for-small">
                         <?php the_excerpt(); ?>
@@ -143,7 +143,7 @@
                       </div>
                     </div>
                   <?php if (has_post_thumbnail($post->ID)): ?>  
-                    <div class="six mobile-two columns">
+                    <div class="six columns hide-for-small">
                       <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'thumbnail' ); ?>
                       <img src="<?php echo $image[0]; ?>">
                     </div>

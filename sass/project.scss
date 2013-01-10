@@ -140,12 +140,22 @@ span.round.label a {color: #fff; font-weight: 600; line-height: 1.5em;}
       padding: 8px;
     }
 
+    .datetime {
+      color: $thirdColor;
+      margin: 10px 0;
+    }
+
     h4 {
       margin-bottom: 2px;
+      margin-top: 10px;
 
       @media(max-width: 360px) {
         font-size: 14px;
       }
+    }
+
+    .external-source {
+      color: $thirdColor;
     }
   }
 }
