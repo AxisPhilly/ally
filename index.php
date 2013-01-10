@@ -64,11 +64,31 @@
                   the_post();
             ?>
               <article class="row">
+
+
+
+
+
+
+
+
                 <?php if (has_post_thumbnail($post->ID)) { ?>  
                   <div class="six mobile-two columns">
                 <? } else { ?>
                   <div class="twelve mobile-four columns">
                 <? } ?>
+                    <div class="project">
+                      <?
+                        $project_parent_category = get_category_by_slug('project');
+                        $project_parent_category_id=$project_parent_category->term_id;
+                        $categories=get_the_category();
+                        foreach($categories as $category){
+                          if($category->category_parent==$project_parent_category_id){
+                            echo "<a href='/project/". $category->slug . "'>" . $category->name . "</a>";
+                          }
+                        }
+                      ?>
+                    </div>
                     <h4>
                       <a name="<?php the_id(); ?>" href="<?php 
                         if (get_post_type() != 'external_post') {
