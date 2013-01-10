@@ -139,6 +139,7 @@
             </div>
             <div class="content">
               <p>The lobbying law which took effect this year requires the quarterly reporting of all lobbying activity. Lobbyists and the firms they work for are required to register with the Board of Ethics, as well as principals---the organizations that conduct or pay for lobbying.</p>
+              <strong>Recent Stories</strong>
               <p>
                 <a href="http://192.168.2.76:8888/article/lobbyists-gifts-flow-to-city-council-one-city-official-violated-mayors-ban">Lobbyists’ gifts flow to City Council; one city official violated mayor’s ban.</a><br>
                 <a href="http://192.168.2.76:8888/article/article/third-quarter-lobbying-data-released-lobbying-ph-updated/">Third quarter lobbying data released, Lobbying.ph updated</a><br>
@@ -159,13 +160,36 @@
         <h3>
           Blogs
         </h3>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur.
-        </p>
+        <ul class="accordion">
+          <li class="active">
+            <div class="title">
+              <h5>From the Bleacher Seats at Council</h5>
+            </div>
+            <div class="content">
+              <i>Isaiah Thompson's take on the latest in City Council and City Hall in general</i><br>
+              <br>
+              <p>
+                <a href="#">What's For Lunch wit' Councilman Kenney</a><Br>
+                <a href="#">Yeah, Good Luck Passing That</a><br><br>
+                <a href="#">Read More >></a>
+              </p>
+            </div>
+          </li>
+          <li>
+            <div class="title">
+              <h5>Nerd Blog</h5>
+            </div>
+            <div class="content">
+              <i>The latest from AxisPhilly's News Applications Desk</i><br>
+              <br>
+              <p>
+                <a href="#">Deploying on Heroku</a><Br>
+                <a href="#">Our First Open-Source Library: ?????</a><br><br>
+                <a href="#">Read More >></a>
+              </p>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
   </div><!-- End News Container -->
