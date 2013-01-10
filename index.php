@@ -64,14 +64,6 @@
                   the_post();
             ?>
               <article class="row">
-
-
-
-
-
-
-
-
                 <?php if (has_post_thumbnail($post->ID)) { ?>  
                   <div class="six mobile-two columns">
                 <? } else { ?>
@@ -117,7 +109,7 @@
                       ?>
                     </div>
                     <?php if ((get_post_type() != 'external_post')) { ?> 
-                      <div class="datetime hide-for-small"><?php the_time('F j, Y');?></div>
+                      <div class="datetime"><?php the_time('F j, Y');?></div>
                     <?php } ?>
                     <div class="hide-for-small">
                       <?php the_excerpt(); ?>
@@ -125,7 +117,7 @@
                     </div>
                   </div>
                 <?php if (has_post_thumbnail($post->ID)): ?>  
-                  <div class="six mobile-two columns">
+                  <div class="six columns hide-for-mobile">
                     <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'thumbnail' ); ?>
                     <img src="<?php echo $image[0]; ?>">
                   </div>
