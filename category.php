@@ -92,6 +92,8 @@
             <div class="items">
               <?php
                 query_posts(array(
+                  'orderby' => 'date', 
+                  'order' => 'DESC',
                   'post_status' => 'publish', 
                   'category_name' => $slug, 
                   'post_type' => array('post' , 'external_post'),
@@ -161,6 +163,8 @@
             <div class="items">
               <?php
                 query_posts(array(
+                  'orderby' => 'date', 
+                  'order' => 'DESC',
                   'post_status' => 'publish', 
                   'category_name' => $slug, 
                   'post_type' => array('wp_tool', 'external_tool')
