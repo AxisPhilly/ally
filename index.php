@@ -100,7 +100,7 @@
                       <?php
                         # Check to see if this is an external_post. If so, display Source and Source URL instead of Author.
                         if (get_post_type() == 'external_post') {
-                          echo "<i>Source: <strong>" . get_post_meta($post->ID, '_source_name', true) . '</strong>' .
+                          echo "<i class='external-source'>Source: <strong>" . get_post_meta($post->ID, '_source_name', true) . '</strong>' .
                               " -- 1/14/12</i>";
                         }
                         elseif (get_post_type() != 'external_post') {

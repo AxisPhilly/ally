@@ -163,3 +163,11 @@ margin-right: auto
 .caption {
   padding: 1em 1em;
 }
+
+// Article
+
+article.row {
+  .external-source {
+    color: $thirdColor;
+  }
+}
