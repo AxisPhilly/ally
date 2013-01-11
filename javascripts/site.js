@@ -13,6 +13,12 @@ axis.Collections.Articles = Backbone.Collection.extend({
   model: axis.Models.Article
 });
 
+axis.Views.Index = Backbone.View.extend({
+  initialize: function() {
+    this.features = new axis.Views.Features({el: "#feature-container"});
+  }
+});
+
 axis.Views.ProjectContainer = Backbone.View.extend({
   initialize: function() {
     this.features = new axis.Views.Features({el: "#feature-container"});
@@ -109,6 +115,8 @@ axis.Router = Backbone.Router.extend({
       axis.ProjectContainer = new axis.Views.ProjectContainer({el: '#news-container'});
     } else if (document.URL.search('/article/') !== -1) {
 
+    } else {
+      axis.Index = new axis.Views.Index({el: '#news-container'});
     }
   }
 });
