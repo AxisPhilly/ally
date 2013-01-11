@@ -42,6 +42,7 @@
               'order' => 'DESC',
               'posts_per_page' => 5,
               'meta_info' => 'featured',
+              'meta_key' => '_thumbnail_id',
               'post_status' => 'publish',
               'category_name' => $slug,
               'post_type' => array('post', 'external_post', 'external_tool', 'wp_tool')
