@@ -16,7 +16,6 @@ body {
   }
 }
 
-
 h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
 }
@@ -31,6 +30,11 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+#about-container ul, ol {
+  padding: 1em 2em;
+}
+
+// Header
 .menu-button {
   line-height: 4px;
   text-align: center;
@@ -46,9 +50,33 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+.banner {
+  width: 100%;
+}
+
+.header-logo {
+  height: 120px;
+  padding-top: 10px;
+  text-align: center;
+  background-color: #222;
+
+  img {
+    width: 400px;
+  }
+}
+
 .top-bar {
   .name h1 {
     display: inline-block;
+  }
+
+  &.affix {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    margin: 0 auto;
   }
 }
 
@@ -117,7 +145,7 @@ footer {
   } 
 }
 
-/* WordPress Core
+/* WordPress Core Image Stuff
 -------------------------------------------------------------- */
 .alignnone {
 margin: 5px 20px 20px 0;
@@ -176,15 +204,8 @@ margin-right: auto
 }
 
 // Article
-
 article.row {
   .external-source {
     color: $thirdColor;
   }
-}
-
-// For About page
-
-#about-container ul, ol {
-  padding: 1em 2em;
 }

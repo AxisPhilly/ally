@@ -57,60 +57,65 @@
 </head>
 <body <?php body_class(); ?>>
   <!-- Fixed header -->
-  <div class="fixed contain-to-grid">
-    <nav class="top-bar">
-      <ul>
-        <li class="name">
-          <h1><a href="/">AxisPhilly</a></h1>
-        </li>
-        <li class="toggle-topbar has-button">
-          <span class="tiny secondary button menu-button">
-            <span class="line"></span>
-            <span class="line"></span>
-            <span class="line"></span>
-          </span>
-        </li>
-      </ul>
-      <section>
-        <ul class="left">
-          <li class="divider"></li>
-          <li class="has-dropdown">
-            <a href="#">Our Projects</a>
-            <ul class="dropdown">
-              <li><a href="/project/avi">AVI</a></li>
-              <li><a href="/project/lobbying">Lobbying</a></li>
-              <li><a href="/projects">More...</a></li>
-            </ul>
+  <header class="banner">
+    <div>
+      <div class="header-logo">
+        <img src="<?php bloginfo('template_directory'); ?>/images/transparent.png"/>
+      </div>
+      <nav class="top-bar" data-spy="affix" data-offset-top="120">
+        <ul>
+          <li class="name">
+            <h1><a href="/">AxisPhilly</a></h1>
           </li>
-          <li class="divider"></li>
-          <li><a href="#">Tools &amp; Data</a></li>
-          <li class="divider"></li>
-          <li><a href="/about">About</a></li>
-          <li class="search">
-          <li class="divider"></li>
-          <li>
-            <span class="social mobile">
-              <a href="http://www.twitter.com/AxisPhilly"><i class="social-foundicon-twitter"></i></a>
-              <a href="http://www.facebook.com/AxisPhilly"><i class="social-foundicon-facebook"></i></a>
-              <a href="http://www.axisphilly.org/?feed=rss"><i class="social-foundicon-rss"></i></a>
+          <li class="toggle-topbar has-button">
+            <span class="tiny secondary button menu-button">
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
             </span>
-            <ul class="social desktop">
-              <li><a href="http://www.twitter.com/AxisPhilly"><i class="social-foundicon-twitter"></i></a></li>
-              <li><a href="http://www.facebook.com/AxisPhilly"><i class="social-foundicon-facebook"></i></a></li>
-              <li><a href="http://www.axisphilly.org/?feed=rss"><i class="social-foundicon-rss"></i></a></li>
-            </ul>
           </li>
         </ul>
-        <ul class="right">
-          <li class="search">
-            <form class="collapse" role="search" method="get" id="searchform" action="<?php echo site_url(); ?>">
-              <input type="search" placeholder="Search" name="s" id="s">
-            </form>
-          </li>
-        </ul>
-      </section>
-    </nav>
-  </div>
+        <section>
+          <ul class="left">
+            <li class="divider"></li>
+            <li class="has-dropdown">
+              <a href="#">Our Projects</a>
+              <ul class="dropdown">
+                <li><a href="/project/avi">AVI</a></li>
+                <li><a href="/project/lobbying">Lobbying</a></li>
+                <li><a href="/projects">More...</a></li>
+              </ul>
+            </li>
+            <li class="divider"></li>
+            <li><a href="#">Tools &amp; Data</a></li>
+            <li class="divider"></li>
+            <li><a href="/about">About</a></li>
+            <li class="search">
+            <li class="divider"></li>
+            <li>
+              <span class="social mobile">
+                <a href="http://www.twitter.com/AxisPhilly"><i class="social-foundicon-twitter"></i></a>
+                <a href="http://www.facebook.com/AxisPhilly"><i class="social-foundicon-facebook"></i></a>
+                <a href="http://www.axisphilly.org/?feed=rss"><i class="social-foundicon-rss"></i></a>
+              </span>
+              <ul class="social desktop">
+                <li><a href="http://www.twitter.com/AxisPhilly"><i class="social-foundicon-twitter"></i></a></li>
+                <li><a href="http://www.facebook.com/AxisPhilly"><i class="social-foundicon-facebook"></i></a></li>
+                <li><a href="http://www.axisphilly.org/?feed=rss"><i class="social-foundicon-rss"></i></a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="right">
+            <li class="search">
+              <form class="collapse" role="search" method="get" id="searchform" action="<?php echo site_url(); ?>">
+                <input type="search" placeholder="Search" name="s" id="s">
+              </form>
+            </li>
+          </ul>
+        </section>
+      </nav>
+    </div>
+  </header>
   <?php
     #<!-- This is a WordPress generated header that doesn't quite work yet. It uses a custom Walker class, which is referred to in functions.php
     #<div class="fixed contain-to-grid">
