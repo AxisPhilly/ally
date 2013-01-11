@@ -18,12 +18,6 @@
     </div>
   </footer>
   <script src="<?php bloginfo('template_directory'); ?>/javascripts/foundation.min.js" type="text/javascript"></script>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      window.addEventListener('load', function() {
-        new FastClick(document.body);
-      }, false);
-    });
-  </script>
+  <script src="<?php bloginfo('template_directory'); ?>/javascripts/site.js" type="text/javascript"></script>
 </body>
 </html>
