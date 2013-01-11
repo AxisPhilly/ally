@@ -21,9 +21,30 @@ axis.Views.ProjectContainer = Backbone.View.extend({
 
 axis.Views.Features = Backbone.View.extend({
   initialize: function() {
-    $(window).load(function() {
-      $('#featured').orbit({ timer: 'true' });
+    this.initOrbit();
+    this.initSlider();
+  },
+
+  initOrbit: function() {
+    $('#featured').orbit({
+      timer: 'true',
+      advanceSpeed: 6000,
+      animationSpeed: 1000,
+      pauseOnHover: true,
+      startClockOnMouseOut: true,
+      startClockOnMouseOutAfter: 1
     });
+  },
+
+  initSlider: function() {
+    $('.caption').hover(
+      function(){ //mouseEnter
+        $('.details').slideDown(200);
+      },
+      function(){ //mouseLeave
+        $('.details').slideUp(200);
+      }
+    );
   }
 });
 

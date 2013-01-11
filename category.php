@@ -59,8 +59,10 @@
             <?php endif; ?>
             <div class="caption">
               <h4 class="headline"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-              <span class="byline">by <?php coauthors_posts_links(); ?>, <?php the_time('F j, Y'); ?></span>
-              <?php the_excerpt(); ?>
+              <div class="details">
+                <span class="byline">by <?php coauthors_posts_links(); ?>, <?php the_time('F j, Y'); ?></span>
+                <?php the_excerpt(); ?>
+              </div>
             </div>
           </div>
           <?php endwhile; endif; ?>

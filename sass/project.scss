@@ -82,6 +82,10 @@ span.round.label a {color: #fff; font-weight: 600; line-height: 1.5em;}
     color: #fff;
     width: 100%;
 
+    .details {
+      display: none;
+    }
+
     // patch, see above comment
     @media(max-width: 867px) {
       position:static;
