@@ -248,8 +248,5 @@
 </div><!-- End Content Container -->
 <!-- Included JS Files (Compressed) -->
 <script type="text/javascript">
-  $(window).load(function() {
-    $('#featured').orbit({ timer: 'true' });
-  });
 </script>
 <?php get_footer(); ?>
