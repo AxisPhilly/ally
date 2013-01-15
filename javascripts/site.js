@@ -57,7 +57,7 @@ axis.Views.Features = Backbone.View.extend({
   },
 
   initSlider: function() {
-    $('.caption').hover(
+    $('#featured .caption').hover(
       function(){ //mouseEnter
         if ($(document).width() < 376) { return false; }
         $('.details').slideDown(200);
