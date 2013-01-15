@@ -14,14 +14,8 @@
         <div class="single-article view">
           <header class="article-header">
             <h2 class="headline"><?php the_title(); ?></h2>
-            <div class="publish-container">
-              <div class="byline">by <a href="#"><?php coauthors_posts_links(); ?></a></div>
-              <div class="datetime"><?php the_time('F j, Y'); ?></div>
-            </div>
             <?php if ((has_post_thumbnail($post->ID)) && (!in_array('hide-featured', $meta_tags))):  ?>
-
               <div class="media-container full-page">
-
                 <div class="media">
                   <?php 
                   $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'large'); 
@@ -34,7 +28,9 @@
                   </p>
                 </div>
               </div>
+
             <?php endif; ?>
+
           </header>
           <div class="article-text">
             <?php
@@ -47,6 +43,9 @@
               ?>
             </p>
           </div>
+          <?php
+            comments_template( 'comments.php', 'false' );
+          ?>
           <div class="row">
             <div class="bottombar">
               <?php
