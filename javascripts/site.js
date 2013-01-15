@@ -15,16 +15,15 @@ axis.Collections.Articles = Backbone.Collection.extend({
 
 axis.Views.Header = Backbone.View.extend({
   initialize: function() {
-    var $spacer = $('<div>', {
+    /*var $spacer = $('<div>', {
       'class': 'spacer'
     });
 
     $(window).scroll(function() {
       if ($('.top-bar').hasClass('affix')) {
-        console.log('hey');
         $('.banner').prepend($spacer);
       }
-    });
+    });*/
   }
 });
 
