@@ -3,83 +3,56 @@ aside p {
 }
 
 .bottombar {
-
 	aside { 	
-
 		display: none !important;
-
 	}
 
 	aside#sidebar.three.columns.hide-for-small {
-		
 		width: 100%;
-		
 	}
 
 	.sidebar {
-
 		display: none !important;
-
 	}
-
 }
 
 @media only screen and (max-width: 1000px) {
-
-
 	.bottombar {
-
 		aside {
-	  	
 			display: block !important;
 			margin-bottom: 1em;
-
  		}
 		
 		.sidebar {
-
-		display: block !important;
-
-  		}
+		  display: block !important;
   	}
+  }
 
 	.leftbar {
-
 		aside {
-	  	
-	  		display: none !important;
+	  	display: none !important;
+  	}
 
-  		}
+	 .sidebar {
+      display: none !important;
+    }
+  }
 
-		.sidebar {
-  	
-  			display: none !important;
-
-  		}
-
-	}
-
-  
- 	article.single-story.seven.columns {
-
-	    width: 100%;
-	    padding-left: 8.33333%;
-	    padding-right: 8.33333%;
-	    padding-top: 0;
-
-   }
-
+  article.single-story.seven.columns {
+    width: 100%;
+    padding-left: 8.33333%;
+    padding-right: 8.33333%;
+    padding-top: 0;
+  }
 }
 
 @media only screen and (max-width: 767px) {
-
   .gutter {
   	display: none;
   }
 
  article.single-story.seven.columns {
-     padding-left: 15px; 
-     padding-right: 15px;
-   }
-
+  padding-left: 15px; 
+  padding-right: 15px;
+ }
 }
