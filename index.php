@@ -14,7 +14,7 @@
           <div id="featured">
             <!-- features go here -->
             <?php
-              query_posts(array(
+              $featured_args = array(
                 'orderby' => 'date', 
                 'order' => 'DESC',
                 'posts_per_page' => 5,
@@ -22,45 +22,40 @@
                 'meta_key' => '_thumbnail_id',
                 'post_status' => 'publish',
                 'post_type' => array('post', 'external_tool', 'wp_tool')
-              ));
+              );
 
-              if (have_posts()):
-                while (have_posts()):
-                  the_post();
+              $featured = new WP_Query($featured_args);
+
+              if ($featured->have_posts()):
+                while ($featured->have_posts()):
+                  $featured->the_post();
             ?>
-            <div>
-              <?php if (has_post_thumbnail($post->ID)):  
-                $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'medium'); ?>
-                <img src="<?php echo $image[0]; ?>">
-              <?php endif; ?>
-              <div class="caption">
-                <h4 class="headline"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-                <div class="details">
-                  <span class="byline">by <?php coauthors_posts_links(); ?>, <?php the_time('F j, Y'); ?></span>
-                  <?php the_excerpt(); ?>
+              <div>
+                <?php if (has_post_thumbnail($post->ID)):  
+                  $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'medium'); ?>
+                  <img src="<?php echo $image[0]; ?>">
+                <?php endif; ?>
+                <div class="caption">
+                  <h4 class="headline"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+                  <div class="details">
+                    <span class="byline">by <?php coauthors_posts_links(); ?>, <?php the_time('F j, Y'); ?></span>
+                    <?php the_excerpt(); ?>
+                  </div>
                 </div>
               </div>
-            </div>
             <?php endwhile; endif; ?>
+            <?php wp_reset_postdata(); ?>
           </div>
         </div><!-- End Features -->
         <div id="stories">
           <div class="items">
             <?php
-              query_posts(array(
-                'orderby' => 'date', 
-                'order' => 'DESC',
-                'post_status' => 'publish', 
-                'meta_info__not_in' => 'featured',
-                'post_type' => array('post', 'wp_tool'),
-                'posts_per_page' => -1
-              ));
               if (have_posts()):
                 while (have_posts()):
                   the_post();
-            ?>
-            <?php get_template_part('archive', 'feed'); ?>  
-          <?php endwhile; endif; ?>
+              ?>
+              <?php get_template_part('archive', 'feed'); ?>  
+            <?php endwhile; endif; ?>
           </div>
         </div>
 

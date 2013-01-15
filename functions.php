@@ -27,6 +27,70 @@ function ally_setup() {
 
 add_action( 'after_setup_theme', 'ally_setup' );
 
+
+//http://developer.wordpress.com/2012/05/14/querying-posts-without-query_posts/
+/**
+ * Filter the home page posts, and remove any featured post ID's from it. Hooked
+ * onto the 'pre_get_posts' action, this changes the parameters of the query
+ * before it gets any posts.
+ * 
+ * @global array $featured_post_id
+ * @param WP_Query $query
+ * @return WP_Query Possibly modified WP_query
+ */
+function modify_home_feed_posts_query($query = false) {
+  // Bail if not home, not a query, not main query, or no featured posts
+  if (!is_home() || !is_a($query, 'WP_Query' ) || !$query->is_main_query() || !get_home_featured_posts_ids())
+    return;
+
+  // Exclude featured posts from the main query
+  $query->set('post__not_in', get_home_featured_posts_ids());
+  $query->set('post_type', array('post', 'wp_tool', 'external_tool'));
+
+  // Note the we aren't returning anything.
+  // 'pre_get_posts' is a byref action; we're modifying the query directly.
+}
+add_action('pre_get_posts', 'modify_home_feed_posts_query');
+
+/**
+ * Test to see if any posts meet our conditions for featuring posts.
+ *
+ * We store the results of the loop in a transient, to prevent running this
+ * extra query on every page load. The results are an array of post ID's that
+ * match the result above. This gives us a quick way to loop through featured
+ * posts again later without needing to query additional times later.
+ */
+function get_home_featured_posts_ids() {
+  if (false === ($featured_post_ids = get_transient('featured_post_ids'))) {
+    $featured_args = array(
+      'orderby' => 'date', 
+      'order' => 'DESC',
+      'posts_per_page' => 5,
+      'meta_info' => 'featured',
+      'meta_key' => '_thumbnail_id',
+      'post_status' => 'publish',
+      'post_type' => array('post', 'external_tool', 'wp_tool')
+    );
+
+    // The Featured Posts query.
+    $featured = new WP_Query($featured_args);
+
+    // Proceed only if published posts with thumbnails exist
+    if ($featured->have_posts()) {
+      while ( $featured->have_posts()) {
+        $featured->the_post();
+        if ( has_post_thumbnail( $featured->post->ID ) ) {
+          $featured_post_ids[] = $featured->post->ID;
+        }
+      }
+
+      set_transient('featured_post_ids', $featured_post_ids);
+    }
+  }
+
+  return $featured_post_ids;
+}
+
 class Walker_Nav_Menu_CMS extends Walker_Nav_Menu {
   function start_el(&$output, $item, $depth, $args) {
     global $wp_query;
