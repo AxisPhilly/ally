@@ -8,14 +8,6 @@
   <!-- News Container -->
   <div id="news-container">
     <div class="row">
-      <header class="project-header twelve columns">
-        <div class="row">
-          <img src="/wp-content/themes/ally/images/logo.jpg" id="logo">
-        </div>
-      </header>
-    </div>
-    <!-- Header Row -->
-    <div class="row">
       <div class="columns eight">
         <!-- Features -->
         <div id="feature-container">
