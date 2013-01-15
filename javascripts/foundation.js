@@ -4,7 +4,7 @@
  Description: Custom theme for AxisPhilly
  Author: Casey Thomas, Jeff Frankl
  Author URI: caseypthomas.org, jfrankl.org
- Version: 0.5.0
+ Version: 0.5.5
 */
 /*!
  * jQuery Cookie Plugin v1.3
@@ -4401,15 +4401,18 @@ contentLoaded(win, function () {
 
   var settings = {
         callback: $.noop,
+        deep_linking: true,
         init: false
-      }, 
+      },
 
       methods = {
         init : function (options) {
-          settings = $.extend({}, options, settings);
+          settings = $.extend({}, settings, options);
 
           return this.each(function () {
             if (!settings.init) methods.events();
+
+            if (settings.deep_linking) methods.from_hash();
           });
         },
 
@@ -4429,7 +4432,7 @@ contentLoaded(win, function () {
 
           if (hasHash && $content.length > 0) {
             // Show tab content
-            e.preventDefault();
+            if (e && !settings.deep_linking) e.preventDefault();
             $content.closest('.tabs-content').children('li').removeClass('active').hide();
             $content.css('display', 'block').addClass('active');
           }
@@ -4439,6 +4442,13 @@ contentLoaded(win, function () {
           $tab.addClass('active');
 
           settings.callback();
+        },
+
+        from_hash : function () {
+          var hash = window.location.hash,
+              $tab = $('a[href="' + hash + '"]');
+
+          $tab.trigger('click.fndtn');
         }
       }
 
@@ -4448,7 +4458,7 @@ contentLoaded(win, function () {
     } else if (typeof method === 'object' || !method) {
       return methods.init.apply(this, arguments);
     } else {
-      $.error('Method ' +  method + ' does not exist on jQuery.foundationTooltips');
+      $.error('Method ' +  method + ' does not exist on jQuery.foundationTabs');
     }
   };
 }(jQuery, this, this.document));
