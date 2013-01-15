@@ -37,7 +37,7 @@
         <div id="featured">
           <!-- features go here -->
           <?php
-            query_posts(array(
+            $featured_args = array(
               'orderby' => 'date', 
               'order' => 'DESC',
               'posts_per_page' => 5,
@@ -46,11 +46,13 @@
               'post_status' => 'publish',
               'category_name' => $slug,
               'post_type' => array('post', 'external_post', 'external_tool', 'wp_tool')
-            ));
+            );
 
-            if (have_posts()):
-              while (have_posts()):
-                the_post();
+            $featured = new WP_Query($featured_args);
+
+            if ($featured->have_posts()):
+              while ($featured->have_posts()):
+                $featured->the_post();
           ?>
           <div>
             <?php if (has_post_thumbnail($post->ID)):  
@@ -66,6 +68,7 @@
             </div>
           </div>
           <?php endwhile; endif; ?>
+          <?php wp_reset_postdata(); ?>
         </div>
       </div><!-- End Features -->
     </div><!-- End Header Row -->
@@ -94,20 +97,24 @@
           <div id="stories" class="twelve columns">
             <div class="items">
               <?php
-                query_posts(array(
+                $stories_args = array(
                   'orderby' => 'date', 
                   'order' => 'DESC',
                   'post_status' => 'publish', 
                   'category_name' => $slug, 
                   'post_type' => array('post' , 'external_post'),
                   'posts_per_page' => -1
-                ));
-                if (have_posts()):
-                  while (have_posts()):
-                    the_post();
+                );
+
+                $stories = new WP_Query($stories_args);
+
+                if ($stories->have_posts()):
+                  while ($stories->have_posts()):
+                    $stories->the_post();
               ?>
                 <?php get_template_part('archive', 'feed'); ?> 
               <?php endwhile; endif; ?>
+              <?php wp_reset_postdata(); ?>
             </div>
           </div>
         </div>
