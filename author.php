@@ -31,29 +31,18 @@
       <div id="stories">
         <div class="items">
           <?php
-            query_posts(array('orderby' => 'date', 'order' => 'DESC', 'post_status' => 'publish', 'author' => $author->id));
+            query_posts(array(
+              'orderby' => 'date',
+              'order' => 'DESC',
+              'post_status' => 'publish',
+              'author' => $author->id
+            ));
             if (have_posts()):
               while (have_posts()):
                 the_post();
           ?>
-          <article class="row"> 
-            <?php if (has_post_thumbnail($post->ID)) { ?>  
-              <div class="eight mobile-two columns">
-            <?php } else { ?>
-              <div class="twelve mobile-four columns">
-            <?php } ?>
-                <h4><a href="<?php  the_permalink(); ?>"><?php  the_title(); ?></a></h4>
-                <div class="datetime hide-for-small"><?php  the_time('F j, Y'); ?></div>
-                <div class="hide-for-small"><?php  the_excerpt(); ?></div>
-              </div>
-              <div class="four mobile-two columns">
-                <?php the_post_thumbnail(); ?>
-              </div>
-          </article>
-          <?php 
-            endwhile;
-            endif;
-          ?>
+            <?php get_template_part('archive', 'feed'); ?> 
+          <?php endwhile; endif; ?>
         </div>
       </div>
     </div><!-- End News Container -->

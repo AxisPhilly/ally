@@ -20,7 +20,7 @@
   <meta property="og:type" content="<?php
     if (stripos($_SERVER["REQUEST_URI"], 'article/')) { 
       echo 'article'; 
-    } elseif (stripos($_SERVER["REQUEST_URI"], 'projects/')) {
+    } elseif (stripos($_SERVER["REQUEST_URI"], 'project/')) {
       echo 'project page';
     } else {
       echo 'homepage';
@@ -29,7 +29,7 @@
   <meta property="og:title" content="<?php
     if(stripos($_SERVER["REQUEST_URI"], 'article/')) {
       echo get_the_title();
-    } elseif (stripos($_SERVER["REQUEST_URI"], 'projects/')) {
+    } elseif (stripos($_SERVER["REQUEST_URI"], 'project/')) {
       echo get_category_by_slug(get_slug())->name . ' Project Page';
     } else {
       echo 'AxisPhilly Homepage';
@@ -87,7 +87,7 @@
               </ul>
             </li>
             <li class="divider"></li>
-            <li><a href="/tools">Tools &amp; Data</a></li>
+            <li class="active"><a href="/tools">Tools &amp; Data</a></li>
             <li class="divider"></li>
             <li><a href="/about">About</a></li>
             <li class="search">

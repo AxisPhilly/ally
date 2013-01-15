@@ -13,23 +13,19 @@
     <div class="row">
       <div id="stories" class="twelve columns">
         <div class="items">
-        <?php if (have_posts()): ?>
+          <?php if (have_posts()): ?>
           <h1 class="page-title"><?php printf(__('Search Results for: %s', 'ally'), '<span>' . get_search_query() . '</span>' ); ?></h1>
-            <?php
-            /* Run the loop for the search to output the results.
-             * If you want to overload this in a child theme then include a file
-             * called loop-search.php and that will be used instead.
-             */
-              get_template_part('post' , 'search') ;
-            ?>
+            <?php while (have_posts()) : the_post(); ?>
+              <?php get_template_part('archive' , 'feed'); ?>
+            <?php endwhile; ?>
           <?php else : ?>
             <div id="post-0" class="post no-results not-found">
               <h2 class="entry-title"><?php _e('Nothing Found', 'ally'); ?></h2>
               <div class="entry-content">
                 <p><?php _e('Sorry, but nothing matched your search criteria. Please try again with some different keywords.', 'Ally'); ?></p>
                 <?php get_search_form(); ?>
-              </div><!-- .entry-content -->
-            </div><!-- #post-0 -->
+              </div>
+            </div>
           <?php endif; ?>
         </div>
       </div>
