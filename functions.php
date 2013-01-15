@@ -285,19 +285,6 @@ foreach (array('pre_term_description') as $filter) {
 foreach (array('term_description') as $filter) {
   remove_filter($filter, 'wp_kses_data');
 }
-
-
-// Broken: The function dont_publish does not work correctly. If you try to remove "featured" selection from category, it still gives error message.
-
-// function dont_publish() {
-//   if (in_category(12)){
-//     if (!has_post_thumbnail()) {
-//       wp_die('A post with the category "featured" must have a featured image. Please add a featured image or remove the category "featured".');
-//     }
-//   }
-// }
-
-// add_action( 'pre_post_update', 'dont_publish' );
   
 function get_slug(){
   $url = $_SERVER["REQUEST_URI"];
@@ -335,14 +322,11 @@ function list_of_meta_tags(){
 function my_admin_notice(){
   global $pagenow;
   $meta_tags = list_of_meta_tags('featured');
-  if ( $pagenow == 'post.php' ) {
-    if (in_array('featured', $meta_tags)){
-      if (!has_post_thumbnail()) {
+  $post_type = get_post_type( $post->ID );
+  if (($pagenow == 'post.php')&&(in_array('featured', $meta_tags))&&(!has_post_thumbnail())&&(($post_type!="discussion"))) {
       echo '<div class="error">
          <p>A post with the category "featured" must have a featured image. Please add a featured image or remove the category "featured".</p>
       </div>';
-      }
-    }
   }
 }
 
