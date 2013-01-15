@@ -31,12 +31,6 @@
       <div id="stories">
         <div class="items">
           <?php
-            query_posts(array(
-              'orderby' => 'date',
-              'order' => 'DESC',
-              'post_status' => 'publish',
-              'author' => $author->id
-            ));
             if (have_posts()):
               while (have_posts()):
                 the_post();
