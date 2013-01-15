@@ -1,5 +1,17 @@
 <?php
 
+function disqus_embed($disqus_shortname) {
+    global $post;
+    wp_enqueue_script('disqus_embed','http://'.$disqus_shortname.'.disqus.com/embed.js');
+    echo '<div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = "'.$disqus_shortname.'";
+        var disqus_title = "'.$post->post_title.'";
+        var disqus_url = "'.get_permalink($post->ID).'";
+        var disqus_identifier = "'.$disqus_shortname.'-'.$post->ID.'";
+    </script>';
+}
+
 function ally_setup() {
 
   add_editor_style();
@@ -229,6 +241,24 @@ function create_post_type() {
 
   // connect external_tool to category taxonomy
   register_taxonomy_for_object_type('category', 'external_tool');
+
+  register_post_type('discussion',
+    array(  
+      'labels' => array(  
+        'name' => __('Discussions'),  
+        'singular_name' => __('Discussion')  
+      ),  
+      'public' => true,  
+      'menu_position' => 5,  
+      'supports' => array('title', 'editor', 'excerpt', 'thumbnail', 'post-formats', 'revisions', 'meta_info', 'comments'),
+      'rewrite' => array('slug' => 'discussion','with_front' => false)  
+    )  
+  );
+
+  // connect discussion to category taxonomy
+  register_taxonomy_for_object_type('meta_info', 'discussion');
+  register_taxonomy_for_object_type('category', 'discussion');
+
 }  
 
 add_action('init', 'create_post_type'); 

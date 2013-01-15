@@ -59,6 +59,7 @@
                 'orderby' => 'date', 
                 'order' => 'DESC',
                 'post_status' => 'publish', 
+                'meta_info__not_in' => 'featured',
                 'post_type' => array('post', 'wp_tool'),
                 'posts_per_page' => -1
               ));
