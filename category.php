@@ -164,6 +164,7 @@
         <div class="row">
           <div id="discussion" class="twelve columns">
             <div class="items">
+              <ul class="block-grid two-up mobile-one-up">
               <?php
                 $discussion_args = array(
                   'orderby' => 'date', 
@@ -175,39 +176,54 @@
                 );
 
                 $discussions = new WP_Query($discussion_args);
-
+                $discussion_count = 0;
                 if ($discussions->have_posts()):
                   while ($discussions->have_posts()):
                     $discussions->the_post();
-              ?>
-                  <div class="tool">
-                    <?php
-                      echo "<a href='"; 
-                      the_permalink();
-                      echo "'>";
+              ?>  
+                  <li class="tool">
+
+                    <div class='caption'>
+                      <?php
+                        echo "<a href='"; 
+                        the_permalink();
+                        echo "'>";
+
+                      ?>                        
+                    <?
+                      $discussion_count++;
+                      if ($discussion_count == 1){
+                        $header_level = 2;
+                      }
+                      elseif (($discussion_count > 1)&&($discussion_count <= 4)) {
+                        $header_level = 3;
+                      }
+                      else {
+                        $header_level = 5;
+                      }
+                      echo '<h' . $header_level . '>'; 
+                      the_title();
+                      echo '</h' . $header_level . '>';
                     ?>
-                    <div class="caption">
-                      <h2><?php the_title(); ?></h2>
                     </a>
-                  </div>
                     <?php 
-                      echo "hi" . $discussions . "hi";
-                      print_r($rant);
-                      $red = "";
-                      $red = $post->ID;
-                      $defaults = array(
-                        'post_id' => $red,
-                        'count' => false
-                      );
-                      print_r($red);
-                      $blue = get_comments($defaults);
-                      print_r($blue);
-                      echo $blue[2]->comment_content;
+                      comments_template();
+                      $comment_number = get_comments_number();
+                      if ($comment_number > 0):
+                        $defaults = array(
+                          'post_id' => $post->ID,
+                          'number' => 1,                        
+                          'count' => false
+                        );
+                        echo "<div>".$comment_number." Replies</div>";
+                      else:
+                      echo "0 Replies";
+                    endif;
                     ?>
-
-
                   </div>
+                  </li>
                 <?php endwhile; endif; ?>
+              </ul>
             </div>
           </div>
         </div>
