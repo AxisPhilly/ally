@@ -399,7 +399,7 @@ function in_project($post_id) {
 
 function my_admin_notice(){
   global $pagenow;
-  $meta_tags = list_of_meta_tags('featured');
+  $meta_tags = get_post_meta_tags('featured');
   $post_type = get_post_type( $post->ID );
   if (($pagenow == 'post.php')&&(in_array('featured', $meta_tags))&&(!has_post_thumbnail())&&(($post_type!="discussion"))) {
       echo '<div class="error">
