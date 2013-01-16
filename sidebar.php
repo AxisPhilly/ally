@@ -48,7 +48,7 @@
         </div>
         <div class="recent discussion">
         <?php 
-          if(isset($c_name)) { ?>
+          if(isset($c_name) and (get_post_type(the_post()) != 'discussion')) { ?>
             <p>
               <strong>Recent discussion about <?php echo $c_name; ?></strong>
             </p>
