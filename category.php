@@ -125,16 +125,19 @@
           <div id="tools-and-data" class="twelve columns">
             <div class="items">
               <?php
-                query_posts(array(
+                $tools_args = array(
                   'orderby' => 'date', 
                   'order' => 'DESC',
                   'post_status' => 'publish', 
                   'category_name' => $slug, 
                   'post_type' => array('wp_tool', 'external_tool')
-                ));
-                if (have_posts()):
-                  while (have_posts()):
-                    the_post();
+                );
+               
+                $tools = new WP_Query($tools_args);
+
+                if ($tools->have_posts()):
+                  while ($tools->have_posts()):
+                    $tools->the_post();
               ?>
                 <div class="tool">
                   <?php
@@ -161,32 +164,48 @@
         <div class="row">
           <div id="discussion" class="twelve columns">
             <div class="items">
-                <?php
-                  query_posts(array(
-                    'orderby' => 'date', 
-                    'order' => 'DESC',
-                    'post_status' => 'publish', 
-                    'category_name' => $slug, 
-                    'post_type' => array('discussion')
-                  ));
-                  if (have_posts()):
-                    while (have_posts()):
-                      the_post();
-                ?>
+              <?php
+                $discussion_args = array(
+                  'orderby' => 'date', 
+                  'order' => 'DESC',
+                  'post_status' => 'publish', 
+                  'category_name' => $slug, 
+                  'post_type' => array('discussion'),
+                  'posts_per_page' => -1
+                );
+
+                $discussions = new WP_Query($discussion_args);
+
+                if ($discussions->have_posts()):
+                  while ($discussions->have_posts()):
+                    $discussions->the_post();
+              ?>
                   <div class="tool">
                     <?php
                       echo "<a href='"; 
-                      if (get_post_type() == 'external_tool') 
-                        echo get_post_meta( $post->ID, '_url_name', true);
-                        else the_permalink();
+                      the_permalink();
                       echo "'>";
-                    ?>              
-                    <?php the_post_thumbnail(); ?>
-                      <div class="caption">
-                        <h5><?php the_title(); ?></h5>
-                        <span><?php the_excerpt(); ?></span>
-                      </div>
+                    ?>
+                    <div class="caption">
+                      <h2><?php the_title(); ?></h2>
                     </a>
+                  </div>
+                    <?php 
+                      echo "hi" . $discussions . "hi";
+                      print_r($rant);
+                      $red = "";
+                      $red = $post->ID;
+                      $defaults = array(
+                        'post_id' => $red,
+                        'count' => false
+                      );
+                      print_r($red);
+                      $blue = get_comments($defaults);
+                      print_r($blue);
+                      echo $blue[2]->comment_content;
+                    ?>
+
+
                   </div>
                 <?php endwhile; endif; ?>
             </div>
