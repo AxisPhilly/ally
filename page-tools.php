@@ -30,15 +30,18 @@
       <div id="tools-and-data" class="twelve columns">
         <div class="items">
         <?php
-          query_posts(array(
+          $tool_args = array(
             'orderby' => 'date', 
             'order' => 'DESC',
             'post_status' => 'publish', 
             'post_type' => array('wp_tool', 'external_tool')
-          ));
-          if (have_posts()):
-            while (have_posts()):
-              the_post();
+          );
+
+          $tools = new WP_Query($tool_args);
+
+          if ($tools->have_posts()):
+            while ($tools->have_posts()):
+              $tools->the_post();
         ?>
           <div class="tool">
             <?php
