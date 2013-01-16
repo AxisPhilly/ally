@@ -47,27 +47,27 @@
         <?php wp_reset_postdata(); ?>
         </div>
         <div class="recent discussion">
-        <?php 
-          if(isset($c_name) and (get_post_type(the_post()) != 'discussion')) { ?>
-            <p>
-              <strong>Recent discussion about <?php echo $c_name; ?></strong>
-            </p>
-            <?php
-              $discussion_args = array(
-                'post_per_page' => 3,
-                'post_type' => 'discussion'
-              );
+          <?php 
+            if(isset($c_name) and (get_post_type(the_post()) != 'discussion')) { ?>
+              <p>
+                <strong>Recent discussion about <?php echo $c_name; ?></strong>
+              </p>
+              <?php
+                $discussion_args = array(
+                  'posts_per_page' => 3,
+                  'post_type' => 'discussion'
+                );
 
-              $discussion = new WP_Query($discussion_args);
+                $discussion = new WP_Query($discussion_args);
 
-              if($discussion->have_posts()):
-                while($discussion->have_posts()):
-                  $discussion->the_post();
-            ?>
-          <a href="<?php echo get_permalink($post->ID); ?>"><?php print_r($post->post_title); ?></a>
+                if($discussion->have_posts()):
+                  while($discussion->have_posts()):
+                    $discussion->the_post();
+              ?>
+            <a href="<?php echo get_permalink($post->ID); ?>"><?php print_r($post->post_title); ?></a>
+          <?php endwhile; endif; } ?>
+          <?php wp_reset_postdata(); ?>
         </div>
-        <?php endwhile; endif; } ?>
-        <?php wp_reset_postdata(); ?>
       </div>
     </div>
   </div>
