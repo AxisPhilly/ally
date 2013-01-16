@@ -33,7 +33,7 @@
         <?php
           $recent_posts_args = array(
             'posts_per_page' => 3,
-            'category_name' => (isset($c_name) ? $c_name : false)
+            'category_name' => (isset($c_slug) ? $c_slug : false)
           );
 
           $recent_posts = new WP_Query($recent_posts_args);
