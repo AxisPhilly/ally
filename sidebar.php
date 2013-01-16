@@ -4,7 +4,7 @@
       <div class="social-container">
         <strong>Share this article</strong>
         <div class="shorturl-container">
-          <input type="text" name="shorturl" id="shorturl" value="http://axs.ph/Hnh34g" readonly="true"></input>
+          <input type="text" name="shorturl" id="shorturl" value="<?php echo wp_get_shortlink(); ?>" readonly="true"></input>
         </div>
         <div class="sites">
           <a href="#"><i class="social-foundicon-twitter"></i></a>
