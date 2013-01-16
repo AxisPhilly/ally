@@ -13,33 +13,39 @@
           <a href="#"><i class="general-foundicon-mail"></i></a>
         </div>
       </div>
-      <?php
-        //gets id for parent category 'project'
-        $project_parent_category = get_category_by_slug('project');
-        $project_parent_category_id=$project_parent_category->term_id;
-        $categories=get_the_category();
-        foreach($categories as $category){
-          if($category->category_parent==$project_parent_category_id){
-            $c_name = $category->name;
-            $c_slug = $category->slug; 
-            $c_number = $category->cat_ID; 
-      ?>
       <div class="project-info-container">
+      <?php
+        if (in_project($post->ID)) {
+          $category=get_the_category();
+          $c_name = $category[0]->name;
+          $c_slug = $category[0]->slug; 
+      ?>
         <p>
           <strong>This article is part of our series on <a href="/project/<?php echo $c_slug; ?>"><?php echo $c_name; ?></a>.
           Read more from the series:</strong>
         </p>
+      <?php } else { ?>
+        <p>
+          <strong>Recent Stories</strong>
+        </p>
+      <?php } ?>
         <div class="recent-stories">
-        <?php 
-          global $post2;
-          $my_query2 = get_posts('numberposts=3&cat='.$c_number);
-          foreach($my_query2 as $post2):
-            setup_postdata($post2); ?>
-            <a href="<?php echo get_permalink($post2->ID); ?>"><?php print_r($post2->post_title); ?></a>
-          <?php endforeach; ?>
+        <?php
+          $related_posts_args = array(
+            'posts_per_page' => 3,
+            'category_name' => (isset($c_name) ? $c_name : false)
+          );
+
+          $related_posts = new WP_Query($related_posts_args);
+
+          if($related_posts->have_posts()):
+            while($related_posts->have_posts()):
+              $related_posts->the_post();
+        ?>
+            <a href="<?php echo get_permalink($post->ID); ?>"><?php print_r($post->post_title); ?></a>
+        <?php endwhile; endif; ?>
         </div>
       </div>
-      <?php break; } } //break after it finds one instance of the parent category 13 ?>
     </div>
   </div>
 </aside>

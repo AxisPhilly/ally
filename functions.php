@@ -368,8 +368,8 @@ function extra_contact_info($contactmethods) {
 
 add_filter('user_contactmethods', 'extra_contact_info');
 
-// Enter the id of a category in the meta_info custom taxonomy. Returns true if a post has a particular piece of meta_info.
-function list_of_meta_tags(){
+// Returns a list of meta tags for a post
+function get_post_meta_tags() {
   global $post;
   $list = array();
   $num = 0;
@@ -381,6 +381,20 @@ function list_of_meta_tags(){
     }
   }
   return($list);
+}
+
+// Checks whether or not a post is part of a project
+function in_project($post_id) {
+  $categories = get_the_category($post_id);
+  $project = get_category_by_slug('project');
+
+  foreach($categories as $category) {
+    if($category->category_parent == $project->term_id) {
+      return TRUE;
+    }
+  }
+
+  return FALSE;
 }
 
 function my_admin_notice(){
