@@ -7,6 +7,7 @@
           // Checks to see if meta_info Fullscreen is selected
           if (!in_array('full-screen', $meta_tags))
             get_sidebar('sidebar.php');
+            $sidebar = 1;
         ?>
       </div>
       <?php if (!in_array('full-screen', $meta_tags)) echo '<div class="gutter one columns"></div>' ?>
@@ -52,7 +53,7 @@
               <?php
                 // Checks to see if meta_info Fullscreen is selected
                 if (!in_array('full-screen', $meta_tags))
-                  include( 'sidebar-bottom.php');
+                  include('sidebar.php');
               ?>
             </div>
           </div>
