@@ -31,16 +31,16 @@
       <?php } ?>
         <div class="recent-stories">
         <?php
-          $related_posts_args = array(
+          $recent_posts_args = array(
             'posts_per_page' => 3,
             'category_name' => (isset($c_name) ? $c_name : false)
           );
 
-          $related_posts = new WP_Query($related_posts_args);
+          $recent_posts = new WP_Query($recent_posts_args);
 
-          if($related_posts->have_posts()):
-            while($related_posts->have_posts()):
-              $related_posts->the_post();
+          if($recent_posts->have_posts()):
+            while($recent_posts->have_posts()):
+              $recent_posts->the_post();
         ?>
             <a href="<?php echo get_permalink($post->ID); ?>"><?php print_r($post->post_title); ?></a>
         <?php endwhile; endif; ?>
