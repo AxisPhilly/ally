@@ -50,7 +50,7 @@
       <?php } ?>
       <div class="hide-for-small">
         <?php the_excerpt(); ?>
-        <?php the_tags('<span class="round label">','</span> <span class="round label">','</span>'); ?> 
+        <?php the_tags('<span class="radius label">','</span> <span class="radius label">','</span>'); ?> 
       </div>
     </div>
   <?php if (has_post_thumbnail($post->ID)): ?>  
