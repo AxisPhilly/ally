@@ -2,6 +2,9 @@
   Developer: Casey Thomas
   Twitter: @caseypt
 
+  Developer: Jeff Frankl
+  Twitter: @jefffrankl
+
 /* SITE */
   Standards: HTML5, CSS3
   Components: Foundation (zurb.com), jQuery, Backbone.js, 
