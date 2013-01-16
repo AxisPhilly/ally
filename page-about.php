@@ -28,7 +28,7 @@
       </div>
 
       <div class="ten mobile-three columns" id="about-container">
-        <?php while ( have_posts() ) : the_post(); ?>
+        <?php while (have_posts()) : the_post(); ?>
           <?php the_content(); ?>
         <?php endwhile; // end of the loop. ?>
       </div>
