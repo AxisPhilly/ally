@@ -10,7 +10,7 @@
   <?php
     // Generate list of meta tags
     global $meta_tags;
-    $meta_tags = list_of_meta_tags();
+    $meta_tags = get_post_meta_tags();
   ?>
   <title>AxisPhilly</title>
   <meta charset="utf-8">
