@@ -20,7 +20,7 @@
           $c_slug = $category[0]->slug; 
       ?>
         <p>
-          <strong>This article is part of our series on <a href="/project/<?php echo $c_slug; ?>"><?php echo $c_name; ?></a>.
+          <strong>This <?php if(get_post_type($post) == 'wp_tool') { echo 'tool'; } else { echo 'article'; } ?> is part of our series on <a href="/project/<?php echo $c_slug; ?>"><?php echo $c_name; ?></a>.
           Read more from the series:</strong>
         </p>
       <?php } else { ?>
