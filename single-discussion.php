@@ -7,6 +7,7 @@
           // Checks to see if meta_info Fullscreen is selected
           if (!in_array('full-screen', $meta_tags))
             get_sidebar('sidebar.php');
+            $sidebar = 1;
         ?>
       </div>
       <?php if (!in_array('full-screen', $meta_tags)) echo '<div class="gutter one columns"></div>' ?>
@@ -14,7 +15,7 @@
         <div class="single-article view">
           <header class="article-header">
             <h2 class="headline"><?php the_title(); ?></h2>
-            <?php if ((has_post_thumbnail($post->ID)) && (!in_array('hide-featured', $meta_tags))):  ?>
+            <?php if((has_post_thumbnail($post->ID)) && (!in_array('hide-featured', $meta_tags))): ?>
               <div class="media-container full-page">
                 <div class="media">
                   <?php 
@@ -37,34 +38,19 @@
               setup_postdata($post);
               the_content();
             ?>
-            <p>
-              <?php
-                the_tags('<span class="round label">','</span> <span class="round label">','</span>');
-              ?>
-            </p>
           </div>
           <?php
-            comments_template( 'comments.php', 'false' );
+            comments_template('comments.php', 'false');
           ?>
           <div class="row">
             <div class="bottombar">
               <?php
                 // Checks to see if meta_info Fullscreen is selected
                 if (!in_array('full-screen', $meta_tags))
-                  include( 'sidebar-bottom.php');
+                  include('sidebar.php');
               ?>
             </div>
           </div>
-          <nav class="article-navigation row">
-            <ul>
-              <li class="previous six columns mobile-two">
-                <?php previous_post_link('%link', '<strong><i class="general-foundicon-left-arrow"></i> Previous</strong><span>%title</span>'); ?>
-              </li>
-              <li class="next six columns mobile-two">
-                <?php next_post_link('%link', '<strong>Next <i class="general-foundicon-right-arrow"></i></strong><span>%title</span>'); ?>
-              </li>
-            </ul>
-          </nav>
         </div>
       </article>
       <?php if (!in_array('full-screen', $meta_tags)) echo '<div class="gutter one columns"></div>'; ?>
