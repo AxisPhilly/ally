@@ -101,6 +101,14 @@ h1, h2, h3, h4, h5, h6 {
       font-weight: $menuFontWeight;
     }
 
+    ul > li:not(.name):hover {
+      background: #fff;
+
+      a {
+
+      }
+    }
+
     ul > li.has-dropdown a::after {
       border-color: #333 transparent transparent transparent;
     }
@@ -153,12 +161,34 @@ footer {
   width: 100%;
   color: #fff;
 
-  .row {
-    padding: 20px;
-  }
-
   ul {
     list-style-type: none;
+  }
+
+  .about {
+    padding: 25px;
+  }
+
+  .colors {
+    div {
+      height: 5px;
+    }
+
+    .yellow {
+      background-color: #fcd440;
+    }
+
+    .light-blue {
+      background-color: #00a7df;
+    }
+
+    .red {
+      background-color: #df293d;
+    }
+
+    .dark-blue {
+      background-color: #0e6790;
+    }
   }
 }
 

@@ -1,5 +1,11 @@
   <footer>
-    <div class="row">
+    <div class="row colors">
+      <div class="three columns mobile-one yellow"> </div>
+      <div class="three columns mobile-one light-blue"> </div>
+      <div class="three columns mobile-one red"> </div>
+      <div class="three columns mobile-one dark-blue"> </div>
+    </div>
+    <div class="row about">
       <div class="three columns">
         <h3 class="subheader">AxisPhilly</h3>
         <p>
