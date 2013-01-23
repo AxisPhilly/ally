@@ -288,26 +288,34 @@ margin-right: auto
   padding: 1em 1em;
 }
 
-#homepage-content h3 {
-  font-size: 24px;
-  margin-top: 8px;
-  margin-bottom: 8px;
+#homepage-content .byline {
+  margin: 0px 0px 0px 0px;
+  font-style: italic;
+  line-height: 1.6;
+
+  @media(max-width: 360px) {
+    font-size: 14px;
+  }
 }
 
-#homepage-content #homepage-featured h3 {
-  font-size: 48px;
-  margin-top: 4px;
-}
-
-#homepage-content
-
-.byline {
+#homepage-content #homepage-featured .byline {
   margin: 16px 0px 8px 0px;
   font-style: italic;
 
   @media(max-width: 360px) {
     font-size: 14px;
   }
+}
+
+#homepage-content h3 {
+  font-size: 24px;
+  margin-top: 8px;
+  margin-bottom: 2px;
+}
+
+#homepage-content #homepage-featured h3 {
+  font-size: 48px;
+  margin-top: 4px;
 }
 
 #homepage-content #homepage-featured .category-symbology {

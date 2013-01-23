@@ -71,6 +71,7 @@
             ?>
           </div>  
           <h3><a href=""><?php the_title(); ?></a></h3>
+          <div class="byline">by <?php coauthors_posts_links(); ?> — <?php the_time('M. j'); ?></div>
           <?php the_excerpt(); ?>
         </article>
 
@@ -95,6 +96,7 @@
         ?>
         <article>
           <h3><a href=""><?php the_title(); ?></a></h3>
+          <div class="byline">by <?php coauthors_posts_links(); ?> — <?php the_time('M. j'); ?></div>
         </article>
 
         <?php endwhile; endif; ?>
