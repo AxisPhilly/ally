@@ -3,8 +3,8 @@
   // Get Slug from URL
 
 ?>
-<section class="row" id="featured-content BLANG">
-      <div class="six columns">
+<section class="row" id="homepage-content">
+      <div class="six columns" id="homepage-featured">
         <?php
           $featured_args = array(
             'orderby' => 'date', 
@@ -24,11 +24,20 @@
         ?>
         <article>
           <?php if (has_post_thumbnail($post->ID)):  
-            $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'medium'); ?>
+            $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'large'); ?>
             <img src="<?php echo $image[0]; ?>">
           <?php endif; ?>
+          <?php if(stripos($_SERVER["REQUEST_URI"], 'project/') == FALSE) { ?>
+            <div class="category-symbology">
+              <?php
+                list_categories();
+              ?>
+            </div>
+          <?php } ?>          
             <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-            <span class="byline">by <?php coauthors_posts_links(); ?>, <?php the_time('F j, Y'); ?></span>
+            <span class="byline">by <?php coauthors_posts_links(); ?> — <?php the_time('F j, Y'); ?></span>
+
+
             <?php the_excerpt(); ?>
           <?php endwhile; endif; ?>
           <?php wp_reset_postdata(); ?>
@@ -51,6 +60,16 @@
               $latest->the_post();
         ?>
         <article>
+          <?php if (has_post_thumbnail($post->ID)):  
+            $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'thumbnail'); ?>
+            <img src="<?php echo $image[0]; ?>">
+          <?php endif; ?>        
+
+          <div class="category-symbology">
+            <?php
+              list_categories();
+            ?>
+          </div>  
           <h3><a href=""><?php the_title(); ?></a></h3>
           <?php the_excerpt(); ?>
         </article>
@@ -65,7 +84,7 @@
             'order' => 'DESC',
             'posts_per_page' => 5,
             'post_status' => 'publish',
-            'post_type' => array('external_tool', 'wp_tool')
+            'post_type' => array('post')
           );
 
           $latest = new WP_Query($latest_args);

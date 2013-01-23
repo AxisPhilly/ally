@@ -383,6 +383,19 @@ function get_post_meta_tags() {
   return($list);
 }
 
+// used to pull project category for homepage, search results, and other category symbology
+
+function list_categories() {
+  $project_parent_category = get_category_by_slug('project');
+  $project_parent_category_id=$project_parent_category->term_id;
+  $categories=get_the_category();
+  foreach($categories as $category){
+    if($category->category_parent==$project_parent_category_id){
+      echo "<a class='one-category' href='/project/". $category->slug . "'>" . $category->name . "</a>";
+    }
+  }
+}
+
 // Checks whether or not a post is part of a project
 function in_project($post_id) {
   $categories = get_the_category($post_id);
@@ -409,7 +422,6 @@ function my_admin_notice(){
 }
 
 add_action('admin_notices', 'my_admin_notice');
-
 
 // Crops medium image in the same way that thumbnails are cropped. Maintains a fixed height and width across all medium images.
 

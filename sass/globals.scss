@@ -159,12 +159,13 @@ footer {
 
 // NEWS FEED STYLES
 // Project header on news feed item
-.project {
+.category-symbology {
   text-transform: uppercase;
   margin-top: 1em;
   margin-bottom: 0;
-  font-size: 13px;
-  font-weight: bold;
+  font-size: 12px;
+  font-weight: $categoryFontWeight;
+  font-family: $categoryFontFamily;
  
   a:link, a:visited {
     color:#222;
@@ -252,6 +253,25 @@ margin-right: auto
   padding: 1em 1em;
 }
 
-#featured-content h3 {
-  font-size: 40px;
+#homepage-content h3 {
+  font-size: 24px;
+  margin-top: 8px;
+}
+
+#homepage-content #homepage-featured h3 {
+  font-size: 48px;
+  margin-top: 4px;
+}
+
+#homepage-content #homepage-featured .category-symbology {
+  font-size: 14px;
+  p:after
+}
+
+#homepage-content #homepage-featured .category-symbology .one-category:after {
+  content: ", ";
+}
+
+#homepage-content #homepage-featured .category-symbology .one-category:last-child:after {
+  content: "";
 }
