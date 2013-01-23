@@ -31,9 +31,19 @@
       <div id="stories">
         <div class="items">
           <?php
-            if (have_posts()):
-              while (have_posts()):
-                the_post();
+
+            $author_args = array(
+                        'orderby' => 'date', 
+                        'order' => 'DESC',
+                        'posts_per_page' => -1,
+                        'author' => $author_id,
+                        'post_status' => 'publish',
+                        'post_type' => array('post', 'external_tool', 'wp_tool')
+            );
+            $author = new WP_Query($author_args);
+            if ($author->have_posts()):
+              while ($author->have_posts()):
+                $author->the_post();
           ?>
             <?php get_template_part('archive', 'feed'); ?> 
           <?php endwhile; endif; ?>
