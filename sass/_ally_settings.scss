@@ -27,14 +27,23 @@ $darkEdge: rgba(#000, .2);
 // Font Settings
 
 //$fontSmoothing: antialiased;
-$headerFontFamily: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-$headerFontWeight: bold;
+$headerFontFamily: "calluna", "times new roman", Times, serif;
+$headerFontWeight: 700;
 $headerFontStyle: normal;
-$headerFontColor: #333;
-$bodyFontFamily: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$headerFontColor: #222;
+$bodyFontFamily: "calluna", "times new roman", Times, serif;
 $bodyFontWeight: normal;
 $bodyFontStyle: normal;
 $bodyFontColor: $txtColor;
+$categoryFontFamily: "proxima-nova", "Helvetica Neue", Helvetica, sans-serif;
+$categoryFontWeight: 800;
+$categoryFontStyle: normal;
+$categoryFontColor: #222;
+$menuFontFamily: "proxima-nova", "Helvetica Neue", Helvetica, sans-serif;
+$menuFontWeight: 400;
+$menuFontStyle: normal;
+$menuFontColor: #222;
+
 
 // Text Direction Settings
 
