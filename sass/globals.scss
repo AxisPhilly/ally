@@ -53,89 +53,94 @@ h1, h2, h3, h4, h5, h6 {
 
 .header {
   width: 100%;
-  margin-bottom: 50px; 
-}
+  margin-bottom: 50px;
+  font-family: $menuFontFamily;
+  font-color: $menuFontColor;
+  font-size: $menuFontSize;
 
-.header-logo {
-  height: 120px;
-  padding-top: 10px;
-  text-align: center;
-  background-color: #222;
+  .header-logo {
+    height: 120px;
+    padding-top: 10px;
+    text-align: center;
+    background-color: #222;
 
-  @media(max-width: 767px) {
-    display: none;
-  }
-
-  img {
-    width: 400px;
-  }
-}
-
-.spacer {
-  height: 45px;
-}
-
-.top-bar {
-  margin: 0 auto;
-  max-width: 1200px;
-  border-bottom: 1px solid #333;
-
-  // Foundation overrides
-  ul { 
-    line-height: 44px;
-  }
-  
-  ul > li.name {
-    background: #fff;
-
-    @media(min-width: $topBarBreakPoint) {
+    @media(max-width: 767px) {
       display: none;
+    }
+
+    img {
+      width: 400px;
     }
   }
 
-  ul > li a:not(.button) {
-    height: 44px;
+  .spacer {
+    height: 45px;
   }
 
-  ul > li.has-dropdown a::after {
-    border-color: #333 transparent transparent transparent;
-  }
-}
-
-.nav-container {
-  &.affix {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
+  .top-bar {
     margin: 0 auto;
-  }
-}
+    max-width: 1200px;
+    border-bottom: 1px solid #333;
 
-.social {
-  i {
-    font-size: 135%;
-  }
+    // Foundation overrides
+    ul { 
+      line-height: 44px;
+    }
+    
+    ul > li.name {
+      background: #fff;
 
-  &.desktop {
-    display: block;
+      @media(min-width: $topBarBreakPoint) {
+        display: none;
+      }
+    }
 
-    @media(max-width: $topBarBreakPoint) {
-      display: none;
+    ul > li a:not(.button) {
+      height: 44px;
+      font-size: $menuFontSize;
+      font-weight: $menuFontWeight;
+    }
+
+    ul > li.has-dropdown a::after {
+      border-color: #333 transparent transparent transparent;
     }
   }
 
-  &.mobile {
-    display: none;
+  .nav-container {
+    &.affix {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      margin: 0 auto;
+    }
+  }
 
-    a { 
-      display: inline !important;
-      padding: 5px !important;
+  .social {
+    i {
+      font-size: 135%;
     }
 
-    @media(max-width: $topBarBreakPoint) {
+    &.desktop {
       display: block;
+
+      @media(max-width: $topBarBreakPoint) {
+        display: none;
+      }
+    }
+
+    &.mobile {
+      display: none;
+
+      a { 
+        display: inline !important;
+        padding: 5px !important;
+      }
+
+      @media(max-width: $topBarBreakPoint) {
+        display: block;
+      }
     }
   }
 }

@@ -40,12 +40,10 @@ $categoryFontWeight: 800;
 $categoryFontStyle: normal;
 $categoryFontColor: #222;
 $menuFontFamily: "proxima-nova", "Helvetica Neue", Helvetica, sans-serif;
-$menuFontWeight: 400;
+$menuFontWeight: 300;
 $menuFontStyle: normal;
 $menuFontColor: #222;
-$menuFontSize: 20px;
-
-
+$menuFontSize: 17px;
 
 // Text Direction Settings
 
@@ -122,7 +120,7 @@ $topBarDropToggleSize: 5px;
 $topBarDropToggleColor: #fff;
 $topBarDropToggleAlpha: 0.5;
 $topBarSearchWidth: 200px;
-$topBarBreakPoint: 800px; // Change to 9999px for always mobile layout
+$topBarBreakPoint:  767px; // Change to 9999px for always mobile layout
 $topBarNavToggleSize: 8px;
 
 // UI Settings
