@@ -24,7 +24,7 @@
         ?>
         <article>
           <?php if (has_post_thumbnail($post->ID)):  
-            $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'large'); ?>
+            $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full'); ?>
             <img src="<?php echo $image[0]; ?>">
           <?php endif; ?>
           <?php if(stripos($_SERVER["REQUEST_URI"], 'project/') == FALSE) { ?>
@@ -35,7 +35,7 @@
             </div>
           <?php } ?>          
             <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-            <span class="byline">by <?php coauthors_posts_links(); ?> — <?php the_time('F j, Y'); ?></span>
+            <div class="byline">by <?php coauthors_posts_links(); ?> — <?php the_time('M. j'); ?></div>
 
 
             <?php the_excerpt(); ?>
