@@ -61,6 +61,10 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
   background-color: #222;
 
+  @media(max-width: 767px) {
+    display: none;
+  }
+
   img {
     width: 400px;
   }
@@ -71,10 +75,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .top-bar {
-  .name h1 {
-    display: inline-block;
-  }
+  margin: 0 auto;
+  max-width: 1200px;
+  border-bottom: 1px solid #333;
+}
 
+.nav-container {
   &.affix {
     position: fixed;
     top: 0;

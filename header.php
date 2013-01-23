@@ -62,10 +62,11 @@
       <div class="header-logo">
         <img src="<?php bloginfo('template_directory'); ?>/images/transparent.png"/>
       </div>
-      <nav class="top-bar" data-spy="affix" data-offset-top="120">
+      <div class="nav-container contain-to-grid">
+        <nav class="top-bar">
         <ul>
           <li class="name">
-            <h1><a href="/">AxisPhilly</a></h1>
+            <a href="/">AxisPhilly</a>
           </li>
           <li class="toggle-topbar has-button">
             <span class="tiny secondary button menu-button">
@@ -77,7 +78,6 @@
         </ul>
         <section>
           <ul class="left">
-            <li class="divider"></li>
             <li class="has-dropdown">
               <a href="#">Our Projects</a>
               <ul class="dropdown">
@@ -86,12 +86,9 @@
                 <li><a href="/projects">More...</a></li>
               </ul>
             </li>
-            <li class="divider"></li>
             <li><a href="/tools">Tools &amp; Data</a></li>
-            <li class="divider"></li>
             <li><a href="/about">About</a></li>
             <li class="search">
-            <li class="divider"></li>
             <li>
               <span class="social mobile">
                 <a href="http://www.twitter.com/AxisPhilly"><i class="social-foundicon-twitter"></i></a>
@@ -113,7 +110,8 @@
             </li>
           </ul>
         </section>
-      </nav>
+        </nav>
+      </div>
     </div>
   </header>
   <?php

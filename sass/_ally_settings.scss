@@ -30,7 +30,7 @@ $darkEdge: rgba(#000, .2);
 $headerFontFamily: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 $headerFontWeight: bold;
 $headerFontStyle: normal;
-$headerFontColor: #222;
+$headerFontColor: #333;
 $bodyFontFamily: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 $bodyFontWeight: normal;
 $bodyFontStyle: normal;
@@ -96,17 +96,17 @@ $navFlyoutBaseWidth: 250px;
 
 // Top Bar Settings
 
-$topBarBgColor: #222;
+$topBarBgColor: #fff;
 $topBarHeight: 45px;
 $topBarHeightMobile: 45px;
 $topBarBtmMargin: 30px;
 $topBarTitleWeight: bold;
 $topBarTitleSize: 17px;
-$topBarLinkColor: #fff;
+$topBarLinkColor: #333;
 $topBarLinkWeight: bold;
 $topBarLinkSize: 13px;
-$topBarDropBgColor: #222;
-$topBarDropLinkColor: #fff;
+$topBarDropBgColor: #fff;
+$topBarDropLinkColor: #333;
 $topBarDropToggleSize: 5px;
 $topBarDropToggleColor: #fff;
 $topBarDropToggleAlpha: 0.5;

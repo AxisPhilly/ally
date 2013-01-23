@@ -15,15 +15,23 @@ axis.Collections.Articles = Backbone.Collection.extend({
 
 axis.Views.Header = Backbone.View.extend({
   initialize: function() {
-    /*var $spacer = $('<div>', {
-      'class': 'spacer'
-    });
-
-    $(window).scroll(function() {
-      if ($('.top-bar').hasClass('affix')) {
-        $('.banner').prepend($spacer);
+    // Adpated from http://happycog.com/ fixed bar
+    var $navBar = $('.nav-container'),
+        $spacer = $('<div />', {
+          "class": "navBar-drop-spacer",
+          "height": $navBar.outerHeight()
+        });
+    
+    $(window).scroll(function () {
+      if (!$navBar.hasClass('affix') && $(window).scrollTop() > $navBar.offset().top) {
+        $navBar.before($spacer);
+        $navBar.addClass("affix");
       }
-    });*/
+      else if ($navBar.hasClass('affix')  && $(window).scrollTop() < $spacer.offset().top) {
+        $navBar.removeClass("affix");
+        $spacer.remove();
+      }
+    });
   }
 });
 
