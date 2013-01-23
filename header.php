@@ -58,7 +58,7 @@
 </head>
 <body <?php body_class(); ?>>
   <!-- Fixed header -->
-  <header class="banner">
+  <header class="header">
     <div>
       <div class="header-logo">
         <img src="<?php bloginfo('template_directory'); ?>/images/transparent.png"/>

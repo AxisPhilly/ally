@@ -51,8 +51,9 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-.banner {
+.header {
   width: 100%;
+  margin-bottom: 50px; 
 }
 
 .header-logo {
@@ -78,6 +79,23 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0 auto;
   max-width: 1200px;
   border-bottom: 1px solid #333;
+
+  // Foundation overrides
+  ul > li.name {
+    background: #fff;
+
+    @media(min-width: $topBarBreakPoint) {
+      display: none;
+    }
+  }
+
+  ul > li a:not(.button) {
+    height: 44px;
+  }
+
+  ul > li.has-dropdown a::after {
+    border-color: #333 transparent transparent transparent;
+  }
 }
 
 .nav-container {
@@ -99,7 +117,7 @@ h1, h2, h3, h4, h5, h6 {
   &.desktop {
     display: block;
 
-    @media(max-width: 980px) {
+    @media(max-width: $topBarBreakPoint) {
       display: none;
     }
   }
@@ -112,7 +130,7 @@ h1, h2, h3, h4, h5, h6 {
       padding: 5px !important;
     }
 
-    @media(max-width: 980px) {
+    @media(max-width: $topBarBreakPoint) {
       display: block;
     }
   }
