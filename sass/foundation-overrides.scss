@@ -61,7 +61,23 @@ body {
 	p {
 		line-height: 1.5;
 	}
-	.byline {
-		line-height: 1.5;
-	}
+}
+
+.columns {
+	padding: 0 10px;
+}
+
+.columns:first-child {
+	padding: 0 10px;
+	padding-left: 0px;
+}
+
+.columns:last-child {
+	padding: 0 10px;
+	padding-right: 0px;
+}
+
+.column-padding {
+  padding-left: $columnPadding;
+  padding-right: $columnPadding;
 }

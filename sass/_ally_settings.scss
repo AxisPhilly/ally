@@ -5,7 +5,7 @@
 // Grid Settings
 
 $rowWidth: 1200px;
-$columnGutter: 30px;
+$columnGutter: 20px;
 $totalColumns: 12;
 $mobileTotalColumns: 4;
 $blockGridElements: 12; // Highest number of block grid elements, Maximum of 24 supported
@@ -211,3 +211,5 @@ $screenXlarge: 1441px !default;
 // $mediaLandscape: "screen and (orientation: landscape)" !default;
 // $mediaPortrait: "screen and (orientation: portrait)" !default;
 // $mediaAll: "only screen and (max-device-width: 800px), only screen and (device-width: 1024px) and (device-height: 600px), only screen and (width: 1280px) and (orientation: landscape), only screen and (device-width: 800px), only screen and (max-width: 767px)" !default;
+
+$columnPadding: 8px;
