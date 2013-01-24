@@ -95,6 +95,11 @@
               $latest->the_post();
         ?>
         <article>
+          <div class="category-symbology">
+            <?php
+              list_categories();
+            ?>
+          </div>
           <h3><a href=""><?php the_title(); ?></a></h3>
           <div class="byline">by <?php coauthors_posts_links(); ?> — <?php the_time('M. j'); ?></div>
         </article>
@@ -134,4 +139,5 @@
     <?php endwhile; endif; ?>
     <?php wp_reset_postdata(); ?>
   </section>
+
 <?php get_footer(); ?>

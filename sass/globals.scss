@@ -291,7 +291,11 @@ margin-right: auto
 #homepage-content .byline {
   margin: 0px 0px 0px 0px;
   font-style: italic;
-  line-height: 1.6;
+  line-height: 1.5;
+
+  a:link, a:visited {
+    color:#222;
+  } 
 
   @media(max-width: 360px) {
     font-size: 14px;
@@ -323,6 +327,14 @@ margin-right: auto
   p:after
 }
 
+#homepage-content #homepage-featured p {
+  font-size: 20px;
+}
+
+#homepage-content #homepage-featured .byline {
+  font-size: 20px;
+}
+
 #homepage-content #homepage-featured .category-symbology .one-category:after {
   content: ", ";
 }
@@ -334,4 +346,14 @@ margin-right: auto
 #tools {
   border-top: 1px solid #ccc;
   padding: 15px 0;
+}
+
+#homepage-content article {
+  border-top: 1px #222 solid;
+  padding: 10px 0;
+}
+
+#homepage-content article:first-child {
+  border-top: none;
+  padding-top: 0px;
 }
