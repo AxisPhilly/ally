@@ -103,4 +103,35 @@
         <?php wp_reset_postdata(); ?>
       </div>
   </section>
+  <section id="tools" class="row">
+    <div class="three columns">
+      <h2>Tools &amp; Data</h2>
+      <p>We're building interactive maps, graphics, and applications to illuminate stories.</p>
+    </div>
+    <?php 
+      $tools_args = array(
+        'orderby' => 'date',
+        'order' => 'desc',
+        'posts_per_page' => 3,
+        'post_type' => array('wp_tool', 'external_tool')
+      );
+
+      $tools = new WP_Query($tools_args);
+
+      if ($tools->have_posts()):
+        while ($tools->have_posts()):
+          $tools->the_post();
+    ?>
+    <article class="three columns">
+      <?php if (has_post_thumbnail($post->ID)):  
+        $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'thumbnail'); ?>
+        <img src="<?php echo $image[0]; ?>">
+      <?php endif; ?> 
+      <h3><a href=""><?php the_title(); ?></a></h3>
+      <div class="byline">by <?php coauthors_posts_links(); ?> — <?php the_time('M. j'); ?></div>
+      <div><?php the_excerpt(); ?></div>
+    </article>
+    <?php endwhile; endif; ?>
+    <?php wp_reset_postdata(); ?>
+  </section>
 <?php get_footer(); ?>

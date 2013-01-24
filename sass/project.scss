@@ -67,6 +67,15 @@
     }
   }
 
+  .byline {
+    margin: 4px 4px 10px 4px;
+    display: inline-block;
+
+    @media(max-width: 360px) {
+      font-size: 14px;
+    }
+  }
+
   p {
     margin: 4px;
     line-height: 1.2; 
@@ -117,46 +126,6 @@
 
     .external-source {
       color: $thirdColor;
-    }
-  }
-}
-
-#tools-and-data {
-  .tool {
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    position: relative;
-    display: inline-block;
-    width: 32%;
-    margin: 5px;
-
-    @media(max-width: 767px) {
-      width: 48%;
-    }
-
-    @media(max-width: 550px) {
-      width: 100%;
-      margin: 10px 0;
-    }
-
-    .caption {
-      -moz-box-sizing: border-box;
-      box-sizing: border-box;
-      max-width: 100%;
-      width: 100%;
-      color: #fff;
-      background-color: #333;
-      opacity: 0.9;
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      padding: 6px;
-      z-index: 10;
-
-      h5 {
-        margin: 2px;
-        color: #fff;
-      }
     }
   }
 }
