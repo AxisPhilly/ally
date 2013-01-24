@@ -127,7 +127,7 @@
         $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'thumbnail'); ?>
         <img src="<?php echo $image[0]; ?>">
       <?php endif; ?> 
-      <h3><a href=""><?php the_title(); ?></a></h3>
+      <h5><a href=""><?php the_title(); ?></a></h5>
       <div class="byline">by <?php coauthors_posts_links(); ?> — <?php the_time('M. j'); ?></div>
       <div><?php the_excerpt(); ?></div>
     </article>
