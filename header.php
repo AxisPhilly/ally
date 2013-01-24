@@ -61,7 +61,7 @@
   <header class="header">
     <div>
       <div class="header-logo">
-        <img src="<?php bloginfo('template_directory'); ?>/images/transparent.png"/>
+        <a href="/"><img src="<?php bloginfo('template_directory'); ?>/images/transparent.png"/></a>
       </div>
       <div class="nav-container contain-to-grid">
         <nav class="top-bar">
