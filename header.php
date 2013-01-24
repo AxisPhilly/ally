@@ -96,11 +96,9 @@
                 <a href="http://www.facebook.com/AxisPhilly"><i class="social-foundicon-facebook"></i></a>
                 <a href="http://www.axisphilly.org/?feed=rss"><i class="social-foundicon-rss"></i></a>
               </span>
-              <ul class="social desktop">
-                <li><a href="http://www.twitter.com/AxisPhilly"><i class="social-foundicon-twitter"></i></a></li>
-                <li><a href="http://www.facebook.com/AxisPhilly"><i class="social-foundicon-facebook"></i></a></li>
-                <li><a href="http://www.axisphilly.org/?feed=rss"><i class="social-foundicon-rss"></i></a></li>
-              </ul>
+              <li><a href="http://www.twitter.com/AxisPhilly"><i class="social-foundicon-twitter"></i></a></li>
+              <li><a href="http://www.facebook.com/AxisPhilly"><i class="social-foundicon-facebook"></i></a></li>
+              <li><a href="http://www.axisphilly.org/?feed=rss"><i class="social-foundicon-rss"></i></a></li>
             </li>
           </ul>
           <ul class="right">
