@@ -37,8 +37,8 @@
         <?php
           # Check to see if this is an external_post. If so, display Source and Source URL instead of Author.
           if (get_post_type() == 'external_post') {
-            echo "<i>Source: <strong>" . get_post_meta($post->ID, '_source_name', true) . '</strong>' .
-                " -- 1/14/12</i>";
+            echo "<i>Source: <strong>" . get_post_meta($post->ID, '_source_name', true) . '</strong>' . 
+                  " - " . get_the_time('F j, Y') . "</i>";
           }
           elseif (get_post_type() != 'external_post') {
             echo "by "; coauthors_posts_links();
