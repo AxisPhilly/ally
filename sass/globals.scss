@@ -53,7 +53,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .header {
   width: 100%;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   font-family: $menuFontFamily;
   font-color: $menuFontColor;
   font-size: $menuFontSize;
@@ -85,6 +85,7 @@ h1, h2, h3, h4, h5, h6 {
     // Foundation overrides
     ul { 
       line-height: 44px;
+      height: 44px;
     }
     
     ul > li.name {
@@ -345,6 +346,11 @@ margin-right: auto
 }
 
 #tools {
+  border-top: 1px solid #ccc;
+  padding: 15px 0;
+}
+
+#projects {
   border-top: 1px solid #ccc;
   padding: 15px 0;
 }
