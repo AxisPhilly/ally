@@ -7,8 +7,8 @@
           <input type="text" name="shorturl" id="shorturl" value="<?php echo wp_get_shortlink(); ?>" readonly="true"></input>
         </div>
         <div class="sites">
-          <a title="tweet" href="https://twitter.com/share?text=<?php the_title(); ?>&amp;url=<?php echo wp_get_shortlink();?>&amp;via=AxisPhilly"><i class="social-foundicon-twitter"></i></a>
-          <a title="share on Facebook" href="https://www.facebook.com/sharer.php?s=100&amp;p[title]=<?php echo the_title(); ?>&amp;p[url]=<?php echo wp_get_shortlink(); ?>&amp;p[summary]=<? echo get_the_excerpt(); ?>"><i class="social-foundicon-facebook"></i></a>
+          <a title="tweet" href="https://twitter.com/share?text=<?php the_title(); ?>&amp;url=<?php echo wp_get_shortlink();?>&amp;via=AxisPhilly" target="_blank"><i class="social-foundicon-twitter"></i></a>
+          <a title="share on Facebook" href="https://www.facebook.com/sharer.php?s=100&amp;p[title]=<?php echo the_title(); ?>&amp;p[url]=<?php echo wp_get_shortlink(); ?>&amp;p[summary]=<? echo get_the_excerpt(); ?>" target="_blank"><i class="social-foundicon-facebook"></i></a>
           <a title="email" href="mailto:?subject=AxisPhilly: <?php the_title(); ?>&amp;body=<?php echo wp_get_shortlink();?> <?php echo get_the_excerpt(); ?>" target="_blank"><i class="general-foundicon-mail"></i></a>
         </div>
       </div>
