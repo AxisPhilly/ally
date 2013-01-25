@@ -110,6 +110,19 @@ h1, h2, h3, h4, h5, h6 {
       }
     }
 
+    ul > li.has-dropdown .dropdown {
+      padding: 0px;
+    }
+
+    ul > li.has-dropdown .dropdown li {
+      border-left: 1px solid $thirdColor;
+      border-right: 1px solid $thirdColor;
+    }
+
+    ul > li.has-dropdown .dropdown .last {
+      border-bottom: 1px solid $thirdColor;
+    }
+
     ul > li.has-dropdown a::after {
       border-color: #333 transparent transparent transparent;
     }

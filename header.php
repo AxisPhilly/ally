@@ -83,8 +83,7 @@
               <a href="#">Our Projects</a>
               <ul class="dropdown">
                 <li><a href="/project/avi">AVI</a></li>
-                <li><a href="/project/lobbying">Lobbying</a></li>
-                <li><a href="/projects">More...</a></li>
+                <li class="last"><a href="/project/lobbying">Lobbying</a></li>
               </ul>
             </li>
             <li><a href="/tools">Tools &amp; Data</a></li>
