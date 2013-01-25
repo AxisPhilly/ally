@@ -101,14 +101,16 @@
 
       <?php endwhile; endif; ?>
       <?php wp_reset_postdata(); ?>
-      <h3><a href="/archive">Story Archive &#8594;</a></h3>
+      <div class="archive-link">
+        <h3><a href="/archive">Story Archive &#8594;</a></h3>
+      </div>
     </div>
   </section>
   <section id="tools" class="row">
     <div class="three columns">
       <h2>Tools &amp; Data</h2>
       <p>We're building interactive maps, graphics, and applications to illuminate stories.</p>
-      <p><a href="/tools">View all of our tools</a></p>
+      <p><a href="/tools">View more tools &#8594;</a></p>
     </div>
     <?php 
       $tools_args = array(
@@ -179,11 +181,11 @@
 
         <?php endwhile; } ?>
         <?php wp_reset_postdata(); ?>
-        <a href="/project/<?php echo $project->slug; ?>">Go to project page</a>
+        <a href="/project/<?php echo $project->slug; ?>">Go to project page &#8594;</a>
       </article>
     <?php } ?>
     <article class="project-summary three columns">
-      <p>More projects coming soon</p>
+      <p><strong>More projects coming soon</strong></p>
     </article>
   </section>
 <?php get_footer(); ?>
