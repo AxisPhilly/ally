@@ -1,7 +1,16 @@
 // GENERAL
 body {
   position: relative;
+
+  p {
+    line-height: 1.5;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1;
+  }
 }
+
 
 .content-container {
   margin-top: 44px;
@@ -330,6 +339,10 @@ margin-right: auto
 #homepage-content h3 {
   font-size: 24px;
   margin: 0.3em 0 0.2em 0;
+}
+
+h3.headline {
+  
 }
 
 #homepage-content #homepage-featured h3 {
