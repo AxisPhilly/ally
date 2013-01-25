@@ -175,7 +175,7 @@ function url_meta() {
 
 function url_callback($post) {
   $url_name = get_post_meta($post->ID, '_url_name', true);
-  echo 'What is the URL for the story? <em>http://citypaper.net/storyname/storyname/</em><br><input type="text" name="url_name" style="width: 100%" value="'.$url_name.'"/>';
+  echo 'What is the URL? <em>http://citypaper.net/storyname/storyname/</em><br><input type="text" name="url_name" style="width: 100%" value="'.$url_name.'"/>';
 }
 
 add_action('add_meta_boxes', 'url_meta');
@@ -190,6 +190,52 @@ function url_save($post_ID) {
 }      
 
 add_action('save_post', 'url_save');
+
+// Create pull_quote Custom Field
+function pull_quote_meta() {
+  add_meta_box('pull_quote_meta', 'Pull Quote', 'pull_quote_callback', 'discussion', 'normal', 'high');
+}
+
+function pull_quote_callback($post) {
+  $pull_quote_name = get_post_meta($post->ID, '_pull_quote_name', true);
+  echo 'Copy and paste the pull quote (aka featured comment) for the story. Please do not include quotation marks.<br><input type="text" name="pull_quote_name" style="width: 100%" value="'.$pull_quote_name.'"/>';
+}
+
+add_action('add_meta_boxes', 'pull_quote_meta');
+
+// Save contents of pull_quote Custom Field
+function pull_quote_save($post_ID) {
+  global $post;
+           
+  if (isset($_POST)) {
+    update_post_meta( $post_ID, '_pull_quote_name', strip_tags( $_POST['pull_quote_name'] ) );
+  }
+}      
+
+add_action('save_post', 'pull_quote_save');
+
+// Create pull_quote_url Custom Field
+function pull_quote_url_meta() {
+  add_meta_box('pull_quote_url_meta', 'Pull Quote URL', 'pull_quote_url_callback', 'discussion', 'normal', 'high');
+}
+
+function pull_quote_url_callback($post) {
+  $pull_quote_url_name = get_post_meta($post->ID, '_pull_quote_url_name', true);
+  echo 'What is URL for the pull quote comment?<br><input type="text" name="pull_quote_url_name" style="width: 100%" value="'.$pull_quote_url_name.'"/>';
+}
+
+add_action('add_meta_boxes', 'pull_quote_url_meta');
+
+// Save contents of pull_quote_url Custom Field
+function pull_quote_url_save($post_ID) {
+  global $post;
+           
+  if (isset($_POST)) {
+    update_post_meta( $post_ID, '_pull_quote_url_name', strip_tags( $_POST['pull_quote_url_name'] ) );
+  }
+}      
+
+add_action('save_post', 'pull_quote_url_save');
 
 // http://wordpress.stackexchange.com/questions/15376/how-to-set-default-screen-options
 // add_action('user_register', 'set_user_metaboxes');
