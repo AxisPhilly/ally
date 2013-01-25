@@ -74,18 +74,16 @@
     </div><!-- End Header Row -->
     <div class="project-section-nav small" data-spy="affix" data-offset-top="315">
       <div class="row">
-        <dl class="tabs three-up">
-          <dd class="active"><a href="#feed">Stories</a></dd>
-          <dd><a href="#data">Tools</a></dd>
+        <dl class="tabs two-up">
+          <dd class="active"><a href="#feed">Stories &amp; Tools</a></dd>
           <dd><a href="#talk">Discuss</a></dd>
         </dl>
       </div>
     </div>
     <div class="project-section-nav large" data-spy="affix" data-offset-top="524">
       <div class="row">
-        <dl class="tabs three-up">
-          <dd class="active"><a href="#feed">Stories</a></dd>
-          <dd><a href="#data">Tools &amp; Data</a></dd>
+        <dl class="tabs two-up">
+          <dd class="active"><a href="#feed">Stories &amp; Tools</a></dd>
           <dd><a href="#talk">Discussion</a></dd>
         </dl>
       </div>
@@ -102,7 +100,7 @@
                   'order' => 'DESC',
                   'post_status' => 'publish', 
                   'category_name' => $slug, 
-                  'post_type' => array('post' , 'external_post'),
+                  'post_type' => array('post', 'external_post', 'external_tool', 'wp_tool'),
                   'posts_per_page' => -1
                 );
 
@@ -115,46 +113,6 @@
                 <?php get_template_part('archive', 'feed'); ?> 
               <?php endwhile; endif; ?>
               <?php wp_reset_postdata(); ?>
-            </div>
-          </div>
-        </div>
-      </li>
-      <li id="dataTab">
-        <a name="tools-and-data"></a>
-        <div class="row">
-          <div id="tools-and-data" class="twelve columns">
-            <div class="items">
-              <?php
-                $tools_args = array(
-                  'orderby' => 'date', 
-                  'order' => 'DESC',
-                  'post_status' => 'publish', 
-                  'category_name' => $slug, 
-                  'post_type' => array('wp_tool', 'external_tool')
-                );
-               
-                $tools = new WP_Query($tools_args);
-
-                if ($tools->have_posts()):
-                  while ($tools->have_posts()):
-                    $tools->the_post();
-              ?>
-                <div class="tool">
-                  <?php
-                    echo "<a href='"; 
-                    if (get_post_type() == 'external_tool') 
-                      echo get_post_meta( $post->ID, '_url_name', true);
-                      else the_permalink();
-                    echo "'>";
-                  ?>              
-                  <?php the_post_thumbnail(); ?>
-                    <div class="caption">
-                      <h5><?php the_title(); ?></h5>
-                      <span><?php the_excerpt(); ?></span>
-                    </div>
-                  </a>
-                </div>
-              <?php endwhile; endif; ?>
             </div>
           </div>
         </div>
