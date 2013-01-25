@@ -70,7 +70,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .header {
   width: 100%;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   font-family: $menuFontFamily;
   font-color: $menuFontColor;
   font-size: $menuFontSize;
@@ -99,36 +99,14 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 1200px;
     border-bottom: 1px solid #333;
 
-    // Foundation overrides
-    ul { 
-      line-height: 44px;
-      height: 44px;
-    }
-    
-    ul > li.name {
+    ul > li:not(.name):hover {
       background: #fff;
-
-      @media(min-width: $topBarBreakPoint) {
-        display: none;
-      }
     }
 
     ul > li a:not(.button) {
       height: 44px;
       font-size: $menuFontSize;
       font-weight: $menuFontWeight;
-    }
-
-    ul > li:not(.name):hover {
-      background: #fff;
-
-      a {
-
-      }
-    }
-
-    ul > li.has-dropdown .dropdown {
-      padding: 0px;
     }
 
     ul > li.has-dropdown .dropdown li {
@@ -140,8 +118,20 @@ h1, h2, h3, h4, h5, h6 {
       border-bottom: 1px solid $thirdColor;
     }
 
-    ul > li.has-dropdown a::after {
-      border-color: #333 transparent transparent transparent;
+    ul > li.name {
+      background: #fff;
+
+      @media(min-width: $topBarBreakPoint) {
+        display: none;
+      }
+    }
+
+    li.search {
+      line-height: 44px;
+    }
+
+    ul > li.has-dropdown .dropdown {
+      padding: 0px;
     }
   }
 
@@ -224,7 +214,6 @@ footer {
 }
 
 // NEWS FEED STYLES
-
 
 // Tag
 span.radius.label a {

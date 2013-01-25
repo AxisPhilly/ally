@@ -59,16 +59,15 @@
 <body <?php body_class(); ?>>
   <!-- Fixed header -->
   <header class="header">
-    <div>
-      <div class="header-logo">
-        <div class="row">
-          <div>
-            <a href="/"><img src="<?php bloginfo('template_directory'); ?>/images/transparent.png"/></a>
-          </div>
+    <div class="header-logo">
+      <div class="row">
+        <div>
+          <a href="/"><img src="<?php bloginfo('template_directory'); ?>/images/transparent.png"/></a>
         </div>
       </div>
-      <div class="nav-container contain-to-grid">
-        <nav class="top-bar">
+    </div>
+    <div class="nav-container contain-to-grid">
+      <nav class="top-bar">
         <ul>
           <li class="name">
             <a href="/">AxisPhilly</a>
@@ -93,16 +92,9 @@
             <li><a href="/tools">Tools &amp; Data</a></li>
             <li><a href="/about">About</a></li>
             <li class="search">
-            <li>
-              <span class="social mobile">
-                <a href="http://www.twitter.com/AxisPhilly"><i class="social-foundicon-twitter"></i></a>
-                <a href="http://www.facebook.com/AxisPhilly"><i class="social-foundicon-facebook"></i></a>
-                <a href="http://www.axisphilly.org/?feed=rss"><i class="social-foundicon-rss"></i></a>
-              </span>
-              <li><a href="http://www.twitter.com/AxisPhilly"><i class="social-foundicon-twitter"></i></a></li>
-              <li><a href="http://www.facebook.com/AxisPhilly"><i class="social-foundicon-facebook"></i></a></li>
-              <li><a href="http://www.axisphilly.org/?feed=rss"><i class="social-foundicon-rss"></i></a></li>
-            </li>
+            <li><a href="http://www.twitter.com/AxisPhilly"><i class="social-foundicon-twitter"></i></a></li>
+            <li><a href="http://www.facebook.com/AxisPhilly"><i class="social-foundicon-facebook"></i></a></li>
+            <li><a href="http://www.axisphilly.org/?feed=rss"><i class="social-foundicon-rss"></i></a></li>
           </ul>
           <ul class="right">
             <li class="search">
@@ -112,8 +104,7 @@
             </li>
           </ul>
         </section>
-        </nav>
-      </div>
+      </nav>
     </div>
   </header>
   <?php

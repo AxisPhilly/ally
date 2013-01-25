@@ -788,45 +788,6 @@
 		settings: settings
 	};
 });
-;(function ($, window, undefined){
-  'use strict';
-
-  $.fn.foundationAccordion = function (options) {
-    var $accordion = $('.accordion');
-
-    if ($accordion.hasClass('hover') && !Modernizr.touch) {
-      $('.accordion li', this).on({
-        mouseenter : function () {
-          console.log('due');
-          var p = $(this).parent(),
-            flyout = $(this).children('.content').first();
-
-          $('.content', p).not(flyout).hide().parent('li').removeClass('active'); //changed this
-          flyout.show(0, function () {
-            flyout.parent('li').addClass('active');
-          });
-        }
-      });
-    } else {
-      $('.accordion li', this).on('click.fndtn', function () {
-        var li = $(this),
-            p = $(this).parent(),
-            flyout = $(this).children('.content').first();
-
-        if (li.hasClass('active')) {
-          p.find('li').removeClass('active').end().find('.content').hide();
-        } else {
-          $('.content', p).not(flyout).hide().parent('li').removeClass('active'); //changed this
-          flyout.show(0, function () {
-            flyout.parent('li').addClass('active');
-          });
-        }
-      });
-    }
-
-  };
-
-})( jQuery, this );
 ;(function ($, window, undefined) {
   'use strict';
   
@@ -854,16 +815,18 @@
   $.fn.foundationButtons = function (options) {
     var $doc = $(document),
       config = $.extend({
-        dropdownAsToggle:true,
+        dropdownAsToggle:false,
         activeClass:'active'
       }, options),
 
     // close all dropdowns except for the dropdown passed
       closeDropdowns = function (dropdown) {
+        // alert(dropdown.html());
         $('.button.dropdown').find('ul').not(dropdown).removeClass('show-dropdown');
       },
     // reset all toggle states except for the button passed
       resetToggles = function (button) {
+        // alert(button.html());
         var buttons = $('.button.dropdown').not(button);
         buttons.add($('> span.' + config.activeClass, buttons)).removeClass(config.activeClass);
       };
@@ -881,19 +844,21 @@
         button = $el.closest('.button.dropdown'),
         dropdown = $('> ul', button);
 
-        // If the click is registered on an actual link then do not preventDefault which stops the browser from following the link
-        if (e.target.nodeName !== "A"){
+        // If the click is registered on an actual link or on button element then do not preventDefault which stops the browser from following the link
+        if (["A", "BUTTON"].indexOf(e.target.nodeName) == -1){
           e.preventDefault();
         }
 
       // close other dropdowns
-      closeDropdowns(config.dropdownAsToggle ? dropdown : '');
-      dropdown.toggleClass('show-dropdown');
+      setTimeout(function () {
+        closeDropdowns(config.dropdownAsToggle ? '' : dropdown);
+        dropdown.toggleClass('show-dropdown');
 
-      if (config.dropdownAsToggle) {
-        resetToggles(button);
-        $el.toggleClass(config.activeClass);
-      }
+        if (config.dropdownAsToggle) {
+          resetToggles(button);
+          $el.toggleClass(config.activeClass);
+        }
+      }, 0);
     });
 
     // close all dropdowns and deactivate all buttons
@@ -909,10 +874,10 @@
     });
 
     // Positioning the Flyout List
-    var normalButtonHeight  = $('.button.dropdown:not(.large):not(.small):not(.tiny)', this).outerHeight() - 1,
-        largeButtonHeight   = $('.button.large.dropdown', this).outerHeight() - 1,
-        smallButtonHeight   = $('.button.small.dropdown', this).outerHeight() - 1,
-        tinyButtonHeight    = $('.button.tiny.dropdown', this).outerHeight() - 1;
+    var normalButtonHeight  = $('.button.dropdown:not(.large):not(.small):not(.tiny):visible', this).outerHeight() - 1,
+        largeButtonHeight   = $('.button.large.dropdown:visible', this).outerHeight() - 1,
+        smallButtonHeight   = $('.button.small.dropdown:visible', this).outerHeight() - 1,
+        tinyButtonHeight    = $('.button.tiny.dropdown:visible', this).outerHeight() - 1;
 
     $('.button.dropdown:not(.large):not(.small):not(.tiny) > ul', this).css('top', normalButtonHeight);
     $('.button.dropdown.large > ul', this).css('top', largeButtonHeight);
@@ -929,7 +894,7 @@
 })( jQuery, this );
 
 /*
- * jQuery Foundation Clearing 1.0
+ * jQuery Foundation Clearing 1.2.1
  * http://foundation.zurb.com
  * Copyright 2012, ZURB
  * Free to use under the MIT license.
@@ -938,7 +903,7 @@
 
 /*jslint unparam: true, browser: true, indent: 2 */
 
-;(function ($, window, undefined) {
+;(function ($, window, document, undefined) {
   'use strict';
 
   var defaults = {
@@ -948,13 +913,17 @@
             '<p class="clearing-caption"></p><a href="#" class="clearing-main-left"></a>' +
             '<a href="#" class="clearing-main-right"></a></div>'
         },
+
+        // comma delimited list of selectors that, on click, will close clearing, 
+        // add 'div.clearing-blackout, div.visible-img' to close on background click
+        close_selectors : 'a.clearing-close',
+
+        // event initializers and locks
         initialized : false,
         locked : false
       },
 
-      superMethods = {},
-
-      methods = {
+      cl = {
         init : function (options, extendMethods) {
           return this.find('ul[data-clearing]').each(function () {
             var doc = $(document),
@@ -968,124 +937,57 @@
 
               $el.data('fndtn.clearing.settings', $.extend({}, defaults, options));
 
-              // developer goodness experiment
-              methods.extend(methods, extendMethods);
+              cl.assemble($el.find('li'));
 
-              // if the gallery hasn't been built yet...build it
-              methods.assemble($el.find('li'));
-
-              if (!defaults.initialized) methods.events();
+              if (!defaults.initialized) {
+                cl.events($el);
+                if (Modernizr.touch) cl.swipe_events();
+              }
 
             }
           });
         },
 
-        events : function () {
-          var doc = $(document);
+        events : function (el) {
+          var settings = el.data('fndtn.clearing.settings');
 
-          doc.on('click.fndtn.clearing', 'ul[data-clearing] li', function (e, current, target) {
-            var current = current || $(this),
-                target = target || current,
-                settings = current.parent().data('fndtn.clearing.settings');
+          $(document)
+            .on('click.fndtn.clearing', 'ul[data-clearing] li', function (e, current, target) {
+              var current = current || $(this),
+                  target = target || current,
+                  settings = current.parent().data('fndtn.clearing.settings');
 
-            e.preventDefault();
-
-            if (!settings) {
-              current.parent().foundationClearing();
-            }
-
-            // set current and target to the clicked li if not otherwise defined.
-            methods.open($(e.target), current, target);
-            methods.update_paddles(target);
-          });
-
-          $(window).on('resize.fndtn.clearing', function () {
-            var image = $('.clearing-blackout .visible-img').find('img');
-
-            if (image.length > 0) {
-              methods.center(image);
-            }
-          });
-
-          doc.on('click.fndtn.clearing', '.clearing-main-right', function (e) {
-            var clearing = $('.clearing-blackout').find('ul[data-clearing]');
-
-            e.preventDefault();
-            methods.go(clearing, 'next');
-          });
-
-          doc.on('click.fndtn.clearing', '.clearing-main-left', function (e) {
-            var clearing = $('.clearing-blackout').find('ul[data-clearing]');
-
-            e.preventDefault();
-            methods.go(clearing, 'prev');
-          });
-
-          doc.on('click.fndtn.clearing', 'a.clearing-close, div.clearing-blackout, div.visible-img', function (e) {
-            var root = (function (target) {
-              if (/blackout/.test(target.selector)) {
-                return target;
-              } else {
-                return target.closest('.clearing-blackout');
-              }
-            }($(this))), container, visible_image;
-
-            if (this === e.target && root) {
-              container = root.find('div:first'),
-              visible_image = container.find('.visible-img');
-
-              defaults.prev_index = 0;
-
-              root.find('ul[data-clearing]').attr('style', '')
-              root.removeClass('clearing-blackout');
-              container.removeClass('clearing-container');
-              visible_image.hide();
-            }
-
-            return false;
-          });
-
-          // should specify a target selector
-          doc.on('keydown.fndtn.clearing', function (e) {
-            var clearing = $('.clearing-blackout').find('ul[data-clearing]');
-
-            // right
-            if (e.which === 39) {
-              methods.go(clearing, 'next');
-            }
-
-            // left
-            if (e.which === 37) {
-              methods.go(clearing, 'prev');
-            }
-
-            if (e.which === 27) {
-              $('a.clearing-close').trigger('click');
-            }
-          });
-
-          doc.on('movestart', function(e) {
-
-            // If the movestart is heading off in an upwards or downwards
-            // direction, prevent it so that the browser scrolls normally.
-
-            if ((e.distX > e.distY && e.distX < -e.distY) ||
-                (e.distX < e.distY && e.distX > -e.distY)) {
               e.preventDefault();
-            }
-          });
 
-          doc.bind('swipeleft', 'ul[data-clearing] li', function () {
-            var clearing = $('.clearing-blackout').find('ul[data-clearing]');
-            methods.go(clearing, 'next');
-          });
+              if (!settings) {
+                current.parent().foundationClearing();
+              }
 
-          doc.bind('swiperight', 'ul[data-clearing] li', function () {
-            var clearing = $('.clearing-blackout').find('ul[data-clearing]');
-            methods.go(clearing, 'prev');
-          });
+              // set current and target to the clicked li if not otherwise defined.
+              cl.open($(e.target), current, target);
+              cl.update_paddles(target);
+            })
+
+            .on('click.fndtn.clearing', '.clearing-main-right', function (e) { cl.nav(e, 'next') })
+            .on('click.fndtn.clearing', '.clearing-main-left', function (e) { cl.nav(e, 'prev') })
+            .on('click.fndtn.clearing', settings.close_selectors, this.close)
+            .on('keydown.fndtn.clearing', this.keydown);
+
+          $(window).on('resize.fndtn.clearing', this.resize);
 
           defaults.initialized = true;
+        },
+
+        swipe_events : function () {
+          $(document)
+            .bind('swipeleft', 'ul[data-clearing]', function (e) { cl.nav(e, 'next') })
+            .bind('swiperight', 'ul[data-clearing]', function (e) { cl.nav(e, 'prev') })
+            .bind('movestart', 'ul[data-clearing]', function (e) {
+              if ((e.distX > e.distY && e.distX < -e.distY) ||
+                  (e.distX < e.distY && e.distX > -e.distY)) {
+                e.preventDefault();
+              }
+            });
         },
 
         assemble : function ($li) {
@@ -1107,27 +1009,75 @@
               visible_image = container.find('.visible-img'),
               image = visible_image.find('img').not($image);
 
-          if (!methods.locked()) {
+          if (!cl.locked()) {
 
             // set the image to the selected thumbnail
             image.attr('src', this.load($image));
 
-            image.is_good(function () {
+            image.loaded(function () {
               // toggle the gallery if not visible
               root.addClass('clearing-blackout');
               container.addClass('clearing-container');
-              methods.caption(visible_image.find('.clearing-caption'), $image);
+              this.caption(visible_image.find('.clearing-caption'), $image);
               visible_image.show();
-              methods.fix_height(target);
-
-              methods.center(image);
+              this.fix_height(target);
+              this.center(image);
 
               // shift the thumbnails if necessary
-              methods.shift(current, target, function () {
+              this.shift(current, target, function () {
                 target.siblings().removeClass('visible');
                 target.addClass('visible');
               });
-            });
+            }.bind(this));
+          }
+        },
+
+        close : function (e) {
+          e.preventDefault();
+
+          var root = (function (target) {
+                if (/blackout/.test(target.selector)) {
+                  return target;
+                } else {
+                  return target.closest('.clearing-blackout');
+                }
+              }($(this))), container, visible_image;
+
+          if (this === e.target && root) {
+            container = root.find('div:first'),
+            visible_image = container.find('.visible-img');
+
+            defaults.prev_index = 0;
+
+            root.find('ul[data-clearing]').attr('style', '')
+            root.removeClass('clearing-blackout');
+            container.removeClass('clearing-container');
+            visible_image.hide();
+          }
+
+          return false;
+        },
+
+        keydown : function (e) {
+          var clearing = $('.clearing-blackout').find('ul[data-clearing]');
+
+          if (e.which === 39) cl.go(clearing, 'next');
+          if (e.which === 37) cl.go(clearing, 'prev');
+          if (e.which === 27) $('a.clearing-close').trigger('click');
+        },
+
+        nav : function (e, direction) {
+          var clearing = $('.clearing-blackout').find('ul[data-clearing]');
+
+          e.preventDefault();
+          this.go(clearing, direction);
+        },
+
+        resize : function () {
+          var image = $('.clearing-blackout .visible-img').find('img');
+
+          if (image.length > 0) {
+            cl.center(image);
           }
         },
 
@@ -1135,14 +1085,14 @@
           var lis = target.siblings();
 
           lis.each(function () {
-            var li = $(this),
-                image = li.find('img');
+              var li = $(this),
+                  image = li.find('img');
 
-            if (li.height() > image.outerHeight()) {
-              li.addClass('fix-height');
-            }
-          });
-          lis.closest('ul').width(lis.length * 100 + '%');
+              if (li.height() > image.outerHeight()) {
+                li.addClass('fix-height');
+              }
+            })
+            .closest('ul').width(lis.length * 100 + '%');
         },
 
         update_paddles : function (target) {
@@ -1164,39 +1114,26 @@
         load : function ($image) {
           var href = $image.parent().attr('href');
 
-          // preload next and previous
           this.preload($image);
 
-          if (href) {
-            return href;
-          }
-
+          if (href) return href;
           return $image.attr('src');
         },
 
         preload : function ($image) {
-          var next = $image.closest('li').next(),
-              prev = $image.closest('li').prev(),
-              next_a, prev_a,
-              next_img, prev_img;
+          this.img($image.closest('li').next());
+          this.img($image.closest('li').prev());
+        },
 
-          if (next.length > 0) {
-            next_img = new Image();
-            next_a = next.find('a');
-            if (next_a.length > 0) {
-              next_img.src = next_a.attr('href');
-            } else {
-              next_img.src = next.find('img').attr('src');
-            }
-          }
+        img : function (img) {
+          if (img.length > 0) {
+            var new_img = new Image(),
+                new_a = img.find('a');
 
-          if (prev.length > 0) {
-            prev_img = new Image();
-            prev_a = prev.find('a');
-            if (prev_a.length > 0) {
-              prev_img.src = prev_a.attr('href');
+            if (new_a.length > 0) {
+              new_img.src = new_a.attr('href');
             } else {
-              prev_img.src = prev.find('img').attr('src');
+              new_img.src = img.find('img').attr('src');
             }
           }
         },
@@ -1222,9 +1159,6 @@
 
         shift : function (current, target, callback) {
           var clearing = target.parent(),
-              container = clearing.closest('.clearing-container'),
-              target_offset = target.position().left,
-              thumbs_offset = clearing.position().left,
               old_index = defaults.prev_index,
               direction = this.direction(clearing, current, target),
               left = parseInt(clearing.css('left'), 10),
@@ -1233,26 +1167,25 @@
 
           // we use jQuery animate instead of CSS transitions because we
           // need a callback to unlock the next animation
-
           if (target.index() !== old_index && !/skip/.test(direction)){
             if (/left/.test(direction)) {
-              methods.lock();
-              clearing.animate({left : left + width}, 300, methods.unlock);
+              this.lock();
+              clearing.animate({left : left + width}, 300, this.unlock);
             } else if (/right/.test(direction)) {
-              methods.lock();
-              clearing.animate({left : left - width}, 300, methods.unlock);
+              this.lock();
+              clearing.animate({left : left - width}, 300, this.unlock);
             }
           } else if (/skip/.test(direction)) {
 
             // the target image is not adjacent to the current image, so
             // do we scroll right or not
             skip_shift = target.index() - defaults.up_count;
-            methods.lock();
+            this.lock();
 
             if (skip_shift > 0) {
-              clearing.animate({left : -(skip_shift * width)}, 300, methods.unlock);
+              clearing.animate({left : -(skip_shift * width)}, 300, this.unlock);
             } else {
-              clearing.animate({left : 0}, 300, methods.unlock);
+              clearing.animate({left : 0}, 300, this.unlock);
             }
           }
 
@@ -1274,11 +1207,8 @@
         direction : function ($el, current, target) {
           var lis = $el.find('li'),
               li_width = lis.outerWidth() + (lis.outerWidth() / 4),
-              container = $('.clearing-container'),
-              up_count = Math.floor(container.outerWidth() / li_width) - 1,
-              shift_count = lis.length - up_count,
+              up_count = Math.floor($('.clearing-container').outerWidth() / li_width) - 1,
               target_index = lis.index(target),
-              current_index = lis.index(current),
               response;
 
           defaults.up_count = up_count;
@@ -1301,14 +1231,9 @@
         },
 
         adjacent : function (current_index, target_index) {
-          if (target_index - 1 === current_index) {
-            return true;
-          } else if (target_index + 1 === current_index) {
-            return true;
-          } else if (target_index === current_index) {
-            return true;
+          for (var i = target_index + 1; i >= target_index - 1; i--) {
+            if (i === current_index) return true;
           }
-
           return false;
         },
 
@@ -1322,42 +1247,15 @@
         outerHTML : function (el) {
           // support FireFox < 11
           return el.outerHTML || new XMLSerializer().serializeToString(el);
-        },
-
-        // experimental functionality for overwriting or extending
-        // clearing methods during initialization.
-        //
-        // ex $doc.foundationClearing({}, {
-        //      shift : function (current, target, callback) {
-        //        // modify arguments, etc.
-        //        this._super('shift', [current, target, callback]);
-        //        // do something else here.
-        //      }
-        //    });
-
-        extend : function (supers, extendMethods) {
-          $.each(supers, function (name, method) {
-            if (extendMethods.hasOwnProperty(name)) {
-              superMethods[name] = method;
-            }
-          });
-
-          $.extend(methods, extendMethods);
-        },
-
-        // you can call this._super('methodName', [args]) to call
-        // the original method and wrap it in your own code
-
-        _super : function (method, args) {
-          return superMethods[method].apply(this, args);
         }
+
       };
 
   $.fn.foundationClearing = function (method) {
-    if (methods[method]) {
-      return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
+    if (cl[method]) {
+      return cl[method].apply(this, Array.prototype.slice.call(arguments, 1));
     } else if (typeof method === 'object' || !method) {
-      return methods.init.apply(this, arguments);
+      return cl.init.apply(this, arguments);
     } else {
       $.error('Method ' +  method + ' does not exist on jQuery.foundationClearing');
     }
@@ -1367,9 +1265,9 @@
   // @weblinc, @jsantell, (c) 2012
 
   (function( $ ) {
-    $.fn.is_good = function ( callback, userSettings ) {
+    $.fn.loaded = function ( callback, userSettings ) {
       var
-        options = $.extend( {}, $.fn.is_good.defaults, userSettings ),
+        options = $.extend( {}, $.fn.loaded.defaults, userSettings ),
         $images = this.find( 'img' ).add( this.filter( 'img' ) ),
         unloadedImages = $images.length;
 
@@ -1401,13 +1299,13 @@
       });
     };
 
-    $.fn.is_good.defaults = {
+    $.fn.loaded.defaults = {
       cachePrefix: 'random'
     };
 
   }(jQuery));
 
-}(jQuery, this));
+}(jQuery, this, this.document));
 
 /*
  * jQuery Custom Forms Plugin 1.0
@@ -1511,7 +1409,7 @@
   $.foundation.customForms.appendCustomMarkup = function ( options ) {
 
     var defaults = {
-      disable_class: "js-disable-custom"
+      disable_class: "no-custom"
     };
 
     options = $.extend( defaults, options );
@@ -1576,7 +1474,7 @@
       //
       // Should we not create a custom list?
       //
-      if ( $this.hasClass( 'no-custom' ) ) return;
+      if ( $this.hasClass( options.disable_class ) ) return;
 
       //
       // Did we not create a custom select element yet?
@@ -1597,7 +1495,7 @@
         //
         // Build our custom list.
         //
-        $customSelect = $('<div class="' + ['custom', 'dropdown', customSelectSize ].join( ' ' ) + '"><a href="#" class="selector"></a><ul /></div>"');
+        $customSelect = $('<div class="' + ['custom', 'dropdown', customSelectSize ].join( ' ' ) + '"><a href="#" class="selector"></a><ul /></div>');
         //
         // Grab the selector element
         //
@@ -1679,11 +1577,11 @@
       //
       // Update the custom <ul> list width property.
       //
-      $customList.css( 'width', 'inherit' );
+      $customList.css( 'width', 'auto' );
       //
       // Set the custom select width property.
       //
-      $customSelect.css( 'width', 'inherit' );
+      $customSelect.css( 'width', 'auto' );
 
       //
       // If we're not specifying a predetermined form size.
@@ -1827,10 +1725,26 @@
       if ($associatedElement.attr('type') === 'checkbox') {
         event.preventDefault();
         $customCheckbox = $(this).find('span.custom.checkbox');
+        //the checkbox might be outside after the label
+        if ($customCheckbox.length == 0) {
+            $customCheckbox = $(this).next('span.custom.checkbox');
+        }
+        //the checkbox might be outside before the label
+        if ($customCheckbox.length == 0) {
+            $customCheckbox = $(this).prev('span.custom.checkbox');
+        }
         toggleCheckbox($customCheckbox);
       } else if ($associatedElement.attr('type') === 'radio') {
         event.preventDefault();
         $customRadio = $(this).find('span.custom.radio');
+        //the radio might be outside after the label
+        if ($customRadio.length == 0) {
+            $customRadio = $(this).next('span.custom.radio');
+        }
+        //the radio might be outside before the label
+        if ($customRadio.length == 0) {
+            $customRadio = $(this).prev('span.custom.radio');
+        }
         toggleRadio($customRadio);
       }
     }
@@ -1896,731 +1810,6 @@
 
 })( jQuery );
 
-/*
- * jQuery Foundation Joyride Plugin 2.0.2
- * http://foundation.zurb.com
- * Copyright 2012, ZURB
- * Free to use under the MIT license.
- * http://www.opensource.org/licenses/mit-license.php
-*/
-
-/*jslint unparam: true, browser: true, indent: 2 */
-
-;(function ($, window, undefined) {
-  'use strict';
-
-  var defaults = {
-      'version'              : '2.0.1',
-      'tipLocation'          : 'bottom',  // 'top' or 'bottom' in relation to parent
-      'nubPosition'          : 'auto',    // override on a per tooltip bases
-      'scrollSpeed'          : 300,       // Page scrolling speed in milliseconds
-      'timer'                : 0,         // 0 = no timer , all other numbers = timer in milliseconds
-      'startTimerOnClick'    : true,      // true or false - true requires clicking the first button start the timer
-      'startOffset'          : 0,         // the index of the tooltip you want to start on (index of the li)
-      'nextButton'           : true,      // true or false to control whether a next button is used
-      'tipAnimation'         : 'fade',    // 'pop' or 'fade' in each tip
-      'pauseAfter'           : [],        // array of indexes where to pause the tour after
-      'tipAnimationFadeSpeed': 300,       // when tipAnimation = 'fade' this is speed in milliseconds for the transition
-      'cookieMonster'        : false,     // true or false to control whether cookies are used
-      'cookieName'           : 'joyride', // Name the cookie you'll use
-      'cookieDomain'         : false,     // Will this cookie be attached to a domain, ie. '.notableapp.com'
-      'tipContainer'         : 'body',    // Where will the tip be attached
-      'postRideCallback'     : $.noop,    // A method to call once the tour closes (canceled or complete)
-      'postStepCallback'     : $.noop,    // A method to call after each step
-      'template' : { // HTML segments for tip layout
-        'link'    : '<a href="#close" class="joyride-close-tip">X</a>',
-        'timer'   : '<div class="joyride-timer-indicator-wrap"><span class="joyride-timer-indicator"></span></div>',
-        'tip'     : '<div class="joyride-tip-guide"><span class="joyride-nub"></span></div>',
-        'wrapper' : '<div class="joyride-content-wrapper"></div>',
-        'button'  : '<a href="#" class="small button joyride-next-tip"></a>'
-      }
-    },
-
-    Modernizr = Modernizr || false,
-
-    settings = {},
-
-    methods = {
-
-      init : function (opts) {
-        return this.each(function () {
-
-          if ($.isEmptyObject(settings)) {
-            settings = $.extend(defaults, opts);
-
-            // non configureable settings
-            settings.document = window.document;
-            settings.$document = $(settings.document);
-            settings.$window = $(window);
-            settings.$content_el = $(this);
-            settings.body_offset = $(settings.tipContainer).position();
-            settings.$tip_content = $('> li', settings.$content_el);
-            settings.paused = false;
-            settings.attempts = 0;
-
-            settings.tipLocationPatterns = {
-              top: ['bottom'],
-              bottom: [], // bottom should not need to be repositioned
-              left: ['right', 'top', 'bottom'],
-              right: ['left', 'top', 'bottom']
-            };
-
-            // are we using jQuery 1.7+
-            methods.jquery_check();
-
-            // can we create cookies?
-            if (!$.isFunction($.cookie)) {
-              settings.cookieMonster = false;
-            }
-
-            // generate the tips and insert into dom.
-            if (!settings.cookieMonster || !$.cookie(settings.cookieName)) {
-
-              settings.$tip_content.each(function (index) {
-                methods.create({$li : $(this), index : index});
-              });
-
-              // show first tip
-              if (!settings.startTimerOnClick && settings.timer > 0) {
-                methods.show('init');
-                methods.startTimer();
-              } else {
-                methods.show('init');
-              }
-
-            }
-
-            settings.$document.on('click.joyride', '.joyride-next-tip, .joyride-modal-bg', function (e) {
-              e.preventDefault();
-
-              if (settings.$li.next().length < 1) {
-                methods.end();
-              } else if (settings.timer > 0) {
-                clearTimeout(settings.automate);
-                methods.hide();
-                methods.show();
-                methods.startTimer();
-              } else {
-                methods.hide();
-                methods.show();
-              }
-
-            });
-
-            settings.$document.on('click.joyride', '.joyride-close-tip', function (e) {
-              e.preventDefault();
-              methods.end();
-            });
-
-            settings.$window.bind('resize.joyride', function (e) {
-              if (methods.is_phone()) {
-                methods.pos_phone();
-              } else {
-                methods.pos_default();
-              }
-            });
-          } else {
-            methods.restart();
-          }
-
-        });
-      },
-
-      // call this method when you want to resume the tour
-      resume : function () {
-        methods.set_li();
-        methods.show();
-      },
-
-      tip_template : function (opts) {
-        var $blank, content;
-
-        opts.tip_class = opts.tip_class || '';
-
-        $blank = $(settings.template.tip).addClass(opts.tip_class);
-        content = $.trim($(opts.li).html()) +
-          methods.button_text(opts.button_text) +
-          settings.template.link +
-          methods.timer_instance(opts.index);
-
-        $blank.append($(settings.template.wrapper));
-        $blank.first().attr('data-index', opts.index);
-        $('.joyride-content-wrapper', $blank).append(content);
-
-        return $blank[0];
-      },
-
-      timer_instance : function (index) {
-        var txt;
-
-        if ((index === 0 && settings.startTimerOnClick && settings.timer > 0) || settings.timer === 0) {
-          txt = '';
-        } else {
-          txt = methods.outerHTML($(settings.template.timer)[0]);
-        }
-        return txt;
-      },
-
-      button_text : function (txt) {
-        if (settings.nextButton) {
-          txt = $.trim(txt) || 'Next';
-          txt = methods.outerHTML($(settings.template.button).append(txt)[0]);
-        } else {
-          txt = '';
-        }
-        return txt;
-      },
-
-      create : function (opts) {
-        // backwards compatability with data-text attribute
-        var buttonText = opts.$li.attr('data-button') || opts.$li.attr('data-text'),
-          tipClass = opts.$li.attr('class'),
-          $tip_content = $(methods.tip_template({
-            tip_class : tipClass,
-            index : opts.index,
-            button_text : buttonText,
-            li : opts.$li
-          }));
-
-        $(settings.tipContainer).append($tip_content);
-      },
-
-      show : function (init) {
-        var opts = {}, ii, opts_arr = [], opts_len = 0, p,
-            $timer = null;
-
-        // are we paused?
-        if (settings.$li === undefined || ($.inArray(settings.$li.index(), settings.pauseAfter) === -1)) {
-
-          // don't go to the next li if the tour was paused
-          if (settings.paused) {
-            settings.paused = false;
-          } else {
-            methods.set_li(init);
-          }
-
-          settings.attempts = 0;
-
-          if (settings.$li.length && settings.$target.length > 0) {
-            opts_arr = (settings.$li.data('options') || ':').split(';');
-            opts_len = opts_arr.length;
-
-            // parse options
-            for (ii = opts_len - 1; ii >= 0; ii--) {
-              p = opts_arr[ii].split(':');
-
-              if (p.length === 2) {
-                opts[$.trim(p[0])] = $.trim(p[1]);
-              }
-            }
-
-            settings.tipSettings = $.extend({}, settings, opts);
-
-            settings.tipSettings.tipLocationPattern = settings.tipLocationPatterns[settings.tipSettings.tipLocation];
-
-            // scroll if not modal
-            if (!/body/i.test(settings.$target.selector)) {
-              methods.scroll_to();
-            }
-
-            if (methods.is_phone()) {
-              methods.pos_phone(true);
-            } else {
-              methods.pos_default(true);
-            }
-
-            $timer = $('.joyride-timer-indicator', settings.$next_tip);
-
-            if (/pop/i.test(settings.tipAnimation)) {
-
-              $timer.outerWidth(0);
-
-              if (settings.timer > 0) {
-
-                settings.$next_tip.show();
-                $timer.animate({
-                  width: $('.joyride-timer-indicator-wrap', settings.$next_tip).outerWidth()
-                }, settings.timer);
-
-              } else {
-
-                settings.$next_tip.show();
-
-              }
-
-
-            } else if (/fade/i.test(settings.tipAnimation)) {
-
-              $timer.outerWidth(0);
-
-              if (settings.timer > 0) {
-
-                settings.$next_tip.fadeIn(settings.tipAnimationFadeSpeed);
-
-                settings.$next_tip.show();
-                $timer.animate({
-                  width: $('.joyride-timer-indicator-wrap', settings.$next_tip).outerWidth()
-                }, settings.timer);
-
-              } else {
-
-                settings.$next_tip.fadeIn(settings.tipAnimationFadeSpeed);
-
-              }
-            }
-
-            settings.$current_tip = settings.$next_tip;
-
-          // skip non-existant targets
-          } else if (settings.$li && settings.$target.length < 1) {
-
-            methods.show();
-
-          } else {
-
-            methods.end();
-
-          }
-        } else {
-
-          settings.paused = true;
-
-        }
-
-      },
-
-      // detect phones with media queries if supported.
-      is_phone : function () {
-        if (Modernizr) {
-          return Modernizr.mq('only screen and (max-width: 767px)');
-        }
-
-        return (settings.$window.width() < 767) ? true : false;
-      },
-
-      hide : function () {
-        settings.postStepCallback(settings.$li.index(), settings.$current_tip);
-        $('.joyride-modal-bg').hide();
-        settings.$current_tip.hide();
-      },
-
-      set_li : function (init) {
-        if (init) {
-          settings.$li = settings.$tip_content.eq(settings.startOffset);
-          methods.set_next_tip();
-          settings.$current_tip = settings.$next_tip;
-        } else {
-          settings.$li = settings.$li.next();
-          methods.set_next_tip();
-        }
-
-        methods.set_target();
-      },
-
-      set_next_tip : function () {
-        settings.$next_tip = $('.joyride-tip-guide[data-index=' + settings.$li.index() + ']');
-      },
-
-      set_target : function () {
-        var cl = settings.$li.attr('data-class'),
-            id = settings.$li.attr('data-id'),
-            $sel = function () {
-              if (id) {
-                return $(settings.document.getElementById(id));
-              } else if (cl) {
-                return $('.' + cl).first();
-              } else {
-                return $('body');
-              }
-            };
-
-        settings.$target = $sel();
-      },
-
-      scroll_to : function () {
-        var window_half, tipOffset;
-
-        window_half = settings.$window.height() / 2;
-        tipOffset = Math.ceil(settings.$target.offset().top - window_half + settings.$next_tip.outerHeight());
-
-        $("html, body").stop().animate({
-          scrollTop: tipOffset
-        }, settings.scrollSpeed);
-      },
-
-      paused : function () {
-        if (($.inArray((settings.$li.index() + 1), settings.pauseAfter) === -1)) {
-          return true;
-        }
-
-        return false;
-      },
-
-      destroy : function () {
-        settings.$document.off('.joyride');
-        $(window).off('.joyride');
-        $('.joyride-close-tip, .joyride-next-tip, .joyride-modal-bg').off('.joyride');
-        $('.joyride-tip-guide, .joyride-modal-bg').remove();
-        clearTimeout(settings.automate);
-        settings = {};
-      },
-
-      restart : function () {
-        methods.hide();
-        settings.$li = undefined;
-        methods.show('init');
-      },
-
-      pos_default : function (init) {
-        var half_fold = Math.ceil(settings.$window.height() / 2),
-            tip_position = settings.$next_tip.offset(),
-            $nub = $('.joyride-nub', settings.$next_tip),
-            nub_height = Math.ceil($nub.outerHeight() / 2),
-            toggle = init || false;
-
-        // tip must not be "display: none" to calculate position
-        if (toggle) {
-          settings.$next_tip.css('visibility', 'hidden');
-          settings.$next_tip.show();
-        }
-
-        if (!/body/i.test(settings.$target.selector)) {
-
-            if (methods.bottom()) {
-              settings.$next_tip.css({
-                top: (settings.$target.offset().top + nub_height + settings.$target.outerHeight()),
-                left: settings.$target.offset().left});
-
-              methods.nub_position($nub, settings.tipSettings.nubPosition, 'top');
-
-            } else if (methods.top()) {
-
-              settings.$next_tip.css({
-                top: (settings.$target.offset().top - settings.$next_tip.outerHeight() - nub_height),
-                left: settings.$target.offset().left});
-
-              methods.nub_position($nub, settings.tipSettings.nubPosition, 'bottom');
-
-            } else if (methods.right()) {
-
-              settings.$next_tip.css({
-                top: settings.$target.offset().top,
-                left: (settings.$target.outerWidth() + settings.$target.offset().left)});
-
-              methods.nub_position($nub, settings.tipSettings.nubPosition, 'left');
-
-            } else if (methods.left()) {
-
-              settings.$next_tip.css({
-                top: settings.$target.offset().top,
-                left: (settings.$target.offset().left - settings.$next_tip.outerWidth() - nub_height)});
-
-              methods.nub_position($nub, settings.tipSettings.nubPosition, 'right');
-
-            }
-
-            if (!methods.visible(methods.corners(settings.$next_tip)) && settings.attempts < settings.tipSettings.tipLocationPattern.length) {
-
-              $nub.removeClass('bottom')
-                .removeClass('top')
-                .removeClass('right')
-                .removeClass('left');
-
-              settings.tipSettings.tipLocation = settings.tipSettings.tipLocationPattern[settings.attempts];
-
-              settings.attempts++;
-
-              methods.pos_default(true);
-
-            }
-
-        } else if (settings.$li.length) {
-
-          methods.pos_modal($nub);
-
-        }
-
-        if (toggle) {
-          settings.$next_tip.hide();
-          settings.$next_tip.css('visibility', 'visible');
-        }
-
-      },
-
-      pos_phone : function (init) {
-        var tip_height = settings.$next_tip.outerHeight(),
-            tip_offset = settings.$next_tip.offset(),
-            target_height = settings.$target.outerHeight(),
-            $nub = $('.joyride-nub', settings.$next_tip),
-            nub_height = Math.ceil($nub.outerHeight() / 2),
-            toggle = init || false;
-
-        $nub.removeClass('bottom')
-          .removeClass('top')
-          .removeClass('right')
-          .removeClass('left');
-
-        if (toggle) {
-          settings.$next_tip.css('visibility', 'hidden');
-          settings.$next_tip.show();
-        }
-
-        if (!/body/i.test(settings.$target.selector)) {
-
-          if (methods.top()) {
-
-              settings.$next_tip.offset({top: settings.$target.offset().top - tip_height - nub_height});
-              $nub.addClass('bottom');
-
-          } else {
-
-            settings.$next_tip.offset({top: settings.$target.offset().top + target_height + nub_height});
-            $nub.addClass('top');
-
-          }
-
-        } else if (settings.$li.length) {
-
-          methods.pos_modal($nub);
-
-        }
-
-        if (toggle) {
-          settings.$next_tip.hide();
-          settings.$next_tip.css('visibility', 'visible');
-        }
-      },
-
-      pos_modal : function ($nub) {
-        methods.center();
-        $nub.hide();
-
-        if ($('.joyride-modal-bg').length < 1) {
-          $('body').append('<div class="joyride-modal-bg">').show();
-        }
-
-        if (/pop/i.test(settings.tipAnimation)) {
-          $('.joyride-modal-bg').show();
-        } else {
-          $('.joyride-modal-bg').fadeIn(settings.tipAnimationFadeSpeed);
-        }
-      },
-
-      center : function () {
-        var $w = settings.$window;
-
-        settings.$next_tip.css({
-          top : ((($w.height() - settings.$next_tip.outerHeight()) / 2) + $w.scrollTop()),
-          left : ((($w.width() - settings.$next_tip.outerWidth()) / 2) + $w.scrollLeft())
-        });
-
-        return true;
-      },
-
-      bottom : function () {
-        return /bottom/i.test(settings.tipSettings.tipLocation);
-      },
-
-      top : function () {
-        return /top/i.test(settings.tipSettings.tipLocation);
-      },
-
-      right : function () {
-        return /right/i.test(settings.tipSettings.tipLocation);
-      },
-
-      left : function () {
-        return /left/i.test(settings.tipSettings.tipLocation);
-      },
-
-      corners : function (el) {
-        var w = settings.$window,
-            right = w.width() + w.scrollLeft(),
-            bottom = w.width() + w.scrollTop();
-
-        return [
-          el.offset().top <= w.scrollTop(),
-          right <= el.offset().left + el.outerWidth(),
-          bottom <= el.offset().top + el.outerHeight(),
-          w.scrollLeft() >= el.offset().left
-        ];
-      },
-
-      visible : function (hidden_corners) {
-        var i = hidden_corners.length;
-
-        while (i--) {
-          if (hidden_corners[i]) return false;
-        }
-
-        return true;
-      },
-
-      nub_position : function (nub, pos, def) {
-        if (pos === 'auto') {
-          nub.addClass(def);
-        } else {
-          nub.addClass(pos);
-        }
-      },
-
-      startTimer : function () {
-        if (settings.$li.length) {
-          settings.automate = setTimeout(function () {
-            methods.hide();
-            methods.show();
-            methods.startTimer();
-          }, settings.timer);
-        } else {
-          clearTimeout(settings.automate);
-        }
-      },
-
-      end : function () {
-        if (settings.cookieMonster) {
-          $.cookie(settings.cookieName, 'ridden', { expires: 365, domain: settings.cookieDomain });
-        }
-
-        if (settings.timer > 0) {
-          clearTimeout(settings.automate);
-        }
-
-        $('.joyride-modal-bg').hide();
-        settings.$current_tip.hide();
-        settings.postStepCallback(settings.$li.index(), settings.$current_tip);
-        settings.postRideCallback(settings.$li.index(), settings.$current_tip);
-      },
-
-      jquery_check : function () {
-        // define on() and off() for older jQuery
-        if (!$.isFunction($.fn.on)) {
-
-          $.fn.on = function (types, sel, fn) {
-
-            return this.delegate(sel, types, fn);
-
-          };
-
-          $.fn.off = function (types, sel, fn) {
-
-            return this.undelegate(sel, types, fn);
-
-          };
-
-          return false;
-        }
-
-        return true;
-      },
-
-      outerHTML : function (el) {
-        // support FireFox < 11
-        return el.outerHTML || new XMLSerializer().serializeToString(el);
-      },
-
-      version : function () {
-        return settings.version;
-      }
-
-    };
-
-  $.fn.joyride = function (method) {
-    if (methods[method]) {
-      return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
-    } else if (typeof method === 'object' || !method) {
-      return methods.init.apply(this, arguments);
-    } else {
-      $.error('Method ' +  method + ' does not exist on jQuery.joyride');
-    }
-  };
-
-}(jQuery, this));
-/*
- * jQuery Foundation Magellan 0.0.1
- * http://foundation.zurb.com
- * Copyright 2012, ZURB
- * Free to use under the MIT license.
- * http://www.opensource.org/licenses/mit-license.php
-*/
-
-/*jslint unparam: true, browser: true, indent: 2 */
-
-;(function ($, window, undefined) {
-  'use strict';
-
-  $.fn.foundationMagellan = function(options) {
-    var $fixedMagellan = $('[data-magellan-expedition=fixed]'),
-    	defaults = {
-      threshold: ($fixedMagellan.length) ? $fixedMagellan.outerHeight(true) : 25,
-      activeClass: 'active'
-    },
-
-    options = $.extend({}, defaults, options);
-
-    // Indicate we have arrived at a destination
-    $(document).on('magellan.arrival', '[data-magellan-arrival]', function(e) {
-      var $expedition = $(this).closest('[data-magellan-expedition]'),
-          activeClass = $expedition.attr('data-magellan-active-class') || options.activeClass;
-      $(this)
-        .closest('[data-magellan-expedition]')
-        .find('[data-magellan-arrival]')
-        .not(this)
-        .removeClass(activeClass);
-      $(this).addClass(activeClass);
-    });
-
-    // Set starting point as the current destination
-    var $expedition = $('[data-magellan-expedition]');
-    $expedition.find('[data-magellan-arrival]:first')
-      .addClass($expedition.attr('data-magellan-active-class') || options.activeClass);
-
-    // Update fixed position
-    $fixedMagellan.on('magellan.update-position', function(){
-      var $el = $(this);
-      $el.data("magellan-fixed-position","");
-      $el.data("magellan-top-offset", "");
-    });
-
-    $fixedMagellan.trigger('magellan.update-position');
-
-    $(window).on('resize.magellan', function() {
-      $fixedMagellan.trigger('magellan.update-position');
-    });
-    
-    $(window).on('scroll.magellan', function() {
-      var windowScrollTop = $(window).scrollTop();
-      $fixedMagellan.each(function() {
-        var $expedition = $(this);
-        if ($expedition.data("magellan-top-offset") === "") {
-          $expedition.data("magellan-top-offset", $expedition.offset().top);
-        }
-        var fixed_position = (windowScrollTop + options.threshold) > $expedition.data("magellan-top-offset");
-        if ($expedition.data("magellan-fixed-position") != fixed_position) {
-          $expedition.data("magellan-fixed-position", fixed_position);
-          if (fixed_position) {
-            $expedition.css({position:"fixed", top:0});
-          } else {
-            $expedition.css({position:"", top:""});
-          }
-        }
-      });
-    });
-
-    // Determine when a destination has been reached, ah0y!
-    $(window).on('scroll.magellan', function(e){
-      var windowScrollTop = $(window).scrollTop();
-      $('[data-magellan-destination]').each(function(){
-        var $destination = $(this),
-            destination_name = $destination.attr('data-magellan-destination'),
-            topOffset = $destination.offset().top - windowScrollTop;
-        if (topOffset <= options.threshold) {
-          $('[data-magellan-arrival=' + destination_name + ']')
-            .trigger('magellan.arrival');
-        }
-      });
-    });
-  };
-}(jQuery, this));
 ;(function ($, window, undefined) {
   'use strict';
   
@@ -2743,6 +1932,7 @@
       bullets: false,                   // true or false to activate the bullet navigation
       bulletThumbs: false,              // thumbnails for the bullets
       bulletThumbLocation: '',          // relative path to thumbnails from this file
+      bulletThumbsHideOnSmall: true,	// hide thumbs on small devices
       afterSlideChange: $.noop,         // callback to execute after slide changes
       afterLoadComplete: $.noop,        // callback to execute after everything has been loaded
       fluid: true,
@@ -2787,7 +1977,7 @@
 
       this.$element = $(element);
       this.$wrapper = this.$element.wrap(this.wrapperHTML).parent();
-      this.$slides = this.$element.children('img, a, div, figure');
+      this.$slides = this.$element.children('img, a, div, figure, li');
 
       this.$element.on('movestart', function(e) {
         // If the movestart is heading off in an upwards or downwards
@@ -2798,12 +1988,20 @@
         }
       });
 
-      this.$element.bind('orbit.next swipeleft', function () {
+      this.$element.bind('orbit.next', function () {
         self.shift('next');
       });
 
-      this.$element.bind('orbit.prev swiperight', function () {
+      this.$element.bind('orbit.prev', function () {
         self.shift('prev');
+      });
+
+      this.$element.bind('swipeleft', function () {
+        $(this).trigger('orbit.next');
+      });
+
+      this.$element.bind('swiperight', function () {
+        $(this).trigger('orbit.prev');
       });
 
       this.$element.bind('orbit.goto', function (event, index) {
@@ -2841,7 +2039,7 @@
         this.$element.addClass('orbit-stack-on-small');
       }
 
-      this.$slides.addClass('orbit-slide');
+      this.$slides.addClass('orbit-slide').css({"opacity" : 0});
 
       this.setDimentionsFromLargestSlide();
       this.updateOptionsIfOnlyOneSlide();
@@ -2996,11 +2194,16 @@
         "-o-transform": degreeCSS,
         "-ms-transform": degreeCSS
       });
+      if (reset) {
+        this.degrees = 0;
+        this.$rotator.removeClass('move');
+        this.$mask.removeClass('move');
+      }
       if(this.degrees > 180) {
         this.$rotator.addClass('move');
         this.$mask.addClass('move');
       }
-      if(this.degrees > 360 || reset) {
+      if(this.degrees > 360) {
         this.$rotator.removeClass('move');
         this.$mask.removeClass('move');
         this.degrees = 0;
@@ -3080,7 +2283,12 @@
         if ($.trim($(captionLocation).text()).length < 1){
           return false;
         }
-        captionHTML = $(captionLocation).html(); //get HTML from the matching HTML entity
+        
+        // if location selector starts with '#', remove it so we don't see id="#selector"
+        if (captionLocation.charAt(0) == '#') {
+            captionLocation = captionLocation.substring(1, captionLocation.length);
+        }
+        captionHTML = $('#' + captionLocation).html(); //get HTML from the matching HTML entity
         this.$caption
           .attr('id', captionLocation) // Add ID caption TODO why is the id being set?
           .html(captionHTML); // Change HTML in Caption
@@ -3146,6 +2354,7 @@
       this.$slides.each(this.addBullet);
       this.$element.addClass('with-bullets');
       if (this.options.centerBullets) this.$bullets.css('margin-left', -this.$bullets.outerWidth() / 2);
+      if (this.options.bulletThumbsHideOnSmall) this.$bullets.addClass('hide-for-small');
     },
 
     addBullet: function (index, slide) {
@@ -3343,7 +2552,9 @@
         this.setCaption();
       }
 
-      if (this.$slides.last() && this.options.singleCycle) {
+      // if on last slide and singleCycle is true, don't loop through slides again
+      // .length is zero based so must minus 1 to match activeSlide index
+      if (this.activeSlide === this.$slides.length-1 && this.options.singleCycle) {
         this.stopClock();
       }
     }
@@ -3556,7 +2767,7 @@ app.run = function (o) {
 	for (var l = images.length, i = 0; i < l; i++) {
 		var theme = settings.themes.gray;
 		var src = images[i].getAttribute("data-src") || images[i].getAttribute("src");
-		if ( !! ~src.indexOf(options.domain)) {
+		if (src && !! ~src.indexOf(options.domain)) {
 			var render = false,
 				dimensions = null,
 				text = null;
@@ -4462,8 +3673,9 @@ contentLoaded(win, function () {
     }
   };
 }(jQuery, this, this.document));
+
 /*
- * jQuery Foundation Tooltips 2.0.1
+ * jQuery Foundation Tooltips 2.0.2
  * http://foundation.zurb.com
  * Copyright 2012, ZURB
  * Free to use under the MIT license.
@@ -4474,10 +3686,11 @@ contentLoaded(win, function () {
 
 ;(function ($, window, undefined) {
   'use strict';
-
+  
   var settings = {
       bodyHeight : 0,
       selector : '.has-tip',
+      additionalInheritableClasses : [],
       tooltipClass : '.tooltip',
       tipTemplate : function (selector, content) {
         return '<span data-selector="' + selector + '" class="' + settings.tooltipClass.substring(1) + '">' + content + '<span class="nub"></span></span>';
@@ -4519,13 +3732,13 @@ contentLoaded(win, function () {
 
         });
       },
-      showOrCreateTip : function ($target) {
+      showOrCreateTip : function ($target, content) {
         var $tip = methods.getTip($target);
 
         if ($tip && $tip.length > 0) {
           methods.show($target);
         } else {
-          methods.create($target);
+          methods.create($target, content);
         }
       },
       getTip : function ($target) {
@@ -4547,8 +3760,9 @@ contentLoaded(win, function () {
         }
         return (id) ? id : dataSelector;
       },
-      create : function ($target) {
-        var $tip = $(settings.tipTemplate(methods.selector($target), $('<div>').html($target.attr('title')).html())),
+      create : function ($target, content) {
+        var $tip = $(settings.tipTemplate(methods.selector($target),
+          $('<div>').html(content ? content : $target.attr('title')).html())),
           classes = methods.inheritable_classes($target);
 
         $tip.addClass(classes).appendTo('body');
@@ -4574,7 +3788,7 @@ contentLoaded(win, function () {
             'bottom' : bottom,
             'left' : left,
             'right' : right,
-            'width' : (width) ? width : 'auto'
+            'max-width' : (width) ? width : 'auto'
           }).end();
         };
 
@@ -4603,19 +3817,27 @@ contentLoaded(win, function () {
             objPos(tip, (target.offset().top + (target.outerHeight() / 2) - nubHeight), 'auto', 'auto', (target.offset().left + target.outerWidth() + 10), width)
               .removeClass('tip-override');
             objPos(nub, (tip.outerHeight() / 2) - (nubHeight / 2), 'auto', 'auto', -nubHeight);
+          } else if (classes && classes.indexOf('tip-centered-top') > -1) {
+            objPos(tip, (target.offset().top - tip.outerHeight() - nubHeight), 'auto', 'auto', (target.offset().left + ((target.outerWidth() - tip.outerWidth()) / 2) ), width)
+              .removeClass('tip-override');
+            objPos(nub, 'auto', ((tip.outerWidth() / 2) -(nubHeight / 2)), -nubHeight, 'auto');
+          } else if (classes && classes.indexOf('tip-centered-bottom') > -1) {
+            objPos(tip, (target.offset().top + target.outerHeight() + 10), 'auto', 'auto', (target.offset().left + ((target.outerWidth() - tip.outerWidth()) / 2) ), width)
+              .removeClass('tip-override');
+            objPos(nub, -nubHeight, ((tip.outerWidth() / 2) -(nubHeight / 2)), 'auto', 'auto');
           }
         }
         tip.css('visibility', 'visible').hide();
       },
       inheritable_classes : function (target) {
-        var inheritables = ['tip-top', 'tip-left', 'tip-bottom', 'tip-right', 'noradius'],
+        var inheritables = ['tip-top', 'tip-left', 'tip-bottom', 'tip-right', 'tip-centered-top', 'tip-centered-bottom', 'noradius'].concat(settings.additionalInheritableClasses),
           classes = target.attr('class'),
           filtered = classes ? $.map(classes.split(' '), function (el, i) {
               if ($.inArray(el, inheritables) !== -1) {
                 return el;
               }
           }).join(' ') : '';
-
+          
         return $.trim(filtered);
       },
       show : function ($target) {
@@ -4657,7 +3879,7 @@ contentLoaded(win, function () {
 }(jQuery, this));
 
 /*
- * jQuery Foundation Top Bar 2.0.2
+ * jQuery Foundation Top Bar 2.0.3
  * http://foundation.zurb.com
  * Copyright 2012, ZURB
  * Free to use under the MIT license.
@@ -4673,6 +3895,7 @@ contentLoaded(win, function () {
       index : 0,
       initialized : false
     },
+
     methods = {
       init : function (options) {
         return this.each(function () {
@@ -4681,6 +3904,7 @@ contentLoaded(win, function () {
           settings.$topbar = $('nav.top-bar'),
           settings.$section = settings.$topbar.find('section'),
           settings.$titlebar = settings.$topbar.children('ul:first');
+
           var breakpoint = $("<div class='top-bar-js-breakpoint'/>").appendTo("body");
           settings.breakPoint = breakpoint.width();
           breakpoint.remove();
@@ -4721,10 +3945,7 @@ contentLoaded(win, function () {
 
             if (methods.breakpoint()) {
               var $this = $(this),
-                  $selectedLi = $this.closest('li'),
-                  $nextLevelUl = $selectedLi.children('ul'),
-                  $nextLevelUlHeight = 0,
-                  $largestUl;
+                  $selectedLi = $this.closest('li');
 
               settings.index += 1;
               $selectedLi.addClass('moved');
@@ -4764,9 +3985,11 @@ contentLoaded(win, function () {
           });
         });
       },
+
       breakpoint : function () {
         return settings.$w.width() < settings.breakPoint;
       },
+
       assemble : function () {
         // Pull element out of the DOM for manipulation
         settings.$section.detach();
@@ -4784,6 +4007,7 @@ contentLoaded(win, function () {
         // Put element back in the DOM
         settings.$section.appendTo(settings.$topbar);
       },
+
       largestUL : function () {
         var uls = settings.$topbar.find('section ul ul'),
             largest = uls.first(),
@@ -4811,58 +4035,23 @@ contentLoaded(win, function () {
     }
   };
 
+  // Monitor scroll position for sticky
+  if ($('.sticky').length > 0) {
+    var distance = $('.sticky').length ? $('.sticky').offset().top: 0,
+        $window = $(window);
+
+      $window.scroll(function() {
+        if ( $window.scrollTop() >= distance ) {
+           $(".sticky").addClass("fixed");
+        }
+
+       else if ( $window.scrollTop() < distance ) {
+          $(".sticky").removeClass("fixed");
+       }
+    });
+  }
+
 }(jQuery, this));
-
-;(function (window, document, $) {
-  // Set the negative margin on the top menu for slide-menu pages
-  var $selector1 = $('#topMenu'),
-    events = 'click.fndtn';
-  if ($selector1.length > 0) $selector1.css("margin-top", $selector1.height() * -1);
-
-  // Watch for clicks to show the sidebar
-  var $selector2 = $('#sidebarButton');
-  if ($selector2.length > 0) {
-    $('#sidebarButton').on(events, function (e) {
-      e.preventDefault();
-      $('body').toggleClass('active');
-    });
-  }
-
-  // Watch for clicks to show the menu for slide-menu pages
-  var $selector3 = $('#menuButton');
-  if ($selector3.length > 0)  {
-    $('#menuButton').on(events, function (e) {
-      e.preventDefault();
-      $('body').toggleClass('active-menu');
-    });
-  }
-
-  // // Adjust sidebars and sizes when resized
-  // $(window).resize(function() {
-  //   // if (!navigator.userAgent.match(/Android/i)) $('body').removeClass('active');
-  //   var $selector4 = $('#topMenu');
-  //   if ($selector4.length > 0) $selector4.css("margin-top", $selector4.height() * -1);
-  // });
-
-  // Switch panels for the paneled nav on mobile
-  var $selector5 = $('#switchPanels');
-  if ($selector5.length > 0)  {
-    $('#switchPanels dd').on(events, function (e) {
-      e.preventDefault();
-      var switchToPanel = $(this).children('a').attr('href'),
-          switchToIndex = $(switchToPanel).index();
-      $(this).toggleClass('active').siblings().removeClass('active');
-      $(switchToPanel).parent().css("left", (switchToIndex * (-100) + '%'));
-    });
-  }
-
-  $('#nav li a').on(events, function (e) {
-    e.preventDefault();
-    var href = $(this).attr('href'),
-      $target = $(href);
-    $('html, body').animate({scrollTop : $target.offset().top}, 300);
-  });
-}(this, document, jQuery));
 
 /*! http://mths.be/placeholder v2.0.7 by @mathias */
 ;(function(window, document, $) {
