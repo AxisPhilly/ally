@@ -39,7 +39,9 @@
         </div>
       </article>
     </div>
-    <div class="three columns">
+    <div class="six columns">
+      <div class="row">
+        <div class="six columns">
       <?php
         $latest_args = array(
           'orderby' => 'date', 
@@ -72,8 +74,8 @@
 
       <?php endwhile; endif; ?>
       <?php wp_reset_postdata(); ?>
-    </div>
-    <div class="three columns">
+        </div>
+        <div class="six columns">
       <?php
         $latest_args = array(
           'orderby' => 'date', 
@@ -101,8 +103,13 @@
 
       <?php endwhile; endif; ?>
       <?php wp_reset_postdata(); ?>
-
-      <a href="/">Story Archive</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="twelve columns">
+          Story Archive
+        </div>
+      </div>
     </div>
   </section>
   <section id="tools" class="row">
