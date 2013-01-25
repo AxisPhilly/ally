@@ -107,7 +107,7 @@
       </div>
       <div class="row">
         <div class="twelve columns">
-          Story Archive
+          <h3><a href="/archive">Story Archive &#8594;</a></h3>
         </div>
       </div>
     </div>
