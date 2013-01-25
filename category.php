@@ -121,37 +121,36 @@
         <a name="discussion"></a>
         <div class="row">
           <div id="discussion" class="twelve columns">
-            <div class="items">
-              <?php
-                $discussion_args = array(
-                  'orderby' => 'date', 
-                  'order' => 'DESC',
-                  'post_status' => 'publish', 
-                  'category_name' => $slug, 
-                  'post_type' => array('discussion'),
-                  'posts_per_page' => -1
-                );
+              <div class="items">
 
-                $discussions = new WP_Query($discussion_args);
-                $discussion_count = 0;
-                if ($discussions->have_posts()):
-                  while ($discussions->have_posts()):
-                    $discussions->the_post();
-              ?>  
+                <?php
+                  $discussion_args = array(
+                    'orderby' => 'date', 
+                    'order' => 'DESC',
+                    'post_status' => 'publish', 
+                    'category_name' => $slug, 
+                    'post_type' => array('discussion'),
+                    'posts_per_page' => -1
+                  );
 
-                    <div class='caption'>
-                      <?php
-                        echo "<a href='"; 
-                        the_permalink();
-                        echo "'>";
-
-                      ?>                        
-                    <?
-
-                      the_title();
-     
-                    ?>
-                    </a>
+                  $discussions = new WP_Query($discussion_args);
+                  if ($discussions->have_posts()):
+                    while ($discussions->have_posts()):
+                      $discussions->the_post();
+                ?>  
+                <div class="row">
+                  <div class="four columns">
+                      <h4 style="font-family: proxima-nova, helvetica, sans-serif;">
+                        <?php
+                          echo "<a href='"; 
+                          the_permalink();
+                          echo "'>";
+                        the_title();
+                        ?>
+                      </a>
+                    </h4>                    
+                  </div>
+                  <div class="two columns" style="margin: 1em 0">
                     <?php 
                       comments_template();
                       $comment_number = get_comments_number();
@@ -167,9 +166,18 @@
                     endif;
                     ?>
                   </div>
+                  <div class="six columns" style="margin: 1em 0">
+                    <div style="font-family: proxima-nova, helvetica, sans-serif; font-size: 70%; text-transform: uppercase;">Featured Comment</div>
+                    <? 
+                      echo get_post_meta($post->ID, '_pull_quote_name', true); 
+                    ?><br>
+                    <a href="<? echo get_post_meta($post->ID, '_pull_quote_url_name', true); ?>">Read this thread &#8594;</a>
+                  </div>
+                </div>
+              
+
                 <?php endwhile; endif; ?>
-            </div>
-          </div>
+              </div>
         </div>
       </li>
     </ul>
