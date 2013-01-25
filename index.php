@@ -25,12 +25,10 @@
         <?php endif; ?>
         <div class="column-padding">
           <?php if(stripos($_SERVER["REQUEST_URI"], 'project/') == FALSE) { ?>
-            <div class="category-symbology">
               <?php list_categories(); ?>
-            </div>
           <?php } ?>          
-            <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-            <div class="byline">by <?php coauthors_posts_links(); ?> — <?php the_time('M. j'); ?></div>
+            <h2 class="frontpage"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+            <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
 
 
             <?php the_excerpt(); ?>
@@ -61,11 +59,9 @@
       <img src="<?php echo $image[0]; ?>">
     <?php endif; ?>        
     <div class="column-padding">
-      <div class="category-symbology">
         <?php list_categories(); ?>
-      </div>  
-      <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-      <div class="byline">by <?php coauthors_posts_links(); ?>—<?php the_time('M. j'); ?></div>
+      <h3 class="frontpage"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+      <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
       <?php the_excerpt(); ?>
     </div>
   </article>
@@ -91,24 +87,22 @@
       ?>
       <article>
         <div class="column-padding">
-          <div class="category-symbology">
             <?php list_categories(); ?>
-          </div>
-          <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-          <div class="byline">by <?php coauthors_posts_links(); ?>—<?php the_time('M. j'); ?></div>
+          <h4 class="frontpage"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+          <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
         </div>
       </article>
 
       <?php endwhile; endif; ?>
       <?php wp_reset_postdata(); ?>
       <div class="archive-link">
-        <h3><a href="/archive">Story Archive &#8594;</a></h3>
+        <h4><a href="/archive">Story Archive &#8594;</a></h4>
       </div>
     </div>
   </section>
   <section id="tools" class="row">
     <div class="three columns">
-      <h2>Tools &amp; Data</h2>
+      <h4>Tools &amp; Data</h4>
       <p>We're building interactive maps, graphics, and applications to illuminate stories.</p>
       <p><a href="/tools">View more tools &#8594;</a></p>
     </div>
@@ -140,7 +134,7 @@
   </section>
   <section id="projects" class="row">
     <div class="three columns">
-      <h2>Projects</h2>
+      <h4>Projects</h4>
       <p>Our focus areas and investigations. Find tools, discussion, and curated stories from other media organizations on each topic.</p>
     </div>
     <?php 
@@ -156,7 +150,7 @@
       foreach($projects as $project) {
     ?>
       <article class="project-summary three columns">
-        <h4><?php echo $project->name ?></h4>
+        <h5><?php echo $project->name ?></h5>
         <?php 
           $latest_args = array(
             'posts_per_page' => 1,
@@ -175,8 +169,8 @@
             <img src="<?php echo $image[0]; ?>">
           <?php endif; ?>        
 
-          <h5><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
-          <div class="byline">by <?php coauthors_posts_links(); ?> — <?php the_time('M. j'); ?></div>
+          <h6><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h6>
+          <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
           <?php the_excerpt(); ?>
 
         <?php endwhile; } ?>

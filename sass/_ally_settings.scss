@@ -28,7 +28,7 @@ $darkEdge: rgba(#000, .2);
 
 //$fontSmoothing: antialiased;
 $headerFontFamily: "calluna", georgia, serif;
-$headerFontWeight: 700;
+$headerFontWeight: 600;
 $headerFontStyle: normal;
 $headerFontColor: #222;
 $bodyFontFamily: "calluna", georgia, serif;
@@ -36,7 +36,7 @@ $bodyFontWeight: normal;
 $bodyFontStyle: normal;
 $bodyFontColor: $txtColor;
 $categoryFontFamily: "proxima-nova", "Helvetica Neue", Helvetica, sans-serif;
-$categoryFontWeight: 800;
+$categoryFontWeight: 700;
 $categoryFontStyle: normal;
 $categoryFontColor: #222;
 $menuFontFamily: "proxima-nova", "Helvetica Neue", Helvetica, sans-serif;
@@ -44,6 +44,16 @@ $menuFontWeight: 300;
 $menuFontStyle: normal;
 $menuFontColor: #222;
 $menuFontSize: 20px;
+$byFontFamily: "proxima-nova", "Helvetica Neue", Helvetica, sans-serif;
+$byFontWeight: 300;
+$byFontStyle: normal;
+$byFontColor: #666;
+$byFontSize: 14px;
+$dateFontFamily: "proxima-nova", "Helvetica Neue", Helvetica, sans-serif;
+$dateFontWeight: 300;
+$dateFontStyle: normal;
+$dateFontColor: #aaa;
+$dateFontSize: 14px;
 
 // Text Direction Settings
 
@@ -188,7 +198,7 @@ $clearingImgOldBrowserBg: rgb(0,0,0);
 // Modular Scale Settings
 
 //$ratio: $golden; // THIS IS DEFAULT IN MODULAR-SCALE
-$baseFontSize: 16px;
+$baseFontSize: 20px;
 $importantModNum: 44px;
 $base-size: $baseFontSize $importantModNum;
 // Produced the following list of values: 14, 17, 23, 27, 37, 44, 59, 71, 95, 115;
@@ -212,4 +222,5 @@ $screenXlarge: 1441px !default;
 // $mediaPortrait: "screen and (orientation: portrait)" !default;
 // $mediaAll: "only screen and (max-device-width: 800px), only screen and (device-width: 1024px) and (device-height: 600px), only screen and (width: 1280px) and (orientation: landscape), only screen and (device-width: 800px), only screen and (max-width: 767px)" !default;
 
-$columnPadding: 8px;
+$columnPadding: 4px;
+$body-text-line-height: 200px;

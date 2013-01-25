@@ -389,9 +389,17 @@ function list_categories() {
   $project_parent_category = get_category_by_slug('project');
   $project_parent_category_id=$project_parent_category->term_id;
   $categories=get_the_category();
+  $count = 0;
   foreach($categories as $category){
     if($category->category_parent==$project_parent_category_id){
+      if ($count == 0) {
+        echo '<div class="category-symbology">';
+      }
       echo "<a class='one-category' href='/project/". $category->slug . "'>" . $category->name . "</a>";
+      if ($count == 0) {
+        echo '</div>';
+      }  
+      $count++;
     }
   }
 }

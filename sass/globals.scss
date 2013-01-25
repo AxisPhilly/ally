@@ -6,6 +6,14 @@ body {
     line-height: 1.5;
   }
 
+  div {
+    line-height: 1.5;
+  }
+
+  .byline {
+    line-height: 1.5;
+  }
+
   h1, h2, h3, h4, h5, h6 {
     line-height: 1;
   }
@@ -301,11 +309,10 @@ margin-right: auto
 
 #homepage-content .byline {
   margin: 0px 0px 0px 0px;
-  font-style: italic;
   line-height: 1.5;
 
   a:link, a:visited {
-    color:#222;
+    color:#666;
   } 
 
   @media(max-width: 360px) {
@@ -314,8 +321,7 @@ margin-right: auto
 }
 
 #homepage-content #homepage-featured .byline {
-  margin: 16px 0px 8px 0px;
-  font-style: italic;
+  margin: 12px 0px 4px 0px;
 
   @media(max-width: 360px) {
     font-size: 14px;
@@ -325,7 +331,7 @@ margin-right: auto
 // Project header on news feed item
 .category-symbology {
   text-transform: uppercase;
-  margin-top: 1em;
+  margin-top: 0;
   margin-bottom: 0;
   font-size: 12px;
   font-weight: $categoryFontWeight;
@@ -336,18 +342,19 @@ margin-right: auto
   } 
 }
 
-#homepage-content h3 {
+h3.frontpage {
   font-size: 24px;
+  margin: 0.3em 0 0 0;
+}
+
+h4.frontpage {
+  font-size: 24px;
+  margin: 0.3em 0 0 0;
+}
+
+h2.frontpage {
+  font-size: 40px;
   margin: 0.3em 0 0.2em 0;
-}
-
-h3.headline {
-  
-}
-
-#homepage-content #homepage-featured h3 {
-  font-size: 48px;
-  margin-top: 4px;
 }
 
 #homepage-content #homepage-featured .category-symbology {
@@ -356,10 +363,6 @@ h3.headline {
 }
 
 #homepage-content #homepage-featured p {
-  font-size: 20px;
-}
-
-#homepage-content #homepage-featured .byline {
   font-size: 20px;
 }
 
@@ -383,10 +386,38 @@ h3.headline {
 
 #homepage-content article {
   border-top: 1px #222 solid;
-  padding: 15px 0;
+  padding: 14px 0 12px 0;
 }
 
 #homepage-content article:first-child {
   border-top: none;
   padding-top: 0px;
+}
+
+.byline-date {
+  font-family: $dateFontFamily;
+  font-weight: $dateFontWeight;
+  color: $dateFontColor;
+  font-size: $dateFontSize;
+}
+
+.byline-author {
+  font-family: $byFontFamily;
+  font-weight: $byFontWeight;
+  color: $byFontColor;
+  font-size: $byFontSize;
+}
+
+#homepage-featured {
+  .byline-date {
+    font-size: 24px;
+  }
+  .byline-author {
+    font-size: 24px;
+  }
+}
+
+#homepage-content article p {
+  font-size: 16px;
+  margin-bottom: 0;
 }
