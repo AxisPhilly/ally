@@ -11,7 +11,7 @@
   <div id="news-container">
     <div class="row">
       <header class="project-header twelve columns">
-        <h1><?php  echo get_category_by_slug($slug)->name ?></h1>
+        <h3><?php  echo get_category_by_slug($slug)->name ?></h3>
       </header>
     </div>
     <!-- Header Row -->

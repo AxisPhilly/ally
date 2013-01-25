@@ -76,10 +76,10 @@ h1, h2, h3, h4, h5, h6 {
   font-size: $menuFontSize;
 
   .header-logo {
-    height: 120px;
-    padding-top: 10px;
-    text-align: center;
-    background-color: #222;
+    height: 160px;
+    padding-top: 40px;
+    text-align: left;
+    background-color: #18285c;
 
     @media(max-width: 767px) {
       display: none;

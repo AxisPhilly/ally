@@ -23,18 +23,16 @@
           $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full'); ?>
           <img src="<?php echo $image[0]; ?>">
         <?php endif; ?>
-        <div class="column-padding">
-          <?php if(stripos($_SERVER["REQUEST_URI"], 'project/') == FALSE) { ?>
-              <?php list_categories(); ?>
-          <?php } ?>          
-            <h2 class="frontpage"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-            <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
+        <?php if(stripos($_SERVER["REQUEST_URI"], 'project/') == FALSE) { ?>
+            <?php list_categories(); ?>
+        <?php } ?>          
+          <h2 class="frontpage"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+          <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
 
 
-            <?php the_excerpt(); ?>
-          <?php endwhile; endif; ?>
-          <?php wp_reset_postdata(); ?>
-        </div>
+          <?php the_excerpt(); ?>
+        <?php endwhile; endif; ?>
+        <?php wp_reset_postdata(); ?>
       </article>
     </div>
     <div class="three columns">
@@ -58,12 +56,10 @@
       $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'thumbnail'); ?>
       <img src="<?php echo $image[0]; ?>">
     <?php endif; ?>        
-    <div class="column-padding">
-        <?php list_categories(); ?>
-      <h3 class="frontpage"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-      <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
-      <?php the_excerpt(); ?>
-    </div>
+    <?php list_categories(); ?>
+    <h3 class="frontpage"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+    <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
+    <?php the_excerpt(); ?>
   </article>
 
   <?php endwhile; endif; ?>
@@ -86,11 +82,9 @@
             $latest->the_post();
       ?>
       <article>
-        <div class="column-padding">
-            <?php list_categories(); ?>
-          <h4 class="frontpage"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-          <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
-        </div>
+        <?php list_categories(); ?>
+        <h4 class="frontpage"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+        <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
       </article>
 
       <?php endwhile; endif; ?>
