@@ -47,12 +47,10 @@
         </div>
         <div class="recent discussion">
           <?php 
-            if(isset($c_name) and (get_post_type(the_post()) != 'discussion')) { ?>
-              <p>
-                <strong>Recent discussion about <?php echo $c_name; ?></strong>
-              </p>
+            if(isset($c_name) and (get_post_type($post) != 'discussion')) { ?>
               <?php
                 $discussion_args = array(
+                  'category_name' => $c_name,
                   'posts_per_page' => 3,
                   'post_type' => 'discussion'
                 );
@@ -60,6 +58,11 @@
                 $discussion = new WP_Query($discussion_args);
 
                 if($discussion->have_posts()):
+              ?>
+                <p>
+                  <strong>Recent discussion about <?php echo $c_name; ?></strong>
+                </p>
+              <?php
                   while($discussion->have_posts()):
                     $discussion->the_post();
               ?>
