@@ -96,7 +96,7 @@
   </section>
   <section id="tools" class="row">
     <div class="three columns">
-      <h4>Tools &amp; Data</h4>
+      <h3>Tools &amp; Data</h3>
       <p>We're building interactive maps, graphics, and applications to illuminate stories.</p>
       <p><a href="/tools">View more tools &#8594;</a></p>
     </div>
@@ -119,7 +119,7 @@
         $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'thumbnail'); ?>
         <img src="<?php echo $image[0]; ?>">
       <?php endif; ?> 
-      <h5><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
+      <h4 class="headline"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
       <div class="byline">by <?php coauthors_posts_links(); ?>—<?php the_time('M. j'); ?></div>
       <div><?php the_excerpt(); ?></div>
     </article>
@@ -128,7 +128,7 @@
   </section>
   <section id="projects" class="row">
     <div class="three columns">
-      <h4>Projects</h4>
+      <h3>Projects</h3>
       <p>Our focus areas and investigations. Find tools, discussion, and curated stories from other media organizations on each topic.</p>
     </div>
     <?php 
@@ -163,7 +163,7 @@
             <img src="<?php echo $image[0]; ?>">
           <?php endif; ?>        
 
-          <h6><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h6>
+          <h4 class="headline"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
           <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
           <?php the_excerpt(); ?>
 
