@@ -33,7 +33,7 @@
           ?>
         </a>
       </h4>
-      <div class="byline <?php if(get_post_type() != 'external_post') { echo 'hide-for-small'; } ?>">
+      <div class="byline-author <?php if(get_post_type() != 'external_post') { echo 'hide-for-small'; } ?>">
         <?php
           # Check to see if this is an external_post. If so, display Source and Source URL instead of Author.
           if (get_post_type() == 'external_post') {
@@ -46,7 +46,7 @@
         ?>
       </div>
       <?php if ((get_post_type() != 'external_post')) { ?> 
-        <div class="datetime hide-for-small"><?php the_time('F j, Y');?></div>
+        <div class="byline-date hide-for-small"><?php the_time('F j, Y');?></div>
       <?php } ?>
       <div class="hide-for-small">
         <?php the_excerpt(); ?>
