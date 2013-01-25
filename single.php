@@ -41,9 +41,7 @@
               the_content();
             ?>
             <p>
-              <?php
-                the_tags('<span class="round label">','</span> <span class="round label">','</span>');
-              ?>
+              <?php the_tags('<span class="round label">','</span> <span class="round label">','</span>'); ?>
             </p>
           </div>
           <div class="row">
