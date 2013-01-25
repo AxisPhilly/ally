@@ -2,7 +2,7 @@
   <div class="sidebar view">
     <div <?php global $sidebar; if($sidebar == 0) { ?> class="moving-container" data-spy="affix" data-offset-top="220" <?php } ?>>
       <div class="social-container">
-        <strong>Share this article</strong>
+        <strong>Share this: </strong>
         <div class="shorturl-container">
           <input type="text" name="shorturl" id="shorturl" value="<?php echo wp_get_shortlink(); ?>" readonly="true"></input>
         </div>
