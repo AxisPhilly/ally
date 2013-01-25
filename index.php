@@ -26,7 +26,7 @@
         <?php if(stripos($_SERVER["REQUEST_URI"], 'project/') == FALSE) { ?>
             <?php list_categories(); ?>
         <?php } ?>          
-          <h2 class="frontpage"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+          <h2 class="headline"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
           <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
 
 
@@ -57,7 +57,7 @@
       <img src="<?php echo $image[0]; ?>">
     <?php endif; ?>        
     <?php list_categories(); ?>
-    <h3 class="frontpage"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+    <h3 class="headline"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
     <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
     <?php the_excerpt(); ?>
   </article>
@@ -83,7 +83,7 @@
       ?>
       <article>
         <?php list_categories(); ?>
-        <h4 class="frontpage"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+        <h4 class="headline"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
         <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
       </article>
 

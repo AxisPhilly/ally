@@ -122,7 +122,6 @@
         <div class="row">
           <div id="discussion" class="twelve columns">
             <div class="items">
-              <ul class="block-grid two-up mobile-one-up">
               <?php
                 $discussion_args = array(
                   'orderby' => 'date', 
@@ -139,7 +138,6 @@
                   while ($discussions->have_posts()):
                     $discussions->the_post();
               ?>  
-                  <li class="tool">
 
                     <div class='caption'>
                       <?php
@@ -149,19 +147,9 @@
 
                       ?>                        
                     <?
-                      $discussion_count++;
-                      if ($discussion_count == 1){
-                        $header_level = 2;
-                      }
-                      elseif (($discussion_count > 1)&&($discussion_count <= 4)) {
-                        $header_level = 3;
-                      }
-                      else {
-                        $header_level = 5;
-                      }
-                      echo '<h' . $header_level . '>'; 
+
                       the_title();
-                      echo '</h' . $header_level . '>';
+     
                     ?>
                     </a>
                     <?php 
@@ -179,9 +167,7 @@
                     endif;
                     ?>
                   </div>
-                  </li>
                 <?php endwhile; endif; ?>
-              </ul>
             </div>
           </div>
         </div>

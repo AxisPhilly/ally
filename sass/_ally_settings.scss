@@ -151,7 +151,7 @@ $hasTipFontColor: #333;
 $hasTipBorderBottomHover: dotted 1px darken($mainColor, 20%);
 $hasTipFontColorHover: $mainColor;
 $tooltipBackgroundColor: #000;
-$tooltipBackgroundOpacity: 0.85;
+$tooltipBackgroundOpacity: 1.0;
 $tooltipFontSize: 12px;
 $tooltipFontWeight: bold;
 $tooltipFontColor: #fff;
@@ -159,13 +159,13 @@ $tapToCloseFontSize: 10;
 $tapToCloseFontWeight: normal;
 $tapToCloseFontColor: #888;
 $tooltipFontSizeScreenSm: 14;
-$tooltipBgOpacityScreenSm: 0.85;
+$tooltipBgOpacityScreenSm: 1.0;
 $tooltipBorderRadius: 4px;
 
 // Orbit Settings
 
 $orbitCaptionBgColorOldBrowser: #000;
-$orbitCaptionBgColor: rgba(0,0,0,.6);
+$orbitCaptionBgColor: rgba(0,0,0,0);
 $orbitCaptionFontColor: #fff;
 $orbitBulletNavColor: #999;
 $orbitBulletNavColorActive: #222;
@@ -180,7 +180,7 @@ $orbitSlideNumPadding: 5px;
 
 $clearingBg: rgba(0,0,0,0.8);
 $clearingOldBrowserBg: rgb(0,0,0);
-$clearingCaptionBg: rgba(0,0,0,0.7);
+$clearingCaptionBg: rgba(0,0,0,0);
 $clearingCaptionOldBrowserBg: rgb(0,0,0);
 $clearingCaptionFontColor: #fff;
 $clearingCloseColor: #fff;
