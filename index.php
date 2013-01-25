@@ -39,43 +39,41 @@
         </div>
       </article>
     </div>
-    <div class="six columns">
-      <div class="row">
-        <div class="six columns">
-      <?php
-        $latest_args = array(
-          'orderby' => 'date', 
-          'order' => 'DESC',
-          'posts_per_page' => 2,
-          'post_status' => 'publish',
-          'post_type' => array('post')
-        );
+    <div class="three columns">
+  <?php
+    $latest_args = array(
+      'orderby' => 'date', 
+      'order' => 'DESC',
+      'posts_per_page' => 2,
+      'post_status' => 'publish',
+      'post_type' => array('post')
+    );
 
-        $latest = new WP_Query($latest_args);
+    $latest = new WP_Query($latest_args);
 
-        if ($latest->have_posts()):
-          while ($latest->have_posts()):
-            $latest->the_post();
-      ?>
-      <article>
-        <?php if (has_post_thumbnail($post->ID)):  
-          $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'thumbnail'); ?>
-          <img src="<?php echo $image[0]; ?>">
-        <?php endif; ?>        
-        <div class="column-padding">
-          <div class="category-symbology">
-            <?php list_categories(); ?>
-          </div>  
-          <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-          <div class="byline">by <?php coauthors_posts_links(); ?>—<?php the_time('M. j'); ?></div>
-          <?php the_excerpt(); ?>
-        </div>
-      </article>
+    if ($latest->have_posts()):
+      while ($latest->have_posts()):
+        $latest->the_post();
+  ?>
+  <article>
+    <?php if (has_post_thumbnail($post->ID)):  
+      $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'thumbnail'); ?>
+      <img src="<?php echo $image[0]; ?>">
+    <?php endif; ?>        
+    <div class="column-padding">
+      <div class="category-symbology">
+        <?php list_categories(); ?>
+      </div>  
+      <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+      <div class="byline">by <?php coauthors_posts_links(); ?>—<?php the_time('M. j'); ?></div>
+      <?php the_excerpt(); ?>
+    </div>
+  </article>
 
-      <?php endwhile; endif; ?>
-      <?php wp_reset_postdata(); ?>
-        </div>
-        <div class="six columns">
+  <?php endwhile; endif; ?>
+  <?php wp_reset_postdata(); ?>
+    </div>
+    <div class="three columns">
       <?php
         $latest_args = array(
           'orderby' => 'date', 
@@ -103,13 +101,7 @@
 
       <?php endwhile; endif; ?>
       <?php wp_reset_postdata(); ?>
-        </div>
-      </div>
-      <div class="row">
-        <div class="twelve columns">
-          <h3><a href="/archive">Story Archive &#8594;</a></h3>
-        </div>
-      </div>
+      <h3><a href="/archive">Story Archive &#8594;</a></h3>
     </div>
   </section>
   <section id="tools" class="row">
