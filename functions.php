@@ -344,7 +344,7 @@ function create_post_type() {
       ),  
       'public' => true,  
       'menu_position' => 5,  
-      'supports' => array( 'title', 'excerpt', 'thumbnail', 'revisions'),
+      'supports' => array('title', 'editor', 'excerpt', 'thumbnail', 'revisions', 'meta_info'),
       'rewrite' => array('slug' => 'special','with_front' => false)  
     )  
   );  
