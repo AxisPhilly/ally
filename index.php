@@ -130,8 +130,8 @@
           <img src="<?php echo $image[0]; ?>">
         <?php endif; ?> 
         <h4 class="headline"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
-        <div class="byline">by <?php coauthors_posts_links(); ?>—<?php the_time('M. j'); ?></div>
-        <div><?php the_excerpt(); ?></div>
+        <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
+        <p><?php the_excerpt(); ?></p>
       </article>
       <?php endwhile; endif; ?>
       <?php wp_reset_postdata(); ?>
@@ -175,7 +175,7 @@
 
             <h4 class="headline"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
             <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
-            <?php the_excerpt(); ?>
+            <p><?php the_excerpt(); ?></p>
 
           <?php endwhile; } ?>
           <?php wp_reset_postdata(); ?>
