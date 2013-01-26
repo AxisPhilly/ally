@@ -14,7 +14,11 @@
 
   .category-symbology {
     font-size: 14px;
-    p:after
+    //p:after
+
+    .social-foundicon-chat {
+      font-size: 20px;
+    }
 
     .one-category:after {
       content: ", ";
