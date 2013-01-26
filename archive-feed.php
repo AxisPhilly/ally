@@ -41,12 +41,13 @@
                   " - " . get_the_time('F j, Y') . "</i>";
           }
           elseif (get_post_type() != 'external_post') {
-            echo "by "; coauthors_posts_links();
+        ?>
+          <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
+        <?
           }
         ?>
       </div>
       <?php if ((get_post_type() != 'external_post')) { ?> 
-        <div class="byline-date hide-for-small"><?php the_time('F j, Y');?></div>
       <?php } ?>
       <div class="hide-for-small">
         <?php the_excerpt(); ?>

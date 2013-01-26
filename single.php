@@ -16,8 +16,7 @@
           <header class="article-header">
             <h2 class="headline"><?php the_title(); ?></h2>
             <div class="publish-container">
-              <div class="byline">by <a href="#"><?php coauthors_posts_links(); ?></a></div>
-              <div class="datetime"><?php the_time('F j, Y'); ?></div>
+              <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
             </div>
             <?php if ((has_post_thumbnail($post->ID)) && (!in_array('hide-featured', $meta_tags))):  ?>
               <div class="media-container full-page">
