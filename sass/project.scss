@@ -95,6 +95,10 @@
   }
 }
 
+#feature-container .caption {
+  opacity: 1;
+}
+
 // Show orbit controls on hover
 .orbit-wrapper {
   //.slider-nav span { @include opacity(0); @include single-transition(opacity, 400ms); }

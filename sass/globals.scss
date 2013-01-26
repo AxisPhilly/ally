@@ -16,9 +16,13 @@ body {
 
   h1, h2, h3, h4, h5, h6 {
     line-height: 1;
+    font-weight: bold;
+  }
+  
+  aside p {
+    font-style: normal
   }
 }
-
 
 .content-container {
   margin-top: 44px;
@@ -33,188 +37,6 @@ body {
     margin-bottom: 10px;
   }
 }
-
-h1, h2, h3, h4, h5, h6 {
-  font-weight: bold;
-}
-
-// ABOUT PAGE
-#about-menu {
-  &.affix {
-    width: 15%;
-    z-index: 11;
-    top: 45px;
-    position: fixed;
-  }
-}
-
-#about-container ul, ol {
-  padding: 1em 2em;
-}
-
-// HEADER
-.menu-button {
-  line-height: 4px;
-  text-align: center;
-  float: right;
-
-  .line {
-    display: inline-block;
-    border: 2px solid #444;
-    height: 2px;
-    width: 100%;
-    background-color: #444;
-    margin: 0;
-  }
-}
-
-.header {
-  width: 100%;
-  margin-bottom: 40px;
-  font-family: $menuFontFamily;
-  font-color: $menuFontColor;
-  font-size: $menuFontSize;
-
-  .header-logo {
-    height: 160px;
-    padding-top: 40px;
-    text-align: left;
-    background-color: #18285c;
-
-    @media(max-width: 767px) {
-      display: none;
-    }
-
-    img {
-      width: 400px;
-    }
-  }
-
-  .spacer {
-    height: 45px;
-  }
-
-  .top-bar {
-    margin: 0 auto;
-    max-width: 1200px;
-    border-bottom: 1px solid #333;
-
-    ul > li:not(.name):hover {
-      background: #fff;
-    }
-
-    ul > li a:not(.button) {
-      height: 44px;
-      font-size: $menuFontSize;
-      font-weight: $menuFontWeight;
-    }
-
-    ul > li.has-dropdown .dropdown li {
-      border-left: 1px solid $thirdColor;
-      border-right: 1px solid $thirdColor;
-    }
-
-    ul > li.has-dropdown .dropdown .last {
-      border-bottom: 1px solid $thirdColor;
-    }
-
-    ul > li.name {
-      background: #fff;
-
-      @media(min-width: $topBarBreakPoint) {
-        display: none;
-      }
-    }
-
-    li.search {
-      line-height: 44px;
-      padding: 0 5px;
-    }
-
-    ul > li.has-dropdown .dropdown {
-      padding: 0px;
-    }
-  }
-
-  .nav-container {
-    &.affix {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      margin: 0 auto;
-    }
-  }
-
-  .social {
-    i {
-      font-size: 135%;
-    }
-
-    &.desktop {
-      display: block;
-
-      @media(max-width: $topBarBreakPoint) {
-        display: none;
-      }
-    }
-
-    &.mobile {
-      display: none;
-
-      a { 
-        display: inline !important;
-        padding: 5px !important;
-      }
-
-      @media(max-width: $topBarBreakPoint) {
-        display: block;
-      }
-    }
-  }
-}
-
-// PAGE FOOTER
-footer {
-  position: relative;
-  z-index: 1;
-  background-color: #000;
-  width: 100%;
-  color: #fff;
-
-  ul {
-    list-style-type: none;
-  }
-
-  .about {
-    padding: 25px;
-  }
-
-  .colors {
-    div {
-      height: 5px;
-    }
-
-    .yellow {
-      background-color: #fcd440;
-    }
-
-    .light-blue {
-      background-color: #00a7df;
-    }
-
-    .red {
-      background-color: #df293d;
-    }
-
-    .dark-blue {
-      background-color: #0e6790;
-    }
-  }
-}
-
-// NEWS FEED STYLES
 
 // Tag
 span.radius.label a {
@@ -239,83 +61,8 @@ article.row {
   }
 }
 
-/* WordPress Core Image Stuff
--------------------------------------------------------------- */
-.alignnone {
-margin: 5px 20px 20px 0;
-}
-
-.aligncenter,
-div.aligncenter {
-display: block;
-margin: 5px auto 5px auto;
-}
-
-.alignright {
-float:right;
-margin: 5px 0 20px 20px;
-}
-
-.alignleft {
-float: left;
-margin: 5px 20px 20px 0;
-}
-
-.aligncenter {
-display: block;
-margin: 5px auto 5px auto;
-}
-
-a img.alignright {
-float: right;
-margin: 5px 0 20px 20px;
-}
-
-a img.alignnone {
-margin: 5px 20px 20px 0;
-}
-
-a img.alignleft {
-float: left;
-margin: 5px 20px 20px 0;
-}
-
-a img.aligncenter {
-display: block;
-margin-left: auto;
-margin-right: auto
-}
-
-/* End of WordPress Core
--------------------------------------------------------------- */
-
-#logo {
-  padding: 2em 1em 2em 1em;
-}
-
 .caption {
   padding: 1em 1em;
-}
-
-#homepage-content .byline {
-  margin: 0px 0px 0px 0px;
-  line-height: 1.5;
-
-  a:link, a:visited {
-    color:#666;
-  } 
-
-  @media(max-width: 360px) {
-    font-size: 14px;
-  }
-}
-
-#homepage-content #homepage-featured .byline {
-  margin: 12px 0px 4px 0px;
-
-  @media(max-width: 360px) {
-    font-size: 14px;
-  }
 }
 
 // Project header on news feed item
@@ -347,43 +94,6 @@ h2.headline {
   margin: 0.3em 0 0.2em 0;
 }
 
-#homepage-content #homepage-featured .category-symbology {
-  font-size: 14px;
-  p:after
-}
-
-#homepage-content #homepage-featured p {
-  font-size: 20px;
-}
-
-#homepage-content #homepage-featured .category-symbology .one-category:after {
-  content: ", ";
-}
-
-#homepage-content #homepage-featured .category-symbology .one-category:last-child:after {
-  content: "";
-}
-
-#tools {
-  border-top: 1px solid #ccc;
-  padding: 15px 0;
-}
-
-#projects {
-  border-top: 1px solid #ccc;
-  padding: 15px 0;
-}
-
-#homepage-content article {
-  border-top: 1px #222 solid;
-  padding: 14px 0 12px 0;
-}
-
-#homepage-content article:first-child {
-  border-top: none;
-  padding-top: 0px;
-}
-
 .byline-date {
   font-family: $dateFontFamily;
   font-weight: $dateFontWeight;
@@ -398,16 +108,50 @@ h2.headline {
   font-size: $byFontSize;
 }
 
-#homepage-featured {
-  .byline-date {
-    font-size: 24px;
-  }
-  .byline-author {
-    font-size: 24px;
-  }
+/* WordPress Core Image Stuff, legacy posts support
+-------------------------------------------------------------- */
+.alignnone {
+  margin: 5px 20px 20px 0;
 }
 
-#homepage-content article p {
-  font-size: 16px;
-  margin-bottom: 0;
+.aligncenter, div.aligncenter {
+  display: block;
+  margin: 5px auto 5px auto;
 }
+
+.alignright {
+  float:right;
+  margin: 5px 0 20px 20px;
+}
+
+.alignleft {
+  float: left;
+  margin: 5px 20px 20px 0;
+}
+
+.aligncenter {
+  display: block;
+  margin: 5px auto 5px auto;
+}
+
+a img.alignright {
+  float: right;
+  margin: 5px 0 20px 20px;
+}
+
+a img.alignnone {
+  margin: 5px 20px 20px 0;
+}
+
+a img.alignleft {
+  float: left;
+  margin: 5px 20px 20px 0;
+}
+
+a img.aligncenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto
+}
+/* End of WordPress Core image stuff
+-------------------------------------------------------------- */
