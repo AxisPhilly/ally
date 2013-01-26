@@ -142,7 +142,7 @@
     </section>
     <section id="tools" class="row">
       <div class="three columns">
-        <h3>Tools &amp; Data</h3>
+        <h4>Tools &amp; Data</h4>
         <p>We're building interactive maps, graphics, and applications to illuminate stories.</p>
         <p><a href="/tools">View more tools &#8594;</a></p>
       </div>
@@ -181,7 +181,7 @@
     </section>
     <section id="projects" class="row">
       <div class="three columns">
-        <h3>Projects</h3>
+        <h4>Projects</h4>
         <p>Our focus areas and investigations. Find tools, discussion, and curated stories from other media organizations on each topic.</p>
       </div>
       <?php 
