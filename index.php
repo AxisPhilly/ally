@@ -35,10 +35,14 @@
               }
         ?>
         <article>
-          <?php if (has_post_thumbnail($post->ID)):  
-            $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'large'); ?>
-            <img src="<?php echo $image[0]; ?>">
-          <?php endif; ?>
+          <?php 
+            if(has_post_video($post->ID)) {
+              the_post_video();
+            } elseif (has_post_thumbnail($post->ID)) {
+              $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'thumbnail');
+              echo '<img src="'. $image[0] . '">';
+            }
+          ?>
           <?php if(stripos($_SERVER["REQUEST_URI"], 'project/') == FALSE) { ?>
               <?php list_categories(); ?>
           <?php } ?>          

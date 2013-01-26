@@ -46,19 +46,14 @@
     }
 
     .featured_video_plus iframe {
-      max-width: 280px;
+      max-width: 100%;
       max-height: 200px;
-
-      @media(max-width: 767px) {
-        max-height: none;
-        max-width: none;
-      }
     }
   }
 
   #top-featured {
     .featured_video_plus iframe {
-      max-width: 570px;
+      max-height: none;
     }
 
     p {
