@@ -146,13 +146,20 @@
         if ($tools->have_posts()):
           while ($tools->have_posts()):
             $tools->the_post();
+
+            global $post_url;
+            if($post->post_type == 'external_tool') {
+              $post_url = get_post_meta($post->ID, '_url_name', true);
+            } else {
+              $post_url = get_permalink($post->ID);
+            }
       ?>
       <article class="three columns tool">
         <?php if (has_post_thumbnail($post->ID)):  
           $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'thumbnail'); ?>
           <img src="<?php echo $image[0]; ?>">
         <?php endif; ?> 
-        <h4 class="headline"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
+        <h4 class="headline"><a href="<?php echo $post_url; ?>"><?php the_title(); ?></a></h5>
         <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
         <p><?php the_excerpt(); ?></p>
       </article>
@@ -181,7 +188,8 @@
           <?php 
             $latest_args = array(
               'posts_per_page' => 1,
-              'category_name' => $project->slug
+              'category_name' => $project->slug,
+              'post_type' => array('post')
             );
 
             $latest = new WP_Query($latest_args);
