@@ -53,6 +53,13 @@
             if ($featured->have_posts()):
               while ($featured->have_posts()):
                 $featured->the_post();
+
+              global $post_url;
+              if($post->post_type == 'external_tool') {
+                $post_url = get_post_meta($post->ID, '_url_name', true);
+              } else {
+                $post_url = get_permalink($post->ID);
+              }
           ?>
           <div>
             <?php if (has_post_thumbnail($post->ID)):  
@@ -60,7 +67,7 @@
               <img src="<?php echo $image[0]; ?>">
             <?php endif; ?>
             <div class="caption">
-              <h4 class="headline"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+              <h4 class="headline"><a href="<?php echo $post_url; ?>"><?php the_title(); ?></a></h4>
               <div class="details">
                 <span class="byline">by <?php coauthors_posts_links(); ?>, <?php the_time('F j, Y'); ?></span>
                 <?php the_excerpt(); ?>

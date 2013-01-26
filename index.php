@@ -1,16 +1,15 @@
-<?php get_header(); ?>
-  <?php 
-    $feature_args = array(
-      'orderby' => 'date',
-      'order' => 'DESC',
-      'posts_per_page' => -1,
-      'meta_info' => 'homepage-feature',
-      'post_type' => array('post', 'external_tool', 'wp_tool', 'discussion')
-    );
+<?php 
+  get_header(); 
+  $feature_args = array(
+    'orderby' => 'date',
+    'order' => 'DESC',
+    'posts_per_page' => -1,
+    'meta_info' => 'homepage-feature',
+    'post_type' => array('post', 'external_tool', 'wp_tool', 'discussion')
+  );
 
-    $featured = new WP_Query($feature_args);
-
-  ?>
+  $featured = new WP_Query($feature_args);
+?>
   <div id="homepage-content">
     <section class="row" id="features">
       <div class="six columns" id="top-featured">
@@ -27,6 +26,13 @@
                 }
               }
               if(!$top_featured) { continue; }
+
+              global $post_url;
+              if($post->post_type == 'external_tool') {
+                $post_url = get_post_meta($post->ID, '_url_name', true);
+              } else {
+                $post_url = get_permalink($post->ID);
+              }
         ?>
         <article>
           <?php if (has_post_thumbnail($post->ID)):  
@@ -36,45 +42,55 @@
           <?php if(stripos($_SERVER["REQUEST_URI"], 'project/') == FALSE) { ?>
               <?php list_categories(); ?>
           <?php } ?>          
-            <h2 class="headline"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-            <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
-
-
+            <h2 class="headline"><a href="<?php echo $post_url; ?>"><?php the_title(); ?></a></h2>
+            <div class="byline">
+              <span class="byline-author">by <?php coauthors_posts_links(); ?> </span>
+              <span class="byline-date"><?php the_time('M. j'); ?></span>
+            </div>
             <?php the_excerpt(); ?>
           <?php endwhile; endif; ?>
         </article>
       </div>
       <div class="three columns">
-    <?php
-      if ($featured->have_posts()):
-        while ($featured->have_posts()):
-          $featured->the_post();
+        <?php
+          if ($featured->have_posts()):
+            while ($featured->have_posts()):
+              $featured->the_post();
 
-          // If post is sub-featured proceed as normal, else move on to the next post
-          $sub_featured = 0;
-          foreach(wp_get_object_terms($post->ID, 'meta_info', '') as $term) {
-            if($term->slug == 'homepage-sub-feature') {
-              $sub_featured = 1;
-            }
-          }
-          if(!$sub_featured) { continue; }
-    ?>
-      <article>
-        <?php 
-          if(has_post_video($post->ID)) {
-            the_post_video();
-          } elseif (has_post_thumbnail($post->ID)) {
-            $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'thumbnail');
-            echo '<img src="'. $image[0] . '">';
-          }
+              // If post is sub-featured proceed as normal, else move on to the next post
+              $sub_featured = 0;
+              foreach(wp_get_object_terms($post->ID, 'meta_info', '') as $term) {
+                if($term->slug == 'homepage-sub-feature') {
+                  $sub_featured = 1;
+                }
+              }
+              if(!$sub_featured) { continue; }
+
+              global $post_url;
+              if($post->post_type == 'external_tool') {
+                $post_url = get_post_meta($post->ID, '_url_name', true);
+              } else {
+                $post_url = get_permalink($post->ID);
+              }
         ?>
-        <?php list_categories(); ?>
-        <h3 class="headline"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-        <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
-        <?php the_excerpt(); ?>
-      </article>
-
-    <?php endwhile; endif; ?>
+        <article>
+          <?php 
+            if(has_post_video($post->ID)) {
+              the_post_video();
+            } elseif (has_post_thumbnail($post->ID)) {
+              $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'thumbnail');
+              echo '<img src="'. $image[0] . '">';
+            }
+          ?>
+          <?php list_categories(); ?>
+          <h3 class="headline"><a href="<?php echo $post_url; ?>"><?php the_title(); ?></a></h3>
+          <div class="byline">
+            <span class="byline-author">by <?php coauthors_posts_links(); ?> </span>
+            <span class="byline-date"><?php the_time('M. j'); ?></span>
+          </div>
+          <?php the_excerpt(); ?>
+        </article>
+        <?php endwhile; endif; ?>
       </div>
       <div class="three columns">
         <?php
@@ -90,10 +106,17 @@
               }
             }
             if(!$sidebar_featured) { continue; }
+
+            global $post_url;
+            if($post->post_type == 'external_tool') {
+              $post_url = get_post_meta($post->ID, '_url_name', true);
+            } else {
+              $post_url = get_permalink($post->ID);
+            }
         ?>
         <article>
           <?php list_categories(); ?>
-          <h4 class="headline"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+          <h4 class="headline"><a href="<?php echo $post_url; ?>"><?php the_title(); ?></a></h4>
           <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
         </article>
 

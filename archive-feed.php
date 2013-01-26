@@ -20,10 +20,10 @@
       <?php } ?>
       <h4>
         <a name="<?php the_id(); ?>" href="<?php 
-          if (get_post_type() != 'external_post') {
-            the_permalink();
+          if(get_post_type() == 'external_post' || get_post_type() == 'external_tool') {
+            echo get_post_meta($post->ID, '_url_name', true);
           } else {
-            echo get_post_meta($post->ID, '_url_name', true); 
+            the_permalink();
           } ?>">
           <?php 
             the_title();
