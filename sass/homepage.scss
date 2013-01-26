@@ -35,7 +35,7 @@
       padding: 14px 0 12px 0;
     }
 
-    .columns article:first-child {
+    article:first-child {
       border-top: none;
       padding-top: 0px;
     }
@@ -90,11 +90,16 @@
       float: none;
       position: inherit;
       width: 100%;
+      display: inline-block;
 
       article {
         border-top: 1px solid #222;
         display: inline-block;
         width: 49%;
+      }
+
+      article:last-child {
+        float: right;
       }
     }
   }
@@ -118,8 +123,9 @@
 
 // hacky
 @media (min-width: 768px) and (max-width: 900px) {
-  #homepage-content #features .columns article:first-child {
-    border-top: 1px solid #222;
+  #homepage-content #features #sub-featured article:first-child {
+    border-top: 1px #222 solid;
+    padding: 14px 0 12px 0;
   }
 }
 
