@@ -43,6 +43,12 @@
 
     .featured_video_plus iframe {
       max-width: 280px;
+      max-height: 200px;
+
+      @media(max-width: 767px) {
+        max-height: none;
+        max-width: none;
+      }
     }
   }
 
