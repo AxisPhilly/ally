@@ -20,7 +20,7 @@ module.exports = function(grunt) {
           'javascripts/foundation/jquery.cookie.js',
           'javascripts/foundation/jquery.event.move.js',
           'javascripts/foundation/jquery.event.swipe.js',
-          //'javascripts/foundation/jquery.foundation.accordion.js',
+          'javascripts/foundation/jquery.foundation.accordion.js',
           'javascripts/foundation/jquery.foundation.alerts.js',
           'javascripts/foundation/jquery.foundation.buttons.js',
           'javascripts/foundation/jquery.foundation.clearing.js',
