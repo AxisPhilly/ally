@@ -351,6 +351,7 @@ function create_post_type() {
 
   // connect external_tool to category taxonomy
   register_taxonomy_for_object_type('category', 'external_tool');
+  register_taxonomy_for_object_type('meta_info', 'external_tool');
 
   register_post_type('discussion',
     array(  
