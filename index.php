@@ -1,22 +1,31 @@
 <?php get_header(); ?>
+  <?php 
+    $feature_args = array(
+      'orderby' => 'date',
+      'order' => 'DESC',
+      'posts_per_page' => -1,
+      'meta_info' => 'homepage-feature',
+      'post_type' => array('post', 'external_tool', 'wp_tool', 'discussion')
+    );
+
+    $featured = new WP_Query($feature_args);
+
+  ?>
   <section class="row" id="homepage-content">
     <div class="six columns" id="homepage-featured">
       <?php
-        $featured_args = array(
-          'orderby' => 'date', 
-          'order' => 'DESC',
-          'posts_per_page' => 1,
-          'meta_info' => 'featured-homepage',
-          'meta_key' => '_thumbnail_id',
-          'post_status' => 'publish',
-          'post_type' => array('post', 'external_tool', 'wp_tool')
-        );
-
-        $featured = new WP_Query($featured_args);
-
         if ($featured->have_posts()):
           while ($featured->have_posts()):
             $featured->the_post();
+
+            // If post is top-featured proceed as normal, else move on to the next post
+            $top_featured = 0;
+            foreach(wp_get_object_terms($post->ID, 'meta_info', '') as $term) {
+              if($term->slug == 'homepage-top-feature') {
+                $top_featured = 1;
+              }
+            }
+            if(!$top_featured) { continue; }
       ?>
       <article>
         <?php if (has_post_thumbnail($post->ID)):  
@@ -32,54 +41,50 @@
 
           <?php the_excerpt(); ?>
         <?php endwhile; endif; ?>
-        <?php wp_reset_postdata(); ?>
       </article>
     </div>
     <div class="three columns">
   <?php
-    $latest_args = array(
-      'orderby' => 'date', 
-      'order' => 'DESC',
-      'posts_per_page' => 2,
-      'post_status' => 'publish',
-      'post_type' => array('post')
-    );
+    if ($featured->have_posts()):
+      while ($featured->have_posts()):
+        $featured->the_post();
 
-    $latest = new WP_Query($latest_args);
-
-    if ($latest->have_posts()):
-      while ($latest->have_posts()):
-        $latest->the_post();
+        // If post is sub-featured proceed as normal, else move on to the next post
+        $sub_featured = 0;
+        foreach(wp_get_object_terms($post->ID, 'meta_info', '') as $term) {
+          if($term->slug == 'homepage-sub-feature') {
+            $sub_featured = 1;
+          }
+        }
+        if(!$sub_featured) { continue; }
   ?>
-  <article>
-    <?php if (has_post_thumbnail($post->ID)):  
-      $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'thumbnail'); ?>
-      <img src="<?php echo $image[0]; ?>">
-    <?php endif; ?>        
-    <?php list_categories(); ?>
-    <h3 class="headline"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-    <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
-    <?php the_excerpt(); ?>
-  </article>
+    <article>
+      <?php if (has_post_thumbnail($post->ID)):  
+        $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'thumbnail'); ?>
+        <img src="<?php echo $image[0]; ?>">
+      <?php endif; ?>        
+      <?php list_categories(); ?>
+      <h3 class="headline"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+      <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
+      <?php the_excerpt(); ?>
+    </article>
 
   <?php endwhile; endif; ?>
-  <?php wp_reset_postdata(); ?>
     </div>
     <div class="three columns">
       <?php
-        $latest_args = array(
-          'orderby' => 'date', 
-          'order' => 'DESC',
-          'posts_per_page' => 5,
-          'post_status' => 'publish',
-          'post_type' => array('post')
-        );
+        if ($featured->have_posts()):
+          while ($featured->have_posts()):
+            $featured->the_post();
 
-        $latest = new WP_Query($latest_args);
-
-        if ($latest->have_posts()):
-          while ($latest->have_posts()):
-            $latest->the_post();
+          // If post is sub-featured proceed as normal, else move on to the next post
+          $sidebar_featured = 0;
+          foreach(wp_get_object_terms($post->ID, 'meta_info', '') as $term) {
+            if($term->slug == 'homepage-sidebar-feature') {
+              $sidebar_featured = 1;
+            }
+          }
+          if(!$sidebar_featured) { continue; }
       ?>
       <article>
         <?php list_categories(); ?>
