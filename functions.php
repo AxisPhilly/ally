@@ -326,7 +326,7 @@ function create_post_type() {
       ),  
       'public' => true,  
       'menu_position' => 5,  
-      'supports' => array('title', 'editor', 'excerpt', 'thumbnail', 'post-formats', 'revisions', 'meta_info'),
+      'supports' => array('title', 'author', 'editor', 'excerpt', 'thumbnail', 'post-formats', 'revisions', 'meta_info'),
       'rewrite' => array('slug' => 'tool','with_front' => false)  
     )  
   );
@@ -344,7 +344,7 @@ function create_post_type() {
       ),  
       'public' => true,  
       'menu_position' => 5,  
-      'supports' => array('title', 'editor', 'excerpt', 'thumbnail', 'revisions', 'meta_info'),
+      'supports' => array('title', 'author', 'excerpt', 'thumbnail', 'revisions', 'meta_info'),
       'rewrite' => array('slug' => 'special','with_front' => false)  
     )  
   );  
