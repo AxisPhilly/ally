@@ -114,7 +114,7 @@
               $post_url = get_permalink($post->ID);
             }
         ?>
-        <article>
+        <article <?php if(get_post_type($post->ID) == 'discussion'){ echo 'class="discussion"'; }?>>
           <?php list_categories(); ?>
           <h4 class="headline"><a href="<?php echo $post_url; ?>"><?php the_title(); ?></a></h4>
           <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>

@@ -77,6 +77,22 @@
       }
     }
   }
+
+  .discussion {
+    .headline {
+      background-color: slateGray;
+      padding: 10px;
+      margin: 10px;
+      
+      a {
+        color: #fff;
+      }
+    }
+
+    .byline {
+      display: none;
+    }
+  }
 }
 
 #tools {

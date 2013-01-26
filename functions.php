@@ -441,6 +441,8 @@ function list_categories() {
     if($category->category_parent==$project_parent_category_id){
       if ($count == 0) {
         echo '<div class="category-symbology">';
+
+        if(get_post_type(get_the_id()) == 'discussion') { echo '<i class="social-foundicon-chat"> </i> '; }
       }
       echo "<a class='one-category' href='/project/". $category->slug . "'>" . $category->name . "</a>";
       if ($count == 0) {
