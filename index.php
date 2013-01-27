@@ -41,7 +41,7 @@
                 if(has_post_video($post->ID)) {
                   the_post_video();
                 } elseif (has_post_thumbnail($post->ID)) {
-                  $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'thumbnail');
+                  $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'large');
                   echo '<img src="'. $image[0] . '">';
                 }
               ?>
