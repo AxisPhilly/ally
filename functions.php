@@ -415,6 +415,29 @@ function extra_contact_info($contactmethods) {
 
 add_filter('user_contactmethods', 'extra_contact_info');
 
+function my_admin_notice(){
+  global $pagenow;
+  $meta_tags = get_post_meta_tags('featured');
+  $post_type = get_post_type( $post->ID );
+  if (($pagenow == 'post.php')&&(in_array('featured', $meta_tags))&&(!has_post_thumbnail())&&(($post_type!="discussion"))) {
+      echo '<div class="error">
+         <p>A post with the category "featured" must have a featured image. Please add a featured image or remove the category "featured".</p>
+      </div>';
+  }
+}
+
+add_action('admin_notices', 'my_admin_notice');
+
+// Crops medium image in the same way that thumbnails are cropped. Maintains a fixed height and width across all medium images.
+
+if(false === get_option("medium_crop")) {
+    add_option("medium_crop", "1");
+} else {
+    update_option("medium_crop", "1");
+}
+
+// TEMPLATE HELPER FUNCTIONS
+
 // Returns a list of meta tags for a post
 function get_post_meta_tags() {
   global $post;
@@ -431,7 +454,6 @@ function get_post_meta_tags() {
 }
 
 // used to pull project category for homepage, search results, and other category symbology
-
 function list_categories() {
   $project_parent_category = get_category_by_slug('project');
   $project_parent_category_id=$project_parent_category->term_id;
@@ -467,25 +489,15 @@ function in_project($post_id) {
   return FALSE;
 }
 
-function my_admin_notice(){
-  global $pagenow;
-  $meta_tags = get_post_meta_tags('featured');
-  $post_type = get_post_type( $post->ID );
-  if (($pagenow == 'post.php')&&(in_array('featured', $meta_tags))&&(!has_post_thumbnail())&&(($post_type!="discussion"))) {
-      echo '<div class="error">
-         <p>A post with the category "featured" must have a featured image. Please add a featured image or remove the category "featured".</p>
-      </div>';
+// Echo's out a video or image for a post
+function get_media($post_id, $size) {
+  if(has_post_video($post_id)) {
+    the_post_video();
+  } elseif (has_post_thumbnail($post_id)) {
+    $img_id = get_post_thumbnail_id($post_id);
+    $image = wp_get_attachment_image_src($img_id, $size);
+    $alt = get_post_meta($img_id, '_wp_attachment_image_alt', true);
+    echo '<img src="'. $image[0] . '" alt="' . $alt . '">';
   }
 }
-
-add_action('admin_notices', 'my_admin_notice');
-
-// Crops medium image in the same way that thumbnails are cropped. Maintains a fixed height and width across all medium images.
-
-if(false === get_option("medium_crop")) {
-    add_option("medium_crop", "1");
-} else {
-    update_option("medium_crop", "1");
-}
-
 ?>
