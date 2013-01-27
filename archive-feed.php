@@ -47,8 +47,7 @@
     </div>
   <?php if (has_post_thumbnail($post->ID)): ?>  
     <div class="six mobile-two columns">
-      <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'medium' ); ?>
-      <img src="<?php echo $image[0]; ?>">
+      <? get_media($post->ID, 'large'); ?>
     </div>
   <?php endif; ?>
 </article> 
