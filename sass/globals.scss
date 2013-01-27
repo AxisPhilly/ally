@@ -22,6 +22,10 @@ body {
   aside p {
     font-style: normal
   }
+
+  ul {
+    list-style-position: inside;
+  }
 }
 
 .content-container {
@@ -63,6 +67,11 @@ article.row {
 
 .caption {
   padding: 1em 1em;
+}
+
+// lists
+ul.no-markers {
+  list-style-type: none;
 }
 
 // Project header on news feed item

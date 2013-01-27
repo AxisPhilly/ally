@@ -11,3 +11,16 @@
 #about-container ul, ol {
   padding: 1em 2em;
 }
+
+// AUTHOR PAGE
+.author {
+  border-bottom: 1px solid #ccc;
+}
+
+.contact ul {
+  i {
+    display: inline-block;
+    line-height: 14px;
+    font-size: 22px;
+  }
+}
