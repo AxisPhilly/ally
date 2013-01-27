@@ -1,12 +1,6 @@
 <?php
 /**
- * The template for displaying all pages.
- *
- * This is the template that displays all pages by default.
- * Please note that this is the WordPress construct of pages
- * and that other 'pages' on your WordPress site will use a
- * different template.
- *
+ * Tools page
  * @package WordPress
  * @subpackage Ally
  */
@@ -15,20 +9,20 @@
   <!-- Content -->
   <div class="content-container">
     <div class="row">
-      <h1 class="twelve columns">Tools &amp; Data</h1>
+      <h3 class="twelve columns">Tools &amp; Data</h3>
     </div>
 
     <div class="row">
       <div class="twelve columns">
-        <?php while ( have_posts() ) : the_post(); ?>
+        <?php while (have_posts()) : the_post(); ?>
           <?php the_content(); ?>
         <?php endwhile; ?>
       </div>
     </div>
 
     <div class="row">
-      <div id="tools-and-data" class="twelve columns">
-        <div class="items">
+      <div id="tools-and-data">
+        <div class="items twelve columns">
         <?php
           $tool_args = array(
             'orderby' => 'date', 
@@ -38,27 +32,41 @@
           );
 
           $tools = new WP_Query($tool_args);
+          $total = 0;
+          $count = 1;
 
-          if ($tools->have_posts()):
-            while ($tools->have_posts()):
+          if($tools->have_posts()):
+            while($tools->have_posts()):
               $tools->the_post();
+
+            if($total % 3 == 0 || $total == 0) {
+              echo '<div class="row">';
+              $count = 0;
+            } 
         ?>
-          <div class="tool">
+          <div class="tool four columns">
             <?php
-              echo "<a href='"; 
-              if (get_post_type() == 'external_tool') 
-                echo get_post_meta( $post->ID, '_url_name', true);
-                else the_permalink();
-              echo "'>";
-            ?>              
-            <?php the_post_thumbnail(); ?>
-              <div class="caption">
-                <h5><?php the_title(); ?></h5>
-                <span><?php the_excerpt(); ?></span>
-              </div>
+              global $post_url;
+              if($post->post_type == 'external_tool') {
+                $post_url = get_post_meta($post->ID, '_url_name', true);
+              } else {
+                $post_url = get_permalink($post->ID);
+              }
+            ?>
+            <a href="<?php echo $post_url ?>">
+              <?php the_post_thumbnail(); ?>
+              <h5><?php the_title(); ?></h5>
             </a>
+            <span><?php the_excerpt(); ?></span>
           </div>
-        <?php endwhile; endif; ?>
+        <?php
+          $count++;
+          $total++;
+          if($count == 3 || $total == count($tools->posts)) { 
+            echo '</div>';
+          }
+          endwhile; endif; 
+        ?>
       </div>
     </div>
   </div>
