@@ -70,7 +70,7 @@
       <nav class="top-bar">
         <ul>
           <li class="name">
-            <a href="/">AxisPhilly</a>
+            <a href="/"><img class="compressed-logo" src="<?php bloginfo('template_directory'); ?>/images/logo.png"/>AxisPhilly</a>
           </li>
           <li class="toggle-topbar has-button">
             <span class="tiny secondary button menu-button">
