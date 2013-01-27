@@ -226,9 +226,6 @@
           <a href="/project/<?php echo $project->slug; ?>">Go to project page &#8594;</a>
         </article>
       <?php } ?>
-      <article class="project-summary three columns">
-        <p><strong>More projects coming soon</strong></p>
-      </article>
     </section>
   </div>
 <?php get_footer(); ?>
