@@ -21,14 +21,7 @@
             <?php if ((has_post_thumbnail($post->ID)) && (!in_array('hide-featured', $meta_tags))):  ?>
               <div class="media-container full-page">
                 <div class="media">
-                  <?php 
-                    if(has_post_video($post->ID)) {
-                      the_post_video();
-                    } elseif (has_post_thumbnail($post->ID)) {
-                      $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'thumbnail');
-                      echo '<img src="'. $image[0] . '">';
-                    }
-                  ?>
+                  <?php get_media($post->ID, 'large'); ?>
                 </div>
                 <div class="caption">
                   <p>
