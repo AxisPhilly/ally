@@ -62,7 +62,7 @@
     <div class="header-logo">
       <div class="row">
         <div>
-          <a href="/"><img src="<?php bloginfo('template_directory'); ?>/images/transparent.png"/></a>
+          <a href="/"><img alt="AxisPhilly: Where News Breaks Through" src="<?php bloginfo('template_directory'); ?>/images/transparent.png"/></a>
         </div>
       </div>
     </div>
@@ -70,7 +70,7 @@
       <nav class="top-bar">
         <ul>
           <li class="name">
-            <a href="/"><img class="compressed-logo" src="<?php bloginfo('template_directory'); ?>/images/logo.png"/>AxisPhilly</a>
+            <a href="/"><img class="compressed-logo" alt="AxisPhilly: Where News Breaks Through" src="<?php bloginfo('template_directory'); ?>/images/logo.png"/>AxisPhilly</a>
           </li>
           <li class="toggle-topbar has-button">
             <span class="tiny secondary button menu-button">
