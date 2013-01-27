@@ -14,13 +14,13 @@
         <div class="photo two columns">
           <? echo get_avatar(get_the_author_meta('ID'), 200); ?>
         </div>
-        <div class="bio seven columns">
+        <div class="bio six columns">
           <strong><?php echo $author->display_name ?></strong>
           <p>
             <?php echo $author->user_description ?>
           </p>
         </div>
-        <div class="contact three columns">
+        <div class="contact four columns">
           <ul class="no-markers">
             <li><i class="general-foundicon-mail"></i> <a href="mailto:<?php echo $author->user_email ?>" target="_blank"><?php echo $author->user_email ?></a></li>
             <li><i class="social-foundicon-twitter"></i> <a href="http://twitter.com/<? echo $author->twitter ?>" target="_blank">@<?php echo $author->twitter ?></a></li>
