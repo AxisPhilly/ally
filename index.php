@@ -10,8 +10,8 @@
 
   $featured = new WP_Query($feature_args);
 ?>
-  <div id="homepage-content">
-    <section class="row" id="features">
+  <section id="homepage-content">
+    <section id="features" class="row">
       <div class="nine columns">
         <div class="row">
           <div class="eight columns" id="top-featured">
@@ -227,5 +227,5 @@
         </article>
       <?php } ?>
     </section>
-  </div>
+  </section>
 <?php get_footer(); ?>
