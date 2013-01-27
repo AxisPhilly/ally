@@ -37,14 +37,7 @@
                   }
             ?>
             <article>
-              <?php 
-                if(has_post_video($post->ID)) {
-                  the_post_video();
-                } elseif (has_post_thumbnail($post->ID)) {
-                  $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'large');
-                  echo '<img src="'. $image[0] . '">';
-                }
-              ?>
+              <?php get_media($post->ID, 'large') ?>
               <?php if(stripos($_SERVER["REQUEST_URI"], 'project/') == FALSE) { ?>
                   <?php list_categories(); ?>
               <?php } ?>          
@@ -80,14 +73,7 @@
                   }
             ?>
             <article>
-              <?php 
-                if(has_post_video($post->ID)) {
-                  the_post_video();
-                } elseif (has_post_thumbnail($post->ID)) {
-                  $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'thumbnail');
-                  echo '<img src="'. $image[0] . '">';
-                }
-              ?>
+              <?php get_media($post->ID, 'thumbnail') ?>
               <?php list_categories(); ?>
               <h3 class="headline"><a href="<?php echo $post_url; ?>"><?php the_title(); ?></a></h3>
               <div class="byline">
@@ -168,13 +154,10 @@
             }
       ?>
       <article class="three columns tool">
-        <?php if (has_post_thumbnail($post->ID)):  
-          $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'thumbnail'); ?>
-          <img src="<?php echo $image[0]; ?>">
-        <?php endif; ?> 
-        <h4 class="headline"><a href="<?php echo $post_url; ?>"><?php the_title(); ?></a></h5>
+        <?php get_media($post->ID, 'thumbnail') ?>
+        <h4 class="headline"><a href="<?php echo $post_url; ?>"><?php the_title(); ?></a></h4>
         <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
-        <p><?php the_excerpt(); ?></p>
+        <?php the_excerpt(); ?>
       </article>
       <?php endwhile; endif; ?>
       <?php wp_reset_postdata(); ?>
@@ -212,14 +195,10 @@
                 $latest->the_post();
           ?>
 
-            <?php if (has_post_thumbnail($post->ID)):  
-              $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'thumbnail'); ?>
-              <img src="<?php echo $image[0]; ?>">
-            <?php endif; ?>        
-
+            <?php get_media($post->ID, 'thumbnail') ?>
             <h4 class="headline"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
             <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
-            <p><?php the_excerpt(); ?></p>
+            <?php the_excerpt(); ?>
 
           <?php endwhile; } ?>
           <?php wp_reset_postdata(); ?>
