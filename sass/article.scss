@@ -13,12 +13,6 @@
   margin: 10px 0 20px;
 }
 
-h2.headline {
-  @media(max-width: 360px) {
-    font-size: 25px;
-  }
-}
-
 .media-container .caption {
   color: $thirdColor;
 
