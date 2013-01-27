@@ -21,7 +21,7 @@
   }
 }
 
-#sidebar {
+.sidebar {
   padding-top: 20px;
 
   p {
@@ -144,7 +144,7 @@
     display: none !important;
   }
 
-  aside#sidebar.three.columns.hide-for-small {
+  aside.sidebar.three.columns.hide-for-small {
     width: 100%;
   }
 

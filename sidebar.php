@@ -1,15 +1,15 @@
-<aside id="sidebar" class="three columns hide-for-small">
-  <div class="sidebar view">
+<aside class="sidebar three columns hide-for-small">
+  <div class="view">
     <div <?php global $sidebar; if($sidebar == 0) { ?> class="moving-container" data-spy="affix" data-offset-top="220" <?php } ?>>
       <div class="social-container">
         <strong>Share this: </strong>
         <div class="shorturl-container">
-          <input type="text" name="shorturl" id="shorturl" value="<?php echo wp_get_shortlink(); ?>" readonly="true"></input>
+          <input type="text" name="shorturl" class="shorturl" value="<?php echo wp_get_shortlink(); ?>" readonly="readonly"/>
         </div>
         <div class="sites">
-          <a title="tweet" href="https://twitter.com/share?text=<?php the_title(); ?>&amp;url=<?php echo wp_get_shortlink();?>&amp;via=AxisPhilly" target="_blank"><i class="social-foundicon-twitter"></i></a>
-          <a title="share on Facebook" href="https://www.facebook.com/sharer.php?s=100&amp;p[title]=<?php echo the_title(); ?>&amp;p[url]=<?php echo wp_get_shortlink(); ?>&amp;p[summary]=<? echo get_the_excerpt(); ?>" target="_blank"><i class="social-foundicon-facebook"></i></a>
-          <a title="email" href="mailto:?subject=AxisPhilly: <?php the_title(); ?>&amp;body=<?php echo wp_get_shortlink();?> <?php echo get_the_excerpt(); ?>" target="_blank"><i class="general-foundicon-mail"></i></a>
+          <a title="tweet" href="https://twitter.com/share?text=<?php echo urlencode(get_the_title()); ?>&amp;url=<?php echo urlencode(wp_get_shortlink());?>&amp;via=AxisPhilly" target="_blank"><i class="social-foundicon-twitter"></i></a>
+          <a title="share on Facebook" href="https://www.facebook.com/sharer.php?s=100&amp;p[title]=<?php echo urlencode(get_the_title()); ?>&amp;p[url]=<?php echo urlencode(wp_get_shortlink()); ?>&amp;p[summary]=<?php echo urlencode(get_the_excerpt()); ?>" target="_blank"><i class="social-foundicon-facebook"></i></a>
+          <a title="email" href="mailto:?subject=AxisPhilly: <?php echo urlencode(get_the_title()); ?>&amp;body=<?php echo urlencode(wp_get_shortlink());?> <?php echo urlencode(get_the_excerpt()); ?>" target="_blank"><i class="general-foundicon-mail"></i></a>
         </div>
       </div>
       <div class="project-info-container">
