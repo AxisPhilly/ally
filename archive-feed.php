@@ -1,8 +1,8 @@
 <article class="row">
   <?php if (has_post_thumbnail($post->ID)) { ?>  
-    <div class="six mobile-two columns" id="results">
+    <div class="six mobile-two columns">
   <? } else { ?>
-    <div class="twelve mobile-four columns" id="results">
+    <div class="twelve mobile-four columns">
   <? } ?>
       <?php if(stripos($_SERVER["REQUEST_URI"], 'project/') == FALSE) { ?>
         <div class="project">
@@ -10,7 +10,7 @@
         </div>
       <?php } ?>
       <h4>
-        <a name="<?php the_id(); ?>" href="<?php 
+        <a id="<?php the_id(); ?>" href="<?php 
           if(get_post_type() == 'external_post' || get_post_type() == 'external_tool') {
             echo get_post_meta($post->ID, '_url_name', true);
           } else {

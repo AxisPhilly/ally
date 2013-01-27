@@ -62,10 +62,7 @@
               }
           ?>
           <div>
-            <?php if (has_post_thumbnail($post->ID)):  
-              $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'medium'); ?>
-              <img src="<?php echo $image[0]; ?>">
-            <?php endif; ?>
+            <?php get_media($post->ID, 'large'); ?>
             <div class="caption">
               <h4 class="headline"><a href="<?php echo $post_url; ?>"><?php the_title(); ?></a></h4>
               <div class="details">
@@ -83,7 +80,7 @@
       <div class="row">
         <dl class="tabs two-up">
           <dd class="active"><a href="#feed">Stories</a></dd>
-          <dd><a href="#talk">Discuss</a></dd>
+          <dd><a href="#discuss">Discuss</a></dd>
         </dl>
       </div>
     </div>
@@ -91,13 +88,12 @@
       <div class="row">
         <dl class="tabs two-up">
           <dd class="active"><a href="#feed">Stories &amp; Tools</a></dd>
-          <dd><a href="#talk">Discussion</a></dd>
+          <dd><a href="#discuss">Discussion</a></dd>
         </dl>
       </div>
     </div>
     <ul class="tabs-content">
       <li class="active" id="feedTab">
-        <a name="stories"></a>
         <div class="row">
           <div id="stories" class="twelve columns">
             <div class="items">
@@ -124,67 +120,64 @@
           </div>
         </div>
       </li>
-      <li id="talkTab">
-        <a name="discussion"></a>
+      <li id="discussTab">
         <div class="row">
           <div id="discussion" class="twelve columns">
-              <div class="items">
+            <div class="items">
+              <?php
+                $discussion_args = array(
+                  'orderby' => 'date', 
+                  'order' => 'DESC',
+                  'post_status' => 'publish', 
+                  'category_name' => $slug, 
+                  'post_type' => array('discussion'),
+                  'posts_per_page' => -1
+                );
 
-                <?php
-                  $discussion_args = array(
-                    'orderby' => 'date', 
-                    'order' => 'DESC',
-                    'post_status' => 'publish', 
-                    'category_name' => $slug, 
-                    'post_type' => array('discussion'),
-                    'posts_per_page' => -1
-                  );
-
-                  $discussions = new WP_Query($discussion_args);
-                  if ($discussions->have_posts()):
-                    while ($discussions->have_posts()):
-                      $discussions->the_post();
-                ?>  
-                <div class="row">
-                  <div class="four columns">
-                      <h4 style="font-family: proxima-nova, helvetica, sans-serif;">
-                        <?php
-                          echo "<a href='"; 
-                          the_permalink();
-                          echo "'>";
-                        the_title();
-                        ?>
-                      </a>
-                    </h4>                    
-                  </div>
-                  <div class="two columns" style="margin: 1em 0">
-                    <?php 
-                      comments_template();
-                      $comment_number = get_comments_number();
-                      if ($comment_number > 0):
-                        $defaults = array(
-                          'post_id' => $post->ID,
-                          'number' => 1,                        
-                          'count' => false
-                        );
-                        echo "<div>".$comment_number." Replies</div>";
-                      else:
-                      echo "0 Replies";
-                    endif;
-                    ?>
-                  </div>
-                  <div class="six columns" style="margin: 1em 0">
-                    <div style="font-family: proxima-nova, helvetica, sans-serif; font-size: 70%; text-transform: uppercase;">Featured Comment</div>
-                    <? 
-                      echo get_post_meta($post->ID, '_pull_quote_name', true); 
-                    ?><br>
-                    <a href="<? echo get_post_meta($post->ID, '_pull_quote_url_name', true); ?>">Read this thread &#8594;</a>
-                  </div>
+                $discussions = new WP_Query($discussion_args);
+                if ($discussions->have_posts()):
+                  while ($discussions->have_posts()):
+                    $discussions->the_post();
+              ?>  
+              <div class="row">
+                <div class="four columns">
+                    <h4 style="font-family: proxima-nova, helvetica, sans-serif;">
+                      <?php
+                        echo "<a href='"; 
+                        the_permalink();
+                        echo "'>";
+                      the_title();
+                      ?>
+                    </a>
+                  </h4>                    
                 </div>
-              
-
-                <?php endwhile; endif; ?>
+                <div class="two columns" style="margin: 1em 0">
+                  <?php 
+                    comments_template();
+                    $comment_number = get_comments_number();
+                    if ($comment_number > 0):
+                      $defaults = array(
+                        'post_id' => $post->ID,
+                        'number' => 1,                        
+                        'count' => false
+                      );
+                      echo "<div>".$comment_number." Replies</div>";
+                    else:
+                    echo "0 Replies";
+                  endif;
+                  ?>
+                </div>
+                <div class="six columns" style="margin: 1em 0">
+                  <div style="font-family: proxima-nova, helvetica, sans-serif; font-size: 70%; text-transform: uppercase;">Featured Comment</div>
+                  <? 
+                    echo get_post_meta($post->ID, '_pull_quote_name', true); 
+                  ?><br>
+                  <a href="<? echo get_post_meta($post->ID, '_pull_quote_url_name', true); ?>">Read this thread &#8594;</a>
+                </div>
               </div>
+              <?php endwhile; endif; ?>
+            </div>
+          </div>
         </div>
       </li>
     </ul>

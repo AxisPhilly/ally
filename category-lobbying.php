@@ -62,10 +62,7 @@
               }
           ?>
           <div>
-            <?php if (has_post_thumbnail($post->ID)):  
-              $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'medium'); ?>
-              <img src="<?php echo $image[0]; ?>">
-            <?php endif; ?>
+            <?php get_media($post->ID, 'large'); ?>
             <div class="caption">
               <h4 class="headline"><a href="<?php echo $post_url; ?>"><?php the_title(); ?></a></h4>
               <div class="details">
