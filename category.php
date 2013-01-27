@@ -41,7 +41,7 @@
               'orderby' => 'date', 
               'order' => 'DESC',
               'posts_per_page' => 5,
-              'meta_info' => 'featured-project',
+              'meta_info' => 'project-feature',
               'meta_key' => '_thumbnail_id',
               'post_status' => 'publish',
               'category_name' => $slug,
