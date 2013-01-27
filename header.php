@@ -22,12 +22,20 @@
       echo 'article'; 
     } elseif (stripos($_SERVER["REQUEST_URI"], 'project/')) {
       echo 'project page';
+    } elseif (stripos($_SERVER["REQUEST_URI"], 'tool/')) {
+      echo 'tool';
+    } elseif (stripos($_SERVER["REQUEST_URI"], 'about/')) {
+      echo 'about page';
+    } elseif (stripos($_SERVER["REQUEST_URI"], 'author/')) {
+      echo 'author page';
+    } elseif (stripos($_SERVER["REQUEST_URI"], 'discussion/')) {
+      echo 'discussion page';
     } else {
       echo 'homepage';
     }
   ?>">
   <meta property="og:title" content="<?php
-    if(stripos($_SERVER["REQUEST_URI"], 'article/')) {
+    if(stripos($_SERVER["REQUEST_URI"], 'article/') || stripos($_SERVER["REQUEST_URI"], 'tool/') || stripos($_SERVER["REQUEST_URI"], 'discussion/')) {
       echo get_the_title();
     } elseif (stripos($_SERVER["REQUEST_URI"], 'project/')) {
       echo get_category_by_slug(get_slug())->name . ' Project Page';
@@ -35,13 +43,37 @@
       echo 'AxisPhilly Homepage';
     }
   ?>">
-  <meta property="og:description" content="<?php echo get_the_excerpt(); ?>">
+  <meta property="og:description" content="<?php 
+    if(stripos($_SERVER["REQUEST_URI"], 'article/') || stripos($_SERVER["REQUEST_URI"], 'tool/') || stripos($_SERVER["REQUEST_URI"], 'discussion/')) {
+      echo get_the_excerpt();
+    } elseif(stripos($_SERVER["REQUEST_URI"], 'project/')) {
+      echo 'Project page';
+    } else {
+      echo 'Where News Breaks Through';
+    }
+  ?>">
   <meta property="og:image" content="<?php echo wp_get_attachment_thumb_url(get_post_thumbnail_id($post->ID)); ?>">
   <meta property="twitter:site" content="@AxisPhilly">
   <meta property="twitter:card" content="summary">
   <meta property="twitter:url" content="<?php echo $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]; ?>">
-  <meta property="twitter:title" content="<?php echo get_the_title(); ?>">
-  <meta property="twitter:description" content="<?php echo get_the_excerpt(); ?>">
+  <meta property="twitter:title" content="<?php
+    if(stripos($_SERVER["REQUEST_URI"], 'article/') || stripos($_SERVER["REQUEST_URI"], 'tool/') || stripos($_SERVER["REQUEST_URI"], 'discussion/')) {
+      echo get_the_title();
+    } elseif (stripos($_SERVER["REQUEST_URI"], 'project/')) {
+      echo get_category_by_slug(get_slug())->name . ' Project Page';
+    } else {
+      echo 'AxisPhilly Homepage';
+    }
+  ?>">
+  <meta property="twitter:description" content="<?php 
+    if(stripos($_SERVER["REQUEST_URI"], 'article/') || stripos($_SERVER["REQUEST_URI"], 'tool/') || stripos($_SERVER["REQUEST_URI"], 'discussion/')) {
+      echo get_the_excerpt();
+    } elseif(stripos($_SERVER["REQUEST_URI"], 'project/')) {
+      echo 'Project page';
+    } else {
+      echo 'Where News Breaks Through';
+    }
+  ?>">
   <meta property="twitter:image" content="<?php echo wp_get_attachment_thumb_url(get_post_thumbnail_id($post->ID)); ?>">
   <?php
     if (in_array('scalable', $meta_tags))
