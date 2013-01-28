@@ -15,7 +15,7 @@ body {
   }
 
   h1, h2, h3, h4, h5, h6 {
-    line-height: 1;
+    line-height: 1.1;
     font-weight: bold;
   }
   
@@ -164,3 +164,8 @@ a img.aligncenter {
 }
 /* End of WordPress Core image stuff
 -------------------------------------------------------------- */
+
+
+.project-section-nav {
+  font-family: "proxima-nova", helvetica, arial, sans-serif;
+}
