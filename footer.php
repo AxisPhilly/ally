@@ -7,10 +7,8 @@
     </div>
     <div class="row about">
       <div class="three columns">
-        <h3 class="subheader">AxisPhilly</h3>
-        <p>
-          © 2012 AxisPhilly
-        </p>
+        <img class="logo" alt="AxisPhilly" src="<?php bloginfo('template_directory'); ?>/images/logo-just-name-white.png"/>
+        <p class="copyright">© 2013</p>
       </div>
       <div class="nine columns">
         <ul>
