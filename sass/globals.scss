@@ -86,7 +86,7 @@ ul.no-markers {
   text-transform: uppercase;
   margin-top: 0;
   margin-bottom: 0;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: $categoryFontWeight;
   font-family: $categoryFontFamily;
  
@@ -177,3 +177,38 @@ a img.aligncenter {
   font-family: "proxima-nova", helvetica, arial, sans-serif;
 }
 
+
+@media(max-width: 767px) {
+
+  #top-featured {
+
+    .byline-date {
+      font-size: 16px;
+    }
+
+    .byline-author {
+      font-size: 16px;
+    }
+
+  }
+
+  #sub-featured article {
+      border-top: 1px red solid;
+      padding: 14px 0 12px 0;
+  }
+
+  h3.headline {
+    font-size: 20px;
+    margin: 0.3em 0 0 0;
+  }
+
+  h4.headline {
+    font-size: 20px;
+    margin: 0.3em 0 0 0;
+  }
+
+  h2.headline {
+    font-size: 20px;
+    margin: 0.3em 0 0.2em 0;
+  }
+}

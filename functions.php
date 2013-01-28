@@ -436,6 +436,12 @@ if(false === get_option("medium_crop")) {
     update_option("medium_crop", "1");
 }
 
+if(false === get_option("large_crop")) {
+    add_option("large_crop", "1");
+} else {
+    update_option("large_crop", "1");
+}
+
 // TEMPLATE HELPER FUNCTIONS
 
 // Returns a list of meta tags for a post
