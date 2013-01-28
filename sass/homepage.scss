@@ -31,9 +31,15 @@
     } 
   }
 
+  #sidebar-featured, #sub-featured {
+    .category-symbology {
+      font-size: 12px;
+    }
+  }
+
   #features {
     article {
-      border-top: 1px #ccc solid;
+      border-top: 1px #333 solid;
       padding: 14px 0 12px 0;
     }
 
@@ -127,7 +133,7 @@
 @media (min-width: 768px) and (max-width: 900px) {
   #homepage-content #features #sub-featured article:first-child {
     border-top: 1px #222 solid;
-    padding: 14px 0 12px 0;
+    padding: 16px 0 16px 0;
   }
 }
 
