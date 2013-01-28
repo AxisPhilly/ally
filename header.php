@@ -88,7 +88,11 @@
   <script src="<?php bloginfo('template_directory'); ?>/javascripts/modernizr.foundation.js"></script>  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
   <script src="<?php bloginfo('template_directory'); ?>/javascripts/libraries.0.9.0.min.js" type="text/javascript"></script>
-  <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('template_directory'); ?>/style.css" />
+  <?php if (stripos(home_url(), 'axisphilly.org')) { // production ?>
+    <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('template_directory'); ?>/style.css" />
+  <?php } else { // dev ?>
+    <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('template_directory'); ?>/stylesheets/app.css" />
+  <?php } ?>
 </head>
 <body <?php body_class(); ?>>
   <!-- Fixed header -->
