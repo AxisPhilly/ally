@@ -62,11 +62,11 @@
               }
           ?>
           <div>
-            <?php get_media($post->ID, 'large'); ?>
+            <?php get_media($post->ID, 'medium'); ?>
             <div class="caption">
               <h4 class="headline"><a href="<?php echo $post_url; ?>"><?php the_title(); ?></a></h4>
               <div class="details">
-                <span class="byline">by <?php coauthors_posts_links(); ?>, <?php the_time('F j, Y'); ?></span>
+                <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
                 <?php the_excerpt(); ?>
               </div>
             </div>
