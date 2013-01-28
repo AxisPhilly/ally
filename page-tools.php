@@ -39,30 +39,28 @@
             while($tools->have_posts()):
               $tools->the_post();
 
-            if($total % 3 == 0 || $total == 0) {
+            if($total % 4 == 0 || $total == 0) {
               echo '<div class="row">';
               $count = 0;
             } 
-        ?>
-          <div class="tool four columns">
-            <?php
-              global $post_url;
-              if($post->post_type == 'external_tool') {
-                $post_url = get_post_meta($post->ID, '_url_name', true);
-              } else {
-                $post_url = get_permalink($post->ID);
-              }
+
+            global $post_url;
+            if($post->post_type == 'external_tool') {
+              $post_url = get_post_meta($post->ID, '_url_name', true);
+            } else {
+              $post_url = get_permalink($post->ID);
+            }
             ?>
-            <a href="<?php echo $post_url ?>">
-              <?php the_post_thumbnail(); ?>
-              <h5><?php the_title(); ?></h5>
-            </a>
-            <span><?php the_excerpt(); ?></span>
-          </div>
+            <article class="three columns tool">
+              <?php get_media($post->ID, 'thumbnail') ?>
+              <h4 class="headline"><a href="<?php echo $post_url; ?>"><?php the_title(); ?></a></h4>
+              <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
+              <?php the_excerpt(); ?>
+            </article>
         <?php
           $count++;
           $total++;
-          if($count == 3 || $total == count($tools->posts)) { 
+          if($count == 4 || $total == count($tools->posts)) { 
             echo '</div>';
           }
           endwhile; endif; 
