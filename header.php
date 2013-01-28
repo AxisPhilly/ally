@@ -81,14 +81,14 @@
     else
       echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">';
   ?>
+  <link rel="icon" href="<?php bloginfo('template_directory'); ?>/images/favicon.png" type="image/x-icon" />
+  <link rel="shortcut icon" href="<?php bloginfo('template_directory'); ?>/images/favicon.png" type="image/x-icon" />
   <script type="text/javascript" src="//use.typekit.net/nuc2aoh.js"></script>
   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
   <script src="<?php bloginfo('template_directory'); ?>/javascripts/modernizr.foundation.js"></script>  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
-  <script src="<?php bloginfo('template_directory'); ?>/javascripts/libraries.0.0.1.min.js" type="text/javascript"></script>
-<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('template_directory'); ?>/stylesheets/app.css" />
-<link rel="icon" href="<?php bloginfo('template_directory'); ?>/images/favicon.png" type="image/x-icon" />
-<link rel="shortcut icon" href="<?php bloginfo('template_directory'); ?>/images/favicon.png" type="image/x-icon" />
+  <script src="<?php bloginfo('template_directory'); ?>/javascripts/libraries.0.9.0.min.js" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('template_directory'); ?>/style.css" />
 </head>
 <body <?php body_class(); ?>>
   <!-- Fixed header -->
@@ -120,6 +120,7 @@
               <a href="#">Our Projects</a>
               <ul class="dropdown">
                 <li><a href="/project/avi">AVI</a></li>
+                <li><a href="/project/open-data">Open Data</a></li>
                 <li class="last"><a href="/project/lobbying">Lobbying</a></li>
               </ul>
             </li>
@@ -132,7 +133,7 @@
           </ul>
           <ul class="right">
             <li class="search">
-              <form class="collapse" role="search" method="get" id="searchform" action="<?php echo site_url(); ?>">
+              <form class="collapse" role="search" method="get" id="searchform" action="<?php echo home_url(); ?>">
                 <input type="search" placeholder="Search" name="s" id="s">
               </form>
             </li>
