@@ -47,7 +47,7 @@
     </div>
   <?php if (has_post_thumbnail($post->ID)): ?>  
     <div class="six mobile-two columns">
-      <? get_media($post->ID, 'large'); ?>
+      <? get_media($post->ID, 'medium'); ?>
     </div>
   <?php endif; ?>
 </article> 

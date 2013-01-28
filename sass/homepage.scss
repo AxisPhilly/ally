@@ -12,6 +12,15 @@
     }
   }
 
+  .featured_video_plus iframe {
+    max-width: 100%;
+    max-height: 200px;
+
+    @media(max-width: 767px) {
+      max-height: none;
+    }
+  }
+
   .category-symbology {
     font-size: 14px;
     //p:after
@@ -51,15 +60,6 @@
     p {
       font-size: 18px;
       margin-bottom: 0;
-    }
-
-    .featured_video_plus iframe {
-      max-width: 100%;
-      max-height: 200px;
-
-      @media(max-width: 767px) {
-        max-height: none;
-      }
     }
   }
 
