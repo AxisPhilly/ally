@@ -99,52 +99,58 @@
   <header class="header">
     <div class="header-logo">
       <div class="row">
-        <div>
-          <a href="/"><img alt="AxisPhilly: Where News Breaks Through" src="<?php bloginfo('template_directory'); ?>/images/transparent.png"/></a>
+        <div class="twelve columns">
+          <div>
+            <a href="/"><img alt="AxisPhilly: Where News Breaks Through" src="<?php bloginfo('template_directory'); ?>/images/transparent.png"/></a>
+          </div>
         </div>
       </div>
     </div>
-    <div class="nav-container contain-to-grid">
-      <nav class="top-bar">
-        <ul>
-          <li class="name">
-            <a href="/"><img class="compressed-logo" alt="AxisPhilly: Where News Breaks Through" src="<?php bloginfo('template_directory'); ?>/images/logo.png"/>AxisPhilly</a>
-          </li>
-          <li class="toggle-topbar has-button">
-            <span class="tiny secondary button menu-button">
-              <span class="line"></span>
-              <span class="line"></span>
-              <span class="line"></span>
-            </span>
-          </li>
-        </ul>
-        <section>
-          <ul class="left">
-            <li class="has-dropdown">
-              <a href="#">Our Projects</a>
-              <ul class="dropdown">
-                <li><a href="/project/avi">AVI</a></li>
-                <li><a href="/project/open-data">Open Data</a></li>
-                <li class="last"><a href="/project/lobbying">Lobbying</a></li>
-              </ul>
+  <div class="row">
+    <div class="twelve columns">
+      <div class="nav-container contain-to-grid">
+        <nav class="top-bar">
+          <ul>
+            <li class="name">
+              <a href="/"><img class="compressed-logo" alt="AxisPhilly: Where News Breaks Through" src="<?php bloginfo('template_directory'); ?>/images/logo.png"/>AxisPhilly</a>
             </li>
-            <li><a href="/tools">Tools &amp; Data</a></li>
-            <li><a href="/about">About</a></li>
-            <li class="search">
-            <li><a href="http://www.twitter.com/AxisPhilly"><i class="social-foundicon-twitter"></i></a></li>
-            <li><a href="http://www.facebook.com/AxisPhilly"><i class="social-foundicon-facebook"></i></a></li>
-            <li><a href="http://www.axisphilly.org/?feed=rss"><i class="social-foundicon-rss"></i></a></li>
-          </ul>
-          <ul class="right">
-            <li class="search">
-              <form class="collapse" role="search" method="get" id="searchform" action="<?php echo home_url(); ?>">
-                <input type="search" placeholder="Search" name="s" id="s">
-              </form>
+            <li class="toggle-topbar has-button">
+              <span class="tiny secondary button menu-button">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+              </span>
             </li>
           </ul>
-        </section>
-      </nav>
+          <section>
+            <ul class="left">
+              <li class="has-dropdown">
+                <a href="#" style="padding-left: 0">Our Projects</a>
+                <ul class="dropdown">
+                  <li><a href="/project/avi">AVI</a></li>
+                  <li><a href="/project/open-data">Open Data</a></li>
+                  <li class="last"><a href="/project/lobbying">Lobbying</a></li>
+                </ul>
+              </li>
+              <li><a href="/tools">Tools &amp; Data</a></li>
+              <li><a href="/about">About</a></li>
+              <li class="search">
+              <li><a href="http://www.twitter.com/AxisPhilly"><i class="social-foundicon-twitter"></i></a></li>
+              <li><a href="http://www.facebook.com/AxisPhilly"><i class="social-foundicon-facebook"></i></a></li>
+              <li><a href="http://www.axisphilly.org/?feed=rss"><i class="social-foundicon-rss"></i></a></li>
+            </ul>
+            <ul class="right">
+              <li class="search">
+                <form class="collapse" role="search" method="get" id="searchform" action="<?php echo home_url(); ?>">
+                  <input type="search" placeholder="Search" name="s" id="s">
+                </form>
+              </li>
+            </ul>
+          </section>
+        </nav>
+      </div>
     </div>
+  </div>
   </header>
   <?php
     #<!-- This is a WordPress generated header that doesn't quite work yet. It uses a custom Walker class, which is referred to in functions.php
