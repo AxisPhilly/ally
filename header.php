@@ -87,6 +87,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
   <script src="<?php bloginfo('template_directory'); ?>/javascripts/libraries.0.0.1.min.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('template_directory'); ?>/stylesheets/app.css" />
+<link rel="icon" href="<?php bloginfo('template_directory'); ?>/images/favicon.gif" type="image/x-icon" />
+<link rel="shortcut icon" href="<?php bloginfo('template_directory'); ?>/images/favicon.gif" type="image/x-icon" />
 </head>
 <body <?php body_class(); ?>>
   <!-- Fixed header -->

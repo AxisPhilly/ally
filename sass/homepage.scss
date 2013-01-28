@@ -1,6 +1,6 @@
 #homepage-content {
   .byline {
-    margin: 0px 0px 0px 0px;
+    margin: 2px 0px 0px 0px;
     line-height: 1.5;
 
     a:link, a:visited {
@@ -33,7 +33,7 @@
 
   #features {
     article {
-      border-top: 1px #333 solid;
+      border-top: 1px #ccc solid;
       padding: 14px 0 12px 0;
     }
 
@@ -43,7 +43,7 @@
     }
 
     p {
-      font-size: 16px;
+      font-size: 18px;
       margin-bottom: 0;
     }
 
@@ -67,15 +67,15 @@
     }
 
     p {
-      font-size: 20px;
+      font-size: 22px;
     }
 
     .byline-date {
-      font-size: 24px;
+      font-size: 22px;
     }
 
     .byline-author {
-      font-size: 24px;
+      font-size: 22px;
     }
 
     .byline {
@@ -136,7 +136,7 @@
   padding: 15px 0;
 
   article p {
-    font-size: 16px;
+    font-size: 18px;
   }
 }
 
@@ -145,6 +145,6 @@
   padding: 15px 0;
 
   article p {
-    font-size: 16px;
+    font-size: 18px;
   }
 }

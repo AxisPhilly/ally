@@ -78,7 +78,7 @@
               <h3 class="headline"><a href="<?php echo $post_url; ?>"><?php the_title(); ?></a></h3>
               <div class="byline">
                 <span class="byline-author">by <?php coauthors_posts_links(); ?> </span>
-                <span class="byline-date"><?php the_time('M. j'); ?></span>
+                <span class="byline-date timeago"><?php the_time('M. j'); ?></span>
               </div>
               <?php the_excerpt(); ?>
             </article>
