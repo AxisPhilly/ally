@@ -495,6 +495,16 @@ function list_categories() {
       $count++;
     }
   }
+
+  //emit a chat symbol for discussion
+  if($count == 0 && get_post_type(get_the_id()) == 'discussion') {
+    generate_discussion_w_no_category();
+  }
+}
+
+// emit a discussion symbol for discussions not in a category
+function generate_discussion_w_no_category() {
+  echo '<div class="category-symbology"><i class="social-foundicon-chat"> </i> Discussion</div>';
 }
 
 // Checks whether or not a post is part of a project
