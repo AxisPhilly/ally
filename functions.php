@@ -309,6 +309,7 @@ function create_post_type() {
         '_edit_link' => 'post.php?post=%d', 
         'capability_type' => 'post',
         'map_meta_cap' => true,
+        'show_in_menu' => false,
         'hierarchical' => false,
         'rewrite' => array('slug' => 'article'),
         'query_var' => false,
@@ -389,17 +390,6 @@ function create_post_type() {
 }  
 
 add_action('init', 'create_post_type'); 
-
-// http://wordpress.stackexchange.com/questions/9211/changing-admin-menu-labels
-function change_post_menu_label() {
-  global $menu;
-  global $submenu;
-  $menu[5][0] = 'Original Reporting';
-  $submenu['edit.php'][5][0] = 'Original Reporting';
-  echo '';
-}
-
-add_action('admin_menu', 'change_post_menu_label');
 
 add_post_type_support('external_post', 'source_meta');
 
