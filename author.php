@@ -12,7 +12,8 @@
     <div id="news-container">
       <div class="row author">
         <div class="photo two columns">
-          <? echo get_avatar(get_the_author_meta('ID'), 200); ?>
+
+          <? echo get_avatar($author->ID, 767); ?>
         </div>
         <div class="bio six columns">
           <strong><?php echo $author->display_name ?></strong>
