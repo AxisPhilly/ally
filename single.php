@@ -16,7 +16,7 @@
           <header class="article-header">
             <h2 class="headline"><?php the_title(); ?></h2>
             <div class="publish-container">
-              <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
+              <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date">on <?php the_time('M. j, Y'); ?></span></div>
             </div>
 
             <?php if ((has_post_thumbnail($post->ID)) && (!in_array('hide-featured', $meta_tags))):  ?>

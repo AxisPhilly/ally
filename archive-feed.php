@@ -9,7 +9,7 @@
           <?php list_categories(); ?>
         </div>
       <?php } ?>
-      <h4 class="headline">
+      <h4>
         <a id="<?php the_id(); ?>" href="<?php 
           if(get_post_type() == 'external_post' || get_post_type() == 'external_tool') {
             echo get_post_meta($post->ID, '_url_name', true);
@@ -34,12 +34,12 @@
          <?php } elseif (get_post_type() != 'external_post') { ?>
           <div class="byline">
             <span class="byline-author">by <?php coauthors_posts_links(); ?> </span>
-            <span class="byline-date"><?php the_time('M. j'); ?></span>
+            <span class="byline-date">on <?php the_time('M. j, Y'); ?></span>
           </div>
         <?php } ?>
       <?php if ((get_post_type() != 'external_post')) { ?> 
       <?php } ?>
-      <div class="hide-for-small">
+      <div class="hide-for-small stream-excerpt">
         <?php the_excerpt(); ?>
         <?php the_tags('<span class="radius label">','</span> <span class="radius label">','</span>'); ?> 
       </div>
