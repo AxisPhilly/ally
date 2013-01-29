@@ -7,16 +7,15 @@
     </div>
     <div class="row about">
       <div class="three columns">
-        <img class="logo" alt="AxisPhilly" src="<?php bloginfo('template_directory'); ?>/images/logo-just-name-white.png"/>
+        <img class="logo" alt="AxisPhilly" src="<?php bloginfo('template_directory'); ?>/images/logo-no-tagline-white.png"/>
         <p class="copyright">© 2013</p>
       </div>
       <div class="nine columns">
         <ul>
           <li><a href="/about">About Us</a></li>
-          <li><a href="/about#mission">Mission</a></li>
-          <li><a href="/about#staff">Staff</a></li>
-          <li><a href="/about#board">Board</a></li>
-          <li><a href="/about#jobs">Jobs</a></li>
+          <li><a href="/contact-us">Contact Us</a></li>
+          <li><a href="/understanding-privacy">Privacy</a></li>
+          <li><a href="/user-agreement/">User Agreement</a></li>
         </ul>
       </div>
     </div>
