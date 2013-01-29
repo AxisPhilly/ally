@@ -137,8 +137,8 @@
               <li class="has-dropdown">
                 <a href="#" style="padding-left: 0">Our Projects</a>
                 <ul class="dropdown">
-                  <li><a href="/project/avi">AVI</a></li>
-                  <li><a href="/project/open-data">Open Data</a></li>
+                  <li><a href="/project/taxes">Taxes</a></li>
+                  <li><a href="/project/open-gov">Open Gov</a></li>
                   <li class="last"><a href="/project/lobbying">Lobbying</a></li>
                 </ul>
               </li>
