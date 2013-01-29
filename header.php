@@ -12,7 +12,17 @@
     global $meta_tags;
     $meta_tags = get_post_meta_tags();
   ?>
-  <title>AxisPhilly</title>
+
+  <?php if( is_front_page() ) : ?>
+    <title><?php bloginfo('name'); ?> | <?php bloginfo('description');?></title>
+  <?php elseif( is_404() ) : ?>
+    <title>Page Not Found | <?php bloginfo('name'); ?></title>
+  <?php elseif( is_search() ) : ?>
+    <title><?php printf(__ ("Search results for '%s'", "punchcut"), attribute_escape(get_search_query())); ?> | <?php bloginfo('name'); ?></title>
+  <?php else : ?>
+    <title><?php wp_title($sep = ''); ?> | <?php bloginfo('name');?></title>
+  <?php endif; ?>
+
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta property="og:site_name" content="AxisPhilly">
