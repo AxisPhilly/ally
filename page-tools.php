@@ -51,12 +51,14 @@
               $post_url = get_permalink($post->ID);
             }
             ?>
-            <article class="three columns tool">
-              <?php get_media($post->ID, 'thumbnail') ?>
-              <h4 class="headline"><a href="<?php echo $post_url; ?>"><?php the_title(); ?></a></h4>
-              <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
-              <?php the_excerpt(); ?>
-            </article>
+            <div class="three columns">
+              <article class="tool">
+                <?php get_media($post->ID, 'thumbnail') ?>
+                <h4 class="headline"><a href="<?php echo $post_url; ?>"><?php the_title(); ?></a></h4>
+                <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
+                <?php the_excerpt(); ?>
+              </article>
+            </div>
         <?php
           $count++;
           $total++;
