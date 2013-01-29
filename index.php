@@ -16,9 +16,12 @@
         <div class="row">
           <div class="eight columns" id="top-featured">
             <?php
+              $top_count = 0;
               if ($featured->have_posts()):
                 while ($featured->have_posts()):
                   $featured->the_post();
+
+                  if ($top_count) { continue; }
 
                   // If post is top-featured proceed as normal, else move on to the next post
                   $top_featured = 0;
@@ -46,15 +49,21 @@
                   <span class="byline-author">by <?php coauthors_posts_links(); ?> </span>
                   <span class="byline-date"><?php the_time('M. j'); ?></span>
                 </div>
-                <?php the_excerpt(); ?>
+                <?php 
+                  the_excerpt();
+                  $top_count++;
+                ?>
               <?php endwhile; endif; ?>
             </article>
           </div>
           <div class="four columns" id="sub-featured">
             <?php
+              $sub_count = 0;
               if ($featured->have_posts()):
                 while ($featured->have_posts()):
                   $featured->the_post();
+
+                  if($sub_count == 2) { continue; }
 
                   // If post is sub-featured proceed as normal, else move on to the next post
                   $sub_featured = 0;
@@ -80,7 +89,10 @@
                 <span class="byline-author">by <?php coauthors_posts_links(); ?> </span>
                 <span class="byline-date timeago"><?php the_time('M. j'); ?></span>
               </div>
-              <?php the_excerpt(); ?>
+              <?php 
+                the_excerpt();
+                $sub_count++;
+              ?>
             </article>
             <?php endwhile; endif; ?>
           </div>
@@ -90,9 +102,12 @@
         <div class="row">
           <div class="twelve columns" id="sidebar-featured">
             <?php
+              $sidebar_count = 0;
               if ($featured->have_posts()):
                 while ($featured->have_posts()):
                   $featured->the_post();
+
+                  if($sidebar_count == 5) { continue; }
 
                 // If post is sub-featured proceed as normal, else move on to the next post
                 $sidebar_featured = 0;
@@ -115,7 +130,7 @@
               <h4 class="headline"><a href="<?php echo $post_url; ?>"><?php the_title(); ?></a></h4>
               <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
             </article>
-
+            <?php $sidebar_count++; ?>  
             <?php endwhile; endif; ?>
             <?php wp_reset_postdata(); ?>
             <div class="archive-link">
