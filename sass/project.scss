@@ -57,10 +57,11 @@
     left: 0;
     z-index: 10;
     position: absolute;
-    background-color: #000;
+    background-color: #222;
     opacity: 1.0;
     color: #fff;
     width: 100%;
+    padding: 10px;
 
     .details {
       display: none;
@@ -93,16 +94,6 @@
       font-size: 14px;
     }
   }
-}
-
-#feature-container .caption {
-  opacity: 1;
-}
-
-// Show orbit controls on hover
-.orbit-wrapper {
-  //.slider-nav span { @include opacity(0); @include single-transition(opacity, 400ms); }
-  //&:hover .slider-nav span { @include opacity(1); }
 }
 
 #stories {
