@@ -12,7 +12,8 @@
     <div id="news-container">
       <div class="row author">
         <div class="photo two columns">
-          <? echo get_avatar(get_the_author_meta('ID'), 200); ?>
+
+          <? echo get_avatar($author->ID, 767); ?>
         </div>
         <div class="bio six columns">
           <strong><?php echo $author->display_name ?></strong>
@@ -22,9 +23,10 @@
         </div>
         <div class="contact four columns">
           <ul class="no-markers">
-            <li><i class="general-foundicon-mail"></i> <a href="mailto:<?php echo $author->user_email ?>" target="_blank"><?php echo $author->user_email ?></a></li>
-            <li><i class="social-foundicon-twitter"></i> <a href="http://twitter.com/<? echo $author->twitter ?>" target="_blank">@<?php echo $author->twitter ?></a></li>
-            <li><i class="general-foundicon-phone"></i> <span><?php echo $author->phone ?></span></li>
+
+            <? if (!$author->user_email=="") { ?><li><i class="general-foundicon-mail"></i> <a href="mailto:<?php echo $author->user_email ?>" target="_blank"><?php echo $author->user_email ?></a></li><? } ?>
+            <? if (!$author->twitter=="") { ?><li><i class="social-foundicon-twitter"></i> <a href="http://twitter.com/<? echo $author->twitter ?>" target="_blank">@<?php echo $author->twitter ?></a></li><? } ?>
+            <? if (!$author->phone=="") { ?><li><i class="general-foundicon-phone"></i> <span><?php echo $author->phone ?></span></li><? } ?>
           </ul>
         </div>
       </div>
