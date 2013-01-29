@@ -168,12 +168,14 @@
               $post_url = get_permalink($post->ID);
             }
       ?>
-      <article class="three columns tool">
-        <?php get_media($post->ID, 'thumbnail') ?>
-        <h4 class="headline"><a href="<?php echo $post_url; ?>"><?php the_title(); ?></a></h4>
-        <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
-        <?php the_excerpt(); ?>
-      </article>
+      <div class="three columns">
+        <article class="tool">
+          <?php get_media($post->ID, 'thumbnail') ?>
+          <h4 class="headline"><a href="<?php echo $post_url; ?>"><?php the_title(); ?></a></h4>
+          <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
+          <?php the_excerpt(); ?>
+        </article>
+      </div>
       <?php endwhile; endif; ?>
       <?php wp_reset_postdata(); ?>
     </section>
@@ -194,31 +196,33 @@
 
         foreach($projects as $project) {
       ?>
-        <article class="project-summary three columns">
-          <h5><?php echo $project->name ?></h5>
-          <?php 
-            $latest_args = array(
-              'posts_per_page' => 1,
-              'category_name' => $project->slug,
-              'post_type' => array('post')
-            );
+        <div class="three columns">
+          <article class="project-summary">
+            <h5><?php echo $project->name ?></h5>
+            <?php 
+              $latest_args = array(
+                'posts_per_page' => 1,
+                'category_name' => $project->slug,
+                'post_type' => array('post')
+              );
 
-            $latest = new WP_Query($latest_args);
+              $latest = new WP_Query($latest_args);
 
-            if($latest->have_posts()) {
-              while($latest->have_posts()):
-                $latest->the_post();
-          ?>
+              if($latest->have_posts()) {
+                while($latest->have_posts()):
+                  $latest->the_post();
+            ?>
 
-            <?php get_media($post->ID, 'thumbnail') ?>
-            <h4 class="headline"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-            <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
-            <?php the_excerpt(); ?>
+              <?php get_media($post->ID, 'thumbnail') ?>
+              <h4 class="headline"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+              <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
+              <?php the_excerpt(); ?>
 
-          <?php endwhile; } ?>
-          <?php wp_reset_postdata(); ?>
-          <a href="/project/<?php echo $project->slug; ?>">Go to project page &#8594;</a>
-        </article>
+            <?php endwhile; } ?>
+            <?php wp_reset_postdata(); ?>
+            <a href="/project/<?php echo $project->slug; ?>">Go to project page &#8594;</a>
+          </article>
+        </div>
       <?php } ?>
     </section>
   </section>

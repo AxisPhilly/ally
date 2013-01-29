@@ -40,12 +40,6 @@
     }
   }
 
-  #sidebar-featured {
-    .category-symbology {
-      font-size: 12px;
-    }
-  }
-
   #features {
     article {
       border-top: 1px #333 solid;
@@ -55,6 +49,11 @@
     article:first-child {
       border-top: none;
       padding-top: 0px;
+
+      @media(max-width: 767px) {
+        border-top: 1px solid $black;
+        padding: 14px 0 12px 0;
+      }
     }
 
     p {
@@ -85,7 +84,6 @@
     }
 
     @media (max-width: 767px) {
-
       p {
         font-size: 18px;
       }
@@ -101,7 +99,6 @@
       .byline {
         margin: 2px 0 0 0;      
       }
-
     }    
 
     .byline {
@@ -132,6 +129,12 @@
     }
   }
 
+  #sidebar-featured {
+    .category-symbology {
+      font-size: 12px;
+    }
+  }
+
   .discussion {
     .headline {
       background-color: slateGray;
@@ -147,6 +150,13 @@
       display: none;
     }
   }
+
+  article {
+    @media(max-width: 767px) {
+      border-top: 1px solid $black;
+      padding: 14px 0 12px 0;
+    }
+  }
 }
 
 // hacky
@@ -154,6 +164,14 @@
   #homepage-content #features #sub-featured article:first-child {
     border-top: 1px #222 solid;
     padding: 16px 0 16px 0;
+  }
+}
+
+//more hacks
+@media(max-width: 767px) {
+  #homepage-content #features #top-featured article:first-child {
+    border-top: none;
+    padding: 0 0 12px 0;
   }
 }
 
@@ -171,7 +189,7 @@
   }
 
   #sub-featured article {
-      border-top: 1px red solid;
+      border-top: 1px solid $black;
       padding: 14px 0 12px 0;
   }
 
