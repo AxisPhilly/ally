@@ -18,10 +18,14 @@
             <div class="publish-container">
               <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
             </div>
+
             <?php if ((has_post_thumbnail($post->ID)) && (!in_array('hide-featured', $meta_tags))):  ?>
               <div class="media-container full-page">
                 <div class="media">
-                  <?php get_media($post->ID, 'large'); ?>
+                  <?php 
+                  $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'large'); 
+                  ?>
+                  <img src="<?php echo $image[0]; ?>">
                 </div>
                 <div class="caption">
                   <p>
@@ -31,19 +35,13 @@
               </div>
             <?php endif; ?>
           </header>
-          <div class="small-share">
-            <input type="text" name="shorturl" class="shorturl" value="<?php echo wp_get_shortlink(); ?>" readonly="readonly"/>
-            <a title="tweet" href="https://twitter.com/share?text=<?php echo urlencode(get_the_title()); ?>&amp;url=<?php echo urlencode(wp_get_shortlink());?>&amp;via=AxisPhilly" target="_blank"><i class="social-foundicon-twitter"></i></a>
-            <a title="share on Facebook" href="https://www.facebook.com/sharer.php?s=100&amp;p[title]=<?php echo urlencode(get_the_title()); ?>&amp;p[url]=<?php echo urlencode(wp_get_shortlink()); ?>&amp;p[summary]=<?php echo urlencode(get_the_excerpt()); ?>" target="_blank"><i class="social-foundicon-facebook"></i></a>
-            <a title="email" href="mailto:?subject=AxisPhilly: <?php echo urlencode(get_the_title()); ?>&amp;body=<?php echo urlencode(wp_get_shortlink());?> <?php echo urlencode(get_the_excerpt()); ?>" target="_blank"><i class="general-foundicon-mail"></i></a>
-          </div>
           <div class="article-text">
             <?php
               setup_postdata($post);
               the_content();
             ?>
             <p>
-              <?php the_tags('<span class="radius label">','</span> <span class="radius label">','</span>'); ?>
+              <?php the_tags('<span class="round label">','</span> <span class="round label">','</span>'); ?>
             </p>
           </div>
           <div class="row">

@@ -174,4 +174,46 @@ a img.aligncenter {
   margin-right: auto
 }
 /* End of WordPress Core image stuff
+<<<<<<< Updated upstream
 -------------------------------------------------------------- */
+
+
+.project-section-nav {
+  font-family: $sansSerifFont;
+}
+
+
+@media(max-width: 767px) {
+
+ #homepage-content #features #top-featured article p {
+
+    .byline-date {
+      font-size: 16px;
+    }
+
+    .byline-author {
+      font-size: 16px;
+    }
+
+  }
+
+  #sub-featured article {
+      border-top: 1px red solid;
+      padding: 14px 0 12px 0;
+  }
+
+  h3.headline {
+    font-size: 20px;
+    margin: 0.3em 0 0 0;
+  }
+
+  h4.headline {
+    font-size: 20px;
+    margin: 0.3em 0 0 0;
+  }
+
+  h2.headline {
+    font-size: 20px;
+    margin: 0.3em 0 0.2em 0;
+  }
+}

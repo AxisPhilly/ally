@@ -105,4 +105,31 @@
       margin: 0 auto;
     }
   }
+
+  .social {
+    i {
+      font-size: 135%;
+    }
+
+    &.desktop {
+      display: block;
+
+      @media(max-width: $topBarBreakPoint) {
+        display: none;
+      }
+    }
+
+    &.mobile {
+      display: none;
+
+      a { 
+        display: inline !important;
+        padding: 5px !important;
+      }
+
+      @media(max-width: $topBarBreakPoint) {
+        display: block;
+      }
+    }
+  }
 }
