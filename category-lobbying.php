@@ -76,6 +76,20 @@
         </div>
       </div><!-- End Features -->
     </div><!-- End Header Row -->
+    <div class="project-section-nav small">
+      <div class="row">
+        <dl class="tabs two-up">
+          <dd class="active"><a href="#feed">Stories</a></dd>
+        </dl>
+      </div>
+    </div>
+    <div class="project-section-nav large">
+      <div class="row">
+        <dl class="tabs two-up">
+          <dd class="active"><a href="#feed">Stories &amp; Tools</a></dd>
+        </dl>
+      </div>
+    </div>
     <div class="row">
       <div id="stories" class="twelve columns">
         <div class="items">
