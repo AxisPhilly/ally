@@ -17,7 +17,8 @@
   color: $thirdColor;
 
   p {
-    font-size: 13px; 
+    font-size: 13px;
+    margin-bottom: 12px;
   }
 }
 
@@ -57,6 +58,24 @@
       display:inline-block;
       margin: 0 8px;
     }
+  }
+}
+
+// Share box for mobile
+.small-share {
+  border: 1px solid #ccc;
+  padding: 2px;
+  margin: 10px 0;
+  display: none;
+
+  @media(max-width: 360px) {
+    display: block;
+  }
+
+  input {
+    display: inline-block;
+    width: 150px;
+    margin: 5px;
   }
 }
 
