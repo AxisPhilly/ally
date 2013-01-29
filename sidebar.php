@@ -2,7 +2,7 @@
   <div class="view">
     <div <?php global $sidebar; if($sidebar == 0) { ?> class="moving-container" data-spy="affix" data-offset-top="220" <?php } ?>>
       <div class="social-container">
-        <h6 class="sidebar">Share This</h6>
+        <h6 class="sidebar">Share this:</h6>
         <div class="shorturl-container">
           <input type="text" name="shorturl" class="shorturl" value="<?php echo wp_get_shortlink(); ?>" readonly="readonly"/>
         </div>
@@ -20,7 +20,7 @@
           $c_slug = $category[0]->slug; 
       ?>
         <p>
-          <strong>This <?php 
+          <h6 class="sidebar">This <?php 
             if(get_post_type($post) == 'wp_tool') { 
               echo 'tool'; 
             } elseif(get_post_type($post) == 'discussion') {
@@ -29,10 +29,10 @@
               echo 'article'; 
             } 
           ?> is part of our series on <a href="/project/<?php echo $c_slug; ?>"><?php echo $c_name; ?></a>.
-          Read more from the series:</strong>
+          Read more from the series:</h6>
         </p>
       <?php } else { ?>
-          <h6 class="sidebar">Recent Stories</h6>
+          <h6 class="sidebar">Recent Stories:</h6>
       <?php } ?>
         <div class="recent stories">
         <?php

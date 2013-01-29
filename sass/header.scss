@@ -24,7 +24,7 @@
     height: 160px;
     padding-top: 40px;
     text-align: left;
-    background-color: $black;
+    background-color: #222;
 
     @media(max-width: 767px) {
       display: none;
@@ -48,10 +48,12 @@
   .top-bar {
     margin: 0 auto;
     max-width: 1200px;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #222;
+    padding-top: 4px; 
+    padding-bottom: 45px;
 
     ul > li.toggle-topbar {
-      height: 44px;
+      height: 45px;
     }
 
     ul > li:not(.name):hover {
@@ -59,7 +61,7 @@
     }
 
     ul > li a:not(.button) {
-      height: 44px;
+      height: 45px;
       font-size: $menuFontSize;
       font-weight: $menuFontWeight;
     }
@@ -74,7 +76,7 @@
     }
 
     ul > li.has-dropdown a:after {
-      border-color: $black transparent transparent transparent;
+      border-color: #222 transparent transparent transparent;
     }
 
     ul > li.name {

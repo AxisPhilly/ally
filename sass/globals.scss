@@ -54,10 +54,11 @@ body {
 }
 
 // Tag
-span.radius.label a {
+span.label a {
   color: #fff; 
   font-weight: 600; 
   line-height: 1.5em;
+  font-family: $sansSerifFont;
 }
 
 // External link icon
@@ -95,7 +96,7 @@ ul.no-markers {
   font-family: $categoryFontFamily;
  
   a:link, a:visited {
-    color:#222;
+    color: #222;
   } 
 }
 
@@ -198,7 +199,7 @@ a img.aligncenter {
   }
 
   #sub-featured article {
-      border-top: 1px red solid;
+      border-top: 1px $black solid;
       padding: 14px 0 12px 0;
   }
 
