@@ -28,7 +28,7 @@
           # Check to see if this is an external_post. If so, display Source and Source URL instead of Author.
           if (get_post_type() == 'external_post') { ?>
             <div class="byline-author">
-              Source: <strong> <?php echo get_post_meta($post->ID, '_source_name', true); ?></strong> 
+              Source: <strong> <?php echo get_post_meta($post->ID, '_source_name', true); ?></strong> --
               <?php echo get_the_time('F j, Y'); ?>
             </div>
          <?php } elseif (get_post_type() != 'external_post') { ?>
