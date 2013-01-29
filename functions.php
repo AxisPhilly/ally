@@ -298,7 +298,23 @@ add_action( 'init', 'add_custom_taxonomies');
 
 // http://wp.tutsplus.com/tutorials/theme-development/innovative-uses-of-wordpress-post-types-and-taxonomies/
 // Creates "External Post" Post Type
-function create_post_type() {  
+function create_post_type() {
+    // reregister default post so we can set a custom slug
+    register_post_type('post', array(
+        'labels' => array(
+            'name_admin_bar' => _x('Post', 'add new on admin bar' ),
+        ),
+        'public'  => true,
+        '_builtin' => false, 
+        '_edit_link' => 'post.php?post=%d', 
+        'capability_type' => 'post',
+        'map_meta_cap' => true,
+        'hierarchical' => false,
+        'rewrite' => array('slug' => 'article'),
+        'query_var' => false,
+        'supports' => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'trackbacks', 'custom-fields', 'comments', 'revisions', 'post-formats'),
+    ));
+
   // register external_post as a Custom Post Type
   register_post_type( 'external_post',  
     array(  
@@ -479,6 +495,16 @@ function list_categories() {
       $count++;
     }
   }
+
+  //emit a chat symbol for discussion
+  if($count == 0 && get_post_type(get_the_id()) == 'discussion') {
+    generate_discussion_w_no_category();
+  }
+}
+
+// emit a discussion symbol for discussions not in a category
+function generate_discussion_w_no_category() {
+  echo '<div class="category-symbology"><i class="social-foundicon-chat"> </i> Discussion</div>';
 }
 
 // Checks whether or not a post is part of a project
