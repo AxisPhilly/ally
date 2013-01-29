@@ -2,7 +2,7 @@
   <div class="view">
     <div <?php global $sidebar; if($sidebar == 0) { ?> class="moving-container" data-spy="affix" data-offset-top="220" <?php } ?>>
       <div class="social-container">
-        <strong>Share this: </strong>
+        <h6 class="sidebar">Share This</h6>
         <div class="shorturl-container">
           <input type="text" name="shorturl" class="shorturl" value="<?php echo wp_get_shortlink(); ?>" readonly="readonly"/>
         </div>
@@ -32,9 +32,7 @@
           Read more from the series:</strong>
         </p>
       <?php } else { ?>
-        <p>
-          <strong>Recent Stories</strong>
-        </p>
+          <h6 class="sidebar">Recent Stories</h6>
       <?php } ?>
         <div class="recent stories">
         <?php
