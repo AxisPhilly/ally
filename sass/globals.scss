@@ -97,7 +97,11 @@ ul.no-markers {
  
   a:link, a:visited {
     color: #222;
-  } 
+  }
+
+  @media(max-width: 360px) {
+    font-size: 12px;
+  }
 }
 
 h3.headline {
