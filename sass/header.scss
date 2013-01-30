@@ -93,6 +93,8 @@
 
     ul > li.has-dropdown .dropdown .last {
       border-bottom: 1px solid $black;
+
+
     }
 
     ul > li.has-dropdown a:after {
@@ -106,7 +108,7 @@
     ul > li.name {
       background: #fff;
 
-      @media(min-width: $topBarBreakPoint) {
+      @media(min-width: 768px) {
         display: none;
       }
     }
