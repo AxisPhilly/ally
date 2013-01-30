@@ -1,6 +1,5 @@
 <?php 
   get_header(); 
-
   $feature_args = array(
     'orderby' => 'date',
     'order' => 'DESC',
@@ -52,6 +51,20 @@
                 </div>
                 <?php 
                   the_excerpt();
+                  $ran = get_post_meta($post->ID, '_companion_name', true);
+                  echo $ran;
+
+                ?>
+
+
+<?php
+$post_id = 340;
+$queried_post = get_post($post_id);
+?>
+<h2><?php echo $queried_post->post_title; ?></h2>
+
+
+<?
                   $top_count++;
                 ?>
               <?php endwhile; endif; ?>
