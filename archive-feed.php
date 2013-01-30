@@ -9,7 +9,7 @@
           <?php list_categories(); ?>
         </div>
       <?php } ?>
-      <h4>
+      <h4 class="headline">
         <a id="<?php the_id(); ?>" href="<?php 
           if(get_post_type() == 'external_post' || get_post_type() == 'external_tool') {
             echo get_post_meta($post->ID, '_url_name', true);
