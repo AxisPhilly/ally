@@ -29,7 +29,7 @@
               echo 'article'; 
             } 
           ?> is part of our <a href="/project/<?php echo $c_slug; ?>"><?php echo $c_name; ?></a> project.
-          Read more from the project:</h6>
+          Read more:</h6>
         </p>
       <?php } else { ?>
           <h6 class="sidebar">Recent Stories:</h6>
