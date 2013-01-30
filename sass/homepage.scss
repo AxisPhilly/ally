@@ -1,6 +1,9 @@
+$grey: #ccc;
+$black: #222;
+
 #homepage-content {
   .byline {
-    margin: 2px 0px 0px 0px;
+    margin: 0 0 0 0;
     line-height: 1.5;
 
     a:link, a:visited {
@@ -40,12 +43,26 @@
     }
   }
 
-  #sidebar-featured, #sub-featured {
+  #sidebar-featured {
     .category-symbology {
       font-size: 12px;
       margin-top: .4em;
     }
   }
+
+  #sub-featured {
+    .category-symbology {
+      font-size: 13px;
+      margin-top: .4em;
+    }
+  }  
+
+  #top-featured {
+    .category-symbology {
+      font-size: 16px;
+      margin-top: .6em;
+    }
+  }  
 
   article.tool {
     margin-top: 1em;
@@ -112,7 +129,7 @@
       }
 
       .byline {
-        margin: 2px 0 0 0;      
+        margin: 0;      
       }
     }    
 
@@ -210,7 +227,7 @@
 
   h3.headline {
     font-size: 20px;
-    margin: 0.3em 0 0 0;
+    margin: 0.2em 0 0 0;
   }
 
   h4.headline {
