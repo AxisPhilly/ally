@@ -134,8 +134,9 @@
           </ul>
           <section>
             <ul class="left">
+              <li><a href="/">Home</a></li>
               <li class="has-dropdown">
-                <a href="#" style="padding-left: 0">Our Projects</a>
+                <a href="#">Our Projects</a>
                 <ul class="dropdown">
                   <li><a href="/project/taxes">Taxes</a></li>
                   <li><a href="/project/open-gov">Open Government</a></li>
