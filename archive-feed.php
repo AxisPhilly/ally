@@ -33,8 +33,7 @@
             </div>
          <?php } elseif (get_post_type() != 'external_post') { ?>
           <div class="byline">
-            <span class="byline-author">by <?php coauthors_posts_links(); ?> </span>
-            <span class="byline-date">on <?php the_time('M. j, Y'); ?></span>
+            <span class="byline-author">by <?php coauthors_posts_links(); ?></span><span class="byline-date">, <?php the_time('M. j, Y'); ?></span>
           </div>
         <?php } ?>
       <?php if ((get_post_type() != 'external_post')) { ?> 
