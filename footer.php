@@ -13,9 +13,9 @@
       <div class="nine columns">
         <ul>
           <li><a href="/about">About Us</a></li>
-          <li><a href="/contact-us">Contact Us</a></li>
-          <li><a href="/understanding-privacy">Privacy</a></li>
-          <li><a href="/user-agreement/">User Agreement</a></li>
+          <li><a href="/about/contact-us">Contact Us</a></li>
+          <li><a href="/about/understanding-privacy">Privacy</a></li>
+          <li><a href="/about/user-agreement/">User Agreement</a></li>
         </ul>
       </div>
     </div>

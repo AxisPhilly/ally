@@ -134,16 +134,17 @@
           </ul>
           <section>
             <ul class="left">
+              <li <?php if($_SERVER["REQUEST_URI"] == '/') { echo 'class="active"'; } ?>><a href="/">Home</a></li>
               <li class="has-dropdown">
-                <a href="#" style="padding-left: 0">Our Projects</a>
+                <a href="#">Our Projects</a>
                 <ul class="dropdown">
-                  <li><a href="/project/taxes">Taxes</a></li>
-                  <li><a href="/project/open-gov">Open Government</a></li>
+                  <li <?php if(stripos($_SERVER["REQUEST_URI"], 'taxes/')) { echo 'class="active"'; } ?>><a href="/project/taxes">Taxes</a></li>
+                  <li <?php if(stripos($_SERVER["REQUEST_URI"], 'open-gov/')) { echo 'class="active"'; } ?>><a href="/project/open-gov">Open Government</a></li>
                   <li class="last"><a href="/project/lobbying">Lobbying</a></li>
                 </ul>
               </li>
-              <li><a href="/tools">Tools &amp; Data</a></li>
-              <li><a href="/about">About</a></li>
+              <li <?php if(stripos($_SERVER["REQUEST_URI"], 'tools/')) { echo 'class="active"'; } ?> ><a href="/tools">Tools &amp; Data</a></li>
+              <li <?php if(stripos($_SERVER["REQUEST_URI"], 'about/')) { echo 'class="active"'; } ?> ><a href="/about">About</a></li>
               <li class="search">
               <li class="social"><a href="http://www.twitter.com/AxisPhilly"><i class="social-foundicon-twitter"></i></a></li>
               <li class="social"><a href="http://www.facebook.com/AxisPhilly"><i class="social-foundicon-facebook"></i></a></li>

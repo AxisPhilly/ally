@@ -55,7 +55,9 @@
               <article class="tool">
                 <?php get_media($post->ID, 'thumbnail') ?>
                 <h4 class="headline"><a href="<?php echo $post_url; ?>"><?php the_title(); ?></a></h4>
-                <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
+                <?php if (get_the_author() != 'axisphilly') { ?>
+                  <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j, Y'); ?></span></div>
+                <? } ?>  
                 <?php the_excerpt(); ?>
               </article>
             </div>
