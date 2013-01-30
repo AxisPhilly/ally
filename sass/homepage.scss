@@ -75,7 +75,7 @@ $black: #222;
 
     article {
       border-top: 1px $grey solid;
-      padding: 16px 0 16px 0;
+      padding: 20px 0 20px 0;
     }
 
     article:first-child {
@@ -195,7 +195,7 @@ $black: #222;
 @media (min-width: 768px) and (max-width: 900px) {
   #homepage-content #features #sub-featured article:first-child {
     border-top: 1px $grey solid;
-    padding: 16px 0 16px 0;
+    padding: 20px 0 20px 0;
   }
 }
 

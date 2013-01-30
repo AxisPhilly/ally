@@ -65,9 +65,7 @@
 
                 if($discussion->have_posts()):
               ?>
-                <p>
-                  <strong>Recent discussion about <?php echo $c_name; ?></strong>
-                </p>
+                <h6 class="sidebar">Recent discussion about <?php echo $c_name; ?>
               <?php
                   while($discussion->have_posts()):
                     $discussion->the_post();
