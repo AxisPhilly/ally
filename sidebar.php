@@ -28,8 +28,8 @@
             } else { 
               echo 'article'; 
             } 
-          ?> is part of our series on <a href="/project/<?php echo $c_slug; ?>"><?php echo $c_name; ?></a>.
-          Read more from the series:</h6>
+          ?> is part of our <a href="/project/<?php echo $c_slug; ?>"><?php echo $c_name; ?></a> project.
+          Read more from the project:</h6>
         </p>
       <?php } else { ?>
           <h6 class="sidebar">Recent Stories:</h6>
