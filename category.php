@@ -95,7 +95,7 @@
     <ul class="tabs-content">
       <li class="active" id="feedTab">
         <div class="row">
-          <div id="stories" class="twelve columns">
+          <div id="stories" class="nine columns">
             <div class="items">
               <?php
                 $stories_args = array(
