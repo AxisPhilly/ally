@@ -4,7 +4,7 @@
       <div class="social-container">
         <h6 class="sidebar">Share this:</h6>
         <div class="shorturl-container">
-          <input type="text" name="shorturl" class="shorturl" value="<?php echo wp_get_shortlink(); ?>" readonly="readonly"/>
+          <input type="text" name="shorturl" class="shorturl" value="<?php echo wp_get_shortlink(); ?>"/>
         </div>
         <div class="sites">
           <a title="tweet" href="https://twitter.com/share?text=<?php echo urlencode(get_the_title()); ?>&amp;url=<?php echo urlencode(wp_get_shortlink());?>&amp;via=AxisPhilly" target="_blank"><i class="social-foundicon-twitter"></i></a>
