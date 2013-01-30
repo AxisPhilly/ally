@@ -1,6 +1,6 @@
 <aside class="sidebar three columns hide-for-small">
   <div class="view">
-    <div <?php global $sidebar; if($sidebar == 0) { ?> class="moving-container" data-spy="affix" data-offset-top="220" <?php } ?>>
+    <div <?php global $sidebar; if($sidebar == 0) { ?> class="moving-container" data-spy="affix" data-offset-top="180" <?php } ?>>
       <div class="social-container">
         <h6 class="sidebar">Share this:</h6>
         <div class="shorturl-container">
