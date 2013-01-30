@@ -20,6 +20,10 @@
   font-color: $menuFontColor;
   font-size: $menuFontSize;
 
+  .twelve.columns {
+    padding: 0px;
+  }
+
   .header-logo {
     height: 160px;
     padding-top: 40px;
@@ -49,8 +53,6 @@
     margin: 0 auto;
     max-width: 1200px;
     border-bottom: 1px solid #222;
-    padding-top: 4px; 
-    padding-bottom: 45px;
 
     ul > li.toggle-topbar {
       height: 45px;
