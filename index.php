@@ -1,5 +1,6 @@
 <?php 
   get_header(); 
+
   $feature_args = array(
     'orderby' => 'date',
     'order' => 'DESC',
@@ -40,7 +41,7 @@
                   }
             ?>
             <article>
-              <?php get_media($post->ID, 'large') ?>
+              <?php get_media($post->ID, 'medium') ?>
               <?php if(stripos($_SERVER["REQUEST_URI"], 'project/') == FALSE) { ?>
                   <?php list_categories(); ?>
               <?php } ?>          
@@ -51,8 +52,6 @@
                 </div>
                 <?php 
                   the_excerpt();
-                  $ran = get_post_meta($post->ID, '_companion_name', true);
-                  echo $ran;
                   $top_count++;
                 ?>
               <?php endwhile; endif; ?>
