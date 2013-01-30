@@ -90,12 +90,17 @@
       border-right: 1px solid $thirdColor;
     }
 
+
     ul > li.has-dropdown .dropdown .last {
       border-bottom: 1px solid $thirdColor;
     }
 
     ul > li.has-dropdown a:after {
       border-color: #222 transparent transparent transparent;
+    }
+
+    ul > li.has-dropdown .dropdown li.active a { 
+      background-color: #fff;
     }
 
     ul > li.name {
