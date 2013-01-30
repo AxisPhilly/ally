@@ -45,28 +45,46 @@
                   <?php list_categories(); ?>
               <?php } ?>          
                 <h2 class="headline"><a href="<?php echo $post_url; ?>"><?php the_title(); ?></a></h2>
-                <div class="byline">
-                  <span class="byline-author">by <?php coauthors_posts_links(); ?> </span>
-                  <span class="byline-date"><?php the_time('M. j'); ?></span>
+                <div class="row" id="sub-top-feature">
+                  <?php 
+                    $companion_post_id = get_post_meta($post->ID, '_companion_name', true);
+                    $queried_post = get_post($companion_post_id);
+
+
+                    if (isset($companion_post_id)&&(!($companion_post_id==""))){
+                  ?>    
+                      <div class="four columns hide-for-small">
+                        <div id="companion">                    
+                          <?                     
+                            get_media($queried_post->ID, 'thumbnail');
+                          ?>
+                          <div id="companion_overlay">
+                          Interactive Tool
+                          </div>
+                        </div>
+                      </div>
+                  <? } ?>
+                  <?
+                    if (isset($companion_post_id)&&(!($companion_post_id==""))){
+                  ?>
+                    <div class="eight columns">
+                  <? }
+                    else { 
+                  ?>
+                    <div class="twelve columns">
+                  <? 
+                    } 
+                  ?> 
+
+                    <div class="byline">
+                      <span class="byline-author">by <?php coauthors_posts_links(); ?> </span>
+                      <span class="byline-date"><?php the_time('M. j'); ?></span>
+                    </div>
+                    <?php 
+                      the_excerpt();
+                    ?>
+                  </div>
                 </div>
-                <?php 
-                  the_excerpt();
-                  $ran = get_post_meta($post->ID, '_companion_name', true);
-                  echo $ran;
-
-                ?>
-
-
-<?php
-$post_id = 340;
-$queried_post = get_post($post_id);
-?>
-<h2><?php echo $queried_post->post_title; ?></h2>
-
-
-<?
-                  $top_count++;
-                ?>
               <?php endwhile; endif; ?>
             </article>
           </div>

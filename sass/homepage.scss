@@ -169,9 +169,8 @@ $black: #222;
 
   .discussion {
     .headline {
-      background-color: slateGray;
-      padding: 10px;
-      margin: 10px 10px 0 10px;
+      background-color: #a2a2a2;
+      padding: 15px;
       
       a {
         color: #fff;
@@ -272,4 +271,27 @@ $black: #222;
 
 #tools p {
   margin-bottom: 0
+}
+
+
+// hacky 
+
+#sub-top-feature {
+  margin-top: -0.4em;
+}
+
+#companion_overlay {
+  position: absolute; 
+  bottom: 0px; 
+  width: 100%; 
+  background-color: #222; 
+  color: #fff; 
+  font-size: 12px; 
+  text-transform: uppercase; 
+  font-family: 'proxima-nova'; 
+  padding: 4px 0 4px 8px;
+}
+
+#companion {
+  position: relative; margin-top: 1em
 }

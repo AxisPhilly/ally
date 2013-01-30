@@ -1,5 +1,7 @@
 <?php
 
+//Virtually disables autosave; auto-save causes problems with custom fields (they show up empty when WP auto-saves). We should resolve this problem before re-enabling autosave.
+
 //Removes height and width from image in image editor; Source: http://css-tricks.com/snippets/wordpress/remove-width-and-height-attributes-from-inserted-images/
 
 add_filter( 'post_thumbnail_html', 'remove_width_attribute', 10 );
@@ -173,7 +175,11 @@ add_action('add_meta_boxes', 'companion_meta');
 // Save contents of companion_meta Custom Field
 function companion_save($post_ID) {
   global $post;
-           
+  
+  if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
+        return $post_id;
+  }
+
   if (isset($_POST)) {
     update_post_meta($post_ID, '_companion_name', strip_tags($_POST['companion_name']));
   }
@@ -197,6 +203,10 @@ add_action('add_meta_boxes', 'source_meta');
 function source_save($post_ID) {
   global $post;
            
+  if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
+        return $post_id;
+  }
+
   if (isset($_POST)) {
     update_post_meta($post_ID, '_source_name', strip_tags($_POST['source_name']));
   }
@@ -220,6 +230,10 @@ add_action('add_meta_boxes', 'url_meta');
 // Save contents of url_meta Custom Field
 function url_save($post_ID) {
   global $post;
+
+  if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
+        return $post_id;
+  }
            
   if (isset($_POST)) {
     update_post_meta( $post_ID, '_url_name', strip_tags( $_POST['url_name'] ) );
@@ -243,6 +257,10 @@ add_action('add_meta_boxes', 'pull_quote_meta');
 // Save contents of pull_quote Custom Field
 function pull_quote_save($post_ID) {
   global $post;
+
+  if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
+        return $post_id;
+  }
            
   if (isset($_POST)) {
     update_post_meta( $post_ID, '_pull_quote_name', strip_tags( $_POST['pull_quote_name'] ) );
@@ -266,6 +284,10 @@ add_action('add_meta_boxes', 'pull_quote_url_meta');
 // Save contents of pull_quote_url Custom Field
 function pull_quote_url_save($post_ID) {
   global $post;
+
+  if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
+        return $post_id;
+  }
            
   if (isset($_POST)) {
     update_post_meta( $post_ID, '_pull_quote_url_name', strip_tags( $_POST['pull_quote_url_name'] ) );
