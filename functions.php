@@ -1,5 +1,7 @@
 <?php
 
+add_editor_style('stylesheets/editor-style.css');
+
 function disqus_embed($disqus_shortname) {
     global $post;
     wp_enqueue_script('disqus_embed','http://'.$disqus_shortname.'.disqus.com/embed.js');
@@ -522,4 +524,6 @@ function get_media($post_id, $size) {
     echo '<img src="'. $image[0] . '" alt="' . $alt . '">';
   }
 }
+
+
 ?>
