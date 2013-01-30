@@ -19,11 +19,8 @@
       <div class="two mobile-one columns">
         <ul class="side-nav" id="about-menu" data-spy="affix" data-offset-top="205">
           <li><a href="#mission">Mission</a></li>
-          <li><a href="#board">Board</a></li>
           <li><a href="#staff">Staff</a></li>
-          <li><a href="#jobs">Jobs</a></li>
-          <li><a href="#inthenews">In The News</a></li>
-          <li><a href="#press">Press Releases</a></li>
+          <li><a href="#board">Board</a></li>
         </ul>
       </div>
 
