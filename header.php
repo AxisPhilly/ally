@@ -140,7 +140,7 @@
                 <ul class="dropdown">
                   <li <?php if(stripos($_SERVER["REQUEST_URI"], 'taxes/')) { echo 'class="active"'; } ?>><a href="/project/taxes">Taxes</a></li>
                   <li <?php if(stripos($_SERVER["REQUEST_URI"], 'open-gov/')) { echo 'class="active"'; } ?>><a href="/project/open-gov">Open Government</a></li>
-                  <li class="last"><a href="/project/lobbying">Lobbying</a></li>
+                  <li <?php if(stripos($_SERVER["REQUEST_URI"], 'litter/')) { echo 'class="active"'; } ?> class="last"><a href="/project/litter">Litter</a></li>
                 </ul>
               </li>
               <li <?php if(stripos($_SERVER["REQUEST_URI"], 'tools/')) { echo 'class="active"'; } ?> ><a href="/tools">Tools &amp; Data</a></li>
