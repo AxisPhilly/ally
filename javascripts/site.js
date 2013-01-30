@@ -36,9 +36,7 @@ axis.Views.Header = Backbone.View.extend({
 });
 
 axis.Views.Index = Backbone.View.extend({
-  initialize: function() {
-    this.features = new axis.Views.Features({el: "#feature-container"});
-  }
+
 });
 
 axis.Views.ProjectContainer = Backbone.View.extend({
@@ -78,45 +76,6 @@ axis.Views.Features = Backbone.View.extend({
   }
 });
 
-axis.Views.FeatureItem = Backbone.View.extend({
-
-});
-
-axis.Views.NewsFeed = Backbone.View.extend({
-
-});
-
-axis.Views.NewsFeedItem = Backbone.View.extend({
-
-});
-
-axis.Views.ToolsAndData = Backbone.View.extend({
-
-});
-
-axis.Views.ToolsAndDataItem = Backbone.View.extend({
-
-});
-
-axis.Views.ArticleContainer = Backbone.View.extend({
-
-});
-
-axis.Views.Article = Backbone.View.extend({
-
-});
-
-axis.Views.ArticleSidebar = Backbone.View.extend({
-
-});
-
-axis.Views.RecentArticle = Backbone.View.extend({
- 
-});
-
-axis.Views.ArticleNavigationItem = Backbone.View.extend({
-
-});
 
 axis.Router = Backbone.Router.extend({
   routes: {

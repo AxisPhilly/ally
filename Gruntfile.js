@@ -41,7 +41,12 @@ module.exports = function(grunt) {
         dest: 'javascripts/foundation.js'
       },
       libraries: {
-        src: 'javascripts/contrib/*',
+        src: [
+          'javascripts/contrib/underscore.min.js',
+          'javascripts/contrib/backbone.min.js',
+          'javascripts/contrib/bootstrap.affix.min.js',
+          'javascripts/contrib/fastclick.min.js'
+        ],
         dest: 'javascripts/libraries.<%= pkg.version %>.min.js'
       },
       sass: {
