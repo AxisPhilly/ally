@@ -32,9 +32,11 @@
               <?php echo get_the_time('F j, Y'); ?>
             </div>
          <?php } elseif (get_post_type() != 'external_post') { ?>
-          <div class="byline">
-            <span class="byline-author">by <?php coauthors_posts_links(); ?></span><span class="byline-date">, <?php the_time('M. j, Y'); ?></span>
-          </div>
+            <?php if (get_the_author() != 'axisphilly') { ?>
+            <div class="byline">
+              <span class="byline-author">by <?php coauthors_posts_links(); ?></span><span class="byline-date">, <?php the_time('M. j, Y'); ?></span>
+            </div>
+            <?php } ?>
         <?php } ?>
       <?php if ((get_post_type() != 'external_post')) { ?> 
       <?php } ?>
