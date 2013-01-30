@@ -138,7 +138,7 @@
                 <a href="#" style="padding-left: 0">Our Projects</a>
                 <ul class="dropdown">
                   <li><a href="/project/taxes">Taxes</a></li>
-                  <li><a href="/project/open-gov">Open Gov</a></li>
+                  <li><a href="/project/open-gov">Open Government</a></li>
                   <li class="last"><a href="/project/lobbying">Lobbying</a></li>
                 </ul>
               </li>
