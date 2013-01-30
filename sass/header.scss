@@ -35,7 +35,8 @@
     }
 
     img {
-      width: 340px;
+      width: 410px;
+      padding-left: 11px;
     }
   }
 
@@ -55,17 +56,33 @@
     border-bottom: 1px solid #222;
 
     ul > li.toggle-topbar {
-      height: 45px;
+      height: 44px;
     }
 
-    ul > li:not(.name):hover {
+    ul > li:hover {
       background: #fff;
+
+      a {
+        color: #555;
+      }
+    }
+
+    ul.dropdown li a:hover {
+      color: #555;
     }
 
     ul > li a:not(.button) {
-      height: 45px;
+      height: 44px;
       font-size: $menuFontSize;
       font-weight: $menuFontWeight;
+    }
+
+    ul > li:not(.name).active {
+      background: #fff;
+
+      a {
+        font-weight: bold;
+      }
     }
 
     ul > li.has-dropdown .dropdown li {
