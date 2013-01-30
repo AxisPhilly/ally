@@ -66,7 +66,9 @@
             <div class="caption">
               <h4 class="headline"><a href="<?php echo $post_url; ?>"><?php the_title(); ?></a></h4>
               <div class="details">
-                <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
+                <?php if (get_the_author() != 'axisphilly') { ?>
+                  <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
+                <?php } ?>
                 <?php the_excerpt(); ?>
               </div>
             </div>
