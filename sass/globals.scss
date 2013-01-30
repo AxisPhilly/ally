@@ -194,7 +194,7 @@ a img.aligncenter {
 
 @media(max-width: 767px) {
 
-  #homepage-content #features #top-featured article p {
+ #homepage-content #features #top-featured article p {
 
     .byline-date {
       font-size: 16px;
@@ -235,4 +235,12 @@ a img.aligncenter {
 
 .stream-excerpt p {
   margin-bottom: .5em;
+}
+
+#email-signup-label {
+  color: #fff; margin-bottom: 0.5em
+}
+
+#mc-embedded-subscribe {
+  font-size: 16px;
 }
