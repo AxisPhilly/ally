@@ -93,5 +93,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   
   grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
+  grunt.registerTask('style', ['concat:sass']);
   grunt.registerTask('release', ['compress']);
 };
