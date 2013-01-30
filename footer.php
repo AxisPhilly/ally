@@ -21,6 +21,6 @@
     </div>
   </footer>
   <script src="<?php bloginfo('template_directory'); ?>/javascripts/foundation.min.js" type="text/javascript"></script>
-  <script src="<?php bloginfo('template_directory'); ?>/javascripts/site.0.9.0.min.js" type="text/javascript"></script>
+  <script src="<?php bloginfo('template_directory'); ?>/javascripts/site.1.0.0.min.js" type="text/javascript"></script>
 </body>
 </html>
