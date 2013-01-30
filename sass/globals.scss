@@ -119,6 +119,10 @@ h2.headline {
   margin: 0.3em 0 0.2em 0;
 }
 
+h1.headline {
+  font-size: 48px;
+}
+
 .byline-date {
   font-family: $dateFontFamily;
   font-weight: $dateFontWeight;
@@ -190,7 +194,7 @@ a img.aligncenter {
 
 @media(max-width: 767px) {
 
- #homepage-content #features #top-featured article p {
+  #homepage-content #features #top-featured article p {
 
     .byline-date {
       font-size: 16px;
@@ -208,19 +212,25 @@ a img.aligncenter {
   }
 
   h3.headline {
-    font-size: 20px;
+    font-size: 24px;
     margin: 0.3em 0 0 0;
   }
 
   h4.headline {
-    font-size: 20px;
+    font-size: 24px;
     margin: 0.3em 0 0 0;
   }
 
   h2.headline {
-    font-size: 22px;
-    margin: 0.3em 0 0.2em 0;
+    font-size: 24px;
+    margin: 0.3em 0 0 0;
   }
+
+  h1.headline {
+    font-size: 24px;
+    margin-top: 0.5em;
+  }
+
 }
 
 .stream-excerpt p {

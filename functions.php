@@ -146,6 +146,29 @@ class Walker_Nav_Menu_CMS extends Walker_Nav_Menu {
   }       
 }
 
+// Create companion_meta Custom Field
+function companion_meta() {
+  add_meta_box('companion_meta', 'Companion', 'companion_callback', 'post', 'normal', 'high');
+}
+
+function companion_callback( $post ) {
+  $companion_name = get_post_meta($post->ID, '_companion_name', true);
+  echo 'What is the ID of the Companion Tool?</em><br><input type="text" name="companion_name" style="width: 100%" value="'.$companion_name.'"/>';
+}
+
+add_action('add_meta_boxes', 'companion_meta');
+
+// Save contents of companion_meta Custom Field
+function companion_save($post_ID) {
+  global $post;
+           
+  if (isset($_POST)) {
+    update_post_meta($post_ID, '_companion_name', strip_tags($_POST['companion_name']));
+  }
+}
+
+add_action( 'save_post', 'companion_save' );
+
 // Create source_meta Custom Field
 function source_meta() {
   add_meta_box('source_meta', 'Source', 'source_callback', 'external_post', 'normal', 'high');
@@ -442,12 +465,6 @@ if(false === get_option("medium_crop")) {
     add_option("medium_crop", "1");
 } else {
     update_option("medium_crop", "1");
-}
-
-if(false === get_option("large_crop")) {
-    add_option("large_crop", "1");
-} else {
-    update_option("large_crop", "1");
 }
 
 // TEMPLATE HELPER FUNCTIONS

@@ -51,6 +51,8 @@
                 </div>
                 <?php 
                   the_excerpt();
+                  $ran = get_post_meta($post->ID, '_companion_name', true);
+                  echo $ran;
                   $top_count++;
                 ?>
               <?php endwhile; endif; ?>
