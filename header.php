@@ -25,6 +25,9 @@
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <!--[if IE]>
+     <script src="<?php bloginfo('template_directory'); ?>/javascripts/html5shiv.js"></script>  
+  <![endif]-->
   <meta property="og:site_name" content="AxisPhilly">
   <meta property="og:url" content="<?php echo $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]; ?>">
   <meta property="og:type" content="<?php
