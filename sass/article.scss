@@ -72,10 +72,16 @@
 
 // Share box for mobile
 .small-share {
-  border: 1px solid $grey;
+  border-top: 1px solid $grey;
+  border-bottom: 1px solid $grey;
   padding: 2px;
   margin: 10px 0;
   display: none;
+
+  i {
+    font-size: 120%;
+    padding: 0 8px;
+  }
 
   @media(max-width: 360px) {
     display: block;
