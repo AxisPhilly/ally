@@ -44,15 +44,20 @@
           );
 
           $recent_posts = new WP_Query($recent_posts_args);
+          $count = 0;
 
           if($recent_posts->have_posts()):
             while($recent_posts->have_posts()):
               $recent_posts->the_post();
 
               if($post->ID == $main_post) { continue; }
+              if($count == 3) { continue; }
         ?>
             <a href="<?php echo get_permalink($post->ID); ?>"><?php print_r($post->post_title); ?></a>
-        <?php endwhile; endif; ?>
+        <?php 
+          $count++;
+          endwhile; endif; 
+        ?>
         <?php wp_reset_postdata(); ?>
         </div>
         <div class="recent discussion">
