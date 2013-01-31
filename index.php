@@ -48,24 +48,28 @@
                 <div class="row" id="sub-top-feature">
                   <?php 
                     $companion_post_id = get_post_meta($post->ID, '_companion_name', true);
-                    $queried_post = get_post($companion_post_id);
+                    $companion_post = get_post($companion_post_id);
+                    if($companion_post->post_type == 'external_tool') {
+                      $post_url = get_post_meta($companion_post->ID, '_url_name', true);
+                    } else {
+                      $post_url = get_permalink($companion_post->ID);
+                    }
 
-
-                    if (isset($companion_post_id)&&(!($companion_post_id==""))){
+                    if (isset($companion_post_id) && (!($companion_post_id==""))) {
                   ?>    
                       <div class="four columns hide-for-small">
-                        <div id="companion">                    
-                          <?                     
-                            get_media($queried_post->ID, 'thumbnail');
-                          ?>
-                          <div id="companion_overlay">
-                          Interactive Tool
-                          </div>
+                        <div id="companion">
+                          <a href="<?php echo $post_url; ?>"> 
+                            <? get_media($companion_post->ID, 'thumbnail'); ?>
+                            <div id="companion_overlay">
+                            Interactive Tool
+                            </div>
+                          </a>
                         </div>
                       </div>
                   <? } ?>
                   <?
-                    if (isset($companion_post_id)&&(!($companion_post_id==""))){
+                    if (isset($companion_post_id) && (!($companion_post_id==""))) {
                   ?>
                     <div class="eight columns">
                   <? }
