@@ -208,7 +208,9 @@
         <article class="tool">
           <?php get_media($post->ID, 'thumbnail') ?>
           <h4 class="headline"><a href="<?php echo $post_url; ?>"><?php the_title(); ?></a></h4>
-          <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
+          <?php if (get_the_author() != 'axisphilly') { ?>
+            <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
+          <? } ?> 
           <?php the_excerpt(); ?>
         </article>
       </div>
@@ -218,7 +220,7 @@
     <section id="projects" class="row">
       <div class="three columns">
         <h4>Projects</h4>
-        <p>Our focus areas and investigations. Find tools, discussion, and curated stories from other media organizations on each topic.</p>
+        <p>Our focus areas and investigations. Find stories, tools, discussion, and curated stories from other media organizations on each topic.</p>
       </div>
       <?php 
         $project_id = get_category_by_slug('project')->term_id;
