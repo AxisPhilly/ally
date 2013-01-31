@@ -23,6 +23,13 @@
   }
 }
 
+.wp-caption-text {
+  color: $thirdColor;
+  font-size: 13px;
+  margin-bottom: 12px;
+  font-family: $sansSerifFont;
+}
+
 .sidebar {
   padding-top: 0;
 
@@ -229,14 +236,9 @@
 }
 
 .single-story {
-
   .view strong {
     font-family: $sansSerifFont;
   }
-  .view strong, a {
-    font-size: 18px;
-  }
-  .byline-author, .byline-date {font-size: 18px}
 }
 
 .shorturl-container input {
