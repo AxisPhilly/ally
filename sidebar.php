@@ -36,8 +36,10 @@
       <?php } ?>
         <div class="recent stories">
         <?php
+          $main_post = $post->ID;
+
           $recent_posts_args = array(
-            'posts_per_page' => 3,
+            'posts_per_page' => 4,
             'category_name' => (isset($c_slug) ? $c_slug : false)
           );
 
@@ -46,6 +48,8 @@
           if($recent_posts->have_posts()):
             while($recent_posts->have_posts()):
               $recent_posts->the_post();
+
+              if($post->ID == $main_post) { continue; }
         ?>
             <a href="<?php echo get_permalink($post->ID); ?>"><?php print_r($post->post_title); ?></a>
         <?php endwhile; endif; ?>
