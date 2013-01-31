@@ -38,6 +38,14 @@ $black: #222;
     max-width: 100%;
     max-height: 158px;
 
+    @media(max-width: 1050px) {
+      max-height: 134px;
+    }
+
+    @media(max-width: 950px) {
+      max-height: 114px;
+    }
+
     @media(max-width: 767px) {
       max-height: none;
     }
