@@ -180,7 +180,7 @@
     <section id="tools" class="row">
       <div class="three columns">
         <h4>Tools &amp; Data</h4>
-        <p>We're building interactive maps, graphics, and applications to illuminate stories.</p>
+        <p>Use our interactive tools to find out more.</p>
         <p><a href="/tools">View more tools &#8594;</a></p>
       </div>
       <?php 
@@ -220,7 +220,7 @@
     <section id="projects" class="row">
       <div class="three columns">
         <h4>Projects</h4>
-        <p>Our focus areas and investigations. Find stories, tools, discussion, and curated stories from other media organizations on each topic.</p>
+        <p>Things we care about, and follow closely. Find links to all the best reporting on these subjects, tools you can use to find out more, and ways to share what you know.</p>
       </div>
       <?php 
         $project_id = get_category_by_slug('project')->term_id;
