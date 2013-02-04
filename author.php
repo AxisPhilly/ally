@@ -1,5 +1,4 @@
 <?php 
-  // Load Header
   get_header();
   // Get Slug from URL
   $slug = get_slug();
@@ -12,7 +11,6 @@
     <div id="news-container">
       <div class="row author">
         <div class="photo two columns">
-
           <? echo get_avatar($author->ID, 767); ?>
         </div>
         <div class="bio six columns">
@@ -23,10 +21,9 @@
         </div>
         <div class="contact four columns">
           <ul class="no-markers">
-
-            <? if (!$author->user_email=="") { ?><li><i class="general-foundicon-mail"></i> <a href="mailto:<?php echo $author->user_email ?>" target="_blank"><?php echo $author->user_email ?></a></li><? } ?>
-            <? if (!$author->twitter=="") { ?><li><i class="social-foundicon-twitter"></i> <a href="http://twitter.com/<? echo $author->twitter ?>" target="_blank">@<?php echo $author->twitter ?></a></li><? } ?>
-            <? if (!$author->phone=="") { ?><li><i class="general-foundicon-phone"></i> <span><?php echo $author->phone ?></span></li><? } ?>
+            <?php if (!$author->user_email == "") { ?><li><i class="general-foundicon-mail"></i> <a href="mailto:<?php echo $author->user_email ?>" target="_blank"><?php echo $author->user_email ?></a></li><? } ?>
+            <?php if (!$author->twitter == "") { ?><li><i class="social-foundicon-twitter"></i> <a href="http://twitter.com/<? echo $author->twitter ?>" target="_blank">@<?php echo $author->twitter ?></a></li><? } ?>
+            <?php if (!$author->phone == "") { ?><li><i class="general-foundicon-phone"></i> <span><?php echo $author->phone ?></span></li><? } ?>
           </ul>
         </div>
       </div>
@@ -52,4 +49,4 @@
       </div>
     </div><!-- End News Container -->
   </div><!-- End Content Container -->
-<?php  get_footer(); ?>
+<?php get_footer(); ?>
