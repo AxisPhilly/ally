@@ -1,17 +1,5 @@
 <?php
 
-//Virtually disables autosave; auto-save causes problems with custom fields (they show up empty when WP auto-saves). We should resolve this problem before re-enabling autosave.
-
-//Removes height and width from image in image editor; Source: http://css-tricks.com/snippets/wordpress/remove-width-and-height-attributes-from-inserted-images/
-
-add_filter( 'post_thumbnail_html', 'remove_width_attribute', 10 );
-add_filter( 'image_send_to_editor', 'remove_width_attribute', 10 );
-
-function remove_width_attribute( $html ) {
-   $html = preg_replace( '/(width|height)="\d*"\s/', "", $html );
-   return $html;
-}
-
 //Loads css file into text editor in WP-Admin
 
 add_editor_style('stylesheets/editor-style.css');

@@ -252,3 +252,22 @@ h6.sidebar {
   padding: .5em 0;
   margin: 0;
 }
+
+
+// Makes inline article images responsive. Based on WordPress TwentyEleven theme. http://wordpress.stackexchange.com/questions/32931/removing-image-and-caption-dimension-attributes/37768#37768
+
+.entry-content img,
+.comment-content img,
+.widget img {
+    max-width: 97.5%; /* Fluid images for posts, comments, and widgets */
+}
+img[class*="align"],
+img[class*="wp-image-"] {
+    height: auto; /* Make sure images with WordPress-added height and width >attributes are scaled correctly */
+}
+img.size-full {
+    max-width: 97.5%;
+    width: auto; /* Prevent stretching of full-size images with height and >>width attributes in IE8 */
+}
+
+.wp-caption { max-width: 100%; }
