@@ -236,7 +236,7 @@
       ?>
         <div class="three columns">
           <article class="project-summary">
-            <h5><?php echo $project->name ?></h5>
+            <h5><a href="/project/<?php echo $project->slug; ?>"><?php echo $project->name ?></a></h5>
             <?php 
               $latest_args = array(
                 'posts_per_page' => 1,
@@ -258,7 +258,6 @@
 
             <?php endwhile; } ?>
             <?php wp_reset_postdata(); ?>
-            <a href="/project/<?php echo $project->slug; ?>">Go to project page &#8594;</a>
           </article>
         </div>
       <?php } ?>
