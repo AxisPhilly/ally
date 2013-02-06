@@ -14,7 +14,7 @@
       <div id="stories" class="twelve columns">
         <div class="items">
           <?php if (have_posts()): ?>
-          <h1 class="page-title"><?php printf(__('Tag Archives: %s', 'ally'), '<span>' . single_tag_title('', false) . '</span>'); ?></h1>
+          <h3 class="page-title"><?php printf(__('Tag Archives: %s', 'ally'), '<span>' . single_tag_title('', false) . '</span>'); ?></h3>
             <?php while (have_posts()) : the_post(); ?>
               <?php get_template_part('archive', 'feed'); ?>
             <?php endwhile; ?>
