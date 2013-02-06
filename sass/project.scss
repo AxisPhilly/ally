@@ -63,7 +63,7 @@
     opacity: 1.0;
     color: #fff;
     width: 100%;
-    padding: 10px;
+    padding: 1em;
 
     .details {
       display: none;
@@ -137,5 +137,14 @@
     .external-source {
       color: $thirdColor;
     }
+  }
+}
+
+#featured.orbit {
+  a:link, a:visited {
+    color: #fff;
+  }  
+  .byline {
+    margin: 4px 0 0 0;
   }
 }
