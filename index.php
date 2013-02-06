@@ -241,6 +241,7 @@
             <?php 
               $latest_args = array(
                 'posts_per_page' => 1,
+                'meta_key' => '_thumbnail_id',
                 'category_name' => $project->slug,
                 'post_type' => array('post')
               );
