@@ -21,7 +21,7 @@
                 while ($featured->have_posts()):
                   $featured->the_post();
 
-                  if ($top_count) { continue; }
+                  if ($top_count){ continue; }
 
                   // If post is top-featured proceed as normal, else move on to the next post
                   $top_featured = 0;
@@ -86,6 +86,7 @@
                     </div>
                     <?php 
                       the_excerpt();
+                      $top_count++;
                     ?>
                   </div>
                 </div>
