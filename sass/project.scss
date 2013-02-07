@@ -1,6 +1,7 @@
 .project-section-nav {
   font-family: "proxima-nova", helvetica, arial, sans-serif;
-
+  margin-bottom: 1em;
+  
   .tabs {
     background-color: #fff;
     height: auto;
@@ -147,4 +148,10 @@
   .byline {
     margin: 4px 0 0 0;
   }
+}
+
+.featured-comment {
+  font-family: proxima-nova, helvetica, sans-serif; 
+  font-size: 70%; 
+  text-transform: uppercase;
 }

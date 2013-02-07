@@ -124,7 +124,7 @@
       </li>
       <li id="discussTab">
         <div class="row">
-          <div id="discussion" class="twelve columns">
+          <div id="discussion" class="ten columns centered">
             <div class="items">
               <?php
                 $discussion_args = array(
@@ -142,7 +142,7 @@
                     $discussions->the_post();
               ?>  
               <div class="row">
-                <div class="four columns">
+                <div class="six columns">
                     <h4 style="font-family: proxima-nova, helvetica, sans-serif;">
                       <?php
                         echo "<a href='"; 
@@ -151,9 +151,9 @@
                       the_title();
                       ?>
                     </a>
-                  </h4>                    
+                  </h4>                 
                 </div>
-                <div class="two columns" style="margin: 1em 0">
+                <!-- <div class="two columns" style="margin: 1em 0">
                   <?php 
                     comments_template();
                     $comment_number = get_comments_number();
@@ -168,13 +168,28 @@
                     echo "0 Replies";
                   endif;
                   ?>
-                </div>
+                </div> -->
                 <div class="six columns" style="margin: 1em 0">
-                  <div style="font-family: proxima-nova, helvetica, sans-serif; font-size: 70%; text-transform: uppercase;">Featured Comment</div>
+                  <?
+                    $comment_pull_quote = get_post_meta($post->ID, '_pull_quote_name', true); 
+                    if (!($comment_pull_quote=="")) {
+                  ?>
+                  <div class="featured-comment">Featured Comment</div>
                   <? 
                     echo get_post_meta($post->ID, '_pull_quote_name', true); 
                   ?><br>
-                  <a href="<? echo get_post_meta($post->ID, '_pull_quote_url_name', true); ?>">Read this thread &#8594;</a>
+                  <?
+                    }
+                  ?>
+                  <p>
+                    <?php
+                      echo "<a href='"; 
+                      the_permalink();
+                      echo "'>";
+                    ?>
+                      Reply &#8594;
+                    </a>
+                  </p>   
                 </div>
               </div>
               <?php endwhile; endif; ?>
