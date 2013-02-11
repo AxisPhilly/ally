@@ -277,3 +277,17 @@ img.size-full {
     padding-bottom: 0.5em;
   }
 }
+
+.featured_video_plus iframe {
+  max-width: 100%;
+    @media(max-width: 480px) {
+      height: 300px;
+    }
+    @media(max-width: 360px) {
+      height: 200px;
+    }
+}
+
+.article-text iframe {
+  max-width: 100%;
+}

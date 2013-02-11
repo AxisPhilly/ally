@@ -40,7 +40,7 @@
                   }
             ?>
             <article>
-              <?php get_media($post->ID, 'medium') ?>
+              <?php get_media($post->ID, 'thumbnail') ?>
               <?php if(stripos($_SERVER["REQUEST_URI"], 'project/') == FALSE) { ?>
                   <?php list_categories(); ?>
               <?php } ?>          

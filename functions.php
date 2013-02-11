@@ -555,7 +555,10 @@ function in_project($post_id) {
 // Echo's out a video or image for a post
 function get_media($post_id, $size) {
   if(has_post_video($post_id)) {
-    the_post_video();
+    if ($size=="large")
+      the_post_video(array(676, 429));
+    else
+      the_post_video();
   } elseif (has_post_thumbnail($post_id)) {
     $img_id = get_post_thumbnail_id($post_id);
     $image = wp_get_attachment_image_src($img_id, $size);
