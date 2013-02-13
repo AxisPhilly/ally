@@ -63,7 +63,7 @@
           ?>
           <div>
             <?php
-              $img_id = get_post_thumbnail_id($post_id);
+              $img_id = get_post_thumbnail_id($post->ID);
               $image = wp_get_attachment_image_src($img_id, 'medium');
               $alt = get_post_meta($img_id, '_wp_attachment_image_alt', true);
               echo '<img src="'. $image[0] . '" alt="' . $alt . '">';
