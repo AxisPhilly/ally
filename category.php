@@ -11,7 +11,7 @@
   <div id="news-container">
     <div class="row">
       <header class="project-header twelve columns">
-        <h3><?php  echo get_category_by_slug($slug)->name ?></h3>
+        <h3><?php echo get_category_by_slug($slug)->name ?></h3>
       </header>
     </div>
     <!-- Header Row -->
@@ -62,7 +62,12 @@
               }
           ?>
           <div>
-            <?php get_media($post->ID, 'medium'); ?>
+            <?php
+              $img_id = get_post_thumbnail_id($post_id);
+              $image = wp_get_attachment_image_src($img_id, 'medium');
+              $alt = get_post_meta($img_id, '_wp_attachment_image_alt', true);
+              echo '<img src="'. $image[0] . '" alt="' . $alt . '">';
+            ?>
             <div class="caption">
               <h3 class="headline"><a href="<?php echo $post_url; ?>"><?php the_title(); ?></a></h3>
               <div class="details">
