@@ -47,6 +47,14 @@
             </p>
           </div>
           <div class="row">
+            <div class="twelve columns">
+              <hr>
+              <?php
+                comments_template('comments.php', 'false');
+              ?>
+            </div>  
+          </div>
+          <div class="row">
             <div class="bottombar">
               <?php
                 // Checks to see if meta_info Fullscreen is selected
