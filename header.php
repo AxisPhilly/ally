@@ -29,7 +29,7 @@
      <script src="<?php bloginfo('template_directory'); ?>/javascripts/html5shiv.js"></script>  
   <![endif]-->
   <meta property="og:site_name" content="AxisPhilly">
-  <meta property="og:url" content="<?php echo $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]; ?>">
+  <meta property="og:url" content="http://www.<?php echo $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]; ?>">
   <meta property="og:type" content="<?php
     if (stripos($_SERVER["REQUEST_URI"], 'article/')) { 
       echo 'article'; 
@@ -68,7 +68,7 @@
   <meta property="og:image" content="<?php echo wp_get_attachment_thumb_url(get_post_thumbnail_id($post->ID)); ?>">
   <meta property="twitter:site" content="@AxisPhilly">
   <meta property="twitter:card" content="summary">
-  <meta property="twitter:url" content="<?php echo $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]; ?>">
+  <meta property="twitter:url" content="http://www.<?php echo $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]; ?>">
   <meta property="twitter:title" content="<?php
     if(stripos($_SERVER["REQUEST_URI"], 'article/') || stripos($_SERVER["REQUEST_URI"], 'tool/') || stripos($_SERVER["REQUEST_URI"], 'discussion/')) {
       echo get_the_title();
