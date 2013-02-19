@@ -65,9 +65,16 @@
       echo 'Where News Breaks Through';
     }
   ?>">
+
+  <?
+    $author_id=$post->post_author;
+    $twitter_name = get_the_author_meta('twitter', $author_id);
+  ?>
+
   <meta property="og:image" content="<?php echo wp_get_attachment_thumb_url(get_post_thumbnail_id($post->ID)); ?>">
   <meta property="twitter:site" content="@AxisPhilly">
   <meta property="twitter:card" content="summary">
+  <meta property="twitter:creator" content="@<?php echo $twitter_name; ?>">
   <meta property="twitter:url" content="http://www.<?php echo $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]; ?>">
   <meta property="twitter:title" content="<?php
     if(stripos($_SERVER["REQUEST_URI"], 'article/') || stripos($_SERVER["REQUEST_URI"], 'tool/') || stripos($_SERVER["REQUEST_URI"], 'discussion/')) {
@@ -179,6 +186,12 @@
     </div>
   </div>
   </header>
+
+  <?
+    $run = the_author();
+    print_r($run);
+  ?>
+
   <?php
     #<!-- This is a WordPress generated header that doesn't quite work yet. It uses a custom Walker class, which is referred to in functions.php
     #<div class="fixed contain-to-grid">
