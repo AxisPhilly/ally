@@ -48,9 +48,13 @@
           </div>
           <div class="row">
             <div class="twelve columns">
-              <hr>
               <?php
-                comments_template('comments.php', 'false');
+                if(get_post_type($post) == 'wp_tool') {
+                }
+                else {
+                  echo "<hr>";
+                  comments_template('comments.php', 'false');
+                } 
               ?>
             </div>  
           </div>
