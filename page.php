@@ -16,7 +16,7 @@ get_header(); ?>
   <!-- Content -->
   <div class="content-container about">
     <div class="row">
-      <div class="twelve mobile-three columns">
+      <div class="twelve mobile-four columns">
         <?php while ( have_posts() ) : the_post(); ?>
           <?php the_content(); ?>
         <?php endwhile; // end of the loop. ?>
