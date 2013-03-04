@@ -28,6 +28,16 @@
   <!--[if IE]>
      <script src="<?php bloginfo('template_directory'); ?>/javascripts/html5shiv.js"></script>  
   <![endif]-->
+ <meta name="description" content="<?php 
+    if(stripos($_SERVER["REQUEST_URI"], 'article/') || stripos($_SERVER["REQUEST_URI"], 'tool/') || stripos($_SERVER["REQUEST_URI"], 'discussion/')) {
+      echo get_the_excerpt();
+    } elseif(stripos($_SERVER["REQUEST_URI"], 'project/')) {
+      echo 'Project page';
+    } else {
+      echo 'AxisPhilly is a non-profit news and information organization whose mission is to educate and engage citizens on topics of public interest while empowering them with tools to participate in developing and implementing change.';
+    }
+  ?>">
+  <meta name="keywords" content="axisphilly, axis philly, access philly, philadelphia public interest information network, news, philly, data, news applications, taxes, government, poverty, litter, avi, map, maps, avi map, property reassessment, assessments, crime, lobbying"/>  
   <meta property="og:site_name" content="AxisPhilly">
   <meta property="og:url" content="http://www.<?php echo $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]; ?>">
   <meta property="og:type" content="<?php
