@@ -50,8 +50,10 @@
             } else {
               $post_url = get_permalink($post->ID);
             }
+            $count++;
+            $total++;
             ?>
-            <div class="three columns">
+            <div class="three columns<? if($total == count($tools->posts)) echo ' end';?>">
               <article class="tool">
                 <?php get_media($post->ID, 'thumbnail') ?>
                 <h4 class="headline"><a href="<?php echo $post_url; ?>"><?php the_title(); ?></a></h4>
@@ -62,8 +64,6 @@
               </article>
             </div>
         <?php
-          $count++;
-          $total++;
           if($count == 4 || $total == count($tools->posts)) { 
             echo '</div>';
           }
