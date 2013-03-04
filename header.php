@@ -162,6 +162,7 @@
                 <ul class="dropdown">
                   <li <?php if(stripos($_SERVER["REQUEST_URI"], 'taxes/')) { echo 'class="active"'; } ?>><a href="/project/taxes">Taxes</a></li>
                   <li <?php if(stripos($_SERVER["REQUEST_URI"], 'open-gov/')) { echo 'class="active"'; } ?>><a href="/project/open-gov">Open Government</a></li>
+                  <li <?php if(stripos($_SERVER["REQUEST_URI"], 'poverty/')) { echo 'class="active"'; } ?>><a href="/project/poverty">Poverty</a></li>                  
                   <li <?php if(stripos($_SERVER["REQUEST_URI"], 'litter/')) { echo 'class="active last"'; } ?> class="last"><a href="/project/litter">Litter</a></li>
                 </ul>
               </li>
