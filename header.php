@@ -167,8 +167,8 @@
           <section>
             <ul class="left">
               <li <?php if($_SERVER["REQUEST_URI"] == '/') { echo 'class="active"'; } ?>><a href="/">Home</a></li>
-              <li class="has-dropdown">
-                <a href="#">Our Projects</a>
+              <li class="has-dropdown<?php if(stripos($_SERVER["REQUEST_URI"], 'projects/')) { echo ' active'; } ?>">
+                <a href="/projects">Our Projects</a>
                 <ul class="dropdown">
                   <li <?php if(stripos($_SERVER["REQUEST_URI"], 'taxes/')) { echo 'class="active"'; } ?>><a href="/project/taxes">Taxes</a></li>
                   <li <?php if(stripos($_SERVER["REQUEST_URI"], 'open-gov/')) { echo 'class="active"'; } ?>><a href="/project/open-gov">Open Government</a></li>
