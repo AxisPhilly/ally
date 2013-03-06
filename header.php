@@ -120,7 +120,7 @@
   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
   <script src="<?php bloginfo('template_directory'); ?>/javascripts/modernizr.foundation.js"></script>  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
-  <script src="<?php bloginfo('template_directory'); ?>/javascripts/libraries.1.0.4.min.js" type="text/javascript"></script>
+  <script src="<?php bloginfo('template_directory'); ?>/javascripts/libraries.1.0.5.min.js" type="text/javascript"></script>
   <?php if (stripos(home_url(), 'axisphilly.org')) { // production ?>
     <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('template_directory'); ?>/style.css" />
   <?php } else { // dev ?>

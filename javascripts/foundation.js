@@ -4,7 +4,7 @@
  Description: Custom theme for AxisPhilly
  Author: Casey Thomas, Jeff Frankl
  Author URI: caseypthomas.org, jfrankl.org
- Version: 1.0.4
+ Version: 1.0.5
 */
 /*!
  * jQuery Cookie Plugin v1.3
