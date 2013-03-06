@@ -22,13 +22,13 @@
   <?php else : ?>
     <title><?php wp_title($sep = ''); ?> | <?php bloginfo('name');?></title>
   <?php endif; ?>
-
+  <link rel="alternate" type="application/rss+xml" title="<?php the_title(); ?> Comments" href="<?php bloginfo('url'); ?>/?feed=rss2&amp;p=<?php the_ID(); ?>" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <!--[if IE]>
      <script src="<?php bloginfo('template_directory'); ?>/javascripts/html5shiv.js"></script>  
   <![endif]-->
- <meta name="description" content="<?php 
+  <meta name="description" content="<?php 
     if(stripos($_SERVER["REQUEST_URI"], 'article/') || stripos($_SERVER["REQUEST_URI"], 'tool/') || stripos($_SERVER["REQUEST_URI"], 'discussion/')) {
       echo get_the_excerpt();
     } elseif(stripos($_SERVER["REQUEST_URI"], 'project/')) {
