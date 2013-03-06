@@ -1,6 +1,6 @@
 <?php
 /**
- * Tools page
+ * Project page
  * @package WordPress
  * @subpackage Ally
  */
@@ -19,8 +19,6 @@
         <?php endwhile; ?>
       </div>
     </div>
-
-
         <?php
 
           $project_id = get_category_by_slug('project')->term_id;
