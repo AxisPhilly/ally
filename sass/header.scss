@@ -93,8 +93,6 @@
 
     ul > li.has-dropdown .dropdown .last {
       border-bottom: 1px solid $black;
-
-
     }
 
     ul > li.has-dropdown a:after {
@@ -104,6 +102,12 @@
     ul > li.has-dropdown .dropdown li.active a { 
       background-color: #fff;
     }
+
+    ul > li.has-dropdown.active .dropdown li {
+      a {
+        font-weight: normal;
+      }
+    } 
 
     ul > li.name {
       background: #fff;
