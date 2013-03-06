@@ -22,7 +22,7 @@
   <?php else : ?>
     <title><?php wp_title($sep = ''); ?> | <?php bloginfo('name');?></title>
   <?php endif; ?>
-  <link rel="alternate" type="application/rss+xml" title="<?php the_title(); ?> Comments" href="<?php bloginfo('url'); ?>/?feed=rss2&amp;p=<?php the_ID(); ?>" />
+  <link rel="alternate" type="application/rss+xml" title="<?php the_title();?> Feed" href="<?php bloginfo('url'); ?>/feed/" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <!--[if IE]>
