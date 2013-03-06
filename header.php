@@ -76,9 +76,13 @@
     }
   ?>">
 
-  <?
-    $author_id=$post->post_author;
-    $twitter_name = get_the_author_meta('twitter', $author_id); 
+  <?php
+    if(isset($post->post_author)) {
+      $author_id=$post->post_author;
+      $twitter_name = get_the_author_meta('twitter', $author_id);
+    } else {
+      $twitter_name = 'AxisPhilly';
+    }
   ?>
   <meta property="og:image" content="<?php echo wp_get_attachment_thumb_url(get_post_thumbnail_id($post->ID)); ?>">
   <meta property="twitter:site" content="@AxisPhilly">
@@ -167,7 +171,7 @@
           <section>
             <ul class="left">
               <li <?php if($_SERVER["REQUEST_URI"] == '/') { echo 'class="active"'; } ?>><a href="/">Home</a></li>
-              <li class="has-dropdown<?php if(stripos($_SERVER["REQUEST_URI"], 'projects/')) { echo ' active'; } ?>">
+              <li class="has-dropdown <?php if(stripos($_SERVER["REQUEST_URI"], 'projects/')) { echo 'active'; } ?>">
                 <a href="/projects">Our Projects</a>
                 <ul class="dropdown">
                   <li <?php if(stripos($_SERVER["REQUEST_URI"], 'taxes/')) { echo 'class="active"'; } ?>><a href="/project/taxes">Taxes</a></li>
