@@ -22,9 +22,9 @@
   <?php else : ?>
     <title><?php wp_title($sep = ''); ?> | <?php bloginfo('name');?></title>
   <?php endif; ?>
-  <link rel="alternate" type="application/rss+xml" title="<?php the_title();?> Feed" href="<?php bloginfo('url'); ?>/feed/" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name');?>" href="<?php bloginfo('url'); ?>/feed/" />  
   <!--[if IE]>
      <script src="<?php bloginfo('template_directory'); ?>/javascripts/html5shiv.js"></script>  
   <![endif]-->
