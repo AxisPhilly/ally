@@ -1,8 +1,25 @@
 <aside class="sidebar three columns hide-for-small">
   <div class="view">
     <div <?php global $sidebar; if($sidebar == 0) { ?> class="moving-container" data-spy="affix" data-offset-top="180" <?php } ?>>
+      <? 
+        $column = get_column();
+        if (count($column)>0) {
+          $slug = $column[0];
+        }
+        if (count($column) > 0) {
+          echo '<div class="column-container">';
+          $column_details = get_term_by('slug', $slug, 'column_info');
+          $taxonomy_image_url = get_option('z_taxonomy_image'. $column_details->term_id);
+          if (!empty($taxonomy_image_url)){
+            echo '<a href="/column/' . $slug . '"><img src="' . $taxonomy_image_url . '"></a>';
+          }
+          echo '<h6 class="sidebar">' . $column_details->name . '</h6>';
+          echo '<div class="recent stories">' . $column_details->description . '</div>';
+          echo '</div>';          
+        }
+      ?>      
       <div class="social-container">
-        <h6 class="sidebar">Share this:</h6>
+        <h6 class="sidebar">Share this</h6>
         <div class="shorturl-container">
           <input type="text" name="shorturl" class="shorturl" value="<?php echo wp_get_shortlink(); ?>"/>
         </div>
@@ -13,39 +30,42 @@
         </div>
       </div>
       <div class="project-info-container">
-      <?php
-        if (in_project($post->ID)) {
-          $category=get_the_category();
-          $c_name = $category[0]->name;
-          $c_slug = $category[0]->slug; 
-      ?>
+        <div class="recent stories">
+        <?php
+          $main_post = $post->ID;
+          $recent_posts_args = array(
+            'posts_per_page' => 4,
+            'category_name' => (isset($c_slug) ? $c_slug : false)
+          );          
+          if (count($column)>0) {    
+            $recent_posts_args['column_info'] = $slug;
+          }
+          $recent_posts = new WP_Query($recent_posts_args);
+        ?>
+        <?php
+        if ($recent_posts->found_posts > 1) {
+          if (in_project($post->ID)&&(count($column)==0)) {
+            $category=get_the_category();
+            $c_name = $category[0]->name;
+            $c_slug = $category[0]->slug; 
+        ?>
         <p>
           <h6 class="sidebar">This <?php 
-            if(get_post_type($post) == 'wp_tool') { 
+            if (get_post_type($post) == 'wp_tool') { 
               echo 'tool'; 
-            } elseif(get_post_type($post) == 'discussion') {
+            } elseif (get_post_type($post) == 'discussion') {
               echo 'discussion';
             } else { 
               echo 'article'; 
             } 
-          ?> is part of our <a href="/project/<?php echo $c_slug; ?>"><?php echo $c_name; ?></a> project.
-          Read more:</h6>
+          ?> is part of our <a href="/project/<?php echo $c_slug; ?>"><?php echo $c_name; ?></a> project.</h6>
         </p>
+      <? } elseif (count($column)>0) { ?>
+        <h6 class="sidebar">Recent Posts</h6>
       <?php } else { ?>
-          <h6 class="sidebar">Recent Stories:</h6>
-      <?php } ?>
-        <div class="recent stories">
-        <?php
-          $main_post = $post->ID;
-
-          $recent_posts_args = array(
-            'posts_per_page' => 4,
-            'category_name' => (isset($c_slug) ? $c_slug : false)
-          );
-
-          $recent_posts = new WP_Query($recent_posts_args);
+        <h6 class="sidebar">Recent Stories</h6>
+      <?php } }
           $count = 0;
-
           if($recent_posts->have_posts()):
             while($recent_posts->have_posts()):
               $recent_posts->the_post();

@@ -340,28 +340,36 @@ function add_custom_taxonomies() {
       'hierarchical' => true // This will allow URL's like "/locations/boston/cambridge/"
     ),
   ));
+
+  register_taxonomy('column_info', 'post', array(
+    // Hierarchical taxonomy (like categories)
+    'hierarchical' => true,
+    // This array of options controls the labels displayed in the WordPress Admin UI
+    'labels' => array(
+      'name' => _x('Column Information', 'taxonomy general name'),
+      'singular_name' => _x('Column Information', 'taxonomy singular name'),
+      'search_items' =>  __('Search Column Information'),
+      'all_items' => __('All Column Information'),
+      'edit_item' => __('Edit Column Information'),
+      'update_item' => __('Update Column Information'),
+      'add_new_item' => __('Add New Column Information'),
+      'new_item_name' => __('New Column Information Name'),
+      'menu_name' => __('Column Information'),
+   ),
+    // Control the slugs used for this taxonomy
+    'rewrite' => array(
+      'slug' => 'commentary', // This controls the base slug that will display before each term
+      'with_front' => false, // Don't display the category base before "/locations/"
+      'hierarchical' => true // This will allow URL's like "/locations/boston/cambridge/"
+    ),
+  ));
+
 }
 add_action( 'init', 'add_custom_taxonomies');
 
 // http://wp.tutsplus.com/tutorials/theme-development/innovative-uses-of-wordpress-post-types-and-taxonomies/
 // Creates "External Post" Post Type
 function create_post_type() {
-    // reregister default post so we can set a custom slug
-    register_post_type('post', array(
-        'labels' => array(
-            'name_admin_bar' => _x('Post', 'add new on admin bar' ),
-        ),
-        'public'  => true,
-        '_builtin' => false, 
-        '_edit_link' => 'post.php?post=%d', 
-        'capability_type' => 'post',
-        'map_meta_cap' => true,
-        'show_in_menu' => false,
-        'hierarchical' => false,
-        'rewrite' => array('slug' => 'article'),
-        'query_var' => false,
-        'supports' => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'trackbacks', 'custom-fields', 'comments', 'revisions', 'post-formats'),
-    ));
 
   // register external_post as a Custom Post Type
   register_post_type( 'external_post',  
@@ -398,6 +406,24 @@ function create_post_type() {
   // connect wp_tool to category taxonomy
   register_taxonomy_for_object_type('meta_info', 'wp_tool');
   register_taxonomy_for_object_type('category', 'wp_tool');
+
+
+  // reregister default post so we can set a custom slug
+  register_post_type('post', array(
+      'labels' => array(
+          'name_admin_bar' => _x('Post', 'add new on admin bar' ),
+      ),
+      'public'  => true,
+      '_builtin' => false, 
+      '_edit_link' => 'post.php?post=%d', 
+      'capability_type' => 'post',
+      'map_meta_cap' => true,
+      'show_in_menu' => false,
+      'hierarchical' => false,
+      'rewrite' => array('slug' => 'article'),
+      'query_var' => false,
+      'supports' => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'trackbacks', 'custom-fields', 'comments', 'revisions', 'post-formats', 'column_info'),
+  )); 
 
   // register external_tool as a Custom Post Type
   register_post_type('external_tool',
@@ -457,6 +483,13 @@ function get_slug(){
   return($slug);
 }
 
+function get_author(){
+  $url = $_SERVER["REQUEST_URI"];
+  $url_explode= explode('/', $url);
+  $slug = $url_explode[sizeof($url_explode)-3];
+  return($slug);
+}
+
 function extra_contact_info($contactmethods) {
   unset($contactmethods['aim']);
   unset($contactmethods['yim']);
@@ -497,6 +530,21 @@ function get_post_meta_tags() {
   $list = array();
   $num = 0;
   $termsObjects = get_the_terms('', 'meta_info', '');
+  if (!empty($termsObjects)){
+    foreach ($termsObjects as $v) {
+      $list[$num] = $v->slug;
+      $num++;
+    }
+  }
+  return($list);
+}
+
+// Returns a list of meta tags for a post
+function get_column() {
+  global $post;
+  $list = array();
+  $num = 0;
+  $termsObjects = get_the_terms('', 'column_info', '');
   if (!empty($termsObjects)){
     foreach ($termsObjects as $v) {
       $list[$num] = $v->slug;
@@ -566,6 +614,5 @@ function get_media($post_id, $size) {
     echo '<img src="'. $image[0] . '" alt="' . $alt . '">';
   }
 }
-
 
 ?>

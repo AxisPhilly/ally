@@ -38,7 +38,7 @@
   }
 
   .project-info-container {
-    margin-top: 20px;
+    margin-top: 8px;
   }
 
   .recent {
@@ -247,8 +247,12 @@
   width: 200px;
 }
 
+.column-container {
+  margin-bottom: 18px;
+}
+
 h6.sidebar {
-  border-bottom: solid 1px #222;
+  border-bottom: solid 1px #ccc;
   padding: .5em 0;
   margin: 0;
 }
