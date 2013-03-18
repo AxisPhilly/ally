@@ -19,7 +19,7 @@
         }
       ?>      
       <div class="social-container">
-        <h6 class="sidebar">Share this</h6>
+        <h6 class="sidebar">Share this:</h6>
         <div class="shorturl-container">
           <input type="text" name="shorturl" class="shorturl" value="<?php echo wp_get_shortlink(); ?>"/>
         </div>
@@ -49,7 +49,7 @@
             $c_name = $category[0]->name;
             $c_slug = $category[0]->slug; 
         ?>
-        <p>
+        <div class="description">
           <h6 class="sidebar">This <?php 
             if (get_post_type($post) == 'wp_tool') { 
               echo 'tool'; 
@@ -58,8 +58,8 @@
             } else { 
               echo 'article'; 
             } 
-          ?> is part of our <a href="/project/<?php echo $c_slug; ?>"><?php echo $c_name; ?></a> project.</h6>
-        </p>
+          ?> is part of our <a href="/project/<?php echo $c_slug; ?>"><?php echo $c_name; ?></a> project. Read more:</h6>
+        </div>
       <? } elseif (count($column)>0) { ?>
         <h6 class="sidebar">Recent Posts</h6>
       <?php } else { ?>
@@ -86,7 +86,7 @@
               <?php
                 $discussion_args = array(
                   'category_name' => $c_name,
-                  'posts_per_page' => 3,
+                  'posts_per_page' => 1,
                   'post_type' => 'discussion'
                 );
 
@@ -94,7 +94,7 @@
 
                 if($discussion->have_posts()):
               ?>
-                <h6 class="sidebar">Recent discussion about <?php echo $c_name; ?></h6>
+                <h6 class="sidebar">Related discussion:</h6>
               <?php
                   while($discussion->have_posts()):
                     $discussion->the_post();

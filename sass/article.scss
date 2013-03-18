@@ -59,6 +59,12 @@
     }
 
   }
+
+  .description {
+    a:last-child {
+      display: inline;
+    }
+  }
 }
 
 .social-container {
@@ -68,7 +74,6 @@
   }
 
   .sites {
-
     a {
       font-size: 150%;
       display:inline-block;
