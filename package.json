@@ -2,7 +2,7 @@
   "name": "ally",
   "description": "site components and theme for axisphilly.com",
   "private": true,
-  "version": "1.0.5",
+  "version": "1.0.6",
   "repository": {
     "type": "git",
     "url": "http://github.com/axisphilly/ally.git"
