@@ -3,9 +3,11 @@
     <div <?php global $sidebar; if($sidebar == 0) { ?> class="moving-container" data-spy="affix" data-offset-top="180" <?php } ?>>
       <? 
         $column = get_column();
-        if (count($column)>0) {
+        
+        if (count($column) > 0) {
           $slug = $column[0];
         }
+
         if (count($column) > 0) {
           echo '<div class="column-container">';
           $column_details = get_term_by('slug', $slug, 'column_info');
@@ -33,38 +35,39 @@
         <div class="recent stories">
         <?php
           $main_post = $post->ID;
+          $recent_header = 'Recent Stories';
+
+          if (get_post_type($post) == 'wp_tool') { 
+            $post_type = 'tool'; 
+          } elseif (get_post_type($post) == 'discussion') {
+            $post_type = 'discussion';
+          } else { 
+            $post_type = 'article'; 
+          } 
+
+          if (in_project($main_post)) {
+            $category=get_the_category();
+            $c_name = $category[0]->name;
+            $c_slug = $category[0]->slug;
+            $recent_header = 'This ' . $post_type . ' is part of our <a href="/project/' . $c_slug . '">' . $c_name . '</a> project. Read more:';
+          }
+
           $recent_posts_args = array(
             'posts_per_page' => 4,
             'category_name' => (isset($c_slug) ? $c_slug : false)
-          );          
-          if (count($column)>0) {    
+          );
+
+          if (count($column) > 0) {
             $recent_posts_args['column_info'] = $slug;
+            $recent_header = 'Recent Posts';
           }
+
           $recent_posts = new WP_Query($recent_posts_args);
         ?>
-        <?php
-        if ($recent_posts->found_posts > 1) {
-          if (in_project($post->ID)&&(count($column)==0)) {
-            $category=get_the_category();
-            $c_name = $category[0]->name;
-            $c_slug = $category[0]->slug; 
-        ?>
         <div class="description">
-          <h6 class="sidebar">This <?php 
-            if (get_post_type($post) == 'wp_tool') { 
-              echo 'tool'; 
-            } elseif (get_post_type($post) == 'discussion') {
-              echo 'discussion';
-            } else { 
-              echo 'article'; 
-            } 
-          ?> is part of our <a href="/project/<?php echo $c_slug; ?>"><?php echo $c_name; ?></a> project. Read more:</h6>
+          <h6 class="sidebar"><?php echo $recent_header; ?></h6>
         </div>
-      <? } elseif (count($column)>0) { ?>
-        <h6 class="sidebar">Recent Posts</h6>
-      <?php } else { ?>
-        <h6 class="sidebar">Recent Stories</h6>
-      <?php } }
+        <?php
           $count = 0;
           if($recent_posts->have_posts()):
             while($recent_posts->have_posts()):
@@ -73,17 +76,13 @@
               if($post->ID == $main_post) { continue; }
               if($count == 3) { continue; }
         ?>
-            <a href="<?php echo get_permalink($post->ID); ?>"><?php print_r($post->post_title); ?></a>
-        <?php 
-          $count++;
-          endwhile; endif; 
-        ?>
+          <a href="<?php echo get_permalink($post->ID); ?>"><?php print_r($post->post_title); ?></a>
+        <?php $count++; endwhile; endif; ?>
         <?php wp_reset_postdata(); ?>
         </div>
         <div class="recent discussion">
           <?php 
-            if(isset($c_name) and (get_post_type($post) != 'discussion')) { ?>
-              <?php
+            if(isset($c_name) and (get_post_type($post) != 'discussion')) {
                 $discussion_args = array(
                   'category_name' => $c_name,
                   'posts_per_page' => 1,
