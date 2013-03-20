@@ -386,8 +386,9 @@ function create_post_type() {
   );  
 
   // connect external_post to category taxonomy
-  register_taxonomy_for_object_type('meta_info', 'external_tool');
   register_taxonomy_for_object_type('category', 'external_post');
+  register_taxonomy_for_object_type('post_tag', 'external_post');
+
 
   // register wp_tool as a Custom Post Type
   register_post_type('wp_tool',
