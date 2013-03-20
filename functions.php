@@ -1,20 +1,34 @@
 <?php
 
+// http://wordpress.stackexchange.com/questions/3801/add-custom-fields-to-custom-post-type-rss
+function add_custom_fields_to_rss() {
+  global $post;
+  $post_url = get_post_meta($post->ID, '_url_name', true);
+  $post_source = get_post_meta($post->ID, '_source_name', true);              
+      if(get_post_type() == 'external_post') {
+      ?>
+        <source><? echo $post_source ?></source>
+        <source_url><? echo $post_url ?></source_url>        
+      <?
+  }
+}
+add_action('rss2_item', 'add_custom_fields_to_rss');
+
 //Loads css file into text editor in WP-Admin
 
 add_editor_style('stylesheets/editor-style.css');
 
-function disqus_embed($disqus_shortname) {
-    global $post;
-    wp_enqueue_script('disqus_embed','http://'.$disqus_shortname.'.disqus.com/embed.js');
-    echo '<div id="disqus_thread"></div>
-    <script type="text/javascript">
-        var disqus_shortname = "'.$disqus_shortname.'";
-        var disqus_title = "'.$post->post_title.'";
-        var disqus_url = "'.get_permalink($post->ID).'";
-        var disqus_identifier = "'.$disqus_shortname.'-'.$post->ID.'";
-    </script>';
-}
+    function disqus_embed($disqus_shortname) {
+        global $post;
+        wp_enqueue_script('disqus_embed','http://'.$disqus_shortname.'.disqus.com/embed.js');
+        echo '<div id="disqus_thread"></div>
+        <script type="text/javascript">
+            var disqus_shortname = "'.$disqus_shortname.'";
+            var disqus_title = "'.$post->post_title.'";
+            var disqus_url = "'.get_permalink($post->ID).'";
+            var disqus_identifier = "'.$disqus_shortname.'-'.$post->ID.'";
+        </script>';
+    }
 
 function ally_setup() {
 
