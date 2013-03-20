@@ -1,5 +1,11 @@
 <article class="row">
-  <?php if (has_post_thumbnail($post->ID)) { ?>  
+  <?
+    $a_column = false;
+    if (count(get_column())>0) {
+      $a_column = true;
+    }
+  ?>
+  <?php if (has_post_thumbnail($post->ID)&&(!$a_column)) { ?>  
     <div class="six mobile-two columns">
   <? } else { ?>
     <div class="twelve mobile-four columns">
@@ -45,7 +51,7 @@
         <?php the_tags('<span class="radius label">','</span> <span class="radius label">','</span>'); ?> 
       </div>
     </div>
-  <?php if (has_post_thumbnail($post->ID)): ?>  
+  <?php if (has_post_thumbnail($post->ID)&&(!$a_column)): ?>  
     <div class="six mobile-two columns">
       <? get_media($post->ID, 'medium'); ?>
     </div>
