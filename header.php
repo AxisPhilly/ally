@@ -174,10 +174,11 @@
               <li class="has-dropdown <?php if(stripos($_SERVER["REQUEST_URI"], 'projects/')) { echo 'active'; } ?>">
                 <a href="/projects">Our Projects</a>
                 <ul class="dropdown">
-                  <li <?php if(stripos($_SERVER["REQUEST_URI"], 'taxes/')) { echo 'class="active"'; } ?>><a href="/project/taxes">Taxes</a></li>
+                  <li <?php if(stripos($_SERVER["REQUEST_URI"], 'land/')) { echo 'class="active"'; } ?>><a href="/project/land">Land</a></li>
+                  <li <?php if(stripos($_SERVER["REQUEST_URI"], 'litter/')) { echo 'class="active"'; } ?>><a href="/project/litter">Litter</a></li>
                   <li <?php if(stripos($_SERVER["REQUEST_URI"], 'open-gov/')) { echo 'class="active"'; } ?>><a href="/project/open-gov">Open Government</a></li>
                   <li <?php if(stripos($_SERVER["REQUEST_URI"], 'poverty/')) { echo 'class="active"'; } ?>><a href="/project/poverty">Poverty</a></li>                  
-                  <li <?php if(stripos($_SERVER["REQUEST_URI"], 'litter/')) { echo 'class="active last"'; } ?> class="last"><a href="/project/litter">Litter</a></li>
+                  <li <?php if(stripos($_SERVER["REQUEST_URI"], 'taxes/')) { echo 'class="active last"'; } ?> class="last"><a href="/project/taxes">Taxes</a></li>
                 </ul>
               </li>
               <li <?php if(stripos($_SERVER["REQUEST_URI"], 'tools/')) { echo 'class="active"'; } ?> ><a href="/tools">Tools &amp; Data</a></li>
