@@ -9,6 +9,19 @@ function add_custom_fields_to_rss() {
       ?>
         <source><? echo $post_source ?></source>
         <source_url><? echo $post_url ?></source_url>        
+        <tags>
+          <?
+            $posttags = get_the_tags();
+              $count = 0;
+              if ($posttags) {
+                foreach($posttags as $tag) {
+                  $tag_list[$count] = $tag->name; 
+                  $count++;
+                }
+              }
+              echo implode(', ', $tag_list);
+          ?>
+        </tags>
       <?
   }
 }
