@@ -7,22 +7,19 @@ function add_custom_fields_to_rss() {
   $post_source = get_post_meta($post->ID, '_source_name', true);              
       if(get_post_type() == 'external_post') {
       ?>
-        <source><? echo $post_source ?></source>
-        <source_url><? echo $post_url ?></source_url>        
-        <tags>
-          <?
+        <source><?php echo $post_source ?></source>
+        <source_url><?php echo $post_url ?></source_url>        
+        <tags><?php
             $posttags = get_the_tags();
-              $count = 0;
+            $tag_list = array();
               if ($posttags) {
                 foreach($posttags as $tag) {
-                  $tag_list[$count] = $tag->name; 
-                  $count++;
+                  array_push($tag_list, $tag->name);
                 }
               }
               echo implode(', ', $tag_list);
-          ?>
-        </tags>
-      <?
+          ?></tags>
+      <?php
   }
 }
 add_action('rss2_item', 'add_custom_fields_to_rss');
