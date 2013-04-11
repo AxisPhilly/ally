@@ -102,6 +102,10 @@ module.exports = function(grunt) {
         {
           src: 'style.css',
           dest: 'stylesheets/style.css'
+        },
+        {
+          src: 'images/*',
+          dest: 'images/'
         }
       ]
     }
