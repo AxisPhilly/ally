@@ -6,3 +6,4 @@ stylesheets/
 *.swp
 *.tar
 style.css
+*.env

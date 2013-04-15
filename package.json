@@ -8,11 +8,12 @@
     "url": "http://github.com/axisphilly/ally.git"
   },
   "devDependencies": {
-    "grunt": ">=0.4.0rc4",
+    "grunt": "0.4.0",
     "grunt-contrib-compass": "*",
     "grunt-contrib-compress": "*",
     "grunt-contrib-jshint": "*",
     "grunt-contrib-uglify": "*",
-    "grunt-contrib-concat": "*"
+    "grunt-contrib-concat": "*",
+    "grunt-s3": "0.1.0"
   }
 }

@@ -88,6 +88,30 @@ module.exports = function(grunt) {
           ]
         }
       }
+    },
+    s3: {
+      key: process.env.AWS_ACCESS_KEY_ID,
+      secret: process.env.AWS_SECRET_ACCESS_KEY,
+      bucket: 'axisphilly-assets',
+      access: 'public-read',
+      upload: [
+        {
+          src: 'javascripts/*min*.js',
+          dest: 'javascripts/'
+        },
+        {
+          src: 'style.css',
+          dest: 'stylesheets/style.css'
+        },
+        {
+          src: 'images/*',
+          dest: 'images/'
+        },
+        {
+          src: 'fonts/*',
+          dest: 'stylesheets/fonts/'
+        }
+      ]
     }
   });
 
@@ -96,8 +120,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  
+  grunt.loadNpmTasks('grunt-s3');
+
   grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
   grunt.registerTask('style', ['concat:sass']);
   grunt.registerTask('release', ['compress']);
+  grunt.registerTask('deploy-static', ['s3']);
 };
