@@ -7,22 +7,19 @@ function add_custom_fields_to_rss() {
   $post_source = get_post_meta($post->ID, '_source_name', true);              
       if(get_post_type() == 'external_post') {
       ?>
-        <source><? echo $post_source ?></source>
-        <source_url><? echo $post_url ?></source_url>        
-        <tags>
-          <?
+        <source><?php echo $post_source ?></source>
+        <source_url><?php echo $post_url ?></source_url>        
+        <tags><?php
             $posttags = get_the_tags();
-              $count = 0;
+            $tag_list = array();
               if ($posttags) {
                 foreach($posttags as $tag) {
-                  $tag_list[$count] = $tag->name; 
-                  $count++;
+                  array_push($tag_list, $tag->name);
                 }
               }
               echo implode(', ', $tag_list);
-          ?>
-        </tags>
-      <?
+          ?></tags>
+      <?php
   }
 }
 add_action('rss2_item', 'add_custom_fields_to_rss');
@@ -641,6 +638,32 @@ function get_media($post_id, $size) {
     $alt = get_post_meta($img_id, '_wp_attachment_image_alt', true);
     echo '<img src="'. $image[0] . '" alt="' . $alt . '">';
   }
+}
+
+/**
+ * Add a "Google Plus" field to Co-Authors Plus Guest Author
+ */
+add_filter( 'coauthors_guest_author_fields', 'capx_filter_guest_author_fields', 10, 2 );
+function capx_filter_guest_author_fields( $fields_to_return, $groups ) {
+ 
+  if ( in_array( 'all', $groups ) || in_array( 'contact-info', $groups ) ) {
+    $fields_to_return[] = array(
+          'key'      => 'twitter',
+          'label'    => 'Twitter',
+          'group'    => 'contact-info',
+        );
+  }  
+ 
+   if ( in_array( 'all', $groups ) || in_array( 'contact-info', $groups ) ) {
+    $fields_to_return[] = array(
+          'key'      => 'phone',
+          'label'    => 'Phone',
+          'group'    => 'contact-info',
+        );
+  }  
+
+
+  return $fields_to_return;
 }
 
 ?>
