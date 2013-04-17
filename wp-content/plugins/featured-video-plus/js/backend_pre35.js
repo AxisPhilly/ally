@@ -1,17 +1,16 @@
 // <WordPress 3.5
 jQuery(document).ready(function($){
-	$('#fvp-settings-vimeo-colorpicker').hide();
-	$('#fvp-settings-vimeo-colorpicker').farbtastic('#fvp-settings-vimeo-color');
-
-	$('#fvp-settings-vimeo-color').click(function() {
-		$('#fvp-settings-vimeo-colorpicker').fadeIn();
+	$('.fvp_colorpicker').hide().each(function() {
+		$(this).farbtastic($(this).siblings('.fvp_colorpicker_input'));
 	});
-
 	$(document).mousedown(function() {
-		$('#fvp-settings-vimeo-colorpicker').each(function() {
+		$('.fvp_colorpicker').each(function() {
 			var display = $(this).css('display');
 			if ( display == 'block' )
 				$(this).fadeOut();
 		});
+	});
+	$('.fvp_colorpicker_input').click(function() {
+		$(this).siblings('.fvp_colorpicker').fadeIn();
 	});
 });
