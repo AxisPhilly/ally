@@ -121,11 +121,10 @@
   <script src="<?php bloginfo('template_directory'); ?>/javascripts/modernizr.foundation.js"></script>  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
   <script src="<?php bloginfo('template_directory'); ?>/javascripts/libraries.1.0.6.min.js" type="text/javascript"></script>
-  <?php if (stripos(home_url(), 'axisphilly.org')) { // production ?>
+  <?php // if (stripos(home_url(), 'axisphilly.org')) { // production ?>
     <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('template_directory'); ?>/style.css" />
-  <?php } else { // dev ?>
-    <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('template_directory'); ?>/stylesheets/app.css" />
-  <?php } ?>
+  <?php // } else { // dev ?>
+  <?php // } ?>
   <script type="text/javascript">
 
     var _gaq = _gaq || [];
