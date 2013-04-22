@@ -7,8 +7,7 @@ function add_custom_fields_to_rss() {
   $post_source = get_post_meta($post->ID, '_source_name', true);              
       if(get_post_type() == 'external_post') {
       ?>
-        <source><?php echo $post_source ?></source>
-        <source_url><?php echo $post_url ?></source_url>        
+        <source url="<?php echo $post_url ?>"><?php echo $post_source ?></source>        
         <tags><?php
             $posttags = get_the_tags();
             $tag_list = array();
