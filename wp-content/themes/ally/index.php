@@ -219,6 +219,7 @@
       <div class="three columns">
         <h4>Projects</h4>
         <p>Things we care about, and follow closely. Find links to all the best reporting on these subjects, tools you can use to find out more, and ways to share what you know.</p>
+        <p><a href="/projects">View more projects &#8594;</a></p>
       </div>
       <?php 
         $project_id = get_category_by_slug('project')->term_id;
