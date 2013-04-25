@@ -25,7 +25,7 @@ add_action('rss2_item', 'add_custom_fields_to_rss');
 
 //Loads css file into text editor in WP-Admin
 
-add_editor_style('stylesheets/editor-style.css');
+add_editor_style('editor-style.css');
 
 function disqus_embed($disqus_shortname) {
     global $post;
