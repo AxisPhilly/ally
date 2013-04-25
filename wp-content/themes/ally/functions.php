@@ -26,9 +26,6 @@ add_action('rss2_item', 'add_custom_fields_to_rss');
 //Loads css file into text editor in WP-Admin
 add_editor_style('editor-style.css');
 
-// Disable smart URL resolution. Attempt to fix project rss feeds
-remove_filter('template_redirect', 'redirect_canonical');
-
 function disqus_embed($disqus_shortname) {
     global $post;
     wp_enqueue_script('disqus_embed','http://'.$disqus_shortname.'.disqus.com/embed.js');
