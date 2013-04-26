@@ -8,11 +8,17 @@ get_header(); ?>
   <div id="content" role="main">
     <?php the_post(); ?>
     
-    <?php if (have_posts()): 
-      while (have_posts()) : the_post();?>
-        <?php get_template_part('archive' , 'feed'); ?>
-      <?php endwhile; ?>
-    <?php endif; ?>
+    <div class="row">
+      <div id="stories" class="twelve columns">
+        <div class="items">
+          <?php if (have_posts()): 
+            while (have_posts()) : the_post();?>
+              <?php get_template_part('archive' , 'feed'); ?>
+            <?php endwhile; ?>
+          <?php endif; ?>
+        </div>
+      </div>
+    </div>
 
     <div class="row">
       <div class="twelve columns">
