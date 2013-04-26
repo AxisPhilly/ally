@@ -13,9 +13,22 @@
     <div class="row">
       <div id="stories" class="twelve columns">
         <div class="items">
-          <?php if (have_posts()): ?>
+          <?php
+            $slug = get_slug();
+
+            $tagged_args = array(
+              'orderby' => 'date', 
+              'order' => 'DESC',
+              'post_status' => 'publish', 
+              'post_type' => array('wp_tool', 'external_tool', 'post', 'external_post'),
+              'tag' => $slug
+            );
+
+            $tagged = new WP_Query($tagged_args);
+          ?>
+          <?php if ($tagged->have_posts()): ?>
           <h3 class="page-title"><?php printf(__('Tag Archives: %s', 'ally'), '<span>' . single_tag_title('', false) . '</span>'); ?></h3>
-            <?php while (have_posts()) : the_post(); ?>
+            <?php while ($tagged->have_posts()) : $tagged->the_post(); ?>
               <?php get_template_part('archive', 'feed'); ?>
             <?php endwhile; ?>
           <?php else : ?>
