@@ -36,6 +36,11 @@
         <?php
           $main_post = $post->ID;
           $recent_header = 'Recent Stories';
+          $category = get_the_category();
+          $c_name = $category[0]->name;
+          $c_slug = $category[0]->slug;
+
+          if($c_slug == 'uncategorized') { $c_slug = NULL; }
 
           if (get_post_type($post) == 'wp_tool') { 
             $post_type = 'tool'; 
@@ -46,9 +51,6 @@
           } 
 
           if (in_project($main_post)) {
-            $category=get_the_category();
-            $c_name = $category[0]->name;
-            $c_slug = $category[0]->slug;
             $recent_header = 'This ' . $post_type . ' is part of our <a href="/project/' . $c_slug . '">' . $c_name . '</a> project. Read more:';
           }
 
