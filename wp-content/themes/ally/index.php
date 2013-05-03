@@ -82,7 +82,7 @@
 
                     <div class="byline">
                       <span class="byline-author">by <?php coauthors_posts_links(); ?> </span>
-                      <span class="byline-date"><?php the_time('M. j'); ?></span>
+                      <span class="byline-date"><?php (get_the_date('M') == "May") ? the_time('M j'): the_time('M. j'); ?></span>
                     </div>
                     <?php 
                       the_excerpt();
@@ -124,7 +124,7 @@
               <h3 class="headline"><a href="<?php echo $post_url; ?>"><?php the_title(); ?></a></h3>
               <div class="byline">
                 <span class="byline-author">by <?php coauthors_posts_links(); ?> </span>
-                <span class="byline-date timeago"><?php the_time('M. j'); ?></span>
+                <span class="byline-date timeago"><?php (get_the_date('M') == "May") ? the_time('M j'): the_time('M. j'); ?></span>
               </div>
               <?php 
                 the_excerpt();
@@ -165,7 +165,7 @@
             <article <?php if(get_post_type($post->ID) == 'discussion'){ echo 'class="discussion"'; }?>>
               <?php list_categories(); ?>
               <h4 class="headline"><a href="<?php echo $post_url; ?>"><?php the_title(); ?></a></h4>
-              <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
+              <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php (get_the_date('M') == "May") ? the_time('M j'): the_time('M. j'); ?></span></div>
             </article>
             <?php $sidebar_count++; ?>  
             <?php endwhile; endif; ?>
@@ -207,7 +207,7 @@
           <?php get_media($post->ID, 'thumbnail') ?>
           <h4 class="headline"><a href="<?php echo $post_url; ?>"><?php the_title(); ?></a></h4>
           <?php if (get_the_author() != 'axisphilly') { ?>
-            <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
+            <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php (get_the_date('M') == "May") ? the_time('M j'): the_time('M. j'); ?></span></div>
           <? } ?> 
           <?php the_excerpt(); ?>
         </article>
@@ -253,7 +253,7 @@
 
               <?php get_media($post->ID, 'thumbnail') ?>
               <h4 class="headline"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-              <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php the_time('M. j'); ?></span></div>
+              <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php (get_the_date('M') == "May") ? the_time('M j'): the_time('M. j'); ?></span></div>
               <?php the_excerpt(); ?>
 
             <?php endwhile; } ?>

@@ -35,12 +35,12 @@
           if (get_post_type() == 'external_post') { ?>
             <div class="byline">
               <span class="byline-author"> Source: <strong> <?php echo get_post_meta($post->ID, '_source_name', true); ?></strong></span><span class="byline-date"> on
-              <?php echo get_the_time('F j, Y'); ?></span>
+              <?php (get_the_date('M') == "May") ? the_time('M j, Y'): the_time('M. j, Y'); ?></span>
             </div>
          <?php } elseif (get_post_type() != 'external_post') { ?>
             <?php if (get_the_author() != 'axisphilly') { ?>
             <div class="byline">
-              <span class="byline-author">by <?php coauthors_posts_links(); ?></span><span class="byline-date"> on <?php the_time('M. j, Y'); ?></span>
+              <span class="byline-author">by <?php coauthors_posts_links(); ?></span><span class="byline-date"> on <?php (get_the_date('M') == "May") ? the_time('M j, Y'): the_time('M. j, Y'); ?></span>
             </div>
             <?php } ?>
         <?php } ?>

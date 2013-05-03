@@ -16,7 +16,7 @@
           <header class="article-header">
             <h1 class="headline"><?php the_title(); ?></h1>
             <div class="publish-container">
-              <div class="byline"><span class="byline-date"><?php the_time('M. j, Y'); ?></span></div>
+              <div class="byline"><span class="byline-date"><?php (get_the_date('M') == "May") ? the_time('M j, Y'): the_time('M. j, Y'); ?></span></div>
             </div>
           </header>
           <div class="small-share">
