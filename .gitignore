@@ -56,7 +56,7 @@ wp-content/mysql.sql
 /wp-mail.php
 /wp-rdf.php
 /wp-rss.php
-# /wp-rss2.php
+/wp-rss2.php
 /wp-pass.php
 /wp-register.php
 /wp-settings.php
