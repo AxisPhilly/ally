@@ -26,7 +26,7 @@
         </div>
         <div class="contact four columns">
           <ul class="no-markers">
-            <?php if (get_the_author_meta( 'email' )) { ?><li><i class="general-foundicon-mail"></i> <a href="mailto:<?php echo $author->user_email ?>" target="_blank"><? the_author_meta( 'email' ) ?></a></li><? } ?>
+            <!--<?php if (get_the_author_meta( 'email' )) { ?><li><i class="general-foundicon-mail"></i> <a href="mailto:<?php echo $author->user_email ?>" target="_blank"><? the_author_meta( 'email' ) ?></a></li><? } ?>-->
             <?php if (get_the_author_meta( 'twitter' )) { ?><li><i class="social-foundicon-twitter"></i> <a href="http://twitter.com/<? the_author_meta( 'twitter' ) ?>" target="_blank">@<? the_author_meta( 'twitter' ) ?></a></li><? } ?>
             <?php if (get_the_author_meta( 'phone' )) { ?><li><i class="general-foundicon-phone"></i> <span><? the_author_meta( 'phone' ) ?></span></li><? } ?>
           </ul>
