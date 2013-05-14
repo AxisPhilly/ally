@@ -61,6 +61,7 @@
 
           if (count($column) > 0) {
             $recent_posts_args['column_info'] = $slug;
+            $recent_posts_args['category_name'] = NULL;
             $recent_header = 'Recent Posts';
           }
 
