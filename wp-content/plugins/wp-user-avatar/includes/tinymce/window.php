@@ -1,12 +1,13 @@
 <?php
 /**
  * @package WP User Avatar
- * @version 1.3.6
+ * @version 1.4
  */
 
-  if ( !defined('ABSPATH') )
+if(!defined('ABSPATH')){
   die('You are not allowed to call this page directly.');
-@header('Content-Type: ' . get_option('html_type') . '; charset=' . get_option('blog_charset'));
+  @header('Content-Type:'.get_option('html_type').';charset='.get_option('blog_charset'));
+}
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -39,7 +40,7 @@
  
       shortcode = "<p>[avatar" + user_tag + size_tag + align_tag + link_tag + target_tag + "]</p>";
 
-      if(window.tinyMCE) {
+      if(window.tinyMCE){
         window.tinyMCE.execInstanceCommand(window.tinyMCE.activeEditor.id, 'mceInsertContent', false, shortcode);
         tinyMCEPopup.editor.execCommand('mceRepaint');
         tinyMCEPopup.close();

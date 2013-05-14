@@ -3,9 +3,9 @@
 Contributors: bangbay
 Donate link: http://siboliban.org/donate
 Tags: author image, author photo, author avatar, avatar, bbPress, profile avatar, profile image, user avatar, user image, user photo
-Requires at least: 3.3
+Requires at least: 3.4
 Tested up to: 3.5.1
-Stable tag: 1.3.6
+Stable tag: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,8 +20,9 @@ WP User Avatar also lets you:
 * Upload your own Default Avatar in your Discussion settings.
 * Show the user's [gravatar.com](http://gravatar.com/) avatar or Default Avatar if the user doesn't have a WP User Avatar image.
 * Use the <code>[avatar]</code> shortcode in your posts. The shortcode will work with any theme, whether it has avatar support or not.
+* Allow Contribuors and Subscribers to upload their own avatars.
 
-This plugin uses the Media uploader introduced in WordPress 3.5, but is also backwards-compatible to WordPress 3.3. It is also compatible with WordPress Multisite.
+This plugin uses the Media uploader introduced in WordPress 3.5, but is also backwards-compatible to WordPress 3.4. It is also compatible with WordPress Multisite.
 
 == Installation ==
 
@@ -155,10 +156,7 @@ Outputs:
 </a>`
 
 = Can Contributors or Subscribers choose their own WP User Avatar image? =
-
-Users need <code>upload_files</code> capability to choose their own WP User Avatar image. This means that only Administrators, Editors, and Authors can choose their own WP User Avatar image. Contributors and Subscribers cannot upload images. Administators can choose WP User Avatar images for Contributors and Subscribers.
-
-[Read more about Roles and Capabilities here](http://codex.wordpress.org/Roles_and_Capabilities).
+Yes, if you enable "Allow Contributors & Subscribers to upload avatars" in the WP User Avatar settings. These users will see a slightly different interface because they are allowed only one image upload.
 
 = Will WP User Avatar work with comment author avatars? =
 
@@ -166,7 +164,7 @@ Yes, for registered users. Non-registered comment authors will show their [grava
 
 = Will WP User Avatar work with bbPress? =
 
-Yes, but only users that have <code>upload_files</code> capability can choose their own WP User Avatar image.
+Yes!
 
 = Will WP User Avatar work with WordPress Multisite? =
 
@@ -224,8 +222,15 @@ Outputs:
 3. After you've chosen a WP User Avatar image, you will see the option to remove it.
 4. WP User Avatar adds a button to insert the [avatar] shortcode in the Visual Editor.
 5. Options for the [avatar] shortcode.
+6. WP User Avatar admin settings.
 
 == Changelog ==
+
+= 1.4 =
+* Add: Uploader for Subscribers and Contributors
+* Add: Media states for avatar images
+* Add: Plugin admin settings
+* Update: Change support only to WP 3.4+
 
 = 1.3.6 =
 * Add: Target for link in shortcode
@@ -325,6 +330,9 @@ Outputs:
 * Initial release
 
 == Upgrade Notice ==
+
+= 1.4 =
+* New Features: Setting to allow all users to upload avatars and to add or remove Visual Editor button, media states for avatar images
 
 = 1.3 =
 * New Feature: Multisite support
