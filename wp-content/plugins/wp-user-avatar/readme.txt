@@ -5,7 +5,7 @@ Donate link: http://siboliban.org/donate
 Tags: author image, author photo, author avatar, avatar, bbPress, profile avatar, profile image, user avatar, user image, user photo
 Requires at least: 3.4
 Tested up to: 3.5.1
-Stable tag: 1.4
+Stable tag: 1.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,7 +20,7 @@ WP User Avatar also lets you:
 * Upload your own Default Avatar in your Discussion settings.
 * Show the user's [gravatar.com](http://gravatar.com/) avatar or Default Avatar if the user doesn't have a WP User Avatar image.
 * Use the <code>[avatar]</code> shortcode in your posts. The shortcode will work with any theme, whether it has avatar support or not.
-* Allow Contribuors and Subscribers to upload their own avatars.
+* Allow Contributors and Subscribers to upload their own avatars.
 
 This plugin uses the Media uploader introduced in WordPress 3.5, but is also backwards-compatible to WordPress 3.4. It is also compatible with WordPress Multisite.
 
@@ -226,6 +226,10 @@ Outputs:
 
 == Changelog ==
 
+= 1.4.1 =
+* Bug Fix: Allow multipart data in form
+* Bug Fix: Use wp_die for errors
+
 = 1.4 =
 * Add: Uploader for Subscribers and Contributors
 * Add: Media states for avatar images
@@ -332,7 +336,10 @@ Outputs:
 == Upgrade Notice ==
 
 = 1.4 =
-* New Features: Setting to allow all users to upload avatars and to add or remove Visual Editor button, media states for avatar images
+* New Feature: Setting to allow all users to upload avatars
+* New Feature: Setting to add or remove Visual Editor button
+* New Feature: Media states for avatar images
+* Notice: WP User Avatar 1.4 only supports WordPress 3.4 and above. If you are using an older version of WordPress, please upgrade your version of WordPress first.
 
 = 1.3 =
 * New Feature: Multisite support
