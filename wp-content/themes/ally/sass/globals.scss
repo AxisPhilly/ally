@@ -1,5 +1,8 @@
 // GENERAL
 body {
+
+  padding-top: 120px;
+
   position: relative;
 
   p {
@@ -45,13 +48,6 @@ body {
   -o-transition: color 0.2s ease-out;
   transition: color 0.2s ease-out;
 
-}
-
-.content-container {
-  margin-top: 44px;
-  @media(max-width: 360px) {
-    margin-top: 10px;
-  }
 }
 
 #category-top {
