@@ -37,5 +37,8 @@
   </footer>
   <script src="<?php bloginfo('template_directory'); ?>/javascripts/foundation.min.js" type="text/javascript"></script>
   <script src="<?php bloginfo('template_directory'); ?>/javascripts/site.1.0.6.min.js" type="text/javascript"></script>
+  <script>
+    var navigation = responsiveNav("#nav");
+  </script>
 </body>
 </html>
