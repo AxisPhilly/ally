@@ -80,10 +80,10 @@ $labelBtmMargin: 3px;
 $inputFontColor: rgba(0,0,0,0.75);
 $inputFontSize: 14px;
 $inputBgColor: #fff;
-$inputFocusBgColor: darken(#fff, 2%);
-$inputBorderColor: darken(#fff, 20%);
-$inputFocusBorderColor: darken(#fff, 30%);
-$inputBorderStyle: solid;
+$inputFocusBgColor: #fff;
+$inputBorderColor: #fff;
+$inputFocusBorderColor: #fff;
+$inputBorderStyle: none;
 $inputBorderWidth: 1px;
 $inputBorderRadius: 2px;
 $fieldsetBorderRadius: 3px;
@@ -133,7 +133,7 @@ $topBarDropToggleSize: 5px;
 $topBarDropToggleColor: #fff;
 $topBarDropToggleAlpha: 0.5;
 $topBarSearchWidth: 200px;
-$topBarBreakPoint:  850px; // Change to 9999px for always mobile layout
+$topBarBreakPoint:  767px; // Change to 9999px for always mobile layout
 $topBarNavToggleSize: 8px;
 
 // UI Settings
