@@ -13,28 +13,6 @@ axis.Collections.Articles = Backbone.Collection.extend({
   model: axis.Models.Article
 });
 
-axis.Views.Header = Backbone.View.extend({
-  initialize: function() {
-    // Adpated from http://happycog.com/ fixed bar
-    var $navBar = $('.nav-container'),
-        $spacer = $('<div />', {
-          "class": "navBar-drop-spacer",
-          "height": $navBar.outerHeight()
-        });
-    
-    $(window).scroll(function () {
-      if (!$navBar.hasClass('affix') && $(window).scrollTop() > $navBar.offset().top) {
-        $navBar.before($spacer);
-        $navBar.addClass("affix");
-      }
-      else if ($navBar.hasClass('affix')  && $(window).scrollTop() < $spacer.offset().top) {
-        $navBar.removeClass("affix");
-        $spacer.remove();
-      }
-    });
-  }
-});
-
 axis.Views.Index = Backbone.View.extend({
 
 });
@@ -92,8 +70,6 @@ axis.Router = Backbone.Router.extend({
   },
 
   initViews: function() {
-    axis.Header = new axis.Views.Header({el: '.banner'});
-
     if(document.URL.search('/project/') !== -1) {
       axis.ProjectContainer = new axis.Views.ProjectContainer({el: '#news-container'});
     } else if (document.URL.search('/article/') !== -1) {

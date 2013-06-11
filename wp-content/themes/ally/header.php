@@ -160,10 +160,10 @@
         <div class="twelve columns">
           <div class="nav-container contain-to-grid">
             <nav class="top-bar">
-              <div class="four columns">
+              <div class="four columns" id="logo-column">
                 <a href="/"><img alt="AxisPhilly: Where News Breaks Through" src="<?php bloginfo('template_directory'); ?>/images/axis-logo-compact.png"/></a>
               </div>
-              <div class="eight columns">
+              <div class="eight columns" id="navigation-column">
                 <ul class="menu">
                   <li class="toggle-topbar has-button">
                     <span class="tiny secondary button menu-button">
@@ -173,7 +173,7 @@
                     </span>
                   </li>
                   <section>
-                    <ul class="right">
+                    <ul class="right" id="menu-items">
                       <li <?php if($_SERVER["REQUEST_URI"] == '/') { echo 'class="active"'; } ?>><a href="/">Home</a></li>
                       <li <?php if(stripos($_SERVER["REQUEST_URI"], 'projects/')) { echo 'class="active"'; } ?>><a href="/projects">Projects</a></li>
                       <li <?php if(stripos($_SERVER["REQUEST_URI"], 'tools/')) { echo 'class="active"'; } ?>><a href="/tools">Tools &amp; Data</a></li>

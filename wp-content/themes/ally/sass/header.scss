@@ -1,28 +1,10 @@
-#s {
-  border: 0;
-  outline: none;
-  border: none;
-  font-size: 15px; 
-  color: #9c9c9c; 
-  font-weight: normal;
-  -webkit-font-smoothing: antialiased;
-  font-family: "proxima-nova", "Helvetica Neue", helvetica, arial, sans-serif;
-  padding: 0 13px;
-  margin-top: 14px;
-  width: 85px;
-}
-
-#searchform {
-  width: 85px;
-}
-
 html, body { width: 100%; height: 100% }
 
 .menu-button {
   line-height: 4px;
   text-align: center;
   float: right;
-  bottom: 44px;  
+  bottom: 50px;  
 
   .line {
     display: inline-block;
@@ -43,7 +25,7 @@ html, body { width: 100%; height: 100% }
   height: 90px; 
   border-bottom: 1px solid #e7e7e7; 
   z-index:100; 
-  padding: 30px 0;  
+  padding: 24px 0;  
 
   #vertical-bar {
     width: 1px;
@@ -142,7 +124,8 @@ html, body { width: 100%; height: 100% }
     }
 
     ul > li a:not(.button) {
-      height: 44px;
+      height: 40px;
+      line-height: 40px;
       font-size: 18px;
       font-weight: $menuFontWeight;
       padding: 0 13px;
@@ -253,5 +236,47 @@ html, body { width: 100%; height: 100% }
 .top-bar section ul li:first-child {
   @media(max-width: $topBarBreakPoint) {
     padding-top: 8px !important;
+  }
+}
+
+#s {
+  border: 0;
+  outline: none;
+  border: none;
+  font-size: 15px; 
+  color: #9c9c9c; 
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  font-family: "proxima-nova", "Helvetica Neue", helvetica, arial, sans-serif;
+  padding: 0 13px;
+  margin-top: 12px;
+  width: 85px;
+}
+
+#searchform {
+  width: 85px;
+  height: 10px;
+}
+
+#menu-items {
+  margin-top: 2px;
+}
+
+@media only screen and (max-width:880px) and (min-width:768px){
+  #navigation-column, #logo-column {
+    width: auto !important;
+    float: none;
+  }
+  .top-bar ul.right {
+    float: left;
+    padding-bottom: 20px;
+  }
+  #menu-items {
+    background-color: #fff;
+    height: 45px;
+    width: 100%;
+  }
+  .header {
+    padding-bottom: 104px;
   }
 }
