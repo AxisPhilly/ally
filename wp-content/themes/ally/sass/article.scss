@@ -300,3 +300,13 @@ img.size-full {
 .article-text iframe {
   max-width: 100%;
 }
+table {
+  font-family: $sansSerifFont;
+  tbody {
+    tr {
+      td {
+        font-size: 16px;
+      }
+    }
+  }
+}
