@@ -135,7 +135,7 @@
     });
   </script>  
   <?php // if (stripos(home_url(), 'axisphilly.org')) { // production ?>
-    <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('template_directory'); ?>/stylesheets/style.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('template_directory'); ?>/style.css" />
   <?php // } else { // dev ?>
   <?php // } ?>
   <script type="text/javascript">
