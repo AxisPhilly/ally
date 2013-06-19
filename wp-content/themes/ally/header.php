@@ -117,12 +117,25 @@
   <link rel="icon" href="<?php bloginfo('template_directory'); ?>/images/favicon.png" type="image/x-icon" />
   <link rel="shortcut icon" href="<?php bloginfo('template_directory'); ?>/images/favicon.png" type="image/x-icon" />
   <script type="text/javascript" src="//use.typekit.net/nuc2aoh.js"></script>
+
   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
   <script src="<?php bloginfo('template_directory'); ?>/javascripts/modernizr.foundation.js"></script>  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
   <script src="<?php bloginfo('template_directory'); ?>/javascripts/libraries.1.0.6.min.js" type="text/javascript"></script>
+  <script>
+    $(document).ready(function(){
+      $("#s").focus(function() {
+        $("#search").animate({ width: "125px" } , 200);
+        $("#s").animate({ width: "125px" } , 200);        
+      });
+      $("#s").blur(function() {
+        $("#search").animate({ width: "85px" } , 200);
+        $("#s").animate({ width: "85px" } , 200);                
+      });      
+    });
+  </script>  
   <?php // if (stripos(home_url(), 'axisphilly.org')) { // production ?>
-    <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('template_directory'); ?>/style.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('template_directory'); ?>/stylesheets/app.css" />
   <?php // } else { // dev ?>
   <?php // } ?>
   <script type="text/javascript">
@@ -142,98 +155,57 @@
 <body <?php body_class(); ?>>
   <!-- Fixed header -->
   <header class="header">
-    <div class="header-logo">
-      <div class="row">
+    <div >
+      <div class="row nav-container">
         <div class="twelve columns">
-          <div>
-            <a href="/"><img alt="AxisPhilly: Where News Breaks Through" src="<?php bloginfo('template_directory'); ?>/images/transparent.png"/></a>
+          <div class="nav-container contain-to-grid">
+            <nav class="top-bar">
+              <div class="four columns" id="logo-column">
+                <a href="/"><img alt="AxisPhilly: Where News Breaks Through" src="<?php bloginfo('template_directory'); ?>/images/axis-logo-compact.png"/></a>
+              </div>
+              <div class="five columns" id="navigation-column">
+                <ul class="menu">
+                  <section>
+                    <ul>
+                      <li id="home" <?php if($_SERVER["REQUEST_URI"] == '/') { echo 'class="active"'; } ?>><a href="/">Home</a></li>
+                      <li <?php if(stripos($_SERVER["REQUEST_URI"], 'projects/')) { echo 'class="active"'; } ?>><a href="/projects">Projects</a></li>
+                      <li <?php if(stripos($_SERVER["REQUEST_URI"], 'tools/')) { echo 'class="active"'; } ?>><a href="/tools">Tools &amp; Data</a></li>
+                      <li <?php if(stripos($_SERVER["REQUEST_URI"], 'about/')) { echo 'class="active"'; } ?>><a href="/about">About</a></li>    
+                    </ul>
+                  </section>
+                </ul>
+              </div>
+              <div class="three columns" id="navigation-column">
+                <ul class="menu">
+                  <li class="toggle-topbar has-button">
+                    <span class="tiny secondary button menu-button">
+                      <span class="line"></span>
+                      <span class="line"></span>
+                      <span class="line"></span>
+                    </span>
+                  </li>
+                  <section id="social-search">
+                    <ul> 
+                      <li id="twitter"><a href="http://www.twitter.com/AxisPhilly"><img src="<?php bloginfo('template_directory'); ?>/images/icon-twitter.png"></a></li>
+                      <li id="facebook"><a href="http://www.facebook.com/AxisPhilly"><img src="<?php bloginfo('template_directory'); ?>/images/icon-facebook.png"></a></li>           
+                      <li id="vertical-bar"></li>  
+                      <li id="search">
+                        <form class="collapse" role="search" method="get" id="searchform" action="http://axisphilly.org">
+                          <input value="" name="s" id="s" placeholder="Search" required="">
+                        </form>
+                      </li>
+                    </ul>
+                  </section>
+                </ul>
+              </div>              
+            </nav>
           </div>
         </div>
       </div>
     </div>
-  <div class="row">
-    <div class="twelve columns">
-      <div class="nav-container contain-to-grid">
-        <nav class="top-bar">
-          <ul>
-            <li class="name">
-              <a href="/"><img class="compressed-logo" alt="AxisPhilly: Where News Breaks Through" src="<?php bloginfo('template_directory'); ?>/images/logo.png"/>AxisPhilly</a>
-            </li>
-            <li class="toggle-topbar has-button">
-              <span class="tiny secondary button menu-button">
-                <span class="line"></span>
-                <span class="line"></span>
-                <span class="line"></span>
-              </span>
-            </li>
-          </ul>
-          <section>
-            <ul class="left">
-              <li <?php if($_SERVER["REQUEST_URI"] == '/') { echo 'class="active"'; } ?>><a href="/">Home</a></li>
-              <li class="has-dropdown <?php if(stripos($_SERVER["REQUEST_URI"], 'projects/')) { echo 'active'; } ?>">
-                <a href="/projects">Our Projects</a>
-                <ul class="dropdown">
-                  <li <?php if(stripos($_SERVER["REQUEST_URI"], 'land/')) { echo 'class="active"'; } ?>><a href="/project/land">Land</a></li>
-                  <li <?php if(stripos($_SERVER["REQUEST_URI"], 'litter/')) { echo 'class="active"'; } ?>><a href="/project/litter">Litter</a></li>
-                  <li <?php if(stripos($_SERVER["REQUEST_URI"], 'open-gov/')) { echo 'class="active"'; } ?>><a href="/project/open-gov">Open Government</a></li>
-                  <li <?php if(stripos($_SERVER["REQUEST_URI"], 'poverty/')) { echo 'class="active"'; } ?>><a href="/project/poverty">Poverty</a></li>                  
-                  <li <?php if(stripos($_SERVER["REQUEST_URI"], 'taxes/')) { echo 'class="active last"'; } ?> class="last"><a href="/project/taxes">Taxes</a></li>
-                </ul>
-              </li>
-              <li <?php if(stripos($_SERVER["REQUEST_URI"], 'tools/')) { echo 'class="active"'; } ?> ><a href="/tools">Tools &amp; Data</a></li>
-              <li <?php if(stripos($_SERVER["REQUEST_URI"], 'about/')) { echo 'class="active"'; } ?> ><a href="/about">About</a></li>
-              <li class="search">
-              <li class="social"><a href="http://www.twitter.com/AxisPhilly"><i class="social-foundicon-twitter"></i></a></li>
-              <li class="social"><a href="http://www.facebook.com/AxisPhilly"><i class="social-foundicon-facebook"></i></a></li>
-              <li class="social"><a href="http://www.axisphilly.org/?feed=rss"><i class="social-foundicon-rss"></i></a></li>
-            </ul>
-            <ul class="right">
-              <li class="search">
-                <form class="collapse" role="search" method="get" id="searchform" action="<?php echo home_url(); ?>">
-                  <input type="search" placeholder="Search" name="s" id="s">
-                </form>
-              </li>
-            </ul>
-          </section>
-        </nav>
-      </div>
-    </div>
-  </div>
   </header>
+
   <?php
-    #<!-- This is a WordPress generated header that doesn't quite work yet. It uses a custom Walker class, which is referred to in functions.php
-    #<div class="fixed contain-to-grid">
-    #  <nav class="top-bar">
-    #    <ul>
-    #      <li class="name">
-    #        <h1><a href="/demo/">AxisPhilly</a></h1>
-    #      </li>
-    #      <li class="toggle-topbar has-button">
-    #        <span class="tiny secondary button menu-button">
-    #          <span class="line"></span>
-    #          <span class="line"></span>
-    #          <span class="line"></span>
-    #        </span>
-    #      </li>
-    #    </ul>
-    #    <section> -->
-    #        //wp_nav_menu(array('container' => 'none', 'walker' => new Walker_Nav_Menu_CMS()));
-    #      <!--
-    #      <ul class="social desktop">
-    #        <li><a href="twitter"><i class="social-foundicon-twitter"></i></a></li>
-    #        <li><a href="facebook"><i class="social-foundicon-facebook"></i></a></li>
-    #        <li><a href="googleplus"><i class="social-foundicon-google-plus"></i></a></li>
-    #        <li><a href="rss"><i class="social-foundicon-rss"></i></a></li>
-    #      </ul>
-    #      <ul class="right">
-    #        <li class="search">
-    #          <form class="collapse">
-    #            <input type="search" placeholder="Search"></input>
-    #          </form>
-    #        </li>
-    #      </ul>
-    #    </section>
-    #  </nav>
-    #</div> -->
+  
   ?>
 <!-- End fixed header -->
