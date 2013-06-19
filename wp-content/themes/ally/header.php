@@ -163,7 +163,7 @@
               <div class="four columns" id="logo-column">
                 <a href="/"><img alt="AxisPhilly: Where News Breaks Through" src="<?php bloginfo('template_directory'); ?>/images/axis-logo-compact.png"/></a>
               </div>
-              <div class="five columns" id="navigation-column">
+              <div class="five columns">
                 <ul class="menu">
                   <section>
                     <ul>
@@ -175,7 +175,7 @@
                   </section>
                 </ul>
               </div>
-              <div class="three columns" id="navigation-column">
+              <div class="three columns">
                 <ul class="menu">
                   <li class="toggle-topbar has-button">
                     <span class="tiny secondary button menu-button">
@@ -186,9 +186,9 @@
                   </li>
                   <section id="social-search">
                     <ul> 
-                      <li id="twitter"><a href="http://www.twitter.com/AxisPhilly"><img src="<?php bloginfo('template_directory'); ?>/images/icon-twitter.png"></a></li>
-                      <li id="facebook"><a href="http://www.facebook.com/AxisPhilly"><img src="<?php bloginfo('template_directory'); ?>/images/icon-facebook.png"></a></li>           
-                      <li id="vertical-bar"></li>  
+                      <li id="twitter"><a href="http://www.twitter.com/AxisPhilly"><img src="<?php bloginfo('template_directory'); ?>/images/icon-twitter.png"><span class="social-handle">@axisphilly</span></a></li>
+                      <li id="facebook"><a href="http://www.facebook.com/AxisPhilly"><img src="<?php bloginfo('template_directory'); ?>/images/icon-facebook.png"><span class="social-handle">facebook.com/axisphilly</span></a></li>           
+                      <li class="vertical-bar"></li>  
                       <li id="search">
                         <form class="collapse" role="search" method="get" id="searchform" action="http://axisphilly.org">
                           <input value="" name="s" id="s" placeholder="Search" required="">
