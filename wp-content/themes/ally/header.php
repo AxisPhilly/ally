@@ -135,7 +135,7 @@
     });
   </script>  
   <?php // if (stripos(home_url(), 'axisphilly.org')) { // production ?>
-    <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('template_directory'); ?>/stylesheets/app.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('template_directory'); ?>/style.css" />
   <?php // } else { // dev ?>
   <?php // } ?>
   <script type="text/javascript">
@@ -163,7 +163,19 @@
               <div class="four columns" id="logo-column">
                 <a href="/"><img alt="AxisPhilly: Where News Breaks Through" src="<?php bloginfo('template_directory'); ?>/images/axis-logo-compact.png"/></a>
               </div>
-              <div class="eight columns" id="navigation-column">
+              <div class="five columns">
+                <ul class="menu">
+                  <section>
+                    <ul>
+                      <li id="home" <?php if($_SERVER["REQUEST_URI"] == '/') { echo 'class="active"'; } ?>><a href="/">Home</a></li>
+                      <li <?php if(stripos($_SERVER["REQUEST_URI"], 'projects/')) { echo 'class="active"'; } ?>><a href="/projects">Projects</a></li>
+                      <li <?php if(stripos($_SERVER["REQUEST_URI"], 'tools/')) { echo 'class="active"'; } ?>><a href="/tools">Tools &amp; Data</a></li>
+                      <li <?php if(stripos($_SERVER["REQUEST_URI"], 'about/')) { echo 'class="active"'; } ?>><a href="/about">About</a></li>    
+                    </ul>
+                  </section>
+                </ul>
+              </div>
+              <div class="three columns">
                 <ul class="menu">
                   <li class="toggle-topbar has-button">
                     <span class="tiny secondary button menu-button">
@@ -172,15 +184,11 @@
                       <span class="line"></span>
                     </span>
                   </li>
-                  <section>
-                    <ul class="right" id="menu-items">
-                      <li <?php if($_SERVER["REQUEST_URI"] == '/') { echo 'class="active"'; } ?>><a href="/">Home</a></li>
-                      <li <?php if(stripos($_SERVER["REQUEST_URI"], 'projects/')) { echo 'class="active"'; } ?>><a href="/projects">Projects</a></li>
-                      <li <?php if(stripos($_SERVER["REQUEST_URI"], 'tools/')) { echo 'class="active"'; } ?>><a href="/tools">Tools &amp; Data</a></li>
-                      <li <?php if(stripos($_SERVER["REQUEST_URI"], 'about/')) { echo 'class="active"'; } ?>><a href="/about">About</a></li>    
-                      <li id="twitter"><a href="http://www.twitter.com/AxisPhilly"><img src="<?php bloginfo('template_directory'); ?>/images/icon-twitter.png"></a></li>
-                      <li id="facebook"><a href="http://www.facebook.com/AxisPhilly"><img src="<?php bloginfo('template_directory'); ?>/images/icon-facebook.png"></a></li>           
-                      <li id="vertical-bar"></li>  
+                  <section id="social-search">
+                    <ul> 
+                      <li id="twitter"><a href="http://www.twitter.com/AxisPhilly"><img src="<?php bloginfo('template_directory'); ?>/images/icon-twitter.png"><span class="social-handle">@axisphilly</span></a></li>
+                      <li id="facebook"><a href="http://www.facebook.com/AxisPhilly"><img src="<?php bloginfo('template_directory'); ?>/images/icon-facebook.png"><span class="social-handle">facebook.com/axisphilly</span></a></li>           
+                      <li class="vertical-bar"></li>  
                       <li id="search">
                         <form class="collapse" role="search" method="get" id="searchform" action="http://axisphilly.org">
                           <input value="" name="s" id="s" placeholder="Search" required="">
@@ -189,7 +197,7 @@
                     </ul>
                   </section>
                 </ul>
-              </div>
+              </div>              
             </nav>
           </div>
         </div>
