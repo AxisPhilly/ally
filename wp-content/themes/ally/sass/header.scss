@@ -132,7 +132,7 @@ html, body { width: 100%; height: 100% }
     }
 
     ul > li:not(.name).active {
-      background: #f2f2f2;
+      background: #fff;
 
       a {
         font-weight: bold;
@@ -260,23 +260,15 @@ html, body { width: 100%; height: 100% }
 
 #menu-items {
   margin-top: 2px;
+  float: left;
 }
 
 @media only screen and (max-width:880px) and (min-width:768px){
-  #navigation-column, #logo-column {
-    width: auto !important;
-    float: none;
+  #home {
+    display: none;
   }
-  .top-bar ul.right {
-    float: left;
-    padding-bottom: 20px;
-  }
-  #menu-items {
-    background-color: #fff;
-    height: 45px;
-    width: 100%;
-  }
-  .header {
-    padding-bottom: 104px;
-  }
+}
+
+#social-search {
+  float: right;
 }

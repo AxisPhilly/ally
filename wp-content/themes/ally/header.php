@@ -163,7 +163,19 @@
               <div class="four columns" id="logo-column">
                 <a href="/"><img alt="AxisPhilly: Where News Breaks Through" src="<?php bloginfo('template_directory'); ?>/images/axis-logo-compact.png"/></a>
               </div>
-              <div class="eight columns" id="navigation-column">
+              <div class="five columns" id="navigation-column">
+                <ul class="menu">
+                  <section>
+                    <ul>
+                      <li id="home" <?php if($_SERVER["REQUEST_URI"] == '/') { echo 'class="active"'; } ?>><a href="/">Home</a></li>
+                      <li <?php if(stripos($_SERVER["REQUEST_URI"], 'projects/')) { echo 'class="active"'; } ?>><a href="/projects">Projects</a></li>
+                      <li <?php if(stripos($_SERVER["REQUEST_URI"], 'tools/')) { echo 'class="active"'; } ?>><a href="/tools">Tools &amp; Data</a></li>
+                      <li <?php if(stripos($_SERVER["REQUEST_URI"], 'about/')) { echo 'class="active"'; } ?>><a href="/about">About</a></li>    
+                    </ul>
+                  </section>
+                </ul>
+              </div>
+              <div class="three columns" id="navigation-column">
                 <ul class="menu">
                   <li class="toggle-topbar has-button">
                     <span class="tiny secondary button menu-button">
@@ -172,12 +184,8 @@
                       <span class="line"></span>
                     </span>
                   </li>
-                  <section>
-                    <ul class="right" id="menu-items">
-                      <li <?php if($_SERVER["REQUEST_URI"] == '/') { echo 'class="active"'; } ?>><a href="/">Home</a></li>
-                      <li <?php if(stripos($_SERVER["REQUEST_URI"], 'projects/')) { echo 'class="active"'; } ?>><a href="/projects">Projects</a></li>
-                      <li <?php if(stripos($_SERVER["REQUEST_URI"], 'tools/')) { echo 'class="active"'; } ?>><a href="/tools">Tools &amp; Data</a></li>
-                      <li <?php if(stripos($_SERVER["REQUEST_URI"], 'about/')) { echo 'class="active"'; } ?>><a href="/about">About</a></li>    
+                  <section id="social-search">
+                    <ul> 
                       <li id="twitter"><a href="http://www.twitter.com/AxisPhilly"><img src="<?php bloginfo('template_directory'); ?>/images/icon-twitter.png"></a></li>
                       <li id="facebook"><a href="http://www.facebook.com/AxisPhilly"><img src="<?php bloginfo('template_directory'); ?>/images/icon-facebook.png"></a></li>           
                       <li id="vertical-bar"></li>  
@@ -189,7 +197,7 @@
                     </ul>
                   </section>
                 </ul>
-              </div>
+              </div>              
             </nav>
           </div>
         </div>
