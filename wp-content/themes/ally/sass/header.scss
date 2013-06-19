@@ -1,5 +1,12 @@
 html, body { width: 100%; height: 100% }
 
+.social-handle {
+  display: none;
+  @media only screen and (max-width: 767px) {
+    display: inline;
+  }
+}
+
 .menu-button {
   line-height: 4px;
   text-align: center;
@@ -27,7 +34,7 @@ html, body { width: 100%; height: 100% }
   z-index:100; 
   padding: 24px 0;  
 
-  #vertical-bar {
+  .vertical-bar {
     width: 1px;
     height: 36px;
     background-color: #e9e9e9;
@@ -39,7 +46,7 @@ html, body { width: 100%; height: 100% }
   }
 
 @media only screen and (max-width: 700px) {
-  #vertical-bar {
+  .vertical-bar {
     width: 0 !important;
     background-color: #ccc;
     display: none;
@@ -63,10 +70,24 @@ html, body { width: 100%; height: 100% }
 
   #twitter a {
     padding: 0 0 0 10px;
+    font-family: "proxima-nova", helvetica, sans-serif;
+    text-transform: none; 
+    @media only screen and (max-width: 767px) {
+      img {
+        margin-right: 3px;
+      }
+    }
   }
 
   #facebook a {
     padding: 0 20px 0 13px;
+    font-family: "proxima-nova", helvetica, sans-serif;
+    text-transform: none;    
+    @media only screen and (max-width: 767px) {
+      img {
+        margin-right: 10px;
+      }
+    }    
   }
 
   .twelve.columns {
@@ -233,14 +254,7 @@ html, body { width: 100%; height: 100% }
   padding-left: 12px !important;
 }
 
-.top-bar section ul li:first-child {
-  @media(max-width: $topBarBreakPoint) {
-    padding-top: 8px !important;
-  }
-}
-
 #s {
-  border: 0;
   outline: none;
   border: none;
   font-size: 15px; 
