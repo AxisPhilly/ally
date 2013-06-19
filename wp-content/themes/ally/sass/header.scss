@@ -66,7 +66,7 @@ html, body { width: 100%; height: 100% }
   }
 
   #facebook a {
-    padding: 0 22px 0 13px;
+    padding: 0 20px 0 13px;
   }
 
   .twelve.columns {
@@ -271,4 +271,9 @@ html, body { width: 100%; height: 100% }
 
 #social-search {
   float: right;
+
+  @media only screen and (max-width:767px) {
+    float: left
+  }
+
 }
