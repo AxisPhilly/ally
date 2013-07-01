@@ -77,17 +77,26 @@
   ?>">
 
   <?php
-    if(isset($post->post_author)) {
-      $author_id=$post->post_author;
-      $twitter_name = get_the_author_meta('twitter', $author_id);
-    } else {
-      $twitter_name = 'AxisPhilly';
+    $author_twitter = 'AxisPhilly';
+    
+    if(isset($post)) {
+      $author = array_values(get_coauthors())[0];
+
+      if($author->type == 'guest-author' && $author->twitter != '') {
+        $author_twitter = $author->twitter;
+      } else {
+        $twitter_handles = get_the_coauthor_meta('twitter');
+
+        if(isset(array_values($twitter_handles)[0]) && array_values($twitter_handles)[0] != '') {
+          $author_twitter = array_values($twitter_handles)[0];
+        }
+      }
     }
   ?>
   <meta property="og:image" content="<?php echo wp_get_attachment_thumb_url(get_post_thumbnail_id($post->ID)); ?>">
   <meta property="twitter:site" content="@AxisPhilly">
   <meta property="twitter:card" content="summary">
-  <meta property="twitter:creator" content="@<?php if (empty($twitter_name)) echo "AxisPhilly"; else echo $twitter_name; ?>">
+  <meta property="twitter:creator" content="@<?php echo $author_twitter; ?>">
   <meta property="twitter:url" content="http://www.<?php echo $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]; ?>">
   <meta property="twitter:title" content="<?php
     if(stripos($_SERVER["REQUEST_URI"], 'article/') || stripos($_SERVER["REQUEST_URI"], 'tool/') || stripos($_SERVER["REQUEST_URI"], 'discussion/')) {
