@@ -80,10 +80,10 @@
     $author_twitter = 'AxisPhilly';
     
     if(isset($post)) {
-      $author = array_values(get_coauthors())[0];
+      $authors = array_values(get_coauthors());
 
-      if($author->type == 'guest-author' && $author->twitter != '') {
-        $author_twitter = $author->twitter;
+      if($authors[0]->type == 'guest-author' && $authors[0]->twitter != '') {
+        $author_twitter = $authors[0]->twitter;
       } else {
         $twitter_handles = get_the_coauthor_meta('twitter');
 
