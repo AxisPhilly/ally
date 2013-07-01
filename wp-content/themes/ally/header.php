@@ -85,10 +85,10 @@
       if($authors[0]->type == 'guest-author' && $authors[0]->twitter != '') {
         $author_twitter = $authors[0]->twitter;
       } else {
-        $twitter_handles = get_the_coauthor_meta('twitter');
+        $twitter_handles = array_values(get_the_coauthor_meta('twitter'));
 
-        if(isset(array_values($twitter_handles)[0]) && array_values($twitter_handles)[0] != '') {
-          $author_twitter = array_values($twitter_handles)[0];
+        if(isset($twitter_handles[0]) && $twitter_handles[0] != '') {
+          $author_twitter = $twitter_handles[0];
         }
       }
     }
