@@ -56,7 +56,6 @@ wp-content/mysql.sql
 /wp-mail.php
 /wp-rdf.php
 /wp-rss.php
-/wp-rss2.php
 /wp-pass.php
 /wp-register.php
 /wp-settings.php
@@ -64,7 +63,8 @@ wp-content/mysql.sql
 /wp-trackback.php
 /xmlrpc.php
 /wp-admin
-/wp-includes
+/wp-includes/*
+!/wp-includes/feed-rss2.php
 /wp-content/index.php
 /wp-content/themes/twentyten
 /wp-content/themes/index.php

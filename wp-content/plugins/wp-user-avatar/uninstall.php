@@ -1,12 +1,12 @@
 <?php
 /**
  * @package WP User Avatar
- * @version 1.4.1
+ * @version 1.5
  */
 
 // Remove user metadata and options on plugin delete
 if(!defined('WP_UNINSTALL_PLUGIN')){
-  die('You are not allowed to call this page directly.');
+  die(__('You are not allowed to call this page directly.'));
 }
 
 global $wpdb, $blog_id, $switched;
