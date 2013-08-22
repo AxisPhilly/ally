@@ -1,10 +1,4 @@
   <footer>
-    <div class="row colors">
-      <div class="three columns mobile-one yellow"> </div>
-      <div class="three columns mobile-one light-blue"> </div>
-      <div class="three columns mobile-one red"> </div>
-      <div class="three columns mobile-one dark-blue"> </div>
-    </div>
     <div class="row about">
       <div class="three columns">
         <img class="logo" alt="AxisPhilly" src="<?php bloginfo('template_directory'); ?>/images/logo-no-tagline-white.png"/>
