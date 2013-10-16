@@ -14,7 +14,7 @@
       <article class="single-story <?php if (!in_array('full-screen', $meta_tags)) echo "seven"; else echo "twelve"; ?> columns">
         <div class="single-article view">
           <header class="article-header">
-            <h1 class="headline"><?php the_title(); ?></h1>
+            <h2><?php the_title(); ?></h2>
             <div class="publish-container">
               <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?></span><span class="byline-date">, <?php (get_the_date('M') == "May") ? the_time('M j, Y'): the_time('M. j, Y'); ?></span></div>
             </div>

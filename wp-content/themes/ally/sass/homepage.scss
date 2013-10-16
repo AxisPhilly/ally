@@ -1,13 +1,137 @@
-$grey: #ccc;
+a {
+  -moz-transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+a:hover {
+  color: #666 !important;
+  -moz-transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
+} 
+
+$grey: #ddd;
 $black: #222;
 
 #homepage-content {
+
+  #email-subscription {
+    #email-subscription-header {
+      display: inline-block;
+    }
+    border-top: #102833 solid 3px;
+    padding-top: 14px;
+    img {
+      height: 14px;
+      margin-right: 7px;
+      float: left;
+    }
+    h5 {
+      font-weight: normal;
+      color: #666;
+      float: left;
+      margin-bottom: 0;
+    }
+    input {
+      border: 1px solid $grey;
+    }
+  }
+
+  #cityjournal {
+    h3 {
+      font-family: $condensedFontFamily;
+      a {
+        color: #222;
+      }
+    }
+    h4 {
+      margin-bottom: 4px;
+      a {
+        color: #00a7df
+      }
+    }
+    h5 {
+      font-weight: normal;
+      color: #666;
+      margin: 4px 0 12px 0;
+    }
+  }
+
+    #sub-cityjournal {
+    h5 {
+      margin-bottom: 4px;
+      font-weight: bold;
+      a {
+        color: #00a7df
+      }
+    }
+    h6 {
+      font-weight: normal;
+      color: #666;
+      margin: 4px 0 12px 0;
+    }          
+  }
+
+  .people-project {
+    text-align: center;
+    h6, h5 {
+      font-weight: normal;
+      line-height: 0;
+    }
+    h6 {
+      text-transform: uppercase;
+      color: #444444;
+      line-height: 6px;
+    }
+    h5 {
+      margin-bottom: 24px;
+    }
+    a > h5 {
+      color: #00a7df;
+    }
+    .people-project-thumbnail {
+      overflow: hidden;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 110px;
+      margin-bottom: 24px;
+    }
+    img {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      vertical-align: middle;
+      border: 0;
+    }
+  }
+
+  .thumbnail {
+    max-width: 84px;
+    float: left;
+    margin: 2px 4% 0 0;
+  }
+
+  .thumbnail-secondary {
+    display: none;
+    @media (max-width: 900px) {
+      display: block;
+    }
+  }
+
   .byline {
     margin: 0 0 0 0;
-    line-height: 1.5;
+    line-height: 1;
+    color: #999999;
 
     a:link, a:visited {
-      color:#666;
+      color: $mainLinkColor;
     } 
 
     @media(max-width: 360px) {
@@ -76,18 +200,67 @@ $black: #222;
     }
   }  
 
-  article.tool {
-    margin-top: 1em;
+  #homepage-sidebar-feature {
+    h5#most-popular {
+      background-color: #102833;
+      padding: 10px;
+      color: #fff;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    @media (min-width: 768px) and (max-width: 900px) {
+      display: none;
+    }
+    ul {
+      list-style-position: outside;
+      padding: 6px 0px 0 32px;
+      li {
+        margin-bottom: 6px;
+        h5 {
+          font-weight: normal;
+        }
+      }
+    }
+  }
+
+  article#tools {
+      @media(max-width: 900px) {
+        display: none;
+      }    
   }
 
   #features {
 
     margin-bottom: 1em;
 
-
     article {
       border-top: 1px $grey solid;
       padding: 20px 0 20px 0;
+      p {
+        font-size: 16px;
+      }
+      &#tools {
+        margin-top: 1em;
+        h4 {
+          img {
+            height: 14px;
+            margin-right: 6px;
+          }
+          font-weight: normal;
+          font-family: $condensedFontFamily;
+          text-transform: uppercase;
+          color: #888;
+          margin-bottom: 1em;
+        }
+      }
+
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      a {
+        color: #444;
+      }     
+      margin: 0;
     }
 
     article:first-child {
@@ -95,13 +268,13 @@ $black: #222;
       padding-top: 0px;
 
       @media(max-width: 767px) {
-        border-top: 1px solid $black;
-        padding: 14px 0 12px 0;
+        border-top: 1px solid $grey;
+        padding: 20px 0 20px 0;
       }
     }
 
     p {
-      font-size: 18px;
+      font-size: 16px;
       margin-bottom: 0;
     }
   }
@@ -116,28 +289,12 @@ $black: #222;
     }
 
     p {
-      font-size: 22px;
-    }
-
-    .byline-date {
-      font-size: 22px;
-    }
-
-    .byline-author {
-      font-size: 22px;
+      font-size: 18px;
     }
 
     @media (max-width: 767px) {
       p {
         font-size: 18px;
-      }
-
-      .byline-date {
-        font-size: 16px;
-      }
-
-      .byline-author {
-        font-size: 16px;
       }
 
       .byline {
@@ -252,9 +409,8 @@ $black: #222;
   }
 }
 
-#tools {
-  border-top: 1px solid $grey;
-  padding: 20px 0;
+#people-projects {
+  padding: 20px 12px;
   margin-bottom: 1em;
 
   article p {
@@ -262,9 +418,17 @@ $black: #222;
   }
 }
 
+#cityjournal {
+  padding: 20px 12px;
+  margin-bottom: 1em;
+  p {
+    font-size: 16px;
+  }
+}
+
 #projects {
   border-top: 1px solid $grey;
-  padding: 20px 0;
+  padding: 20px 12px;
   margin-bottom: 1em;
 
   .featured_video_plus iframe {
@@ -281,7 +445,7 @@ $black: #222;
   }
 }
 
-#tools p {
+#people-projects p {
   margin-bottom: 0
 }
 

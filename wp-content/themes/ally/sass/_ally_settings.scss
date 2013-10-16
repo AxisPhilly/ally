@@ -28,34 +28,38 @@ $darkEdge: rgba(#000, .2);
 // Font Settings
 
 //$fontSmoothing: antialiased;
-$headerFontFamily: "calluna", georgia, serif;
+$headerFontFamily: "franklin-gothic-urw", "helvetica neue", helvetica, arial, serif;
 $headerFontWeight: 600;
 $headerFontStyle: normal;
 $headerFontColor: #222;
+$condensedFontFamily: "franklin-gothic-urw-cond", "helvetica neue", helvetica, arial, serif;
+$condensedFontWeight: 600;
+$condensedFontStyle: normal;
+$condensedFontColor: #222;
 $bodyFontFamily: "minion-pro", serif;
 $bodyFontWeight: normal;
 $bodyFontStyle: normal;
 $bodyFontColor: $txtColor;
-$categoryFontFamily: "proxima-nova", "Helvetica Neue", Helvetica, sans-serif;
+$categoryFontFamily: "franklin-gothic-urw", "Helvetica Neue", Helvetica, sans-serif;
 $categoryFontWeight: 700;
 $categoryFontStyle: normal;
 $categoryFontColor: #222;
-$menuFontFamily: "proxima-nova", "Helvetica Neue", Helvetica, sans-serif;
+$menuFontFamily: "franklin-gothic-urw", "Helvetica Neue", Helvetica, sans-serif;
 $menuFontWeight: 300;
 $menuFontStyle: normal;
 $menuFontColor: #222;
 $menuFontSize: 20px;
-$byFontFamily: "proxima-nova", "Helvetica Neue", Helvetica, sans-serif;
+$byFontFamily: "franklin-gothic-urw", "Helvetica Neue", Helvetica, sans-serif;
 $byFontWeight: 300;
 $byFontStyle: normal;
 $byFontColor: #666;
 $byFontSize: 16px;
-$dateFontFamily: "proxima-nova", "Helvetica Neue", Helvetica, sans-serif;
+$dateFontFamily: "franklin-gothic-urw", "Helvetica Neue", Helvetica, sans-serif;
 $dateFontWeight: 300;
 $dateFontStyle: normal;
 $dateFontColor: #888;
 $dateFontSize: 16px;
-$sansSerifFont: "proxima-nova", "Helvetica Neue", Helvetica, sans-serif;
+$sansSerifFont: "franklin-gothic-urw", "Helvetica Neue", Helvetica, sans-serif;
 
 
 // Text Direction Settings
@@ -145,6 +149,7 @@ $progBarBorderSize: 1px;
 $progBarPad: 2px;
 $linkListBottomMargin: 17px -22px;
 $tableBorderRadius: 3px;
+$mainLinkColor: #00a7df;
 
 // Tooltip Settings
 
@@ -201,7 +206,7 @@ $clearingImgOldBrowserBg: rgb(0,0,0);
 // Modular Scale Settings
 
 //$ratio: $golden; // THIS IS DEFAULT IN MODULAR-SCALE
-$baseFontSize: 20px;
+$baseFontSize: 21px;
 $importantModNum: 44px;
 $base-size: $baseFontSize $importantModNum;
 // Produced the following list of values: 14, 17, 23, 27, 37, 44, 59, 71, 95, 115;

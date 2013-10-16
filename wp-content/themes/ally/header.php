@@ -83,6 +83,7 @@
     } else {
       $twitter_name = 'AxisPhilly';
     }
+
   ?>
   <meta property="og:image" content="<?php echo wp_get_attachment_thumb_url(get_post_thumbnail_id($post->ID)); ?>">
   <meta property="twitter:site" content="@AxisPhilly">
@@ -116,8 +117,7 @@
   ?>
   <link rel="icon" href="<?php bloginfo('template_directory'); ?>/images/favicon.png" type="image/x-icon" />
   <link rel="shortcut icon" href="<?php bloginfo('template_directory'); ?>/images/favicon.png" type="image/x-icon" />
-  <script type="text/javascript" src="//use.typekit.net/nuc2aoh.js"></script>
-
+  <script type="text/javascript" src="//use.typekit.net/mxe4grf.js"></script>
   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
   <script src="<?php bloginfo('template_directory'); ?>/javascripts/modernizr.foundation.js"></script>  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
@@ -136,6 +136,7 @@
   </script>  
   <?php // if (stripos(home_url(), 'axisphilly.org')) { // production ?>
     <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('template_directory'); ?>/stylesheets/app.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('template_directory'); ?>/stylesheets/responsive-nav.css" />    
   <?php // } else { // dev ?>
   <?php // } ?>
   <script type="text/javascript">
@@ -154,48 +155,35 @@
 </head>
 <body <?php body_class(); ?>>
   <!-- Fixed header -->
-  <header class="header">
-    <div >
-      <div class="row nav-container">
-        <div class="twelve columns">
-          <div class="nav-container contain-to-grid">
-            <nav class="top-bar">
-              <div class="four columns" id="logo-column">
-                <a href="/"><img alt="AxisPhilly: Where News Breaks Through" src="<?php bloginfo('template_directory'); ?>/images/axis-logo-compact.png"/></a>
-              </div>
-              <div class="eight columns" id="navigation-column">
-                <ul class="menu">
-                  <li class="toggle-topbar has-button">
-                    <span class="tiny secondary button menu-button">
-                      <span class="line"></span>
-                      <span class="line"></span>
-                      <span class="line"></span>
-                    </span>
-                  </li>
-                  <section>
-                    <ul class="right" id="menu-items">
-                      <li <?php if($_SERVER["REQUEST_URI"] == '/') { echo 'class="active"'; } ?>><a href="/">Home</a></li>
-                      <li <?php if(stripos($_SERVER["REQUEST_URI"], 'projects/')) { echo 'class="active"'; } ?>><a href="/projects">Projects</a></li>
-                      <li <?php if(stripos($_SERVER["REQUEST_URI"], 'tools/')) { echo 'class="active"'; } ?>><a href="/tools">Tools &amp; Data</a></li>
-                      <li <?php if(stripos($_SERVER["REQUEST_URI"], 'about/')) { echo 'class="active"'; } ?>><a href="/about">About</a></li>    
-                      <li id="twitter"><a href="http://www.twitter.com/AxisPhilly"><img src="<?php bloginfo('template_directory'); ?>/images/icon-twitter.png"></a></li>
-                      <li id="facebook"><a href="http://www.facebook.com/AxisPhilly"><img src="<?php bloginfo('template_directory'); ?>/images/icon-facebook.png"></a></li>           
-                      <li id="vertical-bar"></li>  
-                      <li id="search">
-                        <form class="collapse" role="search" method="get" id="searchform" action="http://axisphilly.org">
-                          <input value="" name="s" id="s" placeholder="Search" required="">
-                        </form>
-                      </li>
-                    </ul>
-                  </section>
-                </ul>
-              </div>
-            </nav>
+  <div id="header">
+    <div class="container">
+      <div class="row">
+          <div class="three columns" id="logo">
+            <a href="/"><img src="<?php bloginfo('template_directory'); ?>/images/axisphillylogo.png" alt="AxisPhilly"></a>
           </div>
-        </div>
+          <div id="nav" class="nine columns">
+            <div class="eight columns" id="main-menu">
+              <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/projects">Projects</a></li>
+                <li><a href="/tools">Tools & Data</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="http://twitter.com/axisphilly"><img src="<?php bloginfo('template_directory'); ?>/images/icon-twitter.png" alt="Twitter Logo" class="twitter"></a></li>
+                <span id="stretch"></span>
+              </ul>
+            </div>
+            <div class="four columns" id="search">
+              <div id="search-container">
+                <div id="search-icon"></div>
+                <div id="search-box">
+                  <input value="" name="s" required="">
+                </div>
+              </div>
+            </div>      
+          </div>
       </div>
     </div>
-  </header>
+  </div>
 
   <?php
   
