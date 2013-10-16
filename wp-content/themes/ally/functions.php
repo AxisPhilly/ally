@@ -177,7 +177,7 @@ function companion_meta() {
 
 function companion_callback( $post ) {
   $companion_name = get_post_meta($post->ID, '_companion_name', true);
-  $companion_name_field_names = array("Author", "Tag", "Category");
+  $companion_name_field_names = array("Author", "Project", "Column", "Series");
   echo 'What type of Person or Project is this?<br><select name="companion_name"><option value=""></option>';
   foreach ($companion_name_field_names as $key => $companion) {
       echo '<option value="'. $companion . '"';
