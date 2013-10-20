@@ -705,4 +705,10 @@ function capx_filter_guest_author_fields( $fields_to_return, $groups ) {
   return $fields_to_return;
 }
 
+function unhide_kitchensink( $args ) {
+$args['wordpress_adv_hidden'] = false;
+return $args;
+}
+add_filter( 'tiny_mce_before_init', 'unhide_kitchensink' );
+
 ?>
