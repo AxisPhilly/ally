@@ -168,9 +168,7 @@
             <img src="<? bloginfo('template_directory'); ?>/images/envelope.png">
             <h5>Subscribe</h5>
           </div>
-          <form action="http://visitor.r20.constantcontact.com/manage/optin?v=001xOeZxHk9_74v3tJ0vKZ015fg_AXzZHuaPKjOsQWMOwjJ5rG_UmxwHsPLhkZ27v-L2RqgOYnEihStAW5_Y-13ffO_81ZamI6hyq5OnoxdaB4%3D" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-            <input type="email" value="" name="subscriberProfile.visitorProps[0].value" class="email" id="mce-EMAIL" id="field_80" required>
-          </form>
+          <? echo do_shortcode('[constantcontactapi formid="1" lists="1895100121" exclude_lists=""]'); ?>
         </div>
       </div>
     </section>

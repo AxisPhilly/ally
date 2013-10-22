@@ -16,9 +16,68 @@ a:hover {
 $grey: #ddd;
 $black: #222;
 
+#mc_embed_signup {
+  .kws_form {
+    background-color: transparent;
+    background-image: none;
+    padding: 0;
+    clear: both;
+    float: left;
+    -webkit-background-clip: border-box;
+    -moz-background-clip: border-box;
+    background-clip: border-box;
+    background-origin: border-box;
+    -webkit-background-origin: border-box;
+    -moz-background-origin: border-box;
+    border: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    width: auto;
+    color: #fff!important;
+    font-family: "franklin-gothic-urw","helvetica neue",helvetica, arial, sans-serif!important;
+    font-size: 16!important;
+    text-align: left!important;
+    width: 100%;
+    .cc_success {
+      color: #fff!important;
+    }
+  }
+}
+
+
 #homepage-content {
 
   #email-subscription {
+    .kws_form {
+      background-color: #ffffff;
+      background-image: none;
+      padding: 0;
+      clear: both;
+      float: left;
+      -webkit-background-clip: border-box;
+      -moz-background-clip: border-box;
+      background-clip: border-box;
+      background-origin: border-box;
+      -webkit-background-origin: border-box;
+      -moz-background-origin: border-box;
+      border: 0;
+      -moz-border-radius: 0;
+      -webkit-border-radius: 0;
+      border-radius: 0;
+      width: auto;
+      color: #222!important;
+      font-family: "franklin-gothic-urw","helvetica neue",helvetica, arial, sans-serif!important;
+      font-size: 16!important;
+      text-align: left!important;
+      width: 100%;
+      .cc_success {
+        color: #666!important;
+      }
+    }
+
+
+
     #email-subscription-header {
       display: inline-block;
     }
@@ -471,3 +530,4 @@ $black: #222;
 #companion {
   position: relative; margin-top: 1em
 }
+

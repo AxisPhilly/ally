@@ -14,14 +14,8 @@
       </div>
       <section id="mc_embed_signup">
         <div class="three columns">
-          <!-- Begin MailChimp Signup Form -->
-            <form action="http://neilbudde.us4.list-manage.com/subscribe/post?u=f2095380fddf560272aa750da&amp;id=fd22697bf6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-              <label for="mce-EMAIL" id="email-signup-label">Sign up for email updates:</label>
-              <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
-              <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-            </form>
-
-          <!--End mc_embed_signup-->
+          <label for="mce-EMAIL" id="email-signup-label">Sign up for email updates:</label>
+          <? echo do_shortcode('[constantcontactapi formid="1" lists="1895100121" exclude_lists=""]'); ?>
         </div>
         <div class="three columns">
         </div>
@@ -45,6 +39,6 @@
       open: function(){},   // Function: Open callback
       close: function(){}   // Function: Close callback
     });
-  </script>  
+  </script>
 </body>
 </html>
