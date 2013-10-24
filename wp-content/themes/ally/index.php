@@ -58,7 +58,8 @@
               'posts_per_page' => 1,
               'post_type' => array('wp_tool', 'external_tool'),
               'meta_info' => 'homepage-top-feature',
-              'meta_key' => '_thumbnail_id'
+              'meta_key' => '_thumbnail_id',
+              'orderby' => 'rand'
             );
 
             $tools = new WP_Query($tools_args);
