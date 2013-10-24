@@ -53,8 +53,6 @@
           <h4><img src="<? bloginfo('template_directory'); ?>/images/tools.png">Featured Tool</h4>
           <?php 
             $tools_args = array(
-              'orderby' => 'date',
-              'order' => 'desc',
               'posts_per_page' => 1,
               'post_type' => array('wp_tool', 'external_tool'),
               'meta_info' => 'homepage-top-feature',
