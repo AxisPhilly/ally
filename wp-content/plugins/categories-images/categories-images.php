@@ -4,24 +4,30 @@ Plugin Name: Categories Images
 Plugin URI: http://zahlan.net/blog/2012/06/categories-images/
 Description: Categories Images Plugin allow you to add an image to category or any custom term.
 Author: Muhammad Said El Zahlan
-Version: 2.2.4
+Version: 2.3.1
 Author URI: http://zahlan.net/
 */
 ?>
 <?php
-if ( ! defined( 'Z_PLUGIN_URL' ) )
-	define( 'Z_PLUGIN_URL', untrailingslashit( plugins_url( '', __FILE__ ) ) );
+if (!defined('Z_PLUGIN_URL'))
+	define('Z_PLUGIN_URL', untrailingslashit(plugins_url('', __FILE__)));
 
-define( 'Z_IMAGE_PLACEHOLDER', Z_PLUGIN_URL . "/images/placeholder.png");
+define('Z_IMAGE_PLACEHOLDER', Z_PLUGIN_URL."/images/placeholder.png");
 
 // l10n
-load_plugin_textdomain( 'zci', false, 'categories-images/languages' );
+load_plugin_textdomain('zci', FALSE, 'categories-images/languages');
 
 add_action('admin_init', 'z_init');
 function z_init() {
 	$z_taxonomies = get_taxonomies();
 	if (is_array($z_taxonomies)) {
-	    foreach ($z_taxonomies as $z_taxonomy ) {
+		$zci_options = get_option('zci_options');
+		if (empty($zci_options['excluded_taxonomies']))
+			$zci_options['excluded_taxonomies'] = array();
+		
+	    foreach ($z_taxonomies as $z_taxonomy) {
+			if (in_array($z_taxonomy, $zci_options['excluded_taxonomies']))
+				continue;
 	        add_action($z_taxonomy.'_add_form_fields', 'z_add_texonomy_field');
 			add_action($z_taxonomy.'_edit_form_fields', 'z_edit_texonomy_field');
 			add_filter( 'manage_edit-' . $z_taxonomy . '_columns', 'z_taxonomy_columns' );
@@ -42,8 +48,13 @@ function z_add_style() {
 
 // add image field in add form
 function z_add_texonomy_field() {
-wp_enqueue_style('thickbox');
-wp_enqueue_script('thickbox');
+	if (get_bloginfo('version') >= 3.5)
+		wp_enqueue_media();
+	else {
+		wp_enqueue_style('thickbox');
+		wp_enqueue_script('thickbox');
+	}
+	
 	echo '<div class="form-field">
 		<label for="taxonomy_image">' . __('Image', 'zci') . '</label>
 		<input type="text" name="taxonomy_image" id="taxonomy_image" value="" />
@@ -54,8 +65,13 @@ wp_enqueue_script('thickbox');
 
 // add image field in edit form
 function z_edit_texonomy_field($taxonomy) {
-	wp_enqueue_style('thickbox');
-	wp_enqueue_script('thickbox');
+	if (get_bloginfo('version') >= 3.5)
+		wp_enqueue_media();
+	else {
+		wp_enqueue_style('thickbox');
+		wp_enqueue_script('thickbox');
+	}
+	
 	if (z_taxonomy_image_url( $taxonomy->term_id, TRUE ) == Z_IMAGE_PLACEHOLDER) 
 		$image_text = "";
 	else
@@ -71,37 +87,66 @@ function z_edit_texonomy_field($taxonomy) {
 // upload using wordpress upload
 function z_script() {
 	return '<script type="text/javascript">
-	    jQuery(document).ready(function() {
-			jQuery(".z_upload_image_button").click(function() {
-				upload_button = jQuery(this);
-				tb_show("", "media-upload.php?type=image&amp;TB_iframe=true");
-				return false;
-			});
-			jQuery(".z_remove_image_button").click(function() {
-				jQuery("#taxonomy_image").val("");
-				jQuery(this).parent().siblings(".title").children("img").attr("src","' . Z_IMAGE_PLACEHOLDER . '");
-				jQuery(".inline-edit-col :input[name=\'taxonomy_image\']").val("");
-				return false;
-			});
-			window.send_to_editor = function(html) {
-				imgurl = jQuery("img",html).attr("src");
-				if (upload_button.parent().prev().children().hasClass("tax_list")) {
-					upload_button.parent().prev().children().val(imgurl);
-					upload_button.parent().prev().prev().children().attr("src", imgurl);
+	    jQuery(document).ready(function($) {
+			var wordpress_ver = "'.get_bloginfo("version").'", upload_button;
+			$(".z_upload_image_button").click(function(event) {
+				upload_button = $(this);
+				var frame;
+				if (wordpress_ver >= "3.5") {
+					event.preventDefault();
+					if (frame) {
+						frame.open();
+						return;
+					}
+					frame = wp.media();
+					frame.on( "select", function() {
+						// Grab the selected attachment.
+						var attachment = frame.state().get("selection").first();
+						frame.close();
+						if (upload_button.parent().prev().children().hasClass("tax_list")) {
+							upload_button.parent().prev().children().val(attachment.attributes.url);
+							upload_button.parent().prev().prev().children().attr("src", attachment.attributes.url);
+						}
+						else
+							$("#taxonomy_image").val(attachment.attributes.url);
+					});
+					frame.open();
 				}
-				else
-					jQuery("#taxonomy_image").val(imgurl);
-				tb_remove();
+				else {
+					tb_show("", "media-upload.php?type=image&amp;TB_iframe=true");
+					return false;
+				}
+			});
+			
+			$(".z_remove_image_button").click(function() {
+				$("#taxonomy_image").val("");
+				$(this).parent().siblings(".title").children("img").attr("src","' . Z_IMAGE_PLACEHOLDER . '");
+				$(".inline-edit-col :input[name=\'taxonomy_image\']").val("");
+				return false;
+			});
+			
+			if (wordpress_ver < "3.5") {
+				window.send_to_editor = function(html) {
+					imgurl = $("img",html).attr("src");
+					if (upload_button.parent().prev().children().hasClass("tax_list")) {
+						upload_button.parent().prev().children().val(imgurl);
+						upload_button.parent().prev().prev().children().attr("src", imgurl);
+					}
+					else
+						$("#taxonomy_image").val(imgurl);
+					tb_remove();
+				}
 			}
-			jQuery(".editinline").live("click", function(){  
-			    var tax_id = jQuery(this).parents("tr").attr("id").substr(4);
-			    var thumb = jQuery("#tag-"+tax_id+" .thumb img").attr("src");
+			
+			$(".editinline").live("click", function(){  
+			    var tax_id = $(this).parents("tr").attr("id").substr(4);
+			    var thumb = $("#tag-"+tax_id+" .thumb img").attr("src");
 				if (thumb != "' . Z_IMAGE_PLACEHOLDER . '") {
-					jQuery(".inline-edit-col :input[name=\'taxonomy_image\']").val(thumb);
+					$(".inline-edit-col :input[name=\'taxonomy_image\']").val(thumb);
 				} else {
-					jQuery(".inline-edit-col :input[name=\'taxonomy_image\']").val("");
+					$(".inline-edit-col :input[name=\'taxonomy_image\']").val("");
 				}
-				jQuery(".inline-edit-col .title img").attr("src",thumb);
+				$(".inline-edit-col .title img").attr("src",thumb);
 			    return false;  
 			});  
 	    });
@@ -194,4 +239,53 @@ if ( strpos( $_SERVER['SCRIPT_NAME'], 'edit-tags.php' ) > 0 ) {
 	add_filter("attribute_escape", "z_change_insert_button_text", 10, 2);
 }
 
-?>
+// New menu submenu for plugin options in Settings menu
+add_action('admin_menu', 'z_options_menu');
+function z_options_menu() {
+	add_options_page(__('Categories Images settings', 'zci'), __('Categories Images', 'zci'), 'manage_options', 'zci-options', 'zci_options');
+	add_action('admin_init', 'z_register_settings');
+}
+
+// Register plugin settings
+function z_register_settings() {
+	register_setting('zci_options', 'zci_options', 'z_options_validate');
+	add_settings_section('zci_settings', __('Categories Images settings', 'zci'), 'z_section_text', 'zci-options');
+	add_settings_field('z_excluded_taxonomies', __('Excluded Taxonomies', 'zci'), 'z_excluded_taxonomies', 'zci-options', 'zci_settings');
+}
+
+// Settings section description
+function z_section_text() {
+	echo '<p>'.__('Please select the taxonomies you want to exclude it from Categories Images plugin', 'zci').'</p>';
+}
+
+// Excluded taxonomies checkboxs
+function z_excluded_taxonomies() {
+	$options = get_option('zci_options');
+	$disabled_taxonomies = array('nav_menu', 'link_category', 'post_format');
+	foreach (get_taxonomies() as $tax) : if (in_array($tax, $disabled_taxonomies)) continue; ?>
+		<input type="checkbox" name="zci_options[excluded_taxonomies][<?php echo $tax ?>]" value="<?php echo $tax ?>" <?php checked(isset($options['excluded_taxonomies'][$tax])); ?> /> <?php echo $tax ;?><br />
+	<?php endforeach;
+}
+
+// Validating options
+function z_options_validate($input) {
+	return $input;
+}
+
+// Plugin option page
+function zci_options() {
+	if (!current_user_can('manage_options'))
+		wp_die(__( 'You do not have sufficient permissions to access this page.', 'zci'));
+		$options = get_option('zci_options');
+	?>
+	<div class="wrap">
+		<?php screen_icon(); ?>
+		<h2><?php _e('Categories Images', 'zci'); ?></h2>
+		<form method="post" action="options.php">
+			<?php settings_fields('zci_options'); ?>
+			<?php do_settings_sections('zci-options'); ?>
+			<?php submit_button(); ?>
+		</form>
+	</div>
+<?php
+}

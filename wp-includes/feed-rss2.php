@@ -38,7 +38,6 @@ echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>'; ?>
 		<pubDate><?php echo mysql2date('D, d M Y H:i:s +0000', get_post_time('Y-m-d H:i:s', true), false); ?></pubDate>
 		<dc:creator><?php coauthors(',', '', '', '', true); ?></dc:creator>
 		<?php the_category_rss('rss2') ?>
-
 		<guid isPermaLink="false"><?php the_guid(); ?></guid>
 <?php if (get_option('rss_use_excerpt')) : ?>
 		<description><![CDATA[<?php the_excerpt_rss(); ?>]]></description>

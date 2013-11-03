@@ -2,8 +2,8 @@
 Contributors: elzahlan
 Tags: Category Image, Category Images, Categories Images, taxonomy image, taxonomy images, taxonomies images, category icon, categories icons, category logo, categories logos, admin, wp-admin, category image plugin, categories images plugin
 Requires at least: 2.8
-Tested up to: 3.5
-Stable tag: 2.2.4
+Tested up to: 3.5.1
+Stable tag: 2.3.1
 
 The Categories Images Plugin allow you to add image with category or taxonomy.
 
@@ -12,6 +12,8 @@ The Categories Images Plugin allow you to add image with category or taxonomy.
 The Categories Images Plugin allow you to add image with category or taxonomy.
 
 Use `<?php if (function_exists('z_taxonomy_image_url')) echo z_taxonomy_image_url(); ?>` to get the url and put it in any img tag in (category or taxonomy) template.
+
+Also from settings menu you can exclude any taxonomies from the plugin to avoid conflicting with another plugins like WooCommerce!
 
 = More documentation =
 
@@ -46,11 +48,26 @@ Please check the documentation page:
 
 == Screenshots ==
 
-1. image preview and new image field in add/edit category or taxonomy with upload button which allow you to select current or upload a new image.
-2. new image field with (upload/remove) buttons to allow you to edit category or taxonomy image in quick edit.
-2. when you click the upload button the wordpress upload box will popup, upload or select image then press use this image.
+1. Image preview and new image field in add/edit category or taxonomy with upload button which allow you to select current or upload a new image.
+2. New image field with (upload/remove) buttons to allow you to edit category or taxonomy image in quick edit.
+3. When you click the upload button the wordpress upload box will popup, upload or select image then press use this image.
+4. New submenu (Categories Images) in Settings menu.
+5. Now you can exclude any taxonomy from the plugin and save changes.
 
 == Changelog ==
+
+= 2.3.1 =
+* Bug fix in js for Wordpress media uploader.
+
+= 2.3 =
+* New screenshots.
+* Updated language file.
+* Added support for both old and new Wordpress media uploader.
+* Added new submenu (Categories Images) in Settings menu.
+* Added new settings for excluding any taxonomies from the plugin.
+* Added new placeholder image.
+
+Thanks to Patrick http://www.patrickbos.nl and Hassan http://profiles.wordpress.org/hassanhamm/ for the new ideas.
 
 = 2.2.4 =
 * java script bug fixed, reported about conflicting with WooCommerce plugin. Thanks to Marty McGee.

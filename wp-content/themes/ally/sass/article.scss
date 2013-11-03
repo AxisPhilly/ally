@@ -115,7 +115,7 @@
 
   &.affix {
     position: fixed;
-    top: 48px;
+    top: 84px;
     width: 22%;
 
     a:hover {
@@ -307,4 +307,14 @@ img.size-full {
 
 .article-text iframe {
   max-width: 100%;
+}
+table {
+  font-family: $sansSerifFont;
+  tbody {
+    tr {
+      td {
+        font-size: 16px;
+      }
+    }
+  }
 }

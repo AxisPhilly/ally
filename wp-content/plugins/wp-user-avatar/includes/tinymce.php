@@ -1,11 +1,11 @@
 <?php
 /**
  * @package WP User Avatar
- * @version 1.4.1
+ * @version 1.5
  */
 
 if(!defined('ABSPATH')){
-  die('You are not allowed to call this page directly.');
+  die(__('You are not allowed to call this page directly.'));
   @header('Content-Type:'.get_option('html_type').';charset='.get_option('blog_charset'));
 }
 
