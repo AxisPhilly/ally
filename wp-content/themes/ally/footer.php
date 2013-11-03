@@ -14,14 +14,8 @@
       </div>
       <section id="mc_embed_signup">
         <div class="three columns">
-          <!-- Begin MailChimp Signup Form -->
-            <form action="http://neilbudde.us4.list-manage.com/subscribe/post?u=f2095380fddf560272aa750da&amp;id=fd22697bf6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-              <label for="mce-EMAIL" id="email-signup-label">Sign up for email updates:</label>
-              <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
-              <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-            </form>
-
-          <!--End mc_embed_signup-->
+          <label for="mce-EMAIL" id="email-signup-label">Sign up for email updates:</label>
+          <? echo do_shortcode('[constantcontactapi formid="1" lists="1895100121" exclude_lists=""]'); ?>
         </div>
         <div class="three columns">
         </div>
@@ -31,5 +25,20 @@
   </footer>
   <script src="<?php bloginfo('template_directory'); ?>/javascripts/foundation.min.js" type="text/javascript"></script>
   <script src="<?php bloginfo('template_directory'); ?>/javascripts/site.1.0.6.min.js" type="text/javascript"></script>
+  <script src="<?php bloginfo('template_directory'); ?>/javascripts/responsive-nav.min.js" type="text/javascript"></script>
+  <script>
+    var navigation = responsiveNav("#nav", {
+      animate: true,        // Boolean: Use CSS3 transitions, true or false
+      transition: 400,      // Integer: Speed of the transition, in milliseconds
+      label: "Menu",        // String: Label for the navigation toggle
+      insert: "before",      // String: Insert the toggle before or after the navigation
+      customToggle: "",     // Selector: Specify the ID of a custom toggle
+      openPos: "relative",  // String: Position of the opened nav, relative or static
+      jsClass: "js",        // String: 'JS enabled' class which is added to <html> el
+      init: function(){},   // Function: Init callback
+      open: function(){},   // Function: Open callback
+      close: function(){}   // Function: Close callback
+    });
+  </script>
 </body>
 </html>

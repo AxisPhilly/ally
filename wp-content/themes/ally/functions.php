@@ -172,12 +172,19 @@ class Walker_Nav_Menu_CMS extends Walker_Nav_Menu {
 
 // Create companion_meta Custom Field
 function companion_meta() {
-  add_meta_box('companion_meta', 'Companion', 'companion_callback', 'post', 'normal', 'high');
+  add_meta_box('companion_meta', 'Companion', 'companion_callback', 'people_project', 'normal', 'high');
 }
 
 function companion_callback( $post ) {
   $companion_name = get_post_meta($post->ID, '_companion_name', true);
-  echo 'What is the ID of the Companion Tool?</em><br><input type="text" name="companion_name" style="width: 100%" value="'.$companion_name.'"/>';
+  $companion_name_field_names = array("Author", "Project", "Column", "Series");
+  echo 'What type of Person or Project is this?<br><select name="companion_name"><option value=""></option>';
+  foreach ($companion_name_field_names as $key => $companion) {
+      echo '<option value="'. $companion . '"';
+      if ($companion == $companion_name) echo ' selected="selected"';
+      echo '>'. $companion .'</option>';
+  }
+  echo '</select>';
 }
 
 add_action('add_meta_boxes', 'companion_meta');
@@ -466,6 +473,43 @@ function create_post_type() {
   register_taxonomy_for_object_type('category', 'external_tool');
   register_taxonomy_for_object_type('meta_info', 'external_tool');
 
+
+  // register city_journal as a Custom Post Type
+  register_post_type('city_journal',
+    array(
+      'labels' => array(  
+          'name' => __('CityJournal Entry'),
+          'singular_name' => __('CityJournal Entry')
+      ),  
+      'public' => true,  
+      'menu_position' => 5,  
+      'supports' => array('title', 'editor', 'author', 'excerpt', 'thumbnail', 'revisions', 'meta_info'),
+      'rewrite' => array('slug' => 'cityjournal','with_front' => false)      
+    )  
+  );  
+
+  // connect city_journal to category taxonomy
+  register_taxonomy_for_object_type('category', 'city_journal');
+  register_taxonomy_for_object_type('meta_info', 'city_journal');  
+
+
+  // register people_project as a Custom Post Type
+  register_post_type('people_project',
+    array(
+      'labels' => array(  
+          'name' => __('People & Projects'),
+          'singular_name' => __('People & Project')
+      ),  
+      'public' => true,  
+      'menu_position' => 5,  
+      'supports' => array('title', 'excerpt', 'thumbnail', 'meta_info'),
+    )  
+  );  
+
+  // connect people_project to category taxonomy
+  register_taxonomy_for_object_type('meta_info', 'people_project');  
+
+
   register_post_type('discussion',
     array(  
       'labels' => array(  
@@ -660,5 +704,11 @@ function capx_filter_guest_author_fields( $fields_to_return, $groups ) {
   }  
   return $fields_to_return;
 }
+
+function unhide_kitchensink( $args ) {
+$args['wordpress_adv_hidden'] = false;
+return $args;
+}
+add_filter( 'tiny_mce_before_init', 'unhide_kitchensink' );
 
 ?>

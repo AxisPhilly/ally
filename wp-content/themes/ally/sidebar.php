@@ -1,6 +1,6 @@
 <aside class="sidebar three columns hide-for-small">
   <div class="view">
-    <div <?php global $sidebar; if($sidebar == 0) { ?> class="moving-container" data-spy="affix" data-offset-top="35" <?php } ?>>
+    <div <?php global $sidebar; if($sidebar == 0) { ?> <?php } ?>>
       <? 
         $column = get_column();
         
@@ -21,7 +21,7 @@
         }
       ?>      
       <div class="social-container">
-        <h6 class="sidebar">Share this:</h6>
+        <h5 class="sidebar">Share this:</h5>
         <div class="shorturl-container">
           <input type="text" name="shorturl" class="shorturl" value="<?php echo wp_get_shortlink(); ?>"/>
         </div>
@@ -37,21 +37,21 @@
           $main_post = $post->ID;
           $recent_header = 'Recent Stories';
           $category = get_the_category();
-          $c_name = $category[0]->name;
-          $c_slug = $category[0]->slug;
+          if (count($category) > 0) {
+            $c_name = $category[0]->name;
+            $c_slug = $category[0]->slug;
+            if($c_slug == 'uncategorized') { $c_slug = NULL; }
+            if (get_post_type($post) == 'wp_tool') { 
+              $post_type = 'tool'; 
+            } elseif (get_post_type($post) == 'discussion') {
+              $post_type = 'discussion';          
+            } else { 
+              $post_type = 'article'; 
+            } 
 
-          if($c_slug == 'uncategorized') { $c_slug = NULL; }
-
-          if (get_post_type($post) == 'wp_tool') { 
-            $post_type = 'tool'; 
-          } elseif (get_post_type($post) == 'discussion') {
-            $post_type = 'discussion';
-          } else { 
-            $post_type = 'article'; 
-          } 
-
-          if (in_project($main_post)) {
-            $recent_header = 'This ' . $post_type . ' is part of our <a href="/project/' . $c_slug . '">' . $c_name . '</a> project. Read more:';
+            if (in_project($main_post)) {
+              $recent_header = 'This ' . $post_type . ' is part of our <a href="/project/' . $c_slug . '">' . $c_name . '</a> project. Read more:';
+            }
           }
 
           $recent_posts_args = array(
@@ -65,10 +65,15 @@
             $recent_header = 'Recent Posts';
           }
 
+          if (get_post_type($post) == "city_journal") {
+              $recent_posts_args['post_type'] = 'city_journal';
+              $recent_posts_args['category_name'] = NULL;
+          }
+
           $recent_posts = new WP_Query($recent_posts_args);
         ?>
         <div class="description">
-          <h6 class="sidebar"><?php echo $recent_header; ?></h6>
+          <h5 class="sidebar"><?php echo $recent_header; ?></h5>
         </div>
         <?php
           $count = 0;

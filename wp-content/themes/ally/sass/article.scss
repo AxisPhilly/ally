@@ -1,5 +1,5 @@
 .byline {
-  font-size: 18px;
+  font-size: 16px;
   margin: .5em 0;
 
   @media(max-width: 360px) {
@@ -39,20 +39,21 @@
 
   .project-info-container {
     margin-top: 8px;
+    font-family: $sansSerifFont;
   }
 
   .recent {
     margin: 5px 0;
 
     a {
-      font-size: 18px;
+      font-size: 16px;
       padding: 6px 0;
       display: block;
       border-bottom: 1px solid $grey;
     }
 
     a:last-child {
-      font-size: 18px;
+      font-size: 16px;
       padding: 6px 0;
       display: block;
       border-bottom: none;
@@ -248,15 +249,19 @@
 
 .shorturl-container input {
   margin-top: .5em;
-  font-size: 18px;
+  font-size: 16px;
   width: 200px;
+  border: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
 .column-container {
   margin-bottom: 18px;
 }
 
-h6.sidebar {
+h5.sidebar {
   border-bottom: solid 1px #ccc;
   padding: .5em 0;
   margin: 0;
@@ -282,6 +287,9 @@ img.size-full {
 .wp-caption { max-width: 100%; }
 
 .single-article {
+  p {
+    font-size: 21px;
+  }
   .byline {
     padding-bottom: 0.5em;
   }

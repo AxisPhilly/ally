@@ -148,7 +148,7 @@
               ?>  
               <div class="row">
                 <div class="six columns">
-                    <h4 style="font-family: proxima-nova, helvetica, sans-serif;">
+                    <h4 style="font-family: franklin-gothic-urw, helvetica, sans-serif;">
                       <?php
                         echo "<a href='"; 
                         the_permalink();

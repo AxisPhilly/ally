@@ -55,7 +55,7 @@
             ?>
             <div class="three columns<? if($total == count($tools->posts)) echo ' end';?>">
               <article class="tool">
-                <?php get_media($post->ID, 'thumbnail') ?>
+                <?php get_media($post->ID, 'medium') ?>
                 <h4 class="headline"><a href="<?php echo $post_url; ?>"><?php the_title(); ?></a></h4>
                 <?php if (get_the_author() != 'axisphilly') { ?>
                   <div class="byline"><span class="byline-author">by <?php coauthors_posts_links(); ?> </span><span class="byline-date"><?php (get_the_date('M') == "May") ? the_time('M j, Y'): the_time('M. j, Y'); ?></span></div>
