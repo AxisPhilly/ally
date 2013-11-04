@@ -15,7 +15,7 @@
           if (!empty($taxonomy_image_url)){
             echo '<a href="/commentary/' . $slug . '"><img src="' . $taxonomy_image_url . '"></a>';
           }
-          echo '<h6 class="sidebar">' . $column_details->name . '</h6>';
+          echo '<h3 class="sidebar">' . $column_details->name . '</h3>';
           echo '<div class="recent stories">' . $column_details->description . '</div>';
           echo '</div>';
         }
