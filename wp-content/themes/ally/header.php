@@ -131,18 +131,6 @@
   <script src="<?php bloginfo('template_directory'); ?>/javascripts/modernizr.foundation.js"></script>  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
   <script src="<?php bloginfo('template_directory'); ?>/javascripts/libraries.1.0.6.min.js" type="text/javascript"></script>
-  <script>
-    $(document).ready(function(){
-      $("#s").focus(function() {
-        $("#search").animate({ width: "125px" } , 200);
-        $("#s").animate({ width: "125px" } , 200);        
-      });
-      $("#s").blur(function() {
-        $("#search").animate({ width: "85px" } , 200);
-        $("#s").animate({ width: "85px" } , 200);                
-      });      
-    });
-  </script>  
   <?php // if (stripos(home_url(), 'axisphilly.org')) { // production ?>
     <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('template_directory'); ?>/style.css" />
   <?php // } else { // dev ?>
@@ -184,7 +172,9 @@
               <div id="search-container">
                 <div id="search-icon"></div>
                 <div id="search-box">
-                  <input value="" name="s" required="">
+                  <form role="search" method="get" id="searchform" action="http://axisphilly.org">
+                    <input value="" name="s" required="">
+                  </form>
                 </div>
               </div>
             </div>      
