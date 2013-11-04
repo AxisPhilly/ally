@@ -483,7 +483,7 @@ function create_post_type() {
       ),  
       'public' => true,  
       'menu_position' => 5,  
-      'supports' => array('title', 'editor', 'author', 'excerpt', 'thumbnail', 'revisions', 'meta_info'),
+      'supports' => array('title', 'editor', 'author', 'excerpt', 'thumbnail', 'revisions', 'meta_info', 'comments'),
       'rewrite' => array('slug' => 'cityjournal','with_front' => false)      
     )  
   );  
