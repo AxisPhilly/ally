@@ -263,7 +263,7 @@
               <a href="<? the_permalink() ?>"><? the_title() ?></a>
             </h4>
             <h5>
-              <?php coauthors_posts_links(); ?>
+              by <?php coauthors(); ?>
             </h5>
             <p>
               <? echo get_the_excerpt() ?> <a href="<? the_permalink() ?>">Continued...</a>
@@ -280,7 +280,7 @@
                 <a href="<? the_permalink() ?>"><? the_title() ?></a>
               </h5>
               <h6>
-                <?php coauthors_posts_links(); ?>
+                by <?php coauthors(); ?>
               </h6>     
             <? if ($latest_count == 1) { ?>
               </div>
