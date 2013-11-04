@@ -118,7 +118,7 @@
         <article>
           <? if (has_post_thumbnail()) { $sub_thumbnail_count++; ?>
             <div class="thumbnail<? if ($sub_thumbnail_count > 2) echo " thumbnail-secondary" ?>">
-              <?php get_media($post->ID, 'thumbnail') ?>
+              <?php print_r(get_the_post_thumbnail($post->ID, 'thumbnail'));?>
             </div>
           <? } ?>            
           <div class="byline"><?php coauthors_posts_links(); ?> / <?php (get_the_date('M') == "May") ? the_time('M j'): the_time('M. j'); ?></div>
